@@ -1,7 +1,9 @@
 fiubar
 ======
 
-Administrador de materias para FIUBA
+Administrador de materias para FIUBA.
 
-http://fiubar.com/
+De manera simple y ordenada, podés organizar tu carrera y decidir qué materias cursar.
+
+http://fiubar.com.ar/
 
