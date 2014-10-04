@@ -1,4 +1,4 @@
 secret_key.txt
 *.pyc
-*.sqlite
+*.sqlite*
 *.log
