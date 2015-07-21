@@ -12,13 +12,17 @@ Instalación
 ===========
 
 $ git clone https://github.com/maru/fiubar.git
+
 $ ls
 
     fiubar  LICENSE  openmate  README.md
     
 $ wget 'https://www.djangoproject.com/m/releases/1.2/Django-1.2.7.tar.gz'
+
 $ tar zxf Django-1.2.7.tar.gz
+
 $ cd fiubar/
+
 $ python manage.py syncdb
 
 	(crea las tablas en la base de datos y un usuario administrador)
