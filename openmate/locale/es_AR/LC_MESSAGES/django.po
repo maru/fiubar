@@ -1,0 +1,2779 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-10 16:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Maria Eugenia Berezin <lalala@s106.com.ar>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: modules/about/forms.py:7 modules/messages/forms.py:24
+#: modules/messages/templates/messages/inbox_message_show.html:52
+#: modules/messages/templates/messages/message_compose.html:23
+msgid "Subject"
+msgstr "Asunto"
+
+#: modules/about/forms.py:8 modules/about/forms.py:13
+#: modules/about/forms.py:18
+#: modules/files/templates/materia_file_mkdir.html:16
+#: modules/files/templates/materia_file_upload.html:16
+#: modules/groups/forms.py:74
+msgid "Description"
+msgstr "Descripción"
+
+#: modules/about/forms.py:11
+msgid "Category"
+msgstr "Categoría"
+
+#: modules/about/forms.py:12
+msgid "Asunto"
+msgstr "Asunto"
+
+#: modules/about/forms.py:16
+msgid "Tu nombre:"
+msgstr "Nombre"
+
+#: modules/about/forms.py:17
+msgid "Tu email:"
+msgstr "Tu email"
+
+#: modules/about/models.py:23
+msgid "New"
+msgstr "Nuevo"
+
+#: modules/about/models.py:24
+msgid "Working"
+msgstr "Trabajando"
+
+#: modules/about/models.py:25
+msgid "Implemented"
+msgstr "Implementado"
+
+#: modules/about/models.py:28 modules/facultad/templates/base_facultad.html:5
+#: modules/facultad/templates/base_facultad.html:18
+#: modules/facultad/templates/base_materias.html:5
+#: modules/facultad/templates/carreras_home.html:18
+#: modules/facultad/templates/facultad_plancarrera.html:5
+#: modules/facultad/templates/facultad_plancarrera.html:37
+#: modules/facultad/templates/facultad_plancarrera_all.html:5
+#: modules/facultad/templates/facultad_plancarrera_all.html:31
+#: modules/facultad/templates/materias_home.html:5
+#: modules/facultad/templates/materias_home.html:11
+#: modules/site/templates/base_site.html:20
+msgid "Materias"
+msgstr "Materias"
+
+#: modules/about/models.py:29 modules/groups/templates/base_groups.html:5
+#: modules/groups/templates/plugins/groups_user_menu.html:2
+#: modules/profiles/templates/profiles/show_profile.html:74
+#: modules/site/templates/base_site.html:21
+msgid "Grupos"
+msgstr "Grupos"
+
+#: modules/about/models.py:30 modules/profiles/templates/base_profile.html:5
+#: modules/profiles/templates/plugins/profile_user_menu.html:2
+#: modules/profiles/templates/profiles/show_profile.html:18
+#: modules/site/templates/base_site.html:22
+msgid "Perfil"
+msgstr "Perfil"
+
+#: modules/about/models.py:31 modules/news/templates/base_news.html:5
+#: modules/news/templates/base_news.html:17
+#: modules/news/templates/base_news.html:20 modules/news/templates/home.html:5
+#: modules/news/templates/home.html.py:8
+msgid "Noticias"
+msgstr "Noticias"
+
+#: modules/about/models.py:32 modules/facultad/templates/base_materias.html:29
+#: modules/facultad/templates/materia_show.html:45
+#: modules/groups/templates/base_group.html:70
+#: modules/polls/templates/base_encuesta.html:5
+#: modules/polls/templates/base_encuesta.html:16
+#: modules/polls/templates/base_polls.html:24
+msgid "Encuestas"
+msgstr "Encuestas"
+
+#: modules/about/models.py:33
+msgid "General"
+msgstr "General"
+
+#: modules/about/views.py:47
+msgid "Sugerencia - "
+msgstr "Sugerencia - "
+
+#: modules/about/views.py:66 modules/about/views.py:67
+msgid "Contacto"
+msgstr "Contactanos"
+
+#: modules/about/views.py:67
+msgid "Razón del contacto:"
+msgstr "Razón del contacto:"
+
+#: modules/about/views.py:91 modules/about/views.py:93
+msgid "¡Quiero participar!"
+msgstr "¡Quiero participar!"
+
+#: modules/about/views.py:92
+msgid "Contanos que te gustaría hacer:"
+msgstr "Contanos qué te gustaría hacer:"
+
+#: modules/about/templates/base_about.html:4
+#: modules/about/templates/base_about.html:12
+msgid "About"
+msgstr "Acerca de"
+
+#: modules/about/templates/base_about.html:15
+msgid "Qué es Fiubar"
+msgstr "Qué es Fiubar"
+
+#: modules/about/templates/base_about.html:16
+#: modules/about/templates/about/faq.html:5
+#: modules/about/templates/about/faq.html:9
+msgid "Preguntas Frecuentes"
+msgstr "Preguntas Frecuentes"
+
+#: modules/about/templates/base_about.html:17
+#: modules/about/templatetags/sidebar.py:9
+msgid "Report a bug"
+msgstr "Reportar error"
+
+#: modules/about/templates/base_about.html:18
+msgid "Tu sugerencia"
+msgstr "Dejar una sugerencia"
+
+#: modules/about/templates/base_about.html:19
+msgid "¡Formá parte!"
+msgstr "¡Formá parte!"
+
+#: modules/about/templates/base_about.html:20
+#: modules/site/templates/base_site.html:128
+#: modules/site/templates/base_site.html:138
+#: modules/site/templates/base_site.html:154
+msgid "Contact Us"
+msgstr "Contactanos"
+
+#: modules/about/templates/base_about.html:26
+#: modules/site/templates/base_site.html:133
+#: modules/site/templates/base_site.html:146
+msgid "About Fiubar"
+msgstr "Acerca de Fiubar"
+
+#: modules/about/templates/sidebar_bugs.html:8
+msgid "Error (desde sidebar)"
+msgstr "Error (desde sidebar)"
+
+#: modules/about/templates/sidebar_bugs.html:10
+#: modules/about/templates/about/contact_form.html:27
+#: modules/about/templates/about/ideas_form.html:36
+msgid "Enviar"
+msgstr "Enviar"
+
+#: modules/about/templates/about/bugs_form.html:4
+#: modules/about/templates/about/bugs_form.html:9
+#: modules/site/templates/base_site.html:135
+#: modules/site/templates/base_site.html:150
+msgid "Reportar un error"
+msgstr "Reportar un error"
+
+#: modules/about/templates/about/bugs_form.html:10
+#: modules/about/templates/about/ideas_form.html:10
+msgid "¡Gracias por tu contribución!"
+msgstr "¡Gracias por tu contribución!"
+
+#: modules/about/templates/about/bugs_form.html:33
+msgid " Enviar "
+msgstr "Enviar"
+
+#: modules/about/templates/about/bugs_form.html:40
+#: modules/about/templates/about/contact_form.html:34
+msgid "Tu mensaje fue enviado."
+msgstr "Tu mensaje fue enviado."
+
+#: modules/about/templates/about/bugs_form.html:41
+msgid "Nos ocuparemos de este problema apenas podamos."
+msgstr "Nos ocuparemos de este problema apenas podamos."
+
+#: modules/about/templates/about/contact_form.html:35
+msgid "¡Lo leeremos apenas podamos y nos pondremos en contacto con vos!"
+msgstr "¡Lo leeremos apenas podamos y nos pondremos en contacto con vos!"
+
+#: modules/about/templates/about/fiubar.html:4
+#: modules/about/templates/about/fiubar.html:8
+msgid "Acerca de Fiubar"
+msgstr "Acerca de Fiubar"
+
+#: modules/about/templates/about/ideas_form.html:4
+#: modules/about/templates/about/ideas_form.html:9
+#: modules/site/templates/base_site.html:136
+#: modules/site/templates/base_site.html:152
+msgid "Dejar una sugerencia"
+msgstr "Dejar una sugerencia"
+
+#: modules/about/templates/about/ideas_form.html:42
+msgid "Tu sugerencia fue enviada."
+msgstr "Tu sugerencia fue mandada."
+
+#: modules/about/templates/about/ideas_form.html:43
+msgid "¡La leeremos apenas podamos!"
+msgstr "¡La leeremos apenas podamos!"
+
+#: modules/account/forms.py:56 modules/messages/forms.py:20
+#: modules/messages/templates/messages/message_compose.html:18
+#: modules/profiles/templates/profiles/edit_form.html:14
+msgid "Username"
+msgstr "Usuario"
+
+#: modules/account/forms.py:57
+msgid ""
+"¡El que a vos te guste! Números, letras y guión bajo "
+"solamente.                    Entre 2 y 30 caracteres."
+msgstr ""
+"¡El que a vos te guste! Números, letras y guión bajo solamente. Entre 2 y 30 "
+"caracteres."
+
+#: modules/account/forms.py:62
+msgid "Padrón"
+msgstr "Padrón"
+
+#: modules/account/forms.py:63
+msgid "Ingresá tu padrón o usuario de mail @fi.uba.ar."
+msgstr "Ingresá tu padrón o usuario de mail @fi.uba.ar."
+
+#: modules/account/forms.py:69
+msgid "First Name"
+msgstr "Nombre"
+
+#: modules/account/forms.py:70
+msgid "Tu nombre completo, es importante para validar junto a tu padrón."
+msgstr "Tu nombre completo, es importante para validar junto a tu padrón."
+
+#: modules/account/forms.py:73
+msgid "Last Name"
+msgstr "Apellido"
+
+#: modules/account/forms.py:74
+msgid "Tu apellido, sin acentos, es importante para validar junto a tu padrón."
+msgstr ""
+"Tu apellido, sin acentos, es importante para validar junto a tu padrón."
+
+#: modules/account/forms.py:76
+#: modules/profiles/templates/profiles/edit_form.html:26
+msgid "Email address"
+msgstr "Dirección email"
+
+#: modules/account/forms.py:77
+msgid ""
+"Ingresá tu email, imprescindible para resetear tu contraseña y para los "
+"grupos."
+msgstr ""
+"Ingresá tu email, imprescindible para resetear tu contraseña y para los "
+"grupos."
+
+#: modules/account/forms.py:79 modules/account/forms.py:261
+#: modules/account/templates/registration_form.html:74
+msgid "Password"
+msgstr "Contraseña"
+
+#: modules/account/forms.py:80
+msgid "Tu contraseña debe tener por lo menos 6 caracteres."
+msgstr "Tu contraseña debe tener por lo menos 6 caracteres."
+
+#: modules/account/forms.py:82 modules/account/forms.py:263
+msgid "Password (again, to catch typos)"
+msgstr "Contraseña (confirmar)"
+
+#: modules/account/forms.py:83 modules/account/forms.py:264
+msgid "Reingresá tu contraseña, para verificar."
+msgstr "Reingresá tu contraseña, para verificar."
+
+#: modules/account/forms.py:95
+msgid "Usernames can only contain letters, numbers and underscores"
+msgstr ""
+"El nombre de usuario sólo puede contener los siguientes caracteres: a-z, A-"
+"Z, 0-9 y _."
+
+#: modules/account/forms.py:100
+msgid "This username is already taken. Please choose another."
+msgstr "Este usuario ya existe. Por favor, elegí otro."
+
+#: modules/account/forms.py:109
+msgid "Ingresá tu nombre sin acentos."
+msgstr "Ingresá tu nombre sin acentos."
+
+#: modules/account/forms.py:119
+msgid "Ingresá tu apellido sin acentos."
+msgstr "Ingresá tu apellido sin acentos. "
+
+#: modules/account/forms.py:129
+msgid ""
+"Contraseña no válida. Tu contraseña debe tener por lo menos 6 caracteres."
+msgstr ""
+"Contraseña no válida. Tu contraseña debe tener por lo menos 6 caracteres."
+
+#: modules/account/forms.py:141 modules/account/forms.py:285
+msgid "You must type the same password each time"
+msgstr "Debés escribir la misma contraseña cada vez."
+
+#: modules/account/forms.py:154
+msgid "Este campo es obligatorio."
+msgstr "Este campo es obligatorio."
+
+#: modules/account/forms.py:165
+#, fuzzy
+msgid "Ingresar un valor válido. "
+msgstr "Contraseña no válida."
+
+#: modules/account/forms.py:174
+msgid "Por favor, escriba la razón de su registración."
+msgstr "Por favor, escriba la razón de su registración."
+
+#: modules/account/forms.py:194
+msgid "I have read and agree to the Terms of Service"
+msgstr "He  leído y estoy de acuerdo con los Términos de Servicio"
+
+#: modules/account/forms.py:203
+msgid "You must agree to the terms to register"
+msgstr "Debés estar de acuerdo con lo términos para registrarte"
+
+#: modules/account/forms.py:222
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr ""
+"Esta dirección de mail ya está en uso. Por favor ingrese una dirección de "
+"mail diferente."
+
+#: modules/account/forms.py:246
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr ""
+
+#: modules/account/forms.py:257
+msgid ""
+"That e-mail address doesn't have an associated user account. Are you sure "
+"you've registered?"
+msgstr ""
+
+#: modules/account/forms.py:262
+msgid ""
+"Tu contraseña debe tener por lo menos 6 caracteres, al menos una letra Y un "
+"número."
+msgstr ""
+"Tu contraseña debe tener por lo menos 6 caracteres, al menos una letra Y un "
+"número."
+
+#: modules/account/forms.py:273
+msgid ""
+"Contraseña no válida. Tu contraseña debe tener por lo menos 6 "
+"caracteres,                                  sin espacios. Debe contener al "
+"menos una letra Y un número."
+msgstr ""
+"Tu contraseña debe tener más de 6 caracteres, sin espacios.<br /> Debe "
+"contener al menos un número y un signo."
+
+#: modules/account/models.py:126
+#, python-format
+msgid "Activate your new account at %(current_name)s"
+msgstr "Activá tu nueva cuenta en %(current_name)s"
+
+#: modules/account/models.py:217 modules/account/models.py:283
+#: modules/account/models.py:326 modules/profiles/views.py:152
+#: modules/profiles/views.py:175
+msgid "user"
+msgstr "usuario"
+
+#: modules/account/models.py:218
+msgid "activation key"
+msgstr "clave de activación"
+
+#: modules/account/models.py:223
+msgid "registration profile"
+msgstr "perfil de registración"
+
+#: modules/account/models.py:224
+msgid "registration profiles"
+msgstr "perfiles de registración"
+
+#: modules/account/models.py:231
+#, python-format
+msgid "Registration information for %(username)s"
+msgstr "Información de registración de %(username)s"
+
+#: modules/account/models.py:284 modules/account/models.py:291
+msgid "password reset key"
+msgstr "Reinicialización de contraseña"
+
+#: modules/account/models.py:292
+msgid "password reset keys"
+msgstr "Reinicialización de contraseña"
+
+#: modules/account/models.py:299
+#, python-format
+msgid "Password reset for %(username)s"
+msgstr ""
+
+#: modules/account/models.py:314
+#, python-format
+msgid "Password reset on %s"
+msgstr ""
+
+#: modules/account/models.py:333
+msgid "user session"
+msgstr ""
+
+#: modules/account/models.py:334
+msgid "user sessions"
+msgstr ""
+
+#: modules/account/models.py:342
+#, fuzzy, python-format
+msgid "Last login for user %s"
+msgstr "¡Gracias por usar %(site_name)s!"
+
+#: modules/account/views.py:114
+msgid ""
+"Cuenta ya utilizada. Por favor contactate con "
+"nosotros                                 si creés que alguien utilizó tu "
+"cuenta."
+msgstr ""
+
+#: modules/account/views.py:146
+#, python-format
+msgid "[%s] New user"
+msgstr ""
+
+#: modules/account/templates/activate.html:5
+#: modules/account/templates/activate.html:8
+msgid "Account activation"
+msgstr "Activación de cuenta"
+
+#: modules/account/templates/activate.html:12
+msgid "Thanks for signing up!"
+msgstr "¡Gracias por registrarte!"
+
+#: modules/account/templates/activate.html:13
+msgid "Now you can"
+msgstr "Ahora podés"
+
+#: modules/account/templates/activate.html:13
+msgid "log in"
+msgstr "iniciar tu sesión"
+
+#: modules/account/templates/activate.html:14
+msgid "and start contributing!"
+msgstr "y empezar a participar!"
+
+#: modules/account/templates/activate.html:19
+#, python-format
+msgid ""
+"Either your activation link was incorrect, or the activation key for your "
+"account has expired; activation keys are only valid for %(exp_days)s days "
+"after registration."
+msgstr ""
+"El link de activación era incorrecto o la clave de activación para tu cuenta "
+"ha expirado; las claves de activación son válidas sólo por %(exp_days)s días "
+"a partir de la registración."
+
+#: modules/account/templates/activation_email.html:3
+#, python-format
+msgid ""
+"Someone, hopefully you, signed up for a new account at %(site_name)s using "
+"this email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar:"
+msgstr ""
+"Alguien registró una nueva cuenta en %(site_name)s usando esta dirección de "
+"mail. Si fuiste vos, y te gustaría activar y comenzar a utilizar tu cuenta, "
+"hacé click en el link de abajo o copialo y pegalo en la barra de direcciones "
+"de tu navegador:"
+
+#: modules/account/templates/activation_email.html:7
+#, python-format
+msgid ""
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in %"
+"(exp_days)s days."
+msgstr ""
+"Si no deseas confirmar la creación de la cuenta, ignorá este mensaje; la "
+"cuenta expirará automáticamente en %(exp_days)s días."
+
+#: modules/account/templates/activation_email.html:10
+#: modules/account/templates/password_reset_email.html:15
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "El equipo de %(site_name)s"
+
+#: modules/account/templates/base_account.html:5
+#: modules/account/templates/base_account.html:14
+#: modules/profiles/templates/profiles/links_form.html:40
+msgid "Account"
+msgstr "Cuenta"
+
+#: modules/account/templates/base_account.html:17
+#: modules/account/templates/login.html:5
+#: modules/account/templates/login.html:8
+#: modules/account/templates/login.html:24
+#: modules/site/templates/index_nologin.html:47
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: modules/account/templates/base_account.html:18
+msgid "¡Olvidé mi contraseña!"
+msgstr ""
+
+#: modules/account/templates/base_account.html:19
+msgid "Sign up"
+msgstr "Registrarse"
+
+#: modules/account/templates/login.html:14
+#: modules/site/templates/index_nologin.html:39
+msgid "Usuario o Email:"
+msgstr "Usuario o Email:"
+
+#: modules/account/templates/login.html:19
+#: modules/site/templates/index_nologin.html:43
+msgid "Password:"
+msgstr "Contraseña:"
+
+#: modules/account/templates/login.html:28
+#: modules/site/templates/index_nologin.html:50
+msgid "Forgotten your password?"
+msgstr "¿Olvidaste tu contraseña?"
+
+#: modules/account/templates/login.html:29
+msgid "¡Grrr! ¡No puedo iniciar sesión!"
+msgstr ""
+
+#: modules/account/templates/login.html:35
+msgid "If you don't have an account"
+msgstr "Si no tenés una cuenta"
+
+#: modules/account/templates/login.html:38
+msgid "You can"
+msgstr "Podés"
+
+#: modules/account/templates/login.html:38
+msgid "sign up"
+msgstr "registrarte;"
+
+#: modules/account/templates/login.html:39
+msgid "for one; it's free, and you'll get access to a bunch of nifty features"
+msgstr "es gratis, y vas a poder acceder a todo el contenido."
+
+#: modules/account/templates/logout.html:5
+#: modules/account/templates/logout.html:8
+msgid "Logged out"
+msgstr "Sesión cerrada"
+
+#: modules/account/templates/logout.html:11
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr ""
+
+#: modules/account/templates/logout.html:15
+msgid "Log in again"
+msgstr "Iniciar sesión de nuevo"
+
+#: modules/account/templates/password_reset_done.html:5
+#: modules/account/templates/password_reset_done.html:8
+msgid "Password reset successful"
+msgstr "Reinicialización de contraseña exitosa"
+
+#: modules/account/templates/password_reset_done.html:11
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should be receiving it shortly."
+msgstr ""
+
+#: modules/account/templates/password_reset_email.html:4
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset\n"
+"for your user account at %(site_name)s."
+msgstr ""
+"Estás recibiendo este mensaje debido a que solicitaste reinicializar la "
+"contraseña de tu cuenta de usuario en %(site_name)s."
+
+#: modules/account/templates/password_reset_email.html:7
+msgid "To reset your password, click this link:"
+msgstr "Para reinicializar tu contraseña, hacé click en este link:"
+
+#: modules/account/templates/password_reset_email.html:11
+msgid "Your username, in case you've forgotten:"
+msgstr "Tu nombre de usuario, en caso de haberlo olvidado:"
+
+#: modules/account/templates/password_reset_email.html:13
+#, python-format
+msgid "Thanks for using %(site_name)s!"
+msgstr "¡Gracias por usar %(site_name)s!"
+
+#: modules/account/templates/password_reset_form.html:5
+#: modules/account/templates/password_reset_form.html:8
+msgid "Password reset"
+msgstr "Reinicialización de contraseña"
+
+#: modules/account/templates/password_reset_form.html:11
+msgid ""
+"¿Olvidaste tu contraseña? Ingresá tu dirección de correo electrónico y te "
+"enviaremos las instrucciones para generar una nueva, junto a tu nombre de "
+"usuario."
+msgstr ""
+
+#: modules/account/templates/password_reset_form.html:16
+msgid "E-mail address:"
+msgstr "Dirección email:"
+
+#: modules/account/templates/password_reset_form.html:19
+msgid "Reset my password"
+msgstr "Reinicializar mi contraseña"
+
+#: modules/account/templates/registration_complete.html:5
+#: modules/account/templates/registration_complete.html:8
+msgid "Registration complete"
+msgstr "¡Registración completa!"
+
+#: modules/account/templates/registration_form.html:5
+#: modules/account/templates/registration_form.html:12
+#: modules/account/templates/registration_form.html:95
+msgid "Register"
+msgstr "Creá tu cuenta"
+
+#: modules/account/templates/registration_form.html:41
+msgid "Padrón/Usuario @fi.uba.ar:"
+msgstr ""
+
+#: modules/account/templates/registration_form.html:56
+msgid "First name"
+msgstr "Nombre"
+
+#: modules/account/templates/registration_form.html:62
+msgid "Last name"
+msgstr "Apellido"
+
+#: modules/account/templates/registration_form.html:68
+#: modules/groups/forms.py:72
+#: modules/groups/templates/group/admin_members.html:58
+#: modules/groups/templates/groups/show_subscriptions.html:13
+msgid "Email"
+msgstr "Email"
+
+#: modules/account/templates/registration_form.html:81
+#: modules/account/templates/account/password_change_form.html:27
+#: modules/profiles/templates/password_change_form.html:29
+msgid "Confirm password:"
+msgstr "Confirmar contraseña"
+
+#: modules/account/templates/registration_form.html:89
+msgid "I have read and agree to the "
+msgstr ""
+
+#: modules/account/templates/registration_form.html:89
+msgid "Terms of Service"
+msgstr "Términos del Servicio"
+
+#: modules/account/templates/account/password_change_done.html:5
+#: modules/account/templates/account/password_change_done.html:8
+#: modules/profiles/templates/password_change_done.html:5
+#: modules/profiles/templates/password_change_done.html:8
+msgid "Password change successful"
+msgstr "Cambio de contraseña exitoso"
+
+#: modules/account/templates/account/password_change_done.html:11
+#: modules/profiles/templates/password_change_done.html:11
+msgid "Your password was changed."
+msgstr "Tu contraseña ha cambiado"
+
+#: modules/account/templates/account/password_change_form.html:5
+#: modules/account/templates/account/password_change_form.html:9
+#: modules/profiles/templates/password_change_form.html:5
+#: modules/profiles/templates/password_change_form.html:9
+msgid "Password change"
+msgstr "Cambiar contraseña"
+
+#: modules/account/templates/account/password_change_form.html:14
+msgid ""
+"Please enter your new password twice so we can verify \n"
+"    you typed it in correctly."
+msgstr ""
+"Por favor, ingresá tu  contraseña anterior, por seguridad, y luego ingresá "
+"tu nueva contraseña dos veces; de esa manera podemos verificar que la "
+"escribiste correctamente."
+
+#: modules/account/templates/account/password_change_form.html:21
+#: modules/profiles/templates/password_change_form.html:24
+msgid "New password:"
+msgstr "Contraseña nueva:"
+
+#: modules/account/templates/account/password_change_form.html:31
+#: modules/profiles/templates/password_change_form.html:34
+msgid "Change my password"
+msgstr "Cambiar mi contraseña"
+
+#: modules/event/forms.py:9
+msgid "Qué pasa:"
+msgstr ""
+
+#: modules/event/forms.py:10
+msgid "Dónde:"
+msgstr ""
+
+#: modules/event/forms.py:11
+msgid "Descripción:"
+msgstr "Descripción"
+
+#: modules/event/forms.py:18
+msgid "Fecha:"
+msgstr ""
+
+#: modules/event/forms.py:33
+msgid " Este campo es obligatorio."
+msgstr ""
+
+#: modules/event/forms.py:36 modules/facultad/templates/base_materias.html:18
+#: modules/facultad/templates/facultad_cargar_materias.html:19
+#: modules/groups/templates/base_group.html:18
+#: modules/polls/templates/base_encuesta.html:18
+msgid "Materia"
+msgstr "Materia"
+
+#: modules/event/templates/base_events.html:5
+#: modules/event/templates/base_events.html:17
+#: modules/event/templates/base_events.html:20
+msgid "Eventos"
+msgstr ""
+
+#: modules/facultad/decorators.py:27
+#: modules/facultad/templates/plugins/last_news_facultad.html:29
+msgid "¿Qué carrera cursás?"
+msgstr "¿Qué carrera cursás?"
+
+#: modules/facultad/forms.py:12 modules/facultad/forms.py:66
+#: modules/facultad/forms.py:73
+msgid "1° Cuatrimestre"
+msgstr "1° Cuatrimestre"
+
+#: modules/facultad/forms.py:12 modules/facultad/forms.py:67
+#: modules/facultad/forms.py:74
+msgid "2° Cuatrimestre"
+msgstr "2° Cuatrimestre"
+
+#: modules/facultad/forms.py:20
+msgid "La fecha de ingreso a FIUBA es obligatoria"
+msgstr "La fecha de ingreso a FIUBA es obligatoria"
+
+#: modules/facultad/forms.py:28 modules/utils/widgets.py:59
+msgid "Month"
+msgstr "Mes"
+
+#: modules/facultad/forms.py:29 modules/utils/widgets.py:63
+msgid "Year"
+msgstr "Año"
+
+#: modules/facultad/forms.py:35
+msgid "La fecha de egreso de FIUBA es obligatoria"
+msgstr "La fecha de egreso de FIUBA es obligatoria"
+
+#: modules/facultad/forms.py:41
+msgid "Mostrar todas"
+msgstr "Mostrar todas"
+
+#: modules/facultad/forms.py:42
+msgid "--------------------------"
+msgstr "--------------------------"
+
+#: modules/facultad/forms.py:43
+msgid "Podés cursar"
+msgstr "Podés cursar"
+
+#: modules/facultad/forms.py:44
+msgid "En 1 cuatrimestre"
+msgstr "En 1 cuatrimestre"
+
+#: modules/facultad/forms.py:45
+msgid "En 2 cuatrimestres"
+msgstr "En 2 cuatrimestres"
+
+#: modules/facultad/forms.py:46
+msgid "En 3 cuatrimestres"
+msgstr "En 3 cuatrimestres"
+
+#: modules/facultad/forms.py:47
+msgid "En 4 cuatrimestres"
+msgstr "En 4 cuatrimestres"
+
+#: modules/facultad/forms.py:48 modules/facultad/forms.py:58
+#: modules/facultad/models.py:79
+msgid "Cursando"
+msgstr "Cursando"
+
+#: modules/facultad/forms.py:49
+msgid "Dar final"
+msgstr "Dar final"
+
+#: modules/facultad/forms.py:50 modules/facultad/views/facultad.py:46
+msgid "Aprobada"
+msgstr "Aprobada"
+
+#: modules/facultad/forms.py:57
+msgid "No estoy cursando esta materia"
+msgstr "No estoy cursando esta materia"
+
+#: modules/facultad/forms.py:59 modules/facultad/models.py:80
+msgid "Cursada Aprobada"
+msgstr "Cursada Aprobada"
+
+#: modules/facultad/forms.py:60 modules/facultad/models.py:81
+msgid "Materia Aprobada"
+msgstr "Materia Aprobada"
+
+#: modules/facultad/forms.py:61 modules/facultad/models.py:82
+msgid "Equivalencia"
+msgstr "Equivalencia"
+
+#: modules/facultad/forms.py:65 modules/facultad/forms.py:72
+msgid "Cuatrimestre"
+msgstr "Cuatrimestre"
+
+#: modules/facultad/forms.py:68
+msgid "Curso de Verano"
+msgstr "Curso de Verano"
+
+#: modules/facultad/forms.py:77
+msgid "Año"
+msgstr "Año"
+
+#: modules/facultad/forms.py:80 modules/facultad/views/facultad.py:42
+msgid "Estado"
+msgstr "Estado"
+
+#: modules/facultad/forms.py:109
+msgid "Completar con cuatrimestre y año."
+msgstr ""
+
+#: modules/facultad/functions.py:9
+msgid "???"
+msgstr ""
+
+#: modules/facultad/models.py:60 modules/facultad/models.py:130
+#, python-format
+msgid "%(cuatrimestre)s° Cuatrimestre %(year)s"
+msgstr ""
+
+#: modules/facultad/models.py:75
+msgid "Verano"
+msgstr "Verano"
+
+#: modules/facultad/models.py:129
+#, python-format
+msgid "Verano %(year)s"
+msgstr ""
+
+#: modules/facultad/templates/base_facultad.html:21
+#: modules/facultad/templates/base_materias.html:21
+#: modules/facultad/templates/base_materias.html:38
+#: modules/groups/templates/base_group.html:23
+#: modules/groups/templates/base_group.html:28
+#: modules/groups/templates/base_group.html:85
+#: modules/groups/templates/base_groups.html:22
+#: modules/polls/templates/base_polls.html:22
+msgid "Home"
+msgstr "Inicio"
+
+#: modules/facultad/templates/base_facultad.html:23
+#: modules/facultad/templates/base_materias.html:35
+#: modules/facultad/templates/base_materias.html:40
+#: modules/facultad/templates/facultad_home.html:5
+#: modules/facultad/templates/facultad_home.html:13
+#: modules/facultad/templates/plugins/facultad_user_menu.html:7
+msgid "Mis Materias"
+msgstr "Mis Materias"
+
+#: modules/facultad/templates/base_facultad.html:30
+#: modules/facultad/templates/facultad_cargar_materias.html:5
+#: modules/facultad/templates/facultad_cargar_materias.html:9
+#: modules/facultad/templates/facultad_cargar_materias.html:44
+#: modules/facultad/templates/plugins/facultad_user_menu.html:8
+msgid "Cargar Materias"
+msgstr "Cargar Materias"
+
+#: modules/facultad/templates/base_facultad.html:33
+#: modules/facultad/templates/base_materias.html:23
+#: modules/facultad/templates/facultad_events.html:5
+#: modules/facultad/templates/facultad_events.html:8
+#: modules/facultad/templates/materia_events.html:8
+#: modules/facultad/templates/materia_events.html:15
+#: modules/facultad/templates/materia_events_add.html:9
+msgid "Calendario"
+msgstr ""
+
+#: modules/facultad/templates/base_facultad.html:35
+#: modules/facultad/templates/facultad_events.html:12
+#: modules/facultad/templates/materia_events.html:9
+#: modules/facultad/templates/materia_events.html:18
+#: modules/facultad/templates/materia_events_add.html:10
+#: modules/facultad/templates/materia_events_add.html:16
+#: modules/facultad/templates/materias_events_add_form.html:5
+#: modules/facultad/templates/materias_events_add_form.html:8
+msgid "Agregar Fecha"
+msgstr "Agregar Fecha"
+
+#: modules/facultad/templates/base_facultad.html:38
+#: modules/facultad/templates/base_materias.html:49
+#: modules/facultad/templates/carrera_delete.html:5
+#: modules/facultad/templates/carreras_home.html:5
+#: modules/facultad/templates/carreras_home.html:8
+msgid "Carreras"
+msgstr "Carreras"
+
+#: modules/facultad/templates/base_materias.html:22
+msgid "Quiénes Cursan"
+msgstr ""
+
+#: modules/facultad/templates/base_materias.html:24
+#: modules/facultad/templates/materia_show.html:25
+#: modules/groups/templates/base_group.html:24
+#: modules/polls/templates/base_polls.html:32
+msgid "Grupo"
+msgstr "Grupo"
+
+#: modules/facultad/templates/base_materias.html:25
+#: modules/files/templates/base_files.html:5
+#: modules/files/templates/base_files.html:16
+#: modules/files/templates/base_files.html:25
+#: modules/files/templates/base_materia_files.html:5
+#: modules/files/templates/base_materia_files.html:16
+#: modules/files/templates/materia_files.html:7
+#: modules/groups/templates/base_group.html:65
+#: modules/polls/templates/base_encuesta.html:27
+#: modules/polls/templates/base_polls.html:31
+msgid "Archivos"
+msgstr "Archivos"
+
+#: modules/facultad/templates/base_materias.html:27
+#: modules/groups/templates/base_group.html:67
+msgid "Informacion"
+msgstr "Información"
+
+#: modules/facultad/templates/base_materias.html:28
+#: modules/facultad/templates/materia_show.html:58
+#: modules/groups/templates/base_group.html:68
+#: modules/polls/templates/base_polls.html:30
+msgid "Links"
+msgstr "Links"
+
+#: modules/facultad/templates/carrera_add_form.html:5
+#: modules/facultad/templates/carrera_add_form.html:8
+#: modules/facultad/templates/carreras_home.html:57
+msgid "Agregar carrera"
+msgstr "Agregar Carrera"
+
+#: modules/facultad/templates/carrera_add_form.html:19
+msgid "Ingreso a FIUBA"
+msgstr "Ingreso a FIUBA"
+
+#: modules/facultad/templates/carrera_add_form.html:32
+msgid "Add Carrera"
+msgstr "Agregar Carrera"
+
+#: modules/facultad/templates/carrera_alumnos.html:20
+#: modules/facultad/templates/carrera_alumnos.html:26
+#: modules/profiles/templates/profiles/profile_list.html:19
+#: modules/profiles/templates/profiles/profile_list.html:25
+#: modules/profiles/templates/profiles/search_users.html:32
+#: modules/profiles/templates/profiles/search_users.html:38
+msgid "Ver perfil"
+msgstr "Mi Perfil"
+
+#: modules/facultad/templates/carrera_delete.html:8
+msgid "Borrar Carrera"
+msgstr "Borrar Carrera"
+
+#: modules/facultad/templates/carrera_delete.html:11
+#: modules/facultad/templates/carreras_home.html:11
+msgid "No estás cursando ninguna carrera."
+msgstr "No estás cursando ninguna carrera."
+
+#: modules/facultad/templates/carrera_delete.html:18
+#: modules/facultad/templates/carreras_home.html:15
+#: modules/profiles/templates/profiles/show_profile.html:25
+msgid "Carrera"
+msgstr "Carrera"
+
+#: modules/facultad/templates/carrera_delete.html:19
+#: modules/facultad/templates/carrera_delete.html:28
+msgid "Borrar"
+msgstr "Borrar"
+
+#: modules/facultad/templates/carrera_graduado_form.html:5
+#: modules/facultad/templates/carrera_graduado_form.html:8
+#: modules/facultad/templates/carrera_graduado_form.html:37
+#: modules/facultad/templates/carreras_home.html:19
+#: modules/facultad/templates/carreras_home.html:49
+msgid "¡Me recibí!"
+msgstr "¡Me recibí!"
+
+#: modules/facultad/templates/carrera_graduado_form.html:32
+msgid "No me recibí todavía."
+msgstr "No me recibí todavía."
+
+#: modules/facultad/templates/carreras_home.html:16
+msgid "Créditos"
+msgstr "Créditos"
+
+#: modules/facultad/templates/carreras_home.html:17
+msgid "Promedio"
+msgstr "Promedio"
+
+#: modules/facultad/templates/carreras_home.html:25
+msgid "comienzo:"
+msgstr "comienzo:"
+
+#: modules/facultad/templates/carreras_home.html:37
+msgid "Ver"
+msgstr "Ver"
+
+#: modules/facultad/templates/carreras_home.html:59
+msgid "Borrar carrera"
+msgstr "Borrar carrera"
+
+#: modules/facultad/templates/facultad_cargar_materias.html:20
+msgid "Nota"
+msgstr "Nota"
+
+#: modules/facultad/templates/facultad_cargar_materias.html:21
+msgid "Fecha Aprobada"
+msgstr "Fecha Aprobada"
+
+#: modules/facultad/templates/facultad_events.html:30
+#: modules/facultad/templates/plugins/last_events_facultad.html:19
+msgid "No hay fechas importantes en los próximos 30 días."
+msgstr ""
+
+#: modules/facultad/templates/facultad_home.html:21
+#: modules/facultad/templates/facultad_plancarrera_materia.html:8
+#: modules/facultad/templates/facultad_plancarrera_materia.html:35
+#: modules/facultad/templates/facultad_plancarrera_materia.html:36
+msgid "Editar"
+msgstr "Editar"
+
+#: modules/facultad/templates/facultad_materia_form.html:5
+msgid "Cursando Materia"
+msgstr "Cursando Materia"
+
+#: modules/facultad/templates/facultad_materia_form.html:22
+msgid "Cursada:"
+msgstr "Cursada:"
+
+#: modules/facultad/templates/facultad_materia_form.html:28
+msgid "Aprobada:"
+msgstr "Aprobada:"
+
+#: modules/facultad/templates/facultad_materia_form.html:44
+#: modules/profiles/templates/profiles/notifications_form.html:22
+msgid "Guardar cambios"
+msgstr "Guardar cambios"
+
+#: modules/facultad/templates/facultad_plancarrera.html:40
+#: modules/facultad/templates/facultad_plancarrera_all.html:34
+msgid "Acciones"
+msgstr "Acciones"
+
+#: modules/facultad/templates/facultad_plancarrera.html:55
+#: modules/facultad/templates/facultad_plancarrera_all.html:49
+msgid "No hay materias."
+msgstr "No hay materias."
+
+#: modules/facultad/templates/facultad_plancarrera_all.html:9
+msgid "Lista de Materias"
+msgstr "Lista de Materias"
+
+#: modules/facultad/templates/materia_cursos.html:10
+msgid "Están cursando"
+msgstr "Cursando"
+
+#: modules/facultad/templates/materia_cursos.html:22
+msgid "Ya cursaron"
+msgstr ""
+
+#: modules/facultad/templates/materia_events_add.html:32
+#: modules/facultad/templates/materias_events_add_form.html:30
+msgid "Hora:"
+msgstr "Hola"
+
+#: modules/facultad/templates/materia_show.html:13
+#: modules/polls/templates/base_polls.html:23
+msgid "Información"
+msgstr "Información"
+
+#: modules/facultad/templates/materia_show.html:27
+msgid "miembro"
+msgstr "miembro"
+
+#: modules/facultad/templates/materia_show.html:70
+msgid "Apuntes"
+msgstr "Apuntes"
+
+#: modules/facultad/templates/plugins/facultad_user_menu.html:2
+msgid "Facultad"
+msgstr ""
+
+#: modules/facultad/templates/plugins/facultad_user_menu.html:5
+msgid "Agregar Carrera"
+msgstr "Agregar Carrera"
+
+#: modules/facultad/templates/plugins/last_events_facultad.html:4
+msgid "Próximas Fechas"
+msgstr "Próximas Fechas"
+
+#: modules/facultad/templates/plugins/last_events_facultad.html:21
+msgid "Agregá más fechas"
+msgstr "Agregá más fechas"
+
+#: modules/facultad/templates/plugins/last_files.html:17
+msgid "No hay archivos cargados."
+msgstr "No hay archivos  cargados."
+
+#: modules/facultad/templates/plugins/last_news_facultad.html:4
+msgid "Nuevos Alumnos"
+msgstr "Nuevos Alumnos"
+
+#: modules/facultad/templates/plugins/last_news_facultad.html:23
+msgid "No hay nuevos alumnos."
+msgstr "No hay nuevos alumnos."
+
+#: modules/facultad/templates/plugins/last_news_facultad.html:27
+#, fuzzy
+msgid "No estás cursando una carrera."
+msgstr "No estás cursando ninguna carrera."
+
+#: modules/facultad/templates/plugins/last_news_facultad.html:32
+#, fuzzy
+msgid "No tenés materias cargadas."
+msgstr "No hay carreras o materias cargadas."
+
+#: modules/facultad/templates/plugins/last_news_facultad.html:34
+msgid "¡Cargá tus materias en un solo paso!"
+msgstr ""
+
+#: modules/facultad/templatetags/facultad.py:92
+msgid "diez"
+msgstr "diez"
+
+#: modules/facultad/views/carreras.py:39
+msgid "Carrera agregada."
+msgstr "Carrera agregada."
+
+#: modules/facultad/views/carreras.py:42
+msgid "Ya cursás esa carrera."
+msgstr "Ya cursás esa carrera."
+
+#: modules/facultad/views/carreras.py:64
+msgid "Carrera borrada."
+msgstr "Carrera borrada."
+
+#: modules/facultad/views/carreras.py:78
+msgid "¡Felicitaciones!"
+msgstr "¡Felicitaciones!"
+
+#: modules/facultad/views/carreras.py:99
+msgid "A seguir estudiando..."
+msgstr "A seguir estudiando..."
+
+#: modules/facultad/views/carreras.py:109
+msgid "alumno"
+msgstr "alumno"
+
+#: modules/facultad/views/facultad.py:37 modules/facultad/views/facultad.py:67
+#: modules/facultad/views/facultad.py:76 modules/groups/forms.py:25
+#: modules/groups/forms.py:26
+msgid " "
+msgstr ""
+
+#: modules/facultad/views/facultad.py:49 modules/facultad/views/facultad.py:91
+msgid "The requested page does not exist."
+msgstr "La página solicitada no existe"
+
+#: modules/facultad/views/facultad.py:72 modules/facultad/views/facultad.py:88
+msgid " Estado "
+msgstr "Estado"
+
+#: modules/facultad/views/facultad.py:84
+msgid " Aprobada "
+msgstr "Aprobada"
+
+#: modules/facultad/views/facultad.py:85
+msgid " Nota "
+msgstr "Nota"
+
+#: modules/facultad/views/facultad.py:89
+msgid " Correlativas "
+msgstr "Correlativas"
+
+#: modules/facultad/views/facultad.py:157
+msgid "Cambios guardados."
+msgstr "Cambios guardados."
+
+#: modules/facultad/views/facultad.py:223
+msgid "Fecha agregada."
+msgstr "Fecha agregada."
+
+#: modules/facultad/views/materias.py:65
+msgid "Fecha agregada"
+msgstr "Fecha agregada."
+
+#: modules/facultad/views/materias.py:86
+msgid "Fecha borrada"
+msgstr "Fecha borrada."
+
+#: modules/files/forms.py:24
+msgid "Nombre de archivo no válido."
+msgstr "Nombre de archivo no válido."
+
+#: modules/files/forms.py:26
+msgid "La longitud del nombre puede ser de hasta 150 caracteres."
+msgstr "La longitud del nombre puede ser de hasta 150 caracteres."
+
+#: modules/files/forms.py:37 modules/files/forms.py:62
+msgid "Invalid path."
+msgstr ""
+
+#: modules/files/forms.py:52
+msgid ""
+"Nombre de carpeta no válido. Caracteres válidos: a-z, A-Z, 0-9, _, -, "
+"espacio. Longitud mínima: 5 caracteres."
+msgstr ""
+"Nombre de carpeta no válido. Caracteres válidos: a-z, A-Z, 0-9, _, -, "
+"espacio. Longitud mínima: 5 caracteres."
+
+#: modules/files/models.py:29
+msgid "Folder Path"
+msgstr "Moderador"
+
+#: modules/files/models.py:33
+msgid "# Files"
+msgstr ""
+
+#: modules/files/models.py:44
+msgid "Folder"
+msgstr "Volver"
+
+#: modules/files/models.py:47 modules/files/models.py:82
+msgid "Advanced options"
+msgstr "Mostrar Opciones Avanzadas"
+
+#: modules/files/models.py:79
+msgid "File"
+msgstr "Archivo"
+
+#: modules/files/views.py:30
+msgid "No existe la carpeta."
+msgstr "No existe la carpeta."
+
+#: modules/files/views.py:58
+msgid "Carpeta creada."
+msgstr "Carpeta creada."
+
+#: modules/files/views.py:98
+msgid "Archivo subido."
+msgstr "Archivo subido."
+
+#: modules/files/views.py:122
+msgid "No existe el archivo."
+msgstr "No existe el archivo."
+
+#: modules/files/templates/base_files.html:18
+#: modules/files/templates/base_materia_files.html:18
+#: modules/files/templates/materia_files.html:12
+msgid "Subir archivo"
+msgstr "Subir Archivo"
+
+#: modules/files/templates/base_files.html:19
+#: modules/files/templates/base_materia_files.html:19
+#: modules/files/templates/materia_files.html:13
+msgid "Crear carpeta"
+msgstr "Crear Carpeta"
+
+#: modules/files/templates/materia_file_mkdir.html:7
+#: modules/files/templates/materia_file_mkdir.html:21
+msgid "Crear Carpeta"
+msgstr "Crear Carpeta"
+
+#: modules/files/templates/materia_file_mkdir.html:11
+msgid "Nombre de Carpeta:"
+msgstr "Nombre de Carpeta:"
+
+#: modules/files/templates/materia_file_mkdir.html:23
+#: modules/files/templates/materia_file_upload.html:30
+msgid "Volver"
+msgstr "Volver"
+
+#: modules/files/templates/materia_file_upload.html:7
+#: modules/files/templates/materia_file_upload.html:28
+msgid "Subir Archivo"
+msgstr "Subir Archivo"
+
+#: modules/files/templates/materia_file_upload.html:11
+msgid "Archivo"
+msgstr "Archivo"
+
+#: modules/files/templates/materia_file_upload.html:24
+msgid "Mandar mensaje al grupo anunciando este archivo."
+msgstr "Mandar mensaje al grupo anunciando este archivo."
+
+#: modules/files/templates/materia_files.html:8
+msgid "Carpeta:"
+msgstr "Carpeta:"
+
+#: modules/files/templates/materia_files.html:19
+#: modules/groups/templates/group/admin_members.html:57
+#: modules/profiles/templates/profiles/edit_form.html:20
+msgid "Name"
+msgstr "Nombre"
+
+#: modules/files/templates/materia_files.html:21
+msgid "Size"
+msgstr "Tamaño"
+
+#: modules/files/templates/materia_files.html:23
+msgid "User"
+msgstr "Usuario"
+
+#: modules/files/templates/materia_files.html:24
+msgid "Date"
+msgstr "Fecha"
+
+#: modules/files/templates/materia_files.html:61
+msgid "No hay archivos"
+msgstr "No hay archivos"
+
+#: modules/files/templates/materia_files.html:69
+msgid "¡Auch! Cómo muevo o borro un archivo o carpeta?"
+msgstr "¡Auch! Cómo muevo o borro un archivo o carpeta?"
+
+#: modules/groups/decorators.py:20 modules/groups/views/group.py:168
+#: modules/groups/views/group.py:220 modules/groups/views/group.py:249
+#, python-format
+msgid "You are not subscribed to %s group."
+msgstr "No estás subscripto al grupo %s"
+
+#: modules/groups/decorators.py:39
+#, python-format
+msgid "Group %s does not exist."
+msgstr "El grupo %s no existe"
+
+#: modules/groups/forms.py:15
+msgid ""
+"Email addres can only use the following characters: a-z, A-Z, _, -, 0-9."
+msgstr ""
+
+#: modules/groups/forms.py:17
+msgid ""
+"Este nombre aparecerá en la página de tu grupo                            y "
+"en los resultados de búsquedas. (Máximo 70 caracteres)"
+msgstr ""
+"Este nombre aparecerá en la página de tu grupo y en los resultados de "
+"búsquedas. (Máximo 70 caracteres)"
+
+#: modules/groups/forms.py:20
+msgid "(Máximo 64 caracteres; no utilices acentos, tildes o espacios)"
+msgstr ""
+
+#: modules/groups/forms.py:22
+msgid ""
+"Esta descripción aparecerá en la parte superior de la página de tu "
+"grupo                                  (máximo 500 caracteres)."
+msgstr ""
+"Esta descripción aparecerá en la parte superior de la página de tu grupo "
+"(máximo 2,000 caracteres).  "
+
+#: modules/groups/forms.py:24
+msgid "Tipo de grupo"
+msgstr "Tipo de grupo  \t \t"
+
+#: modules/groups/forms.py:25
+msgid "Foto"
+msgstr "Foto"
+
+#: modules/groups/forms.py:26
+msgid "Categoría"
+msgstr "Categoría"
+
+#: modules/groups/forms.py:32
+#, python-format
+msgid ""
+"La longitud máxima es de %(max_length)d "
+"caracteres.                           Este texto tiene %(len)d caracteres."
+msgstr ""
+"La longitud máxima es de %(max_length)d caracteres. Este texto tiene %(len)d "
+"caracteres."
+
+#: modules/groups/forms.py:42
+msgid "Dale un nombre a tu grupo"
+msgstr "Dale un nombre a tu grupo"
+
+#: modules/groups/forms.py:43
+msgid "Escribí la dirección de correo electrónico de tu grupo"
+msgstr "Escribí la dirección de correo electrónico de tu grupo  \t \t"
+
+#: modules/groups/forms.py:45
+msgid "Describí Tu Grupo"
+msgstr "Describí tu grupo"
+
+#: modules/groups/forms.py:55
+#, python-format
+msgid "Email address %s already exists."
+msgstr ""
+
+#: modules/groups/forms.py:63
+msgid "Delivery"
+msgstr "Entrega"
+
+#: modules/groups/forms.py:71
+msgid "Nombre"
+msgstr "Nombre"
+
+#: modules/groups/forms.py:81
+msgid "From"
+msgstr "De"
+
+#: modules/groups/forms.py:82
+msgid "To"
+msgstr "Para"
+
+#: modules/groups/models.py:150 modules/groups/models.py:157
+msgid "Public"
+msgstr "Público"
+
+#: modules/groups/models.py:151
+msgid "Academic"
+msgstr ""
+
+#: modules/groups/models.py:152
+msgid "Private"
+msgstr "Privado"
+
+#: modules/groups/models.py:153
+#: modules/groups/templates/groups/home_groups.html:27
+#: modules/groups/templates/groups/show_subscriptions.html:30
+msgid "Closed"
+msgstr "Cerrado"
+
+#: modules/groups/models.py:381 modules/groups/models.py:387
+#: modules/groups/templates/group/admin_members.html:44
+msgid "Member"
+msgstr "Miembro"
+
+#: modules/groups/models.py:382 modules/groups/models.py:388
+#: modules/groups/templates/group/admin_members.html:45
+msgid "Moderator"
+msgstr "Moderador"
+
+#: modules/groups/models.py:383 modules/groups/models.py:389
+#: modules/groups/templates/group/admin_members.html:46
+msgid "Owner"
+msgstr "Dueño"
+
+#: modules/groups/models.py:398 modules/groups/models.py:404
+#: modules/groups/templates/group/admin_members.html:36
+msgid "No email"
+msgstr "Sin email"
+
+#: modules/groups/models.py:399 modules/groups/models.py:405
+#: modules/groups/templates/group/admin_members.html:37
+msgid "Digest"
+msgstr "Resumen"
+
+#: modules/groups/models.py:400 modules/groups/models.py:406
+#: modules/groups/templates/group/admin_members.html:38
+msgid "Individual"
+msgstr "Individual"
+
+#: modules/groups/templates/base_group.html:5
+#: modules/groups/templates/base_group.html:18
+#: modules/groups/templates/groups/show_subscriptions.html:12
+msgid "Group"
+msgstr "Grupo"
+
+#: modules/groups/templates/base_group.html:30
+#: modules/groups/templates/base_group.html:38
+#: modules/groups/templates/group/show_archive.html:5
+#: modules/groups/templates/group/show_archive.html:11
+#: modules/groups/templates/group/show_message.html:5
+#: modules/groups/templates/groups/show_subscriptions.html:15
+#: modules/messages/templates/base_messages.html:5
+msgid "Messages"
+msgstr "Mensajes"
+
+#: modules/groups/templates/base_group.html:41
+#: modules/groups/templates/group/admin_members.html:61
+#: modules/groups/templates/group/edit_subscription_form.html:5
+#: modules/groups/templates/group/edit_subscription_form.html:10
+msgid "Subscription"
+msgstr "Suscripción"
+
+#: modules/groups/templates/base_group.html:43
+msgid "Ver Miembros"
+msgstr "Ver Miembros"
+
+#: modules/groups/templates/base_group.html:44
+#: modules/groups/templates/group/post_message_form.html:5
+#: modules/groups/templates/group/post_message_form.html:10
+msgid "Contact Owner"
+msgstr "Contactar al Dueño"
+
+#: modules/groups/templates/base_group.html:51
+msgid "Admin Options"
+msgstr "Administración"
+
+#: modules/groups/templates/base_group.html:55
+msgid "Configuración"
+msgstr "Información"
+
+#: modules/groups/templates/base_group.html:57
+#: modules/groups/templates/group/admin_members.html:5
+#: modules/groups/templates/group/admin_members.html:14
+msgid "Members"
+msgstr "Miembros"
+
+#: modules/groups/templates/base_group.html:69
+#: modules/polls/templates/base_encuesta.html:19
+#: modules/polls/templates/base_polls.html:33
+msgid "Cursos"
+msgstr "Cursos"
+
+#: modules/groups/templates/base_group.html:81
+#: modules/groups/templates/base_groups.html:19
+msgid "Mis Grupos"
+msgstr "Grupos"
+
+#: modules/groups/templates/base_group.html:86
+#: modules/groups/templates/base_groups.html:23
+msgid "Suscripciones"
+msgstr "Suscripción"
+
+#: modules/groups/templates/base_group.html:87
+#: modules/groups/templates/base_groups.html:24
+msgid "Buscar Grupos"
+msgstr "Buscar Grupos"
+
+#: modules/groups/templates/base_group.html:88
+#: modules/groups/templates/base_groups.html:25
+#: modules/groups/templates/groups/create_group_form.html:5
+#: modules/groups/templates/groups/create_group_form.html:11
+#: modules/groups/templates/groups/create_group_form.html:62
+msgid "Create Group"
+msgstr "Crear Grupo"
+
+#: modules/groups/templates/base_group.html:101
+msgid "Last Groups"
+msgstr "Ultimos Grupos"
+
+#: modules/groups/templates/base_groups.html:35
+msgid "Más populares"
+msgstr "Más populares"
+
+#: modules/groups/templates/group/admin_members.html:35
+msgid "Set delivery type"
+msgstr "Definir el tipo de entrega"
+
+#: modules/groups/templates/group/admin_members.html:43
+msgid "Set membership type"
+msgstr "Definir el tipo de miembro"
+
+#: modules/groups/templates/group/admin_members.html:47
+msgid "-------"
+msgstr "-------"
+
+#: modules/groups/templates/group/admin_members.html:48
+msgid "Unsubscribe"
+msgstr "Desuscribir"
+
+#: modules/groups/templates/group/admin_members.html:59
+#: modules/groups/templates/groups/show_subscriptions.html:14
+msgid "Joined"
+msgstr "Suscripto"
+
+#: modules/groups/templates/group/admin_members.html:60
+msgid "Moderated"
+msgstr "Moderado"
+
+#: modules/groups/templates/group/admin_members.html:90
+msgid "Edit"
+msgstr "Editar"
+
+#: modules/groups/templates/group/admin_members.html:97
+#: modules/groups/templates/group/show_members.html:25
+msgid "No members found"
+msgstr "Sin miembros."
+
+#: modules/groups/templates/group/admin_members.html:107
+msgid "Find member"
+msgstr "Buscar miembro"
+
+#: modules/groups/templates/group/advanced_settings_form.html:5
+#: modules/groups/templates/group/advanced_settings_form.html:10
+msgid "Advanced Settings"
+msgstr "Opciones Avanzadas"
+
+#: modules/groups/templates/group/advanced_settings_form.html:13
+msgid "Close group"
+msgstr "Cerrar grupo"
+
+#: modules/groups/templates/group/advanced_settings_form.html:14
+msgid "Yes, I'm sure to close this group"
+msgstr "Sí, estoy seguro de cerrar este grupo"
+
+#: modules/groups/templates/group/advanced_settings_form.html:17
+msgid "Close Group"
+msgstr "Cerrar Grupo"
+
+#: modules/groups/templates/group/advanced_settings_form.html:24
+msgid "Delete group"
+msgstr "Borrar grupo"
+
+#: modules/groups/templates/group/advanced_settings_form.html:25
+msgid "Yes, I'm sure to delete this group and all its files and messages."
+msgstr "Sí, estoy seguro de borrar este grupo y todos sus archivos y mensajes."
+
+#: modules/groups/templates/group/advanced_settings_form.html:28
+msgid "Delete Group"
+msgstr "Borrar Grupo"
+
+#: modules/groups/templates/group/edit_settings_form.html:5
+#: modules/groups/templates/group/edit_settings_form.html:10
+#: modules/groups/templates/group/edit_settings_form.html:61
+msgid "Edit Settings"
+msgstr "Editar Configuración"
+
+#: modules/groups/templates/group/edit_subscription_form.html:26
+msgid "Guardar Cambios"
+msgstr "Guardar cambios"
+
+#: modules/groups/templates/group/edit_subscription_form.html:28
+#: modules/groups/templates/group/show_group.html:55
+msgid "Subscribe to this group"
+msgstr "Suscribirse a este grupo"
+
+#: modules/groups/templates/group/edit_subscription_form.html:36
+#: modules/groups/templates/group/edit_subscription_form.html:37
+msgid "Leave this group"
+msgstr "Desuscribirse de este grupo"
+
+#: modules/groups/templates/group/post_message_form.html:38
+msgid "Send message"
+msgstr "Mandar mensaje"
+
+#: modules/groups/templates/group/send_message_form.html:5
+#: modules/groups/templates/group/send_message_form.html:8
+msgid "Send Message"
+msgstr "Mandar Mensaje"
+
+#: modules/groups/templates/group/show_group.html:20
+#: modules/groups/templates/groups/search_groups_form.html:63
+msgid "This group is closed."
+msgstr "Este grupo está cerrado."
+
+#: modules/groups/templates/group/show_group.html:25
+#: modules/groups/templates/groups/home_groups.html:22
+#: modules/groups/templates/groups/search_groups_form.html:58
+#: modules/groups/templates/groups/show_last_groups.html:21
+#: modules/groups/templates/groups/show_most_popular_groups.html:21
+msgid "member"
+msgstr "miembro"
+
+#: modules/groups/templates/group/show_group.html:30
+#: modules/groups/templates/group/show_group.html:37
+msgid "Anyone can join!"
+msgstr "¡Todos pueden formar parte!"
+
+#: modules/groups/templates/group/show_group.html:36
+msgid "This is an announcement list."
+msgstr "Este grupo es sólo para anuncios."
+
+#: modules/groups/templates/group/show_group.html:50
+msgid "Send email to this group:"
+msgstr "Mandá un mensaje a este grupo:"
+
+#: modules/groups/templates/group/show_members.html:5
+#: modules/groups/templates/group/show_members.html:14
+msgid "Miembros"
+msgstr "Miembros"
+
+#: modules/groups/templates/groups/home_groups.html:5
+#: modules/groups/templates/groups/home_groups.html:8
+msgid "Groups"
+msgstr "Grupos"
+
+#: modules/groups/templates/groups/home_groups.html:36
+msgid "You are not member of any group."
+msgstr "No sos miembro de ningún grupo."
+
+#: modules/groups/templates/groups/home_groups.html:38
+#: modules/groups/templates/groups/search_groups_form.html:20
+#: modules/profiles/templates/profiles/search_users.html:20
+msgid "Search"
+msgstr "Buscar"
+
+#: modules/groups/templates/groups/home_groups.html:39
+msgid "or"
+msgstr "o"
+
+#: modules/groups/templates/groups/home_groups.html:40
+msgid "create one!"
+msgstr "creá uno!"
+
+#: modules/groups/templates/groups/home_groups.html:47
+msgid "Nuevos miembros"
+msgstr "Nuevos Miembros"
+
+#: modules/groups/templates/groups/search_groups_form.html:5
+#: modules/groups/templates/groups/search_groups_form.html:13
+msgid "Search Groups"
+msgstr "Buscar Grupos"
+
+#: modules/groups/templates/groups/search_groups_form.html:16
+msgid "Search in name, description, and email about a group."
+msgstr "Buscar en nombre, descripción, y email de un grupo."
+
+#: modules/groups/templates/groups/search_groups_form.html:24
+msgid "Mostrar todos los grupos"
+msgstr "Mostrar todos los grupos"
+
+#: modules/groups/templates/groups/search_groups_form.html:41
+#: modules/profiles/templates/profiles/search_users.html:26
+msgid "Results"
+msgstr "Resultados"
+
+#: modules/groups/templates/groups/search_groups_form.html:41
+#: modules/profiles/templates/profiles/search_users.html:26
+msgid "of"
+msgstr "de"
+
+#: modules/groups/templates/groups/search_groups_form.html:41
+#: modules/profiles/templates/profiles/search_users.html:26
+msgid "for"
+msgstr "para"
+
+#: modules/groups/templates/groups/search_groups_form.html:42
+#: modules/profiles/templates/profiles/search_users.html:27
+msgid "No results"
+msgstr "No hay resultados"
+
+#: modules/groups/templates/groups/show_last_groups.html:4
+#: modules/groups/templates/groups/show_most_popular_groups.html:4
+msgid "No groups found."
+msgstr "No se encontraron grupos."
+
+#: modules/groups/templates/groups/show_last_groups.html:6
+#: modules/groups/templates/groups/show_most_popular_groups.html:6
+msgid "Be the first to create one!"
+msgstr "¡Sé el primero en crear uno!"
+
+#: modules/groups/templates/groups/show_subscriptions.html:5
+#: modules/groups/templates/groups/show_subscriptions.html:8
+msgid "Manage Groups"
+msgstr "Mis Grupos"
+
+#: modules/groups/templates/groups/show_subscriptions.html:16
+#: modules/groups/templates/groups/show_subscriptions.html:48
+#: modules/groups/templates/groups/show_subscriptions.html:49
+msgid "Edit Subscription"
+msgstr "Editar Suscripción"
+
+#: modules/groups/templates/groups/show_subscriptions.html:32
+msgid "owner"
+msgstr "dueño"
+
+#: modules/groups/templates/groups/show_subscriptions.html:33
+msgid "moderator"
+msgstr "moderador"
+
+#: modules/groups/templates/plugins/last_new_groups.html:4
+msgid "Nuevos Grupos"
+msgstr "Grupos"
+
+#: modules/groups/templates/plugins/last_new_groups.html:26
+#: modules/groups/templates/plugins/last_new_members.html:26
+#: modules/groups/templates/plugins/last_new_messages.html:26
+msgid "No hay grupos creados."
+msgstr "No hay grupos creados."
+
+#: modules/groups/templates/plugins/last_new_members.html:4
+msgid "Grupos: Nuevos Miembros"
+msgstr "Grupos: Nuevos Miembros"
+
+#: modules/groups/templates/plugins/last_new_messages.html:4
+msgid "Grupos: Nuevos Mensajes"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:50
+msgid "Listname cannot be empty."
+msgstr ""
+
+#: modules/groups/utils/mailman.py:53
+msgid "List exists."
+msgstr ""
+
+#: modules/groups/utils/mailman.py:57
+msgid "You forgot to specify the list owner"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:65
+msgid "Initial list passwords do not match"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:67
+msgid "The list password cannot be empty"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:83
+#, python-format
+msgid "Unknown virtual host: %s"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:116
+#, python-format
+msgid "Bad owner email address: %s"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:119
+#, python-format
+msgid "List already exists: %s"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:125
+#, python-format
+msgid "Illegal list name: %s"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:127
+msgid ""
+"Some unknown error occurred while creating the list.\n"
+"                Please contact the site administrator for assistance."
+msgstr ""
+
+#: modules/groups/utils/mailman.py:163
+#, python-format
+msgid "Your new mailing list: %s"
+msgstr "Tu nueva lista: %s"
+
+#: modules/groups/utils/mailman.py:168
+#, python-format
+msgid "You have successfully created the mailing list %s"
+msgstr "Has creado exitosamente la lista %s"
+
+#: modules/groups/utils/mailman.py:178 modules/groups/utils/mailman.py:321
+#: modules/groups/utils/mailman.py:377
+#, python-format
+msgid "No such list %s"
+msgstr "No existe la lista %s"
+
+#: modules/groups/utils/mailman.py:201
+msgid "Options changed."
+msgstr "Opciones cambiadas."
+
+#: modules/groups/utils/mailman.py:215
+#, python-format
+msgid "No such list %s."
+msgstr "No existe la lista %s."
+
+#: modules/groups/utils/mailman.py:256
+#, python-format
+msgid "You have successfully deleted the mailing list %s."
+msgstr ""
+
+#: modules/groups/utils/mailman.py:299
+#, python-format
+msgid "You have joined %s list."
+msgstr ""
+
+#: modules/groups/utils/mailman.py:307
+msgid "Already a member"
+msgstr ""
+
+#: modules/groups/utils/mailman.py:398
+#, python-format
+msgid "You have been unsubscribed from %s."
+msgstr "No estás subscripto al grupo %s"
+
+#: modules/groups/utils/mailman.py:404
+#, python-format
+msgid "No such member: %s."
+msgstr ""
+
+#: modules/groups/views/group.py:93
+msgid "Group subscription is closed."
+msgstr "La subscripción a este grupo está cerrada."
+
+#: modules/groups/views/group.py:101 modules/groups/views/group.py:140
+#, python-format
+msgid "You have joined %s group."
+msgstr "Te subscribiste al grupo %s."
+
+#: modules/groups/views/group.py:135
+#, python-format
+msgid "You are already a member of %s group."
+msgstr "Ya estás subscripto al grupo %s."
+
+#: modules/groups/views/group.py:143
+#, python-format
+msgid "You can't join group %s."
+msgstr "No podés subscribirte al grupo %s."
+
+#: modules/groups/views/group.py:161
+#, python-format
+msgid "You can't unsubscribe from your group %s."
+msgstr "No podés desubscribirte del grupo %s."
+
+#: modules/groups/views/group.py:166
+#, python-format
+msgid "You have left %s group."
+msgstr "Te desubscribiste del grupo %s."
+
+#: modules/groups/views/group.py:197
+msgid "Mail sent."
+msgstr "Mensaje enviado."
+
+#: modules/groups/views/group.py:201
+#, python-format
+msgid "Owner of %s"
+msgstr "Dueño de %s"
+
+#: modules/groups/views/group.py:230
+#, python-format
+msgid "Group %s edited."
+msgstr "Grupo %s editado"
+
+#: modules/groups/views/group.py:254
+msgid "Picture deleted."
+msgstr "Imagen borrada"
+
+#: modules/groups/views/group.py:267 modules/groups/views/group.py:327
+msgid "You don't have enough permissions."
+msgstr "No tenés suficientes permisos."
+
+#: modules/groups/views/group.py:347
+#, python-format
+msgid "You don't have enough permissions in %s group."
+msgstr "No tenés los suficientes permisos en el grupo %s."
+
+#: modules/groups/views/group.py:359
+#, python-format
+msgid "Group %s closed"
+msgstr "Grupo %s cerrado"
+
+#: modules/groups/views/group.py:368
+#, python-format
+msgid "Group %s opened"
+msgstr "Grupo %s abierto"
+
+#: modules/groups/views/group.py:378
+#, python-format
+msgid "Group %s deleted"
+msgstr "Grupo %s borrado"
+
+#: modules/groups/views/groups.py:22 modules/groups/views/groups.py:56
+#: modules/groups/views/groups.py:97
+msgid "grupo"
+msgstr "Grupo"
+
+#: modules/groups/views/groups.py:44
+#, python-format
+msgid "Group %s created."
+msgstr "Grupo %s creado"
+
+#: modules/messages/forms.py:28
+msgid "Body"
+msgstr "Cuerpo"
+
+#: modules/messages/models.py:144
+msgid "message"
+msgstr "mensaje"
+
+#: modules/messages/models.py:145
+msgid "messages"
+msgstr "mensajes"
+
+#: modules/messages/views.py:86
+msgid "Message "
+msgstr "Mensaje"
+
+#: modules/messages/views.py:89 modules/messages/views.py:106
+msgid "Message doesn't exist."
+msgstr "No existe el mensaje"
+
+#: modules/messages/views.py:103
+msgid "Messages deleted."
+msgstr "Mensajes borrados"
+
+#: modules/messages/templates/base_messages.html:21
+#: modules/messages/templates/base_messages.html:24
+#: modules/messages/templates/messages/inbox_show.html:5
+#: modules/messages/templates/messages/inbox_show.html:9
+#: modules/site/templates/base_site.html:29
+msgid "Inbox"
+msgstr "Inbox"
+
+#: modules/messages/templates/base_messages.html:25
+msgid "Sent"
+msgstr "Enviados"
+
+#: modules/messages/templates/base_messages.html:26
+msgid "Trash"
+msgstr "Papelera"
+
+#: modules/messages/templates/base_messages.html:29
+#: modules/messages/templates/messages/message_compose.html:5
+msgid "Compose"
+msgstr "Escribir"
+
+#: modules/messages/templates/messages/folder_show.html:16
+msgid "No messages."
+msgstr "No hay mensajes"
+
+#: modules/messages/templates/messages/folder_show.html:36
+msgid "to"
+msgstr "para"
+
+#: modules/messages/templates/messages/folder_show.html:50
+#: modules/messages/templates/messages/folder_show.html:63
+#: modules/messages/templates/messages/inbox_message_show.html:40
+#: modules/messages/templates/messages/inbox_show.html:47
+#: modules/messages/templates/messages/inbox_show.html:59
+#: modules/messages/templates/messages/message_show.html:34
+msgid "Are you sure?"
+msgstr "¿Estás seguro?"
+
+#: modules/messages/templates/messages/folder_show.html:59
+#: modules/messages/templates/messages/inbox_show.html:55
+msgid "Select All"
+msgstr "Seleccionar Todos"
+
+#: modules/messages/templates/messages/folder_show.html:60
+#: modules/messages/templates/messages/inbox_show.html:56
+msgid "Unselect All"
+msgstr "Deseleccionar Todos"
+
+#: modules/messages/templates/messages/folder_show.html:63
+#: modules/messages/templates/messages/inbox_show.html:59
+msgid "Delete selected"
+msgstr "Borrar seleccionados"
+
+#: modules/messages/templates/messages/inbox_message_show.html:19
+msgid "de:"
+msgstr "de:"
+
+#: modules/messages/templates/messages/inbox_message_show.html:35
+msgid "Reply message"
+msgstr "Responder mensaje"
+
+#: modules/messages/templates/messages/inbox_message_show.html:41
+#: modules/messages/templates/messages/message_show.html:35
+msgid "Delete message"
+msgstr "Borrar mensaje"
+
+#: modules/messages/templates/messages/inbox_message_show.html:57
+#: modules/messages/templates/messages/message_compose.html:28
+msgid "Message"
+msgstr "Mensaje"
+
+#: modules/messages/templates/messages/inbox_message_show.html:63
+#: modules/messages/templates/messages/message_compose.html:34
+msgid "Send"
+msgstr "Enviar"
+
+#: modules/messages/templates/messages/inbox_show.html:13
+msgid "No new messages."
+msgstr "No hay nuevos mensajes"
+
+#: modules/messages/templates/messages/inbox_show.html:33
+msgid "from"
+msgstr "de"
+
+#: modules/messages/templates/messages/message_compose.html:9
+msgid "Compose a message"
+msgstr "Escribir un mensaje"
+
+#: modules/messages/templates/messages/message_compose.html:13
+#: modules/profiles/templates/profiles/edit_form.html:10
+msgid "Please correct the errors below"
+msgstr "Por favor, corregí los siguientes errores"
+
+#: modules/messages/templates/messages/message_show.html:19
+msgid "to:"
+msgstr "para:"
+
+#: modules/polls/templates/base_encuesta.html:20
+msgid "Docentes"
+msgstr "Docentes"
+
+#: modules/polls/templates/base_encuesta.html:21
+#: modules/polls/templates/base_polls.html:27
+msgid "Votar"
+msgstr "Votar"
+
+#: modules/polls/templates/base_polls.html:5
+#: modules/polls/templates/base_polls.html:18
+msgid "Polls"
+msgstr "Encuestas"
+
+#: modules/polls/templates/base_polls.html:26
+msgid "Resultados"
+msgstr "Resultados"
+
+#: modules/polls/templates/encuesta_vote.html:30
+#: modules/polls/templates/poll_vote.html:30
+msgid "Vote"
+msgstr "Votar"
+
+#: modules/polls/views/encuestas.py:69 modules/polls/views/encuestas.py:87
+#: modules/polls/views/polls.py:48 modules/polls/views/polls.py:69
+msgid "La encuesta no existe."
+msgstr "La encuesta no existe."
+
+#: modules/profiles/models.py:44
+msgid "Male"
+msgstr "Hombre"
+
+#: modules/profiles/models.py:45
+msgid "Female"
+msgstr "Mujer"
+
+#: modules/profiles/models.py:64
+#, python-format
+msgid "%s años"
+msgstr ""
+
+#: modules/profiles/models.py:68
+msgid "o"
+msgstr ""
+
+#: modules/profiles/models.py:70
+msgid "a"
+msgstr ""
+
+#: modules/profiles/models.py:71
+msgid "o/a"
+msgstr ""
+
+#: modules/profiles/models.py:205
+#, python-format
+msgid "Profile Photo for %s"
+msgstr "Foto de %s"
+
+#: modules/profiles/views.py:51
+msgid "Profile updated."
+msgstr "Perfil actualizado"
+
+#: modules/profiles/views.py:65
+msgid "Photo updated."
+msgstr "Foto actualizada"
+
+#: modules/profiles/views.py:67
+msgid "Ocurrió un error."
+msgstr "Ocurrió un error."
+
+#: modules/profiles/views.py:81
+msgid "Photo deleted."
+msgstr "Foto borrada"
+
+#: modules/profiles/views.py:93
+msgid "Foto seleccionada."
+msgstr ""
+
+#: modules/profiles/views.py:113
+msgid "Profile added."
+msgstr "Link agregado"
+
+#: modules/profiles/views.py:134
+msgid "Perfil borrado."
+msgstr "Perfil borrado."
+
+#: modules/profiles/views.py:136
+msgid "Perfil no encontrado."
+msgstr "Perfil no encontrado."
+
+#: modules/profiles/views.py:186
+msgid "Ingresar al menos dos caracteres."
+msgstr ""
+
+#: modules/profiles/templates/base_profile.html:17
+msgid "Mi Perfil"
+msgstr "Mi Perfil"
+
+#: modules/profiles/templates/base_profile.html:20
+msgid "Ver Perfil"
+msgstr "Ver Perfil"
+
+#: modules/profiles/templates/base_profile.html:21
+msgid "Editar Perfil"
+msgstr "Editar Perfil"
+
+#: modules/profiles/templates/base_profile.html:22
+msgid "Cambiar Foto"
+msgstr "Cambiar Foto"
+
+#: modules/profiles/templates/base_profile.html:23
+#: modules/profiles/templates/profiles/links_form.html:5
+#: modules/profiles/templates/profiles/links_form.html:9
+msgid "Otros Perfiles"
+msgstr "Otros Perfiles"
+
+#: modules/profiles/templates/base_profile.html:24
+msgid "Cambiar Contraseña"
+msgstr "Cambiar Contraseña"
+
+#: modules/profiles/templates/base_profile.html:26
+#: modules/profiles/templates/profiles/notifications_form.html:8
+#, fuzzy
+msgid "Notificaciones"
+msgstr "Noticias"
+
+#: modules/profiles/templates/base_profile.html:34
+#: modules/profiles/templates/plugins/profile_user_menu.html:8
+msgid "Usuarios"
+msgstr "Usuarios"
+
+#: modules/profiles/templates/base_profile.html:38
+#: modules/profiles/templates/plugins/last_new_profiles.html:29
+#: modules/profiles/templates/plugins/profile_user_menu.html:10
+#: modules/profiles/templates/profiles/search_users.html:5
+#: modules/profiles/templates/profiles/search_users.html:12
+msgid "Buscar Usuarios"
+msgstr "Buscar Usuarios"
+
+#: modules/profiles/templates/base_profile.html:39
+#: modules/profiles/templates/plugins/profile_user_menu.html:11
+msgid "Ver todos"
+msgstr ""
+
+#: modules/profiles/templates/password_change_form.html:12
+msgid ""
+"Please enter your old password, for security's sake, \n"
+"        and then enter your new password twice so we can verify \n"
+"        you typed it in correctly."
+msgstr ""
+"Por favor, ingresá tu  contraseña anterior, por seguridad, y luego ingresá "
+"tu nueva contraseña dos veces; de esa manera podemos verificar que la "
+"escribiste correctamente."
+
+#: modules/profiles/templates/password_change_form.html:19
+msgid "Old password:"
+msgstr "Contraseña anterior:"
+
+#: modules/profiles/templates/plugins/last_new_profiles.html:3
+msgid "Nuevos Usuarios"
+msgstr "Nuevos Usuarios"
+
+#: modules/profiles/templates/plugins/last_new_profiles.html:23
+msgid "No hay nuevos usuarios."
+msgstr "No hay nuevos usuarios."
+
+#: modules/profiles/templates/plugins/profile_user_menu.html:4
+msgid "Editar mi Perfil"
+msgstr "Mi Perfil"
+
+#: modules/profiles/templates/plugins/profile_user_menu.html:5
+msgid "Subir mi Foto"
+msgstr "Cambiar Foto"
+
+#: modules/profiles/templates/plugins/profile_user_menu.html:5
+msgid "Cambiar mi Foto"
+msgstr "Cambiar Foto"
+
+#: modules/profiles/templates/profiles/edit_form.html:5
+#: modules/profiles/templates/profiles/edit_form.html:8
+msgid "Your Info"
+msgstr "Tus datos"
+
+#: modules/profiles/templates/profiles/edit_form.html:33
+msgid "Nickname"
+msgstr "Apodo"
+
+#: modules/profiles/templates/profiles/edit_form.html:39
+msgid "Gender"
+msgstr "Género"
+
+#: modules/profiles/templates/profiles/edit_form.html:46
+msgid "Birthdate"
+msgstr "Fecha de Nacimiento"
+
+#: modules/profiles/templates/profiles/edit_form.html:52
+#: modules/profiles/templates/profiles/show_profile.html:31
+msgid "Location"
+msgstr "Ubicación"
+
+#: modules/profiles/templates/profiles/edit_form.html:58
+msgid "Interests"
+msgstr "Intereses"
+
+#: modules/profiles/templates/profiles/edit_form.html:64
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: modules/profiles/templates/profiles/links_form.html:14
+msgid "Social Network"
+msgstr ""
+
+#: modules/profiles/templates/profiles/links_form.html:18
+msgid "Usuario/Id"
+msgstr "Usuario/Id"
+
+#: modules/profiles/templates/profiles/links_form.html:20
+#: modules/profiles/templates/profiles/links_form.html:42
+#: modules/profiles/templates/profiles/links_form.html:64
+msgid "Add"
+msgstr "Agregar"
+
+#: modules/profiles/templates/profiles/links_form.html:36
+msgid "IM Service"
+msgstr "Mensajero"
+
+#: modules/profiles/templates/profiles/links_form.html:56
+msgid "Other Website"
+msgstr "Otro Sitio Web"
+
+#: modules/profiles/templates/profiles/links_form.html:59
+msgid "Label"
+msgstr "Título"
+
+#: modules/profiles/templates/profiles/links_form.html:62
+msgid "Website"
+msgstr "Sitio Web"
+
+#: modules/profiles/templates/profiles/notifications_form.html:5
+#: modules/profiles/templates/profiles/photo_form.html:5
+msgid "Profile"
+msgstr "Perfil"
+
+#: modules/profiles/templates/profiles/notifications_form.html:12
+#, python-format
+msgid ""
+"Se enviará una notificación por email a <span class=\"profile-email\">%"
+"(user_email)s</span>:"
+msgstr ""
+
+#: modules/profiles/templates/profiles/notifications_form.html:16
+msgid "Inmediatamente al recibir un mensaje privado."
+msgstr ""
+
+#: modules/profiles/templates/profiles/notifications_form.html:20
+msgid "Con noticias y actualizaciones de Fiubar (a lo sumo uno por mes)."
+msgstr ""
+
+#: modules/profiles/templates/profiles/photo_form.html:8
+msgid "Your photo"
+msgstr "Tu foto"
+
+#: modules/profiles/templates/profiles/photo_form.html:16
+msgid "Photo"
+msgstr "Foto"
+
+#: modules/profiles/templates/profiles/photo_form.html:21
+msgid "Upload"
+msgstr "Subir"
+
+#: modules/profiles/templates/profiles/photo_form.html:28
+msgid "Lista de Fotos"
+msgstr "Lista de Fotos"
+
+#: modules/profiles/templates/profiles/photo_form.html:31
+msgid "Mostrar en Perfil"
+msgstr "Mi Perfil"
+
+#: modules/profiles/templates/profiles/photo_form.html:35
+msgid "Delete"
+msgstr "Borrar"
+
+#: modules/profiles/templates/profiles/profile_list.html:5
+#: modules/profiles/templates/profiles/profile_list.html:12
+msgid "Lista de Usuarios"
+msgstr "Lista de Usuarios"
+
+#: modules/profiles/templates/profiles/profile_list.html:33
+msgid "No hay usuarios"
+msgstr "No hay usuarios"
+
+#: modules/profiles/templates/profiles/search_users.html:14
+msgid "Buscá por nombre de usuario, nombre o apellido."
+msgstr ""
+
+#: modules/profiles/templates/profiles/search_users.html:15
+msgid "Se devolverán los resultados de cada palabra ingresada."
+msgstr ""
+
+#: modules/profiles/templates/profiles/show_profile.html:35
+msgid "Intereses"
+msgstr "Intereses"
+
+#: modules/profiles/templates/profiles/show_profile.html:39
+msgid "Enviar mensaje"
+msgstr "Enviar mensaje"
+
+#: modules/profiles/templates/profiles/show_profile.html:46
+msgid "En la Web"
+msgstr "En la Web"
+
+#: modules/profiles/templates/profiles/show_profile.html:55
+msgid "Mensajeros"
+msgstr "Mensajeros"
+
+#: modules/profiles/templates/profiles/show_profile.html:64
+msgid "Mis links"
+msgstr "Mis links"
+
+#: modules/site/templates/404.html:5
+msgid "Error 404"
+msgstr "Error 404"
+
+#: modules/site/templates/404.html:16
+msgid "Page not found"
+msgstr "Página no encontrada"
+
+#: modules/site/templates/404.html:20
+msgid "We're sorry, but the requested page could not be found."
+msgstr "Lo lamentamos, pero la página que buscabas no existe."
+
+#: modules/site/templates/500.html:5
+msgid "Server error (500)"
+msgstr "Error del servidor"
+
+#: modules/site/templates/500.html:16
+msgid "Server Error <em>(500)</em>"
+msgstr "Error del servidor"
+
+#: modules/site/templates/base_site.html:28
+msgid "Hola"
+msgstr "Hola"
+
+#: modules/site/templates/base_site.html:30
+msgid "Cerrar sesión"
+msgstr "Cerrar sesión"
+
+#: modules/site/templates/base_site.html:32
+msgid "Crea tu cuenta!"
+msgstr "¡Creá tu cuenta!"
+
+#: modules/site/templates/base_site.html:33
+#: modules/site/templates/index_nologin.html:36
+msgid "Iniciar sesión"
+msgstr "Iniciar sesión"
+
+#: modules/site/templates/base_site.html:101
+msgid "Navigation"
+msgstr "Navegación"
+
+#: modules/site/templates/base_site.html:137
+#: modules/site/templates/base_site.html:153
+msgid "Be part of Fiubar!"
+msgstr "¡Sé parte de Fiubar!"
+
+#: modules/site/templates/base_site.html:148
+msgid "¿Qué es Fiubar?"
+msgstr "Qué es Fiubar"
+
+#: modules/site/templates/base_site.html:149
+msgid "Preguntas frecuentes"
+msgstr "Preguntas Frecuentes"
+
+#: modules/site/templates/index.html:6
+#: modules/site/templates/index_nologin.html:5
+msgid "Fiubar"
+msgstr "Fiubar"
+
+#: modules/site/templates/index.html:17
+msgid "Empezar"
+msgstr "Empezar"
+
+#: modules/site/templates/index.html:27
+msgid "Ultima actividad en Fiubar"
+msgstr "Ultima actividad en Fiubar"
+
+#: modules/site/templates/index_nologin.html:30
+msgid "¿No tenés una cuenta?"
+msgstr "¿No tenés una cuenta?"
+
+#: modules/site/templates/index_nologin.html:32
+msgid "¡Creá una ahora!"
+msgstr "¡Creá una ahora!"
+
+#: modules/utils/widgets.py:55
+msgid "Day"
+msgstr "Día"
+
+#: modules/utils/templates/paginator.html:6
+msgid "First Page"
+msgstr "Primera Página"
+
+#: modules/utils/templates/paginator.html:11
+msgid "Previous Page"
+msgstr "Página Anterior"
+
+#: modules/utils/templates/paginator.html:16
+msgid "Current Page"
+msgstr "Página Actual"
+
+#: modules/utils/templates/paginator.html:19
+msgid "Page"
+msgstr "Página"
+
+#: modules/utils/templates/paginator.html:25
+msgid "Next Page"
+msgstr "Página Siguiente"
+
+#: modules/utils/templates/paginator.html:30
+msgid "Last Page"
+msgstr "Última Página"
+
+#: modules/utils/widget.s/GroupedChoiceField.py:64
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Seleccioná una opción válida."
+
+#~ msgid " Materias "
+#~ msgstr "Materias"
+
+#~ msgid " Acciones "
+#~ msgstr "Acciones"
+
+#~ msgid "Error - "
+#~ msgstr "Error - "
+
+#~ msgid "¡Gracias!"
+#~ msgstr "¡Gracias!"
+
+#~ msgid "Tu error fue mandado."
+#~ msgstr "Tu error fue mandado."
+
+#~ msgid "Username:"
+#~ msgstr "Usuario:"
+
+#~ msgid "%d meses"
+#~ msgstr "%d meses"
+
+#~ msgid ""
+#~ "Upload a valid image. The file you         uploaded was either not an "
+#~ "image or a corrupted image."
+#~ msgstr ""
+#~ "Subí una imagen válida. El archivo que subiste no es una imagen o está "
+#~ "corrupta."
+
+#~ msgid "Upload a valid image.             This one is too small in size."
+#~ msgstr "Subí una imagen válida. El tamaño de ésta es muy pequeño."
+
+#~ msgid ""
+#~ "Upload a valid image. The file you             uploaded was either not an "
+#~ "image or a corrupted image."
+#~ msgstr ""
+#~ "Subí una imagen válida. El archivo que subiste no es una imagen o está "
+#~ "corrupta."
+
+#~ msgid "Upload a valid image.                 This one is too small in size."
+#~ msgstr "Subí una imagen válida. El tamaño de ésta es muy pequeño."
+
+#~ msgid "Service does not exist."
+#~ msgstr "El servicio no existe"
+
+#~ msgid "Website Profile added."
+#~ msgstr "Perfil agregado"
+
+#~ msgid "Website Profile not found."
+#~ msgstr "Perfil no encontrado"
+
+#~ msgid "IM Profile deleted."
+#~ msgstr "Mensajero borrado"
+
+#~ msgid "Website deleted."
+#~ msgstr "Sitio Web borrado"
+
+#~ msgid "Website not found."
+#~ msgstr "Sitio Web no encontrado"
+
+#~ msgid "Profile created."
+#~ msgstr "Perfil creado"
+
+#~ msgid "Editar Info"
+#~ msgstr "Editar Perfil"
+
+#~ msgid "Delete photo"
+#~ msgstr "Borrar foto"
+
+#~ msgid "Info"
+#~ msgstr "Perfil"
+
+#~ msgid "Nada para declarar."
+#~ msgstr "Nada para declarar."
+
+#~ msgid " years"
+#~ msgstr " años"
+
+#~ msgid "Events"
+#~ msgstr "Enviados"
+
+#~ msgid "Hello %(user.first_name)s!"
+#~ msgstr "¡Hola %(user.first_name)s!"
+
+#~ msgid "¡Arréglenlo!"
+#~ msgstr "¡Arréglenlo!"
+
+#~ msgid "¡Mandar!"
+#~ msgstr "¡Mandar!"
+
+#~ msgid "Volver a "
+#~ msgstr "Volver a"
+
+#~ msgid "Submit your idea"
+#~ msgstr "Dejar sugerencia"
+
+#~ msgid "Debe ser el usuario de email de la facultad (Ej: jperez)."
+#~ msgstr "Debe ser el usuario de email de la facultad (Ej: jperez)."
+
+#~ msgid "Completá con tu nombre real, así tus amigos pueden encontrarte."
+#~ msgstr "Completá con tu nombre real, así tus amigos pueden encontrarte."
+
+#~ msgid "Completá con tu apellido, así tus amigos pueden encontrarte."
+#~ msgstr "Completá con tu apellido, así tus amigos pueden encontrarte."
+
+#~ msgid "for your user account at %(site_name)s"
+#~ msgstr "de su cuenta de usuario en %(site_name)s."
+
+#~ msgid ""
+#~ "An activation link has been sent to the email address you supplied, \n"
+#~ "        along with instructions for activating your account."
+#~ msgstr ""
+#~ "Se ha enviado un link de activación a tu mail, junto con las "
+#~ "instrucciones  para activar tu cuenta."
+
+#~ msgid ""
+#~ "Fill out the form to the left (all fields are required), \n"
+#~ "        and your account will be created; you'll be sent an email with \n"
+#~ "        instructions on how to finish your registration."
+#~ msgstr ""
+#~ "Completá el formulario (todos los campos son obligatorios), y tu cuenta "
+#~ "será creada; te mandaremos un email con las instrucciones donde te "
+#~ "indicaremos cómo terminar con la registración."
+
+#~ msgid "Datos"
+#~ msgstr "Datos"
+
+#~ msgid "Ver más"
+#~ msgstr "Ver más"
+
+#~ msgid ""
+#~ "Esta dirección de correo electrónico                                  es "
+#~ "para tu grupo.<br /> Cuando envíes un                                  "
+#~ "mensaje a esta dirección, todos                                  los "
+#~ "miembros de tu grupo recibirán una                                  "
+#~ "copia. (Máximo 64 caracteres; no                                  "
+#~ "utilices acentos, tildes o espacios)"
+#~ msgstr ""
+#~ "Esta dirección de correo electrónico es para tu grupo.<br /> Cuando "
+#~ "envíes un mensaje a esta dirección, todos los miembros de tu grupo "
+#~ "recibirán una copia. (Máximo 64 caracteres; no utilices acentos, tildes o "
+#~ "espacios)"
+
+#~ msgid "Announcement"
+#~ msgstr "Anuncios"
+
+#~ msgid "Open group"
+#~ msgstr "Reabrir grupo"
+
+#~ msgid "Yes, I'm sure to open this group"
+#~ msgstr "Sí, estoy seguro de reabrir este grupo"
+
+#~ msgid "Open Group"
+#~ msgstr "Reabrir grupo"
+
+#~ msgid "%(group_name)s Group"
+#~ msgstr "Grupo %(group_name)s"
+
+#~ msgid "Advanced"
+#~ msgstr "Avanzado"
+
+#~ msgid "Groups Options"
+#~ msgstr "Grupos"
+
+#~ msgid "¡Me gustaría otra categoría!"
+#~ msgstr "¡Me gustaría otra categoría!"
+
+#~ msgid "Hide Advanced Options"
+#~ msgstr "Esconder Opciones Avanzadas"
+
+#~ msgid "Edit Group"
+#~ msgstr "Editar Opciones"
+
+#~ msgid "Change Settings"
+#~ msgstr "Cambiar Configuración"
+
+#~ msgid "Moderators"
+#~ msgstr "Moderadores"
+
+#~ msgid "No."
+#~ msgstr "No."
+
+#~ msgid "My Groups"
+#~ msgstr "Mis Grupos"
+
+#~ msgid "Email Account"
+#~ msgstr "Cuenta de email"
+
+#~ msgid "closed"
+#~ msgstr "cerrado"
+
+#~ msgid "private"
+#~ msgstr "privado"
+
+#~ msgid "You are not member of any group!"
+#~ msgstr "¡No sos miembro de ningún grupo!"
+
+#~ msgid "Search or"
+#~ msgstr "¡Buscá o"
+
+#~ msgid "Other options"
+#~ msgstr "Otras opciones"
+
+#~ msgid "No mail"
+#~ msgstr "Sin mail"
+
+#~ msgid "from:"
+#~ msgstr "para:"
+
+#~ msgid "Website Profile deleted."
+#~ msgstr "Perfil agregado"
+
+#~ msgid "Postcode"
+#~ msgstr "Código postal"
+
+#~ msgid "Link"
+#~ msgstr "Link"
+
+#~ msgid "Nothing to declare."
+#~ msgstr "Nada para declarar."
+
+#~ msgid "Website Profile"
+#~ msgstr "Perfiles en la Web"
+
+#~ msgid "Other Websites"
+#~ msgstr "Otros Sitios Web"
+
+#~ msgid "Otros sitios"
+#~ msgstr "Otros sitios"
+
+#~ msgid "Bienvenido"
+#~ msgstr "Bienvenido"
+
+#~ msgid "Copate!"
+#~ msgstr "¡Copate!"
+
+#~ msgid "Perdí mi password!"
+#~ msgstr "¡Perdí mi password!"
+
+#~ msgid "Welcome to fiubar!"
+#~ msgstr "¡Bienvenido a Fiubar!"

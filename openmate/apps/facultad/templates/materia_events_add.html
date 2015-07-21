@@ -1,0 +1,44 @@
+{% extends 'base_materias.html' %}
+{% load i18n groups profile %}
+
+
+{% block title %}{{ materia.get_codigo }} {{ materia.name }}{% endblock %}
+{% block link-js %}
+{% endblock %}
+
+{% block materia-events %}<li><a href="{{ materia.url_events }}">{% trans 'Calendario' %}</a>
+<ul class="menu-list"><li><a href="{{ materia.url_events_add }}">{% trans 'Agregar Fecha' %}</a></li></ul>
+</li>{% endblock %}
+
+
+{% block main--title %}{{ group.name|escape }}{% endblock %}
+{% block main-content %}
+  <h2 class="h2-showinfo h2-infos">{% trans 'Agregar Fecha' %}</h2>
+  <form id="materia-events-add" action="" method="post">
+    <div>
+      <label class="inline">{{ form.title.label }}</label>
+      {% if form.title.errors %} <span class="error">{{ form.title.errors|join:", " }}</span>{% endif %}
+      {{ form.title }}
+    </div>
+    <div>
+      <label class="inline">{{ form.where.label }}</label>
+      {% if form.where.errors %} <span class="error">{{ form.where.errors|join:", " }}</span>{% endif %}
+      {{ form.where }}
+    </div>
+    <div>
+      <label class="inline">{{ form.date_event.label }}</label>
+      {% if form.date_event.errors %} <span class="error">{{ form.date_event.errors|join:", " }}</span>{% endif %}
+      {{ form.date_day }} {{ form.date_month }} {{ form.date_year }}
+      <label class="inline time">{% trans 'Hora:' %}</label> {{ form.time_hour }}:{{ form.time_minute }}
+    </div>
+    <div>
+      <label>{{ form.description.label }}</label>
+      {% if form.description.errors %} <span class="error">{{ form.description.errors|join:", " }}</span>{% endif %}
+      {{ form.description }}
+    </div>
+    <div>
+      <input type="submit" id="submit" value="Agregar" />
+    </div>
+  </form>
+{% endblock %}
+

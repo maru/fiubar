@@ -1,0 +1,6 @@
+{{ name }} <{{ email }}> ha escrito:
+
+{{ body }}
+
+--
+http://www.fiubar.com.ar/

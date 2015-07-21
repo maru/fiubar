@@ -1,0 +1,94 @@
+#container {
+    margin-right: -200px;
+}
+#content {
+    margin-right: 200px;
+}
+.account p {
+  margin: 10px 0px;
+}
+.link-forgot {
+    padding: 0px 15px;
+}    
+
+/*** registration_form ***/
+form#form-register .block {
+  display: block;
+}  
+form#form-register label {
+    margin-bottom: 2px;
+}    
+
+form#form-register #id_username, #id_first_name, #id_last_name, #id_email {
+    width: 300px;
+}    
+form#form-register #id_verificacion {
+    width: 100px;
+}    
+form#form-register .no-padron {
+    font-family: Verdana, sans-serif;  
+    font-weight: bold;
+    background: transparent url('../icons/information.png') no-repeat 0px center;
+    padding-left: 20px;
+}
+form#form-register .no-padron a {
+    color: #4080db;
+}
+form#form-register label.request-auth {
+    width: 100%;
+    font-weight: normal;
+    color: #444;
+    line-height: 1.2em;
+}
+form#form-register .request-auth {
+    width: 300px;
+}
+form#form-register #id_password_verify,  form#form-register #id_password {
+    width: 270px;
+}    
+form#form-register input[type="submit"] {
+    /*background-image: url('../icons/account/user_add.png'); */
+}    
+.registration-note {
+    color: #009933; 
+    font-weight: bold; 
+}
+
+/*** login ***/
+form#account-login label {
+    margin-bottom: 2px;
+}    
+form#account-login input[type="text"], form#account-login input[type="password"] {
+    width: 300px;
+}    
+form#account-login input[type="submit"] {
+    /* background-image: url('../icons/account/key.png');*/
+}
+    
+/*** password_reset_form ***/
+form#form-reset label {
+    margin-bottom: 2px;
+}    
+form#form-reset input[type="submit"] {
+    /* background-image: url('../icons/account/key_go.png'); */
+    margin-top: 0px;
+}    
+#form-reset #id_email {
+    width: 250px;
+}
+
+    
+.problem {
+  font-weight: bold;
+  color: #CC0000;
+  font-size: 11px;
+  border: 1px solid #fbdd52;
+  padding: 5px;
+  margin: 5px 0px;
+}
+
+#main .username {
+    font-size: 14px;
+    font-weight: bold;
+    color: #595959;
+} 

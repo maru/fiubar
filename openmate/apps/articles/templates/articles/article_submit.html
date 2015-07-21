@@ -1,0 +1,58 @@
+{% extends 'base_site.html' %}
+{% load i18n markup humanize %}
+{% load article_tags tagging_tags comments %}
+
+{% block title %}{% trans 'Noticias' %} &raquo; {{ article.title }}{% endblock %}
+
+{% load tabs %}
+{% block navigation %}{% activetab	"topnav"	"Noticias" %}{{ block.super }}{% endblock %}
+
+{% block menu %}
+  {% category_menu_box %}
+  {% tags_menu_box %}
+{% endblock %}
+
+{% block content %}
+{% if form %}
+        <h2>Enviar noticia</h2>
+    <form action="" method="post">
+      {% if form.title %}<div>
+        <label for="id_title">{% trans 'Título:' %}</label>
+        {% if form.title.errors %}{{ form.title.errors }}{% endif %}
+        {{ form.title }}
+	  </div>{% endif %}
+      <div>
+	    <label for="id_body">{% trans 'Texto:' %}</label>
+        {% if form.body.errors %}{{ form.body.errors }}{% endif %}
+        {{ form.body }}
+      </div>
+      <div>
+        <label for="id_category">{% trans 'Categoría:' %}</label>
+        {% if form.category.errors %}{{ form.category.errors }}{% endif %}
+        {{ form.category }}
+      </div>
+      <div>
+        <label for="id_tags">{% trans 'Tags:' %} <span class="explanation">(separados por comas)</span></label> 
+        {% if form.tags.errors %}{{ form.tags.errors }}{% endif %}
+        {{ form.tags }}
+      </div>
+      <div>
+        <label for="id_orig_link">{% trans 'Fuente:' %}</label>
+        {% if form.orig_link.errors %}{{ form.orig_link.errors }}{% endif %}
+        {{ form.orig_link }}
+      </div>
+      <div>
+        {# <label for="id_image">{% trans 'Imagen:' %}</label>#}
+        {# {% if form.image.errors %}{{ form.image.errors }}{% endif %}#}
+        {# {{ form.image }}#}
+      </div>
+      <div>
+      	<input name="action" class="submit" type="submit" value="{% trans 'Vista previa' %}" />
+		<input name="action" class="submit" type="submit" value="{% trans 'Enviar noticia' %}" />
+	  </div>
+    </form>	
+{% else %}
+        <h2>Noticia enviada</h2>
+        <div>¡Gracias por tu aporte! ¡Pronto la publicaremos!</div>
+{% endif %}
+  {% endblock %}

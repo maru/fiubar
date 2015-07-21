@@ -1,0 +1,17 @@
+{% extends 'base_site.html' %}
+{% load i18n tabs %}
+{% block navigation %}{% activetab	"topnav"	"Mi cuenta" %}{{ block.super }}{% endblock %}
+
+{% block title %}{% trans 'Registración' %}{% endblock %}
+{% block head-extra %}{% endblock %}
+
+{% block menu %}<div class="box">
+          <h2>{% trans 'Mi cuenta' %}</h2>
+          <ul>
+            <li><a href="{% url account-login %}"><span>{% trans 'Iniciar sesión' %}</span></a></li>
+            <li><a href="{% url account-register %}"><span>{% trans 'Creá tu cuenta' %}</span></a></li>
+            <li><a href="{% url account-password_reset %}"><span>{% trans 'Olvidé mi contraseña' %}</span></a></li>
+          </ul>
+        </div>{% endblock %}
+
+{% block content %}{% endblock %}

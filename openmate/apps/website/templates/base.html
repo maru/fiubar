@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load i18n %}<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}"><head>
+  <title>{{ site_name }} &raquo; {% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <meta name="description" content="{{ meta_description }}" />
+  <meta name="keywords" content="{{ meta_keywords }}" />
+  <meta name="language" content="{{ LANGUAGE_CODE }}" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css" type="text/css" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}css/site.css" type="text/css" />
+  <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" type="image/x-icon" />
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+{% block head-extra %}{% endblock %}
+</head><body class="{% block body-css %}default{% endblock %}">
+<div id="page">
+  <div id="top">
+    <div class="nav">{% block top %}{% endblock %}</div>
+  </div> 
+  
+  <!-- <div id="home">
+    <a href="{{ site_url }}" title="{% trans 'Home' %}"></a>
+  </div> -->
+  
+  <div id="indicator" style="display: none;"></div>
+
+  <!-- <div id="onglet">
+  </div> -->
+  
+  <div id="container">{% block container %}{% endblock %}
+  </div>
+  
+  <div id="footer">{% block footer %}
+  {% endblock %}</div>
+{% block body-extra %}{% endblock %}  
+</div>
+</body>
+</html>

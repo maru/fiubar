@@ -1,0 +1,32 @@
+{% extends 'account/base.html' %}
+{% load i18n %}
+
+{### HEAD ###}
+{% block title %}{% trans 'Log in' %}{% endblock %}
+{% block head-description %}{% trans 'Log in' %}.{% endblock %}
+
+{### MAIN ###}
+{% block content %}<h2>{% trans 'Log in' %}</h2>
+  {% if form.errors and not form.username.errors and not form.password.errors %}{{ form.errors.values|join:","|safe }}{% endif %}
+  <form id="account-login" method="post" action="{% if next %}?next={{ next }}{% endif %}">
+    <div class="form-row">
+      <label for="id_username">{% trans 'Usuario o Email:' %}</label>
+      {% if form.username.errors %}<div class="error">{{ form.username.errors|join:"," }}</div>{% endif %}
+      {{ form.username }}
+    </div>
+    <div class="form-row">
+      <label for="id_password">{% trans 'Password:' %}</label>
+      {% if form.password.errors %}<div class="error">{{ form.password.errors|join:"," }}</div>{% endif %}
+      {{ form.password }}
+    </div>
+    <div><input type="submit" value="{% trans 'Log in' %}" /></div>
+  </form>
+
+  <p>
+    <a href="{% url account-password_reset %}">{%trans '¿Olvidaste tu contraseña?' %}</a>
+    {% if form.errors %}<span class="left-dotted"><img class="valign-middle" src="/media/images/angry.png" alt="" /><a href="/about/faq/#0" class="angry-error">{%trans '¡Grrr! ¡No puedo iniciar sesión!' %}</a></span>{% endif %}
+	<span class="left-dotted"><a href="{% url account-register %}">{% trans '¡Creá tu cuenta!' %}</a></span>
+  </p>
+
+{% endblock %}
+

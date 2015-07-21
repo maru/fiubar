@@ -1,0 +1,13 @@
+{% load i18n %}
+            <li class="list">{% trans 'Perfil' %}
+              <ul class="menu-list">
+                {% if profile.is_empty %}<li><a href="{% url profile-edit %}">{% trans 'Editar mi Perfil' %}</a></li>{% endif %}
+                <li><a href="{% url profile-photo_edit %}">{% if not profile.photo %}{% trans 'Subir mi Foto' %}{% else %}{% trans 'Cambiar mi Foto' %}{% endif %}</a></li>
+              </ul>
+            </li>
+            <li class="list">{% trans 'Usuarios' %}
+              <ul class="menu-list">
+                <li><a href="{% url member-search %}">{% trans 'Buscar Usuarios' %}</a></li>
+                <li><a href="{% url member-show_all %}">{% trans 'Ver todos' %}</a></li>
+              </ul>
+            </li>

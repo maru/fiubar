@@ -1,0 +1,98 @@
+{% extends 'profiles/base.html' %}
+{% load i18n profile_tags %}
+
+{% block title %}{{ profile.get_nickname }}{% endblock %}
+
+{% block content %}
+<h2>{% if profile.nickname %}{{ profile.nickname }}{% else %}{{ member.get_full_name }}{% endif %}</h2>
+<!-- {# if profile.nickname %}<p>
+  Mejor conocid{{ profile.adjetive_gender }} como <span class="username">{{ profile.nickname }}</span>
+</p>{% endif #} -->
+<div class="profile-show clearfix">
+  <div class="profile-photo">
+    <img src="{% profile_show_avatar profile 'l' %}" class="avatar" alt="" />
+  </div>
+  <div class="showinfo-profile">
+    <!-- <h2 class="h2-showinfo h2-info">{% trans 'Perfil' %}</h2> -->
+    <ul class="showinfo-list space">
+      {% if profile.gender or profile.birthdate %}<li>
+        {% if profile.gender %}<img src="/media/icons/{{ profile.gender_icon }}" alt="" class="gender-icon" />{% endif %}
+        {% if profile.birthdate %}{#{{ profile.birthdate|date:"j F Y" }} - #}{{ profile.age }}{% endif %}
+      </li>{% endif %}
+      {% if carrera_list %}<li>
+        <span class="mini-title">{% trans 'Carrera' %}{{ carrera_list|pluralize }}: </span>
+        {% for c in carrera_list %}
+          {{ c.carrera.name }}{% if not forloop.last %}, {% else %}.{% endif %}
+        {% endfor %}
+      </li>{% endif %}
+      {% if profile.location %}<li>
+        <span class="mini-title">{%trans 'Location' %}:</span>
+        {{ profile.location }}
+      </li>{% endif %}
+      {% if profile.interests %}<li>
+        <span class="mini-title">{%trans "Intereses" %}: </span>
+        {{ profile.interests }}
+      </li>{% endif %}
+      {% ifnotequal user member %}<li class="send-message">
+        <a href="{% url msgs-compose %}?rcpt={{ member.username }}">{% trans 'Enviar mensaje' %}</a>
+      </li>{% endifnotequal %}
+    </ul>
+  </div>
+</div>
+
+{% if sn_list %}<div class="showinfo-profile">
+  <h2 class="h2-showinfo">{% trans 'En la Web' %}</h2>
+  <ul class="showinfo-list">
+    {% for website in sn_list %}<li class="link-showinfo">
+      <a class="showinfo-item-{{ website.service.slug }} webprofile" href="{{ website.get_account }}">{{ website.service.name }}</a>
+    </li>{% endfor %}
+  </ul>
+</div>{% endif %}
+
+{% if im_list %}<div class="showinfo-profile">
+  <h2 class="h2-showinfo">{% trans 'Mensajeros' %}</h2>
+  <ul class="showinfo-list">
+    {% for im in im_list %}<li class="link-showinfo">
+      <span class="showinfo-item-{{ im.service.slug }} improfile">{{ im.service.name }}: {{ im.account }}</span>
+    </li>{% endfor %}
+  </ul>
+</div>{% endif %}
+
+{% if w_list %}<div class="showinfo-profile">
+  <h2 class="h2-showinfo">{% trans 'Mis links' %}</h2>
+  <ul class="showinfo-list">
+    {% for other in w_list %}<li class="link-showinfo">
+      <a href="{{ other.url }}" class="showinfo-item-web webprofile">{{ other.name }}</a>
+    </li>{% endfor %}
+  </ul>
+</div>{% endif %}
+{% if sn_list and im_list and w_list %}<div class="clear separator"></div>{% endif %}
+{% if group_list %}
+<div class="showinfo-groups">
+  <h2 class="h2-showinfo h2-infos">{% trans 'Grupos' %}</h2>
+  <ul class="showinfo-list user-group-list">
+    {% for m in group_list %}<li>
+      <a href="/group/{{ m.group.email }}/">{{ m.group.name }}</a>{% if not forloop.last %} - {% endif %}
+    </li>{% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% if user_list %}
+<div class="showinfo-friends">
+    <h2 class="h2-showinfo">Amigos</h2>
+    <ul class="showinfo-list member-list">
+    {% for member in user_list %}
+        <li><a href="/user/{{ member.username }}/">
+            <img src="{% profile_show_avatar member 'box_xs' %}" 
+                 class="avatar" alt="{{ member.get_full_name }}"
+                 title="{{ member.get_full_name }}" />
+        </a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<div class="clear separator"></div>
+{% endblock %}
+
+{### SIDEBAR ###}
+{% block sidebar %}{% endblock %} 

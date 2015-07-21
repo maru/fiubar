@@ -1,0 +1,14 @@
+{% load i18n %}
+{% autoescape off %}
+New article from {{ article.author }}: 
+========
+
+{{ article.title }}
+
+{{ article.body }}
+
+Category:   {{ article.category }}
+Tags: {{ article.tags }}
+Original link:  {{ article.orig_link }}
+
+{% endautoescape %}

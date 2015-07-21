@@ -1,0 +1,69 @@
+{% extends 'facultad/base.html' %}
+{% load i18n facultad_tags %}
+
+{% block title %}{% trans 'Materias' %}{% endblock %}
+
+{% block content %}
+<h2>{{ carrera.name }}
+	{% if plancarrera.orientacion %}<span class="small">{{ plancarrera.orientacion }} - </span>{% endif %}
+    <span class="small">Plan {{ plancarrera.pub_date.year }}</span>
+</h2>
+	<div id="command-details" class="tab-box">
+		<div id="tools">
+			{#<a href="#" onClick="alert('¡Muy pronto!\nEstamos implementándolo.')">Bajar <img src="{{ MEDIA_URL }}images/page_white_acrobat.png" alt="PDF" title="Bajar PDF" /></a>&nbsp;&nbsp;&nbsp;#}
+			<a href="#" onClick="window.print();return false">Imprimir <img src="{{ MEDIA_URL }}images/printer.png" alt="Imprimir" title="Imprimir" /></a>
+		</div>
+		{% autoescape off %}<ul class="head">
+			<li{{ class_cursando }}>
+				<span><a href="{{ plancarrera.url_materias }}">Cursando</a></span>
+			</li>
+			<li{{ class_para_cursar }}>
+				<span><a href="{{ plancarrera.url_materias }}?show=para_cursar">Para Cursar</a></span>
+			</li>
+			<!--<li{{ class_faltan_correl }}>
+				<span><a href="{{ plancarrera.url_materias }}?show=faltan_correl">Proximos Cuatrimestres</a></span>
+			</li>-->
+			<li{{ class_aprobadas }}>
+				<span><a href="{{ plancarrera.url_materias }}?show=aprobadas">Aprobadas</a></span>
+			</li>
+			<li{{ class_todas }}>
+				<span><a href="{{ plancarrera.url_materias }}?show=todas">Todas</a></span>
+			</li>
+		</ul>{% endautoescape %}
+		<div class="content">
+		  <div>
+		  <table class="materias-list {{ tab_selected }}">
+		  {% if lista_materias %}
+			<tr>
+			  <th class="icono"></th>
+			  <th class="margin-left">{% trans 'Materias' %}</th>
+			  <th>{{ th_estado }}</th>
+			  <th>{{ th_correlativas }}</th>
+			  {#<th class="actions">{% trans 'Acciones' %}</th>#}
+			  {% if class_para_cursar %}<th>Créditos</th>{% endif %}
+			</tr>
+			{% for planmateria in lista_materias %}
+			{% ifchanged planmateria.cuatrimestre %}
+			<tr>
+			  <td class="cuatrimestre" colspan="{% if class_para_cursar %}5{% else %}4{% endif %}">
+				  {% ifequal planmateria.cuatrimestre 99 %}Optativas
+				  {% else %}{{ planmateria.cuatrimestre }}&deg; Cuatrimestre{% endifequal %}
+			  </td>
+			</tr>{% endifchanged %}
+			{% display_row_materia planmateria %}
+			{% endfor %}
+		  {% else %}
+			<tr>
+			  <td colspan="{% if class_para_cursar %}5{% else %}4{% endif %}">
+				<p>{% trans 'No hay materias.' %}</p>
+			  </td>
+			</tr>
+		  {% endif %}
+		  </table>
+		  </div>
+		</div>
+	</div>
+{% endblock %}
+
+
+

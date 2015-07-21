@@ -1,0 +1,48 @@
+{% extends 'base_site.html' %}
+{% load i18n tabs %}
+{% block navigation %}{% activetab	"topnav"	"Mi cuenta" %}{{ block.super }}{% endblock %}
+
+{% block title %}{% trans 'Perfil' %}{% endblock %}
+{% block head-extra %}    <link rel="stylesheet" href="/media/css/profile.css" type="text/css" />    
+{% endblock %}
+
+{% block menu-title %}{% trans 'Mi Perfil' %}{% endblock %}    
+{% block menu-content %}<!--
+    <ul class="menu-list">
+      <li><a href="{% url profile-show %}">{% trans 'Ver Perfil' %}</a></li>
+      <li><a href="{% url profile-edit %}">{% trans 'Editar Perfil' %}</a></li>
+      <li><a href="{% url profile-photo_edit %}">{% trans 'Cambiar Foto' %}</a></li>
+      <li><a href="{% url profile-links %}">{% trans 'Otros Perfiles' %}</a></li>
+      <li><a href="{% url profile-password_change %}">{%trans 'Cambiar Contraseña' %}</a></li>
+      {#<li><a href="{% url profile-preferences %}">{% trans 'Preferences' %}</a></li>#}
+      {#<li><a href="{% url profile-notifications %}">{% trans 'Notificaciones' %}</a></li>#}
+      {#<li><a href="{% url profile-privacy %}">{% trans 'Privacy Settings' %}</a></li> #}
+    </ul>    -->
+{% endblock %}
+
+{% block extra-menu %}<!--
+        <div class="menubox">
+          <div class="menu-top">
+            <h2>{% trans 'Usuarios' %}</h2>
+          </div>
+          <div class="menu-content">
+            <ul class="menu-list">
+                <li><a href="{% url member-search %}">{% trans 'Buscar Usuarios' %}</a></li>
+                <li><a href="{% url member-show_all %}">{% trans 'Ver todos' %}</a></li>
+            </ul>    
+          </div>
+          <div class="menu-bottom"></div>
+        </div> -->
+{% endblock %}
+
+{% block menu %}<div class="box">
+          <h2>{% trans 'Mi cuenta' %}</h2>
+          <ul>
+            <li><a class="current" href="{% url profile-show %}"><span>{% trans 'Mi Perfil' %}</span></a></li>
+            <li><a class="" href="{% url profile-edit %}"><span>{% trans 'Editar Perfil' %}</span></a></li>
+            <li><a class="" href="{% url account-password_change_form %}"><span>{% trans 'Cambiar contraseña' %}</span></a></li>
+            <li><a href="{% url account-logout %}"><span>{% trans 'Cerrar sesión' %}</span></a></li>
+          </ul>
+        </div>{% endblock %}
+
+{% block content %}{% endblock %}

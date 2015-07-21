@@ -1,0 +1,37 @@
+{% extends 'base_site.html' %}
+{% load i18n tabs %}
+{% block navigation %}{% activetab	"topnav"	"Facultad" %}{{ block.super }}{% endblock %}
+{% block title %}{% trans 'Materias' %}{% endblock %}
+
+{% block head-extra %}<link rel="stylesheet" href="/media/css/facultad.css" type="text/css" />
+<link rel="stylesheet" type="text/css" media="print" href="/media/css/print.css" />
+{% endblock %}
+
+
+{% block menu %}<div class="box">
+          <h2>{% trans 'Facultad' %}</h2>
+          <ul>
+            <li><a href="{% url facultad-home %}"><span>{% trans 'Home' %}</span></a></li>
+        {% if list_carreras %}
+        	<hr />
+            <!-- <li><a href="{% url facultad-materias %}"><span>{% trans 'Mis Materias' %}</span></a></li> -->
+            {% for a in list_carreras %}
+                <li><a href="{{ a.url_materias }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
+                	<br />{% if a.plancarrera.orientacion %}<span class="small" style="display:block">{{ a.plancarrera.orientacion }}</span>{% endif %}
+                	<span class="smaller">Plan {{ a.plancarrera.pub_date.year }}</span>
+                	</a></li>
+            {% endfor %}
+        	<hr />
+			<li><a href="{% url facultad-cargar_materias %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
+			{#<li><a href="{% url facultad-search %}">{% trans 'Search Materias' %}</a></li>#}
+        {% endif %}
+			{% comment %}<li><a href="{% url facultad-events %}">{% trans 'Calendario' %}</a>
+				<ul class="menu-list">
+					<li><a href="{% url facultad-events_add %}">{% trans 'Agregar Fecha' %}</a></li>
+				</ul>
+			</li>{% endcomment %}
+			<li><a href="{% url carreras-home %}"><span>{% trans 'Carreras' %}</span></a></li>
+          </ul>
+        </div>{% endblock %}
+
+{% block content %}{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'facultad/base.html' %}
+{% load i18n facultad_tags %}
+
+{% block title %}{% trans 'Materias' %}{% endblock %}
+
+{% block content %}
+<h2>{% trans 'Lista de Materias' %}</h2>
+{#{% if class_aprobadas %}<div class="materias-error"><span>Estamos trabajando para que aparezca correctamente el cuatrimestre!</span></div>{% endif %}#}
+	<div id="command-details" class="tab-box">
+		<!-- menu -->
+		{% autoescape off %}<ul class="head">
+			<li{{ class_cursando }}>
+				<span><a href="{% url facultad-materias %}">Cursando</a></span>
+			</li>
+			<!-- <li{{ class_para_cursar }}>
+				<span><a href="{% url facultad-materias %}?show=para_cursar">Para Cursar</a></span>
+			</li> -->
+			<li{{ class_aprobadas }}>
+				<span><a href="{% url facultad-materias %}?show=aprobadas">Aprobadas</a></span>
+			</li>
+		</ul>{% endautoescape %}
+		<div class="content">
+		  <div>
+		  <table class="materias-list {{ tab_selected }}">
+		  {% if lista_materias %}
+			<tr>
+			  <th class="icono"></th>
+			  <th class="materia">{% trans 'Materias' %}</th>
+			  <th class="estado">{{ th_estado }}</th>
+			  <th class="correlativas">{{ th_correlativas }}</th>
+			  {#<th class="actions">{% trans 'Acciones' %}</th>#}
+			</tr>
+			{% for planmateria in lista_materias %}
+			{% ifchanged planmateria.cuatrimestre %}
+			<tr class="cuatrimestre">
+			  <td colspan="4">
+				  {% ifequal planmateria.cuatrimestre 99 %}Optativas
+				  {% else %}{{ planmateria.cuatrimestre }}&deg; Cuatrimestre{% endifequal %}
+			  </td>
+			</tr>{% endifchanged %}
+			{% display_row_materia planmateria %}
+			{% endfor %}
+		  {% else %}
+			<tr>
+			  <td colspan="4">
+				<p>{% trans 'No hay materias.' %}</p>
+			  </td>
+			</tr>
+		  {% endif %}
+		  </table>
+		  </div>
+		</div>
+	</div>
+
+{% endblock %}
+
+
+

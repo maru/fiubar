@@ -1,0 +1,171 @@
+{% extends 'base_site.html' %}
+{% load i18n markup humanize %}
+{% load article_tags tagging_tags comments %}
+
+{% block title %}{% trans 'Noticias' %} &raquo; {{ article.title }}{% endblock %}
+
+{% load tabs %}
+{% block navigation %}{% activetab	"topnav"	"Noticias" %}{{ block.super }}{% endblock %}
+
+{% block menu %}
+  {% category_menu_box %}
+  {% tags_menu_box %}
+{% endblock %}
+
+{% block content %}
+    <h2>Vista previa del artículo</h2>
+    <div class="item clearfix">
+      <span class="date" style="float: right; color: #888; font-weight: normal;">{{ article.publish_date|date:"d F Y" }}</span>
+      <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+      <div class="body">
+        {% if article.image %}<span class="media"><img src="{{ article.get_image_url }}" class="thumbnail" alt="" /></span>{% endif %}
+        <div class="text">
+          {{ article.snippet|markdown }}
+          <p><a href="{{ article.get_absolute_url }}" class="readmore">{% trans 'Leer más &raquo;' %}</a></p>
+        </div>
+      </div>    {% comment %}
+      <div class="info">
+        <div class="under">{% tags_for_object article as tag_list %}
+          <span class="pub-date">Publicado: </span>
+          <span class="date">{{ article.publish_date|date:"d F Y" }}</span>
+          <span class="categories span-item">
+            <a rel="category" title="{% blocktrans with article.category as category %}View all posts in {{ category }}{% endblocktrans %}" href="{{ article.category.get_absolute_url }}">{{ article.category }}</a>
+          </span>
+          {% if tag_list %}<span class="tags span-item">{% for tag in tag_list %}
+            <a rel="tag" href="{% url article-tags tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+          </span>{% endif %}
+{% get_comment_count for article as comment_count %}
+          <span class="comments span-item"><a title="{% blocktrans with article.title as title %}Dejá tu comentario sobre {{ title }}{% endblocktrans %}" href="{{ article.get_absolute_url }}#respond">
+          {% if comment_count %}{% blocktrans %}{{ comment_count }} comentario{% endblocktrans %}{{ comment_count|pluralize }}{% else %}{% trans 'Dejá tu comentario' %}{%endif%}</a></span>
+          {% ifequal user article.author %}<span class="edititem"><a title="{% trans 'Editar artículo' %}" href="{{ article.get_edit_url }}">{% trans 'Editar' %}</a></span>{% endifequal %}
+        <div class="act">        </div>
+        </div>
+      </div>    {% endcomment %}
+    </div> 
+    
+    <div class="item">
+        <h2><a href="{% url article_list_index %}">Noticias</a> &raquo; {{ article.title }}</h2>
+        <div class="body">
+          {% if article.image %}{#<span class="media"><img class="thumbnail" src="{{ article.get_image_url }}" alt="" /></span>#}
+          <span class="media"><img class="thumbnail-8" src="{{ article.get_image_url }}" alt="" /></span>{% endif %}
+          <div class="text">
+            {{ article.body|markdown }}
+            {% if article.orig_link %}<span class="link">Fuente: <a href="{{ article.orig_link }}" target="_blank">{{ article.orig_link }}</a></span>{% endif %}
+          </div>
+        <div class="info">
+          <div class="under">{% tags_for_object article as tag_list %}
+          <span class="pub-date span-item">Publicado: 
+          <span class="date">{{ article.publish_date|date:"d F Y" }}</span></span>          
+            <span class="categories span-item">
+              <a rel="category" title="{% blocktrans with article.category as category %}View all posts in {{ category }}{% endblocktrans %}" href="{{ article.category.get_absolute_url }}">{{ article.category }}</a>
+            </span>
+            {% if tag_list %}<span class="tags">{% for tag in tag_list %}
+              <a rel="tag" href="{% url article-tags tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+            </span>{% endif %}
+            {% ifequal user article.author %}<span class="edititem"><a title="{% trans 'Editar artículo' %}" href="{{ article.get_edit_url }}">{% trans 'Editar' %}</a></span>{% endifequal %}
+          </div>
+        </div>
+        <div class="fixed"></div>
+          <div class="fixed"></div>
+        </div>
+
+        <div class="fixed"></div>
+        <div id="postnavi" style="padding-bottom: 10px;">
+          {% if article.get_published_prev %}<span class="prev"><a href="{{ article.get_published_prev.get_absolute_url }}">← {{ article.get_published_prev.title }}</a></span>{% endif %}
+          {% if article.get_published_next %}<span class="next"><a href="{{ article.get_published_next.get_absolute_url }}">{{ article.get_published_next.title }} →</a></span>{% endif %}
+          <div class="fixed"></div>
+        </div>
+
+        <div id="comments">{% get_comment_count for article as comment_count %}{% get_comment_list for article as comment_list %}
+          <div id="cmtswitcher">
+            <a href="javascript:void(0);" class="curtab" id="commenttab">{% trans 'Comentarios' %} ({{ comment_count }})</a>
+            <span class="addcomment"><a href="#respond">{% trans 'Dejá tu comentario' %}</a></span>
+            <div class="fixed"></div>
+          </div>
+          <div id="commentlist">
+            <!-- comments START -->
+            <ol id="thecomments">{% if comment_list %}{% for comment in comment_list %}
+              <li id="comment-{{ forloop.counter }}" class="comment regularcomment">
+                <div class="author">
+                  <div class="pic">
+                    <img width="32" height="32" class="avatar avatar-32" src="{{ MEDIA_URL }}images/avatar.gif" alt=""/>
+                  </div>
+                  <div class="name">
+                    <span id="commentauthor-{{ forloop.counter }}">{{ comment.user.first_name }}</span>
+                  </div>
+                </div>
+                <div class="info">
+                  <div class="date">
+                    {{ comment.submit_date|date:"d/m/Y H:i" }} | <a href="#comment-{{ forloop.counter }}">#{{ forloop.counter }}</a>
+                  </div>
+                  {% comment %}<div class="act">
+                    <!-- <a onclick="MGJS_CMT.reply('commentauthor-{{ forloop.counter }}', 'comment-{{ forloop.counter }}', 'comment');" href="javascript:void(0);">Reply</a> |
+                    <a onclick="MGJS_CMT.quote('commentauthor-{{ forloop.counter }}', 'comment-{{ forloop.counter }}', 'commentbody-{{ forloop.counter }}', 'comment');" href="javascript:void(0);">Quote</a> -->
+                  </div>{% endcomment %}
+                  <div class="fixed"></div>
+                  <div class="content">
+                    {#<!-- <p><small>Your comment is awaiting moderation.</small></p> -->#}
+                    <div id="commentbody-{{ forloop.counter }}"><a name="comment-{{ forloop.counter }}"></a>
+                      {{ comment.comment|striptags|markdown }}
+                      {% comment %}<!-- <p><a rel="nofollow" href="#comment-1">@author</a> </p>
+                      <blockquote cite="#commentbody-1"><p>
+                        <strong><a rel="nofollow" href="#comment-1">author</a> :</strong><br/>
+                        quote-comment.
+                      </p></blockquote> -->{% endcomment %}
+                    </div>
+                  </div>
+                </div>
+                <div class="fixed"></div>
+              </li>{% endfor %}{% else %}
+              <li class="messagebox">{% trans 'Sin comentarios.' %}</li>{% endif %}
+            </ol>
+            <div class="fixed"></div>
+            <!-- comments END -->
+          </div>
+        </div>
+        {% if user.is_authenticated %}<!-- leave a comment -->
+        <form id="commentform" method="post" action="{% url articles-post_comment %}">
+          <a name="respond"></a>
+          {% get_comment_form for article as form %}
+          <div id="respond">
+            <div id="author_info">
+              {% comment %}
+              <div class="row">
+                <input type="text" tabindex="1" size="24" value="" class="textfield" id="id_name" name="name" />
+                <label class="small" for="id_name">Name (required)</label>
+              </div>
+              <div class="row">
+                <input type="text" tabindex="2" size="24" value="" class="textfield" id="id_email" name="email" />
+                <label class="small" for="id_email">E-Mail (will not be published) (required)</label>
+              </div>
+              <div class="row">
+                <input type="text" tabindex="3" size="24" value="" class="textfield" id="url" name="url" />
+                <label class="small" for="url">Website</label>
+              </div>
+              {% endcomment %}
+            </div>
+            <div class="row">
+              {{ form.content_type }}
+              {{ form.object_pk }}
+              {{ form.timestamp }}
+              {{ form.security_hash }}
+              <label for="comment">{% trans 'Dejá tu comentario' %}</label>
+			  <div class="error"><span id="comment-error" style="display:none">Por favor, escribí tu mensaje.</span></div>
+              <textarea cols="50" rows="8" tabindex="4" id="comment" name="comment"></textarea>
+            </div>
+            <div id="submitbox">
+              <div class="floatrightt">
+                <input type="submit" value="{% trans 'Enviar Comentario' %}" tabindex="5" class="button" id="submit" name="submit" />
+              </div>
+              <input type="hidden"  name="next" value="{{ request.path }}" />
+              <div class="fixed"></div>
+            </div>
+          </div>
+        </form>{% else %}
+        <div id="respond">
+          <div class="row"><a href="{% url account-login %}?next={{ request.path }}#respond">{% trans 'Iniciá sesión</a> para dejar tu comentario.' %}</div>
+          <div class="row">{% trans "¿No tenés una cuenta?" %} <a href="{% url account-register %}">{% trans '¡Registrate ahora!' %}</a></div>
+        </div>{% endif %}
+        <div class="fixed"></div>
+      </div>
+  {% endblock %}

@@ -1,0 +1,89 @@
+/*li {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+}*/  
+
+/*** ***/
+ul.choice-list {
+    padding-left: 20px;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin: 5px;
+}    
+ul.question-list > li {
+    margin: 15px 0px;
+    margin-left: 15px;
+}    
+div.choice-votes-bg {
+    background: #E9E9E9 url(../icons/polls/bar-bg-gray.gif) repeat-x scroll left top;
+    width: 200px;
+    height: 14px;
+}    
+div.choice-votes {
+    background: #C797F3 url(../icons/polls/bar-bg.gif) repeat-x scroll left top;
+    padding: 2px 0px;
+    height: 10px;
+    color: #FFFFFF;
+    font-size:11px;
+    font-family: Verdana, sans-serif;
+    line-height: 10px;
+    text-align: right;
+    font-weight: bold;
+}    
+span.votes-total {
+    color: #666;
+    font-size:11px;
+    font-family: Verdana, sans-serif;
+}    
+form.poll-vote input[type='submit'] {
+/*    background-image: url('../icons/polls/tick.png');*/
+} 
+
+p.poll-vote {
+    text-align: right;
+}
+a.poll-vote {
+    background-image: url('../icons/polls/chart_bar_add.png');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    padding-left: 25px;
+}
+
+/*** encuesta_materia ***/
+table.encuesta-materia  {
+    border-spacing: 0px;
+}    
+
+.bg-stars {
+    background-image: url('../icons/polls/stars/star-0.0_small.png');
+    background-repeat: no-repeat;
+    float: left;
+    font-size:85%;
+    font-weight:bold;
+    margin-right:3px;
+    height:16px;
+    width:60px;
+}
+
+.bg-stars span {
+    text-indent:-2000em;
+    display: block;
+    background-image: url('../icons/polls/stars/star-5.0_small.png');
+    background-repeat: no-repeat;
+}    
+.question {
+    margin: 0px;
+    padding: 0px;
+    width: 400px;
+    float:left;
+}    
+
+.container-with-float{
+    float: left;
+    width: 100%;
+    margin: 5px 0px;
+}
+.floated-column {
+}

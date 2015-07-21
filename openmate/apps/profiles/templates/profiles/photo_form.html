@@ -1,0 +1,43 @@
+{% extends 'base_profile.html' %}
+{% load i18n profile %}
+
+{### HEAD ###}
+{% block title %}{% trans 'Profile' %}{% endblock %}
+
+{### MAIN ###}
+{% block main-title %}{% trans 'Your photo' %}{% endblock %}
+{% block main-content %}
+<div class="clearfix photo-edit">
+  <div id="profile-photo">
+    <img src="{% profile_show_avatar profile 'm' %}" class="avatar" />
+  </div>
+  <form id="form-profile-photo" action="" method="post" enctype="multipart/form-data">
+    <div id="div-photo">
+      <label for="id_avatar">{% trans 'Photo' %}:</label>
+      {% if form.avatar.errors %}<span class="error photo-error">{{ form.avatar.errors|join:", " }}</span>{% endif %}
+      {{ form.avatar }}
+    </div>
+    <div id="form-submit">
+      <input class="submit-photo" type="submit" value="{% trans 'Upload' %}" />
+    </div>
+  </form>
+</div>
+
+{% if photo_list %}
+<div class="photo-list clearfix">
+  <h2>{% trans 'Lista de Fotos' %}</h2>
+  {% for p in photo_list %}<div class="photo-list-item">
+    <div class="photo-image" id="photo_{{ p.id }}">
+      <a href="{{ p.url_set_main }}" title="{% trans 'Mostrar en Perfil' %}"><img src="{{ p.get_html_path }}" alt="" /></a>
+    </div>
+    <div class="photo-tab-delete">
+       <input type="hidden" value="photo_{{ p.id }}" />
+       <a href="{{ p.url_delete }}" title="{% trans 'Delete' %}"><img src="/media/icons/delete_gray.png" alt="Borrar" /></a>
+    </div>
+  </div>{% endfor %}
+</div>{% endif %}
+
+{% endblock %}
+
+{### SIDEBAR ###}
+{% block sidebar %}{% endblock %} 

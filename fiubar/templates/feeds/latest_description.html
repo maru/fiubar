@@ -1,0 +1,73 @@
+{% load i18n markup tagging_tags %}
+<style>
+.item .body {
+  padding: 0px 5px 5px 5px;
+  text-align:justify;
+}
+.item .body h2, h3, h4, h5, h6 {
+  font-size: 1.0em;
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+}
+.item .media {
+  float:left ;
+  margin: 0px 10px 10px 0px;
+}
+.item img.thumbnail {
+  padding:4px;
+}
+.item .thumbnail:hover img {
+  background:#38BF8D none repeat scroll 0 0;
+  border-color:#38BF8D;
+}
+.item .readmore {
+  font-size: 0.75em;
+}
+.item .body .link {
+  font-size: 0.9em !important;
+}
+.item .body .link a {
+  font-size: 0.9em !important;
+  color: #555;
+}
+.item .under {
+  clear: both;
+}
+.item .under span {
+  margin-right: 15px;
+  display:inline;
+  color:#666;
+}
+{% comment %}
+.item .tags, .item .categories {
+  background:transparent url("/media/images/icons.gif") no-repeat scroll 0 0;
+  display:block;
+  font-size:0.85em;
+  height:16px;
+  line-height:16px;
+}
+.item .tags {
+  background-position:0 -16px;
+  padding-left:22px;
+}
+.item .categories {
+  background-position:0 -32px;
+  padding-left:22px;
+}{% endcomment %}
+</style>
+<div class="item">
+	<div class="body">
+	{% if obj.image %}<span class="media"><img src="{{ obj.get_image_url }}" class="thumbnail" alt="" /></span>{% endif %}
+	  <div class="text">
+		{{ obj.body|markdown }}
+	  </div>
+	</div>
+	<div class="under">{% tags_for_object obj as tag_list %}
+	  <span class="categories">
+		Categoría: <a rel="category" title="{% blocktrans with obj.category as category %}View all posts in {{ category }}{% endblocktrans %}" href="{{ obj.category.get_absolute_url }}">{{ obj.category }}</a>
+	  </span>{% if tag_list %}<span class="tags">Tags: {% for tag in tag_list %}
+		<a rel="tag" href="{% url article-tags tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+	  </span>{% endif %}
+	</div>
+</div>

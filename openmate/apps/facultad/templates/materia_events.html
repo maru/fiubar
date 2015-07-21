@@ -1,0 +1,35 @@
+{% extends 'base_materias.html' %}
+{% load i18n groups profile %}
+
+
+{% block title %}{{ materia.get_codigo }} {{ materia.name }}{% endblock %}
+{% block link-js %}<script src="/media/js/facultad.js"></script>{% endblock %}
+
+{% block materia-events %}<li><a href="{{ materia.url_events }}">{% trans 'Calendario' %}</a>
+<ul class="menu-list"><li><a href="{{ materia.url_events_add }}">{% trans 'Agregar Fecha' %}</a></li></ul>
+</li>{% endblock %}
+
+
+{% block main--title %}{{ group.name|escape }}{% endblock %}
+{% block main-content %}
+  <h2 class="h2-showinfo h2-infos">{% trans 'Calendario' %}</h2>
+  <div class="events-list">
+    <p class="group-num_members">{{ event_list.count }} evento{{ event_list.count|pluralize }}</p>
+    <p><a class="link-button add-event" href="{{ materia.url_events_add }}">{% trans 'Agregar Fecha' %}</a></p>
+    {% for e in event_list %}
+      {% ifchanged e.event.date.month %}{% if not forloop.first %}</ul>{% endif %}{% endifchanged %}
+      {% ifchanged e.event.date.month %}
+      <h3>{{ e.event.date|date:"F" }}</h3>
+      <ul class="materia-event-list">{% endifchanged %}
+        <li class="materia-event">
+          {{ e.event.date|date:"l d, H:s" }} hs:
+          {{ e.event.title }},
+          {{ e.event.where }}
+          {% ifequal e.user user %}<a href="{{ materia.url_events }}{{ e.url_delete }}" class="event-delete"><img src="/media/images/delete.png" alt="Borrar" /></a>{% endifequal %}<br />
+          {% if e.event.description %}<span class="materia-description"><span class="angle-quotation">&raquo;</span> {{ e.event.description }}</span>{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+

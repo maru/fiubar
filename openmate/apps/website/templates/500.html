@@ -1,0 +1,15 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Server error (500)' %}{% endblock %}
+
+{% block menu %}{% endblock %}
+
+{% block content %}
+<h1>{% trans 'Server Error <em>(500)</em>' %}</h1>
+<p>
+  <img src="{{ MEDIA_URL }}images/dog_computer.jpg" alt="" class="error500" />
+       Ha ocurrido un error. Se ha informado a los administradores del sitio mediante correo electrónico y debería ser solucionado en breve. <br /><br />
+       <strong>¡Gracias por tu paciencia!</strong>
+</p>
+{% endblock %}

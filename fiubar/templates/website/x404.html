@@ -1,0 +1,38 @@
+{% extends 'base_site.html' %}
+{% load i18n sidebar %}
+
+{### HEAD ###}
+{% block title %}{% trans 'Error 404' %}{% endblock %}
+{% block link-css %}{% endblock %}
+{% block link-js %}{% endblock %}
+
+{### NAVBAR ###}
+{% block navbar-menu-id %}menu-generic{% endblock %}
+    
+{### MENU ###}
+{% block menu %}{% endblock %}    
+
+{### MAIN ###}
+{% block main-title %}{% trans 'Page not found' %}{% endblock %}
+{% block main-content %}
+    <p>
+      <img src="{{ MEDIA_URL }}fiubar/images/errors/404_marmot.jpg" alt="" class="error500" />
+        {% trans "We're sorry, but the requested page could not be found." %}
+    </p>
+    {% comment %}<p>
+        ¿Estabas buscando algo?
+        <input type="text" />Search
+    </p>
+    <p>
+        <a href="{% url account-register %}">¿Ya te registraste?</a>
+    </p>
+    <p>
+        <a href="{% url groups-list %}">¿Viste los grupos que hay?</a>
+    </p>
+    <p>
+        <a href="{% url news-list %}">¿Leiste las ultimas noticias?</a>
+    </p>{% endcomment %}
+{% endblock %}
+
+{### SIDEBAR ###}
+{% block sidebar %}{% endblock %} 

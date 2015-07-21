@@ -1,0 +1,25 @@
+{% extends 'account/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Reportar un error' %}{% endblock %}
+{% block head-description %}Reportar un error.{% endblock %}
+
+{% block menu %}<div class="box">
+          <h2>Acerca de</h2>
+          <ul>
+            <li><a href="{% url about-fiubar %}"><span>Acerca de Fiubar</span></a></li>
+            <li><a href="{% url about-faq %}"><span>Preguntas Frecuentes</span></a></li>
+            <li><a class="current" href="{% url about-bugs %}"><span>Reportar un error</span></a></li>
+            <li><a href="{% url about-contact %}"><span>Contactanos</span></a></li>
+          </ul>
+        </div>{% endblock %}
+
+{% block content %}<h2>{% trans '¡Gracias por tu contribución!' %}</h2>
+      <div id="about">
+        <p class="about-thankyou">
+            {% trans 'Tu mensaje fue enviado.' %}<br />
+            {% trans '¡Lo leeremos apenas podamos y nos pondremos en contacto con vos!' %}
+        </p>
+        <img src="/media/images/thankyou.jpg" />
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+
+{### HEAD ###}
+{% block html-title %}{% trans 'Fiubar' %}{% endblock %}
+{% block link-css %}<link rel="stylesheet" href="{{ MEDIA_URL }}fiubar/css/index.css" type="text/css" />
+{% endblock %}
+{% block link-js %}{% endblock %}
+
+{% block body-css %}fixindex{% endblock %}
+{% block main-css %}default{% endblock %}
+{% block menu %}{% endblock %}
+
+{### MAIN ###}
+{% block header %}<div id="header"><h1 id="brand">Fiubar</h1></div>{% endblock %}
+{% block main %}
+<div class="presentation">
+  <div class="fiubar-u first">
+    <h2 id="welcome-header">¡Bienvenidos a Fiubar!</h2>
+    <p>
+      Fiubar es un lugar donde los estudiantes de la Facultad de
+      Ingeniería <a href="http://www.fi.uba.ar/">(FIUBA)</a> 
+      pueden subir apuntes e intercambiar 
+      información sobre materias, conocer a sus compañeros,
+      crear grupos y compartir intereses!
+    </p>
+    <div id="splash-image"></div>
+  </div>   
+  <div class="fiubar-u">
+    <h2 id="register">{%trans '¿No tenés una cuenta?' %}</h2>
+    <a class="link-button bt-sign-up" href="{# url account-register #}">
+      {%trans '¡Creá una ahora!' %}
+    </a>
+    <hr class="divider-dashed" />
+    <div class="log-in-link">
+      <h2 id="login">{%trans 'Iniciar sesión' %}</h2>
+      <form id="account-login" method="post" action="{# url account-login #}">
+        <div>
+          <label class="label" for="id_username">{% trans 'Usuario o Email:' %}</label>
+          <input type="text" maxlength="30" name="username" id="id_username"/>
+        </div>
+        <div>
+          <label class="label" for="id_password">{% trans 'Password:' %}</label>
+          <input type="password" maxlength="30" name="password" class="" id="id_password"/>
+        </div>
+        <div class="submit">
+            <input type="submit" value="{% trans 'Log in' %}" class="login-button" />
+        </div>
+        <p class="small">
+            <a href="{# url account-password_reset #}">{% trans 'Forgotten your password?' %}</a>
+        </p>    
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}

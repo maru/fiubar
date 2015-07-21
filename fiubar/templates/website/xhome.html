@@ -1,0 +1,50 @@
+{% extends 'base_site.html' %}
+{% load i18n humanize %}{# utils #}
+{# load groups profile facultad #}
+
+{### HEAD ###}
+{% block title %}{% trans 'Fiubar' %}{% endblock %}
+{% block link-css %}
+    <link rel="stylesheet" href="/media/css/files.css" type="text/css" />
+    <link rel="stylesheet" href="/media/css/groups.css" type="text/css" />
+    <!--[if lt IE 6]> <link rel="stylesheet" type="text/css" href="/media/css/ie5.css" /> <![endif]-->
+{% endblock %}
+{% block link-js %}{% endblock %}
+
+{% block body-css %}user-home{% endblock %}
+    
+{### MENU ###}
+{% block menu-title %}{% trans 'Empezar' %}{% endblock %}    
+{% block menu-content %}
+        <ul class="menu-list">
+          {# facultad_user_menu #}
+          {# groups_user_menu #}
+          {# profile_user_menu #}
+        </ul>
+{% endblock %}
+
+{### MAIN ###}
+{% block main-title %}{% trans 'Ultima actividad en Fiubar' %}{% endblock %}
+{% block main-css %}user-home{% endblock %}
+{% block main-content %}
+<div class="clearfix">
+  {# last_events_facultad #}
+  {# last_new_profiles #}
+{% ifequal close_plugin 2 %}</div>
+<div class="clearfix">{% endifequal %}
+  {# last_news_facultad #}
+{% ifequal close_plugin 2 %}</div>
+<div class="clearfix">{% endifequal %}
+  {# last_new_groups #}
+{% ifequal close_plugin 2 %}</div>
+<div class="clearfix">{% endifequal %}
+  {# last_new_members #}
+{% ifequal close_plugin 2 %}</div>
+<div class="clearfix">{% endifequal %}
+  {# last_new_messages #}
+</div>
+{% endblock %}
+
+{### SIDEBAR ###}
+{% block sidebar %}{% endblock %} 
+

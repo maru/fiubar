@@ -1,0 +1,625 @@
+#container {
+  margin-right:-200px;
+}
+#content {
+  margin-right:200px;
+}
+#main.default li, #last-groups {
+    margin: 0px;
+    padding: 0px;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+} 
+img.group-picture  {
+  border: 1px dotted #CCC;
+}
+.group_picture {
+    vertical-align: middle;
+    border: 1px solid #000;
+    padding: 1px;
+    margin: 0px 10px 5px 0px;
+}    
+.group-closed {
+    color: #FF0000;
+    font-weight: bold;
+}   
+.inline  {
+    display: inline;
+}    
+#main h2 {
+  color: #666666;
+  margin: 5px 0px 0px;
+  font-size: 16px;
+}
+#main h3 {
+  font-size: 14px;  
+  margin-bottom: 5px;
+}
+.help_text {
+  width: 420px;
+}
+/*** create_group ***/
+
+form#group-create textarea, form#group-create input[type="text"], form#group-create input[type="password"] {
+    width: 400px;
+}
+form#group-create textarea {
+    height: 60px;
+}    
+#email {
+  color: #395A66;
+  font-size: 11px;
+}
+#email .hostname {
+  font-weight: bold;
+}
+form#group-create #id_email {
+    width: 200px;
+}        
+form#group-create #category label {
+    float: left;
+    width: 150px;
+}        
+form#group-create #id_category {
+    width: 120px;
+}    
+form#group-create #access_level label {
+    float: left;
+    width: 150px;
+}        
+form#group-create #id_access_level {
+    width: 120px;
+}    
+form#group-create #upload-picture label {
+    float: left;
+    width: 150px;
+}
+form#group-create #group_picture {
+    margin: 0px 15px;    
+}    
+form#group-create #id_picture {
+    width: 150px;
+}    
+form#group-create #submit {
+    clear: both;
+}    
+form#group-create input[type="submit"] {
+/*    background-image:url(../icons/groups/group_add.png);*/
+}    
+
+.new-category {
+  margin-left: 150px;
+  font-size: 12px;
+}    
+.new-category a {
+  background: url('../icons/exclamation.png') no-repeat 0px center;
+  padding: 2px;
+  padding-left: 20px;
+  color: #c0442a;
+  font-size: 11px;
+}
+.new-category a:hover {
+  color: #EC705B;
+}
+
+
+/*** show_group ***/
+div#group-show #group-picture {
+    min-height: 130px;
+}    
+div#group-show .group_picture {
+    float: left;
+}   
+div#group-show .group-description {
+    margin-left: 130px;
+}   
+div#group-show .group-description p {
+    margin: 2px;
+    padding: 5px 0px;
+}   
+.group-num_members {
+    color: #666;
+    font-size: 10px;
+    line-height: 1.0em;
+}
+div#group-show .label {
+    font-weight: bold;
+}    
+div#group-show .group-email {
+    font-weight: bold;
+    color: #064c66;
+}    
+div#group-show .group-subscribe{
+    background-image: url('../icons/groups/group_go.png');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    padding-left: 25px;
+    float: left;
+}    
+div.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    visibility: hidden;
+}
+div#group-show h4 {
+  margin-top: 10px;
+}
+div#group-show ul.archive-listing-last {  
+  padding: 0px 0px 0px 25px;
+  margin: 0px 0px 20px;
+}  
+div#group-show ul.archive-listing-last li {
+  color: #333;
+}
+div#group-show p.group-mailto {  
+  margin: 20px 0px 5px;
+}  
+
+/*** show_last_groups ***/
+ul#last-groups li {
+    margin: 0px;
+    padding: 0px;
+    padding: 7px 0px 7px 0px;
+    border-bottom: 1px solid #CCC;
+    overflow: hidden;
+}  
+ul#last-groups li:first-child {
+    border-top: 1px solid #CCC;
+}    
+ul#last-groups img {
+    float: left;
+    display: block;
+}    
+ul#last-groups .group-name {
+    line-height: 1.3em;
+}
+ul#last-groups .group-num_members {
+    color: #999;
+    margin-left: 44px;
+}    
+ul#last-groups .group-description {
+    margin-left: 44px;
+    line-height: 1.3em;
+}
+
+/*** show_groups_info ***/
+#main ul.show-groups-info {
+    margin: 0px -15px 0px 0px;
+    list-style-type: none;
+}    
+
+#main li.show-groups-info-item {
+    display: inline;
+    float  : left;
+    border : 1px solid #DDD;
+    width  : 185px;
+    margin : 5px;
+    padding: 5px;
+    height : 65px; 
+    overflow: hidden;
+}    
+
+li.show-groups-info-item p {
+    margin: 0px;
+}    
+
+li.show-groups-info-item img.group_picture {
+    float: left;
+    display: block;
+    margin: 0px 10px 40px 0px;
+}    
+li.show-groups-info-item .group-description {
+    font-size: 12px;
+}
+li.show-groups-info-item .group-num_members {
+    color: #666;
+    line-height: 1.0em;
+}    
+   
+/*** show_groups ***/
+table#show-groups {
+    border-spacing: 0px;
+}   
+table#show-groups td {
+    border-bottom: 1px solid #CCC;
+    padding: 5px;
+}
+table#show-groups th {
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    text-align: center;
+    font-weight: bold;
+    background-color: #EEE;
+    font-size: 11px;
+}    
+table#show-groups .group-attr-picture {
+    vertical-align: top;
+}    
+table#show-groups .group-attr-name {
+    width: 200px;
+}    
+table#show-groups p {
+    margin: 0px;
+}    
+table#show-groups .membership {
+    color: #666;
+    font-size: 10px;
+}    
+table#show-groups .group-attr-email {
+    width: 200px;
+    text-align: center;
+}    
+table#show-groups .group-attr-messages {
+    width: 200px;
+    text-align: center;
+    font-size: 11px;
+}    
+table#show-groups .group-attr-subscription {
+    width: 200px;
+    text-align: center;
+}
+table#show-groups .group-attr-subscription img {
+    background-color: #E5E5E5;
+    padding: 3px;
+    border: 1px solid #A6A6A6;
+}    
+table#show-groups .group-attr-subscription img:hover {
+    border: 1px solid #404040;
+}    
+
+/*** search_groups_form ***/
+form#groups-search-form #id_search_form {
+    width:180px;
+    margin: 0px 5px;
+}    
+form#groups-search-form input[type="submit"] {
+/*    background-image: url('../icons/groups/group_search.png');*/
+}    
+form#groups-search-form .show-all {
+    margin-left: 5px;
+    font-size: 11px;
+}
+div#search_group_results {
+    min-height: 180px;
+}
+div#search_group_results h3.results {
+    font-size: 12px;
+    font-weight: normal;
+    background-color: #EEE;
+    margin: 5px 0px 0px;
+    border-top: 1px solid #CCC;
+    padding-left: 5px;
+    text-align: right;
+}    
+div#search_group_results ul {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+}    
+
+#main li.group-search {
+    padding: 7px 0px 7px 5px;
+    border-bottom: 1px solid #CCC;
+}  
+li.group-search:first-child {
+    border-top: 0px solid #CCC;
+}    
+div#search_group_results .paginator {
+    text-align: center;
+}    
+li.group-search .highlight {
+    color: #A968BC;
+}   
+li.group-search .group-name {
+    color: #164759;
+    font-size: 13px;
+    font-weight: bold;
+}    
+li.group-search .group-num_members {
+    color: #666;
+}    
+li.group-search img.group_picture {
+    float: left;
+    display: block;
+    margin-bottom: 0px;
+}    
+li.group-search .group-description {
+    margin-top: 5px;
+    margin-left: 44px;
+}    
+li.group-search .group-description p {
+    margin: 0px;
+}    
+.item-separator {
+   color: #A8A8A8;
+   font-size: 16px;
+}
+/*** edit_subscription_form **/
+form#group-subscription-form {
+}
+form#group-subscription-form #member-delivery label {
+    display: inline;
+}    
+form#group-subscription-form .group-edit_subscription {
+/*    background-image: url('../icons/groups/group_edit.png');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    padding-left: 25px;*/
+}    
+h2.subscribe {
+  background: transparent url('../icons/groups/group_add.png') no-repeat 0px 0px;
+  padding-left: 25px;
+}
+h2.edit-subscription {
+  background: transparent url('../icons/groups/group_edit.png') no-repeat 0px 0px;
+  padding-left: 25px;
+}
+form#group-subscription-form input[type='submit'].group-subscribe {
+/*    background-image: url('../icons/groups/group_go.png');*/
+}    
+
+div.group-subscribe {
+    background-image: url('../icons/groups/group_go.png');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    padding-left: 28px;
+    float: left;
+    height: 15px;
+}    
+h2.unsubscribe {
+  background: transparent url('../icons/groups/group_go.png') no-repeat 0px 0px;
+  padding-left: 25px;
+}
+.group-unsubscribe {
+    margin-top: 7px;
+    padding: 3px 10px;
+    float: left;
+}       
+    
+/*** edit_settings_form ***/
+form#group-edit_settings {
+}    
+
+form#group-edit_settings textarea {
+    height: 60px;
+}    
+form#group-edit_settings div#category label {
+    float: left;
+    width: 150px;
+}        
+form#group-edit_settings select#id_category {
+    width: 120px;
+}    
+form#group-edit_settings div#access_level label {
+    float: left;
+    width: 100px;
+}        
+form#group-edit_settings select#id_access_level {
+    width: 120px;
+}    
+form#group-edit_settings div#show-picture {
+}
+form#group-edit_settings input#id_picture {
+    width: 150px;
+}    
+form#group-edit_settings img.group_picture {
+    margin: 0px 15px;    
+}    
+form#group-edit_settings #upload-picture label {
+    float: left;
+    width: 150px;
+}
+form#group-edit_settings div.delete-picture {
+    margin: 5px 0px;
+}
+form#group-edit_settings a.delete-picture {
+    background:transparent url('../icons/delete.png') no-repeat 5px center;
+    padding-left: 20px;
+    margin-left: 150px;
+    font-size: 11px;
+}
+
+form#group-edit_settings div#submit {
+    clear: both;
+}    
+form#group-edit_settings input[type="submit"] {
+/*    background-image:url(../icons/groups/group_edit.png);*/
+}    
+
+/*** members_group ***/
+#main ul.members-show_options {
+    margin: 3px 0px;
+    padding: 0px;
+}    
+#main ul.members-show_options li {
+    display: inline;
+    border-right: 1px solid #CCC;
+    padding: 5px 20px;
+    color: #666;
+    line-height: 2em;
+    font-size: 11px;
+}    
+ul.members-show_options li:first-child {
+    border-left: 1px solid #CCC;
+}
+ul.members-show_options li.selected-tab {
+    color: #000;
+}    
+form#members-form select {
+    display: inline;
+    margin: 5px 0px;
+}    
+form#members-form input[type='submit'] {
+    display: inline;
+    margin: 5px 10px 5px 0px;
+    padding: 2px;
+}    
+
+table.members-list {
+    border-spacing: 0px;
+
+}
+    
+table.members-list td {
+    border-bottom: 1px solid #CCC;
+    font-size: 12px;
+    padding: 2px;
+}
+
+table.members-list th {
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    text-align: left;
+    font-weight: bold;
+    background-color: #EEE;
+    padding: 2px;
+    font-size: 11px;
+}    
+
+th.members-list-number {
+    width: 20px;
+}    
+th.members-list-name {
+    width: 200px;
+}    
+th.members-list-email {
+    width: 140px;
+    text-align: center !important;
+}    
+th.members-list-joined {
+    width: 70px;
+}    
+th.members-list-moderated {
+    width: 70px;
+}    
+th.members-list-delivery {
+    width: 70px;
+}    
+table.members-list .align-center {
+    text-align: center;
+}    
+table.members-list td .membership {
+    margin: 0px;
+    color: #666;
+    font-size: 10px;
+}
+form#find-member-form input[type='text'] {
+    width: 150px;
+    padding: 3px;
+}    
+form#find-member-form input[type='submit'] {
+    padding: 2px;
+}    
+
+/*** advanced_settings_form ***/
+div.activity-option {
+    margin: 20px 0px 35px;
+    display: block;
+}    
+h3.group-close {
+  background-image:url(../icons/groups/group_close.png);
+  background-repeat:no-repeat;
+  background-position: 0px center;
+  padding-left: 25px;
+}
+input.group-open {
+/*    background-image:url(../icons/groups/group_go.png);
+    background-repeat:no-repeat;
+    background-position: 5% center; */
+}
+h3.group-delete {
+  background-image:url(../icons/groups/group_delete.png);
+  background-repeat:no-repeat;
+  background-position: 0px center;
+  padding-left: 25px;
+}
+
+/*** post_message_form **/
+form#post_message-form input[type='submit'] {
+/*    background-image: url('../icons/messages/email_go.png');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    padding-left: 25px; */
+} 
+
+/*** messages_group ***/
+#main.group-messages h2 {
+  margin-bottom: 5px;
+}
+#main.group-messages .main-content ul {
+  margin:0px;
+  padding-left: 20px;
+} 
+#main.group-messages .main-content > ul {
+  padding: 0px;
+} 
+#main.group-messages li {
+  list-style-position:inside;
+} 
+p.message-count {
+  margin: 5px 0px 10px;
+}
+hr.body-separator {
+  color: #CCC;
+  margin: 10px 0px;
+}
+pre {
+  margin: 5px 0px;
+  padding: 0px;
+}
+#main.group-archive-message ul {
+  list-style-type: none;
+  margin: 5px 0px;
+  padding-left: 0px;
+} 
+#main.group-archive-message li {
+  margin:0px;
+  padding-left: 0px;
+  font-size: 11px;
+}
+/*** group_member_list.html ***/
+p.group-num_members {
+  margin: 5px 0px 10px;
+  font-size: 12px;
+  color: #101010;  
+}
+
+
+/* last groups */
+div.last-news li.last-group {
+  height: 48px;
+}
+div.group-photo {
+  float: left;
+  text-align: center;
+}
+div.group-photo img {
+  border: 1px solid #666;
+}  
+div.group-photo img:hover {
+  border: 1px solid #000000;
+}  
+div.group-info {
+  float: left;
+  width: 92px;
+  line-height: 1.3em;
+  margin-left: 5px;
+}
+div.last-news .group-category {
+  font-size: 10px;
+  color: #999;
+  clear: left;
+}
+div.last-news p {
+  margin: 5px;
+}
+#main.user-home li.last-group {
+  height: auto;
+  width: 135px;
+  border: 0px;
+}
+#main.user-home div.group-info {
+  width: auto;
+}

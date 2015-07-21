@@ -1,0 +1,14 @@
+{% load tabs %}
+        <ul class="onglets">
+          <li class="home"><a class="" href="/">Home</a></li>{% for entry in menu_entries %}
+          <li{% ifactivetab "topnav" entry.name %} id="current"{% endifactivetab %}><a href="{{ entry.url }}"{% ifactivetab "topnav" entry.name %} class="selected"{% endifactivetab %} title="{{ entry.title|escape }}">{{ entry.name|escape }}</a></li>{% endfor %}
+        </ul>
+{% comment %}
+    <div id="container-onglet">
+      <div id="menu_onglet">
+        <ul>{% for entry in menu_entries %}
+          <li{% ifactivetab "topnav" entry.name %} id="current"{% endifactivetab %}><a href="{{ entry.url }}"{% ifactivetab "topnav" entry.name %} class="selected"{% endifactivetab %} title="{{ entry.title|escape }}">{{ entry.name|escape }}</a></li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+{% endcomment %}

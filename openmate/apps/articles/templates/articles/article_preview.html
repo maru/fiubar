@@ -1,0 +1,57 @@
+{% extends 'base_site.html' %}
+{% load i18n markup humanize %}
+{% load article_tags tagging_tags comments %}
+
+{% block title %}{% trans 'Noticias' %}{% endblock %}
+
+{% load tabs %}
+{% block navigation %}{% activetab	"topnav"	"Noticias" %}{{ block.super }}{% endblock %}
+
+{% block menu %}
+  {% category_menu_box %}
+  {% tags_menu_box %}
+{% endblock %}
+
+{% block content %}
+       <div class="item">
+        <h2>{{ article.title }}</h2>
+        <div class="info">
+          <span class="date">{{ article.publish_date|date:"d F Y" }}</span>
+          <div class="act">
+            <div class="fixed"></div>
+          </div>
+          <div class="fixed"></div>
+        </div>
+        <div class="body">
+          {% if article.image %}<span class="media"><img class="thumbnail" src="{{ article.get_image_url }}" alt="" /></span>{% endif %}
+          <div class="text">
+            {{ article.body|markdown }}
+            {% if article.orig_link %}<p class="link">{% trans 'Link:' %} <a href="{{ article.orig_link }}">{{ article.orig_link }}</a></p>{% endif %}
+          </div>
+          <div class="fixed"></div>
+        </div>
+        <div class="under">
+          <span class="categories">
+            <a rel="category" title="{% blocktrans with article.category as category %}View all posts in {{ category }}{% endblocktrans %}" href="{{ article.category.get_absolute_url }}">{{ article.category }}</a>
+          </span>{% tags_for_object article as tag_list %}
+          {% if tag_list %}<span class="tags">{% for tag in tag_list %}
+            <a rel="tag" href="{% url article-tags tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+          </span>{% endif %}
+          {% if article.tags and not tag_list %}<span class="tags">{{ article.tags }}</span>{% endif %}
+        </div>
+        <div class="fixed"></div>
+        <div id="postnavi">
+          <form action="" method="post">
+          	{{ form.title }}
+          	{{ form.body }}
+          	{{ form.category }}
+          	{{ form.tags }}
+          	{{ form.orig_link }}
+	      	<input name="action" class="submit" type="submit" value="{% trans 'Editar' %}" />
+			<input name="action" class="submit" type="submit" value="{% trans 'Enviar noticia' %}" />
+		  </form>
+          <div class="fixed"></div>
+        </div>
+        <div class="fixed"></div>
+      </div>
+  {% endblock %}

@@ -1,0 +1,83 @@
+.separator {
+    padding-top: 15px;
+}    
+
+/*** sidebar_bugs ***/
+form#sidebar-bugs {
+    text-align: center;
+}
+form#sidebar-bugs input[type="submit"] {
+    /* background-image: url('../icons/about/wrench.png'); */
+}
+form#sidebar-bugs textarea.sidebar {
+    width: 150px;
+    height: 100px;
+}    
+
+p.bugs-thankyou {
+    font-size: 13px;
+    text-align: center;
+} 
+p.bugs-thankyou img {
+    padding: 10px 0px;
+} 
+span.error {
+    margin-top: 0px;
+    margin-left: 10px;
+    text-align: left;
+}    
+
+/*** about_bugs_form ***/
+form#about-bugs input[type="submit"] {
+    /* background-image: url('../icons/about/wrench.png');*/
+}
+#about p.bugs-thankyou {
+    text-align: left;
+} 
+#about img {
+    float: left;
+    margin-right: 15px;
+} 
+
+/*** about_ideas_form ***/
+form#about-ideas input[type="submit"] {
+    /* background-image: url('../icons/about/comment.png'); */
+}
+.category label {
+    display: inline;
+}    
+
+/*** about_fiubar ***/
+#main.about-fiubar h3 {
+  margin: 15px 0px 5px;
+}
+p.about img {
+    vertical-align: middle;
+    margin: 5px 0px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #CCC;
+    line-height: 70px;
+}    
+.about img:hover {
+    border: 1px solid #000;
+}    
+.license {
+    color: #999;
+    font-size: 11px;
+}
+ul.showinfo-list {
+  margin: 0px;
+  padding: 0px;
+  list-style-image: none;
+  list-style-type: none;
+}
+ul.showinfo-list li {
+  margin: 0px;
+  padding: 0px;
+}
+
+/*** about_faq.html ***/
+#main.about h3 {
+   margin: 15px 0px 5px;
+}

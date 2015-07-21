@@ -1,0 +1,43 @@
+{% extends 'account/base.html' %}
+{% load i18n %}
+
+{% block title %}Contacto{% endblock %}
+{% block head-description %}Formulario de Contacto.{% endblock %}
+
+{% block menu %}<div class="box">
+		  <h2>Acerca de</h2>
+		  <ul>
+			<li><a href="{% url about-fiubar %}"><span>Acerca de Fiubar</span></a></li>
+			<li><a href="{% url about-faq %}"><span>Preguntas Frecuentes</span></a></li>
+			<li><a href="{% url about-bugs %}"><span>Reportar un error</span></a></li>
+			<li><a class="current" href="{% url about-contact %}"><span>Contactanos</span></a></li>
+		  </ul>
+		</div>{% endblock %}
+
+{% block content %}<h2>Contacto</h2>
+		<p>¿Se te ocurrió una excelente idea para Fiubar? ¡Contanos!
+		  Si te interesa participar en Fiubar, podés mirar
+		  <a href="http://code.fiubar.com.ar/">este sitio</a>.
+		<br />Para contactarte con nosotros, envianos tu mensaje.</p>
+		<div><form action="" method="post">
+		  <div>
+			<label>{# form.name.label #}Tu nombre:</label>
+			{% if form.name.errors %} <div class="error">{{ form.name.errors|join:", " }}</div>{% endif %}
+			{{ form.name }}
+		  </div>
+		  <div>
+			<label>{# form.email.label #}Tu dirección de email:</label>
+			{% if form.email.errors %} <div class="error">{{ form.email.errors|join:", " }}</div>{% endif %}
+			{{ form.email }}
+		  </div>
+		  <div>
+			<label>{# form.body.label #}Tu mensaje:</label>
+			{% if form.body.errors %} <div class="error">{{ form.body.errors|join:", " }}</div>{% endif %}
+			{{ form.body }}
+		  </div>
+		  <div>
+			<input type="submit" value="{% trans 'Enviar' %}" />
+		  </div>
+		</form></div>
+{% endblock %}
+

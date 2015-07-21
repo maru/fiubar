@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Logged out' %}{% endblock %}
+{% block head-extra %}{% endblock %}
+
+{% block content %}<h2>{% trans 'Logged out' %}</h2>
+
+    <p>
+        {% trans 'Thanks for spending some quality time with the Web site today.' %}
+    </p>
+
+    <p>
+        <a href="{% url account-login%}">{% trans 'Log in again' %}</a>
+    </p>
+{% endblock %}
+

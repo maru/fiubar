@@ -1,0 +1,19 @@
+{% extends 'base_site.html' %}
+{% load i18n tabs %}
+{% block navigation %}{% activetab	"topnav"	"Acerca de" %}{{ block.super }}{% endblock %}
+
+{% block title %}{% trans 'Acerca de' %}{% endblock %}
+
+{% block menu %}<div class="box">
+          <h2>{% trans 'Acerca de' %}</h2>
+          <ul>
+			<li><a href="{% url about-fiubar %}">{% trans 'Qué es Fiubar' %}</a></li>
+			<li><a href="{% url about-faq %}">{% trans 'Preguntas Frecuentes' %}</a></li>
+			<li><a href="{% url about-bugs %}">{% trans 'Report a bug' %}</a></li>
+			{#{% if user.is_authenticated %}<li><a href="{% url about-ideas %}">{% trans 'Tu sugerencia' %}</a></li>#}
+			{#<li><a href="{% url about-participate %}">{% trans '¡Formá parte!' %}</a></li>{% endif %}#}
+			<li><a href="{% url about-contact %}">{% trans 'Contact Us' %}</a></li>
+          </ul>
+        </div>{% endblock %}
+
+{% block content %}{% endblock %}

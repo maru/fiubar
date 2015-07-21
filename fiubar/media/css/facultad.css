@@ -1,0 +1,188 @@
+.fiuba-minilogo {
+  background: transparent url('../images/fiuba.gif') no-repeat 8px 5px;
+}
+.fiuba-minilogo span {
+  padding-left: 20px;
+}
+
+/* Tables */
+table {
+  border-spacing: 0px;
+  margin: 10px 0px 30px;
+}
+table th {
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #CCC;
+  text-align: center;
+  font-weight: bold;
+  background-color: #EEE;
+  padding: 3px 15px;
+}
+th.icon-left {
+  text-align: left;
+  padding-left: 20px;
+}
+th.carrera {
+  width: 300px;
+}
+th.icono {
+  width: 20px;
+
+}
+th.materias {
+  width: 80px;
+}
+th.graduado {
+  width: 90px;
+}
+th.delete {
+  width: 80px;
+}
+
+table td {
+  border-bottom: 1px solid #CCC;
+  padding: 5px 15px;
+  vertical-align: middle;
+  text-align: center !important;
+}
+td.carrera  {
+  bbackground: transparent url('../images/fiuba.png') no-repeat 3px 5px;
+  padding-left: 20px;
+  text-align: left !important;
+  vertical-align: top;
+}
+table td p {
+  margin: 0px !important;
+  padding: 0px !important;
+  text-align: center !important;
+}
+td.icono img {
+  vertical-align: middle;
+  margin: 3px;
+}
+table a.delete {
+  color: #e04e4f;
+  font-size: 12px;
+}
+.label {
+  color: #999 !important;
+  font-size: 11px !important;
+}
+.label-big {
+  color: #666;
+  font-size: 12px;
+}
+table.no-style {
+	margin: 0px;
+}
+table.no-style td {
+  border-bottom: 0px;
+  padding: 0px 10px 0px 0px;
+  text-align: left !important;
+}
+
+/*** tabs in plan_materias ***/
+#command-details ul {
+  margin-left:0px;
+  padding-left:20px;
+  margin-bottom:0px;
+  margin-top:5px;
+}
+#command-details li {
+  margin-bottom:5px;
+}
+.tab-box ul.head {
+  background:transparent url(../images/bg_tab_box_head.gif) repeat-x scroll left bottom;
+  font-size:12px;
+  font-weight:bold;
+  height:23px;
+  list-style-type:none;
+  margin:0px;
+  padding:0px 0px 0px 2px;
+}
+.tab-box ul.head li {
+  background:transparent url(../images/bg_tab.gif) no-repeat scroll left top;
+  display:block;
+  float:left;
+  margin:0px;
+  padding:0px;
+}
+.tab-box ul.head li span {
+  background:#FFFFFF url(../images/bg_tab.gif) no-repeat scroll right top;
+  display:block;
+  float:left;
+  height:23px;
+  margin:0px 0px 0px 5px;
+  padding:0px 15px 0px 10px;
+}
+.tab-box ul.head li span a {
+  color:#999999;
+  display:block;
+  padding-top:1px;
+  text-decoration:none;
+}
+.tab-box ul.head li span a:hover {
+  text-decoration: none !important;
+}
+#command-details a {
+  outline-color:invert;
+  outline-style:none;
+  outline-width:medium;
+}
+.tab-box ul.head li.selected {
+  background:transparent url(../images/bg_tab_s.gif) no-repeat scroll left top;
+}
+.tab-box ul.head li.selected span {
+  background:#FFFFFF url(../images/bg_tab_s.gif) no-repeat scroll right top;
+}
+.tab-box ul.head li.selected span a, .tab-box ul.head li span a:hover {
+  color:#666666;
+}
+.tab-box .content {
+  margin:0px;
+  padding:5px;
+}
+.tab-box .content > div {
+  margin:1px;
+}
+.tab-box {
+  width: 100%;
+}
+
+/* Buttons */
+.add-carrera {
+  background-image: url('../images/add.png');
+}
+.button-delete {
+  background-image:url(../images/delete.png);
+  margin-left: 30px;
+}
+
+/* Some styles */
+textarea.cargar-materias {
+	width: 100%;
+	height: 120px;
+}
+
+/* List of materias */
+table.materias-list {
+  border-collapse: collapse;
+  width: 570px;
+  color: #666;
+}
+table.materias-list th {
+  color: #666;
+}
+table.materias-list td {
+  padding: 0px 0px;
+}
+table.materias-list td.cuatrimestre {
+  text-align: left !important;
+  padding-left: 12px;
+  background-color: #F6F6F6;
+  border-top: 1px solid #CCC;
+  color: #666;
+}
+table.todas {
+  width: 100%;
+}

@@ -1,0 +1,10 @@
+{% load i18n article_tags tagging_tags %}
+{% tag_article_cloud as tag_list with steps=20 distribution=log %}
+  <div class="box">
+    <h2>{% trans 'Tags Populares' %}</h2>
+    <div class="tag-cloud">{% for tagx in tag_list %}<span><a  style="font-size: {% tag_font_size tagx.font_size 10 8 16 %}px" rel="tag" href="{% url article-tags tagx %}"{% ifequal tagx tag %} class="current"{% endifequal %}>{{ tagx }}<!--({{tagx.font_size}})--></a></span> {% endfor %}</div>
+	<div><a class="action" href="{% url article-tags_list %}">{% trans 'Ver Todos' %}</a></div>
+</div>
+  <div><a href="{% url article_list_index %}feeds/{# % if category %}categories/{{ category.slug }}{% else % #}latest{# % endif % #}/" class="feedrss">{% trans '<abbr title="Really Simple Syndication">RSS</abbr> feed' %}</a></div>
+
+

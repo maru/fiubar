@@ -1,0 +1,285 @@
+{% extends 'facultad/base.html' %}
+{% load i18n facultad_tags %}
+
+{% block title %}{% trans 'Mis Materias' %}{% endblock %}
+{% block link-css %}
+    <link rel="stylesheet" href="/media/css/facultad.css" type="text/css" />
+{% endblock %}
+
+{% block main-css %}facultad{% endblock %}
+<h2>{% trans 'Mis Materias' %}</h2>
+{% block content %}
+<h2>Calendario Académico</h2>
+
+{% comment %}
+<table width="100%">
+	<tr>
+		<th>N°</th>		<th>Fechas</th>		<th>Fin</th>		<th>L</th>		<th>M</th>		<th>M</th>		<th>J</th>		<th>V</th>		<th>S</th>		<th>D</th>		<th>Fechas claves</th>
+	</tr>
+	<tr>
+		<td colspan="11">Cuatrimestre 1: cursos del 7 de marzo al 26 de junio 2011</td>
+	</tr>
+	<tr>
+		<td>10</td>		<td>07-mar-2011</td>		<td>14-mar-2011</td>		<td>c</td>		<td>c</td>		<td>c</td>		<td>c</td>		<td>c</td>		<td>c</td>		<td></td>		<td>Comienzo del Primer cuatrimestre 2011</td>
+	</tr>
+</table>
+{% endcomment %}
+
+{% if "28/02/2011"|future_dates_only %}
+<p><h3><strong>Febrero</strong></h3>
+<ul>
+	{% if "28/02/2011"|future_dates_only %}<li>Semana del 28/02/2011: Inscripción para cursar asignaturas</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "07/03/2011"|future_dates_only %}
+<p><h3><strong>Marzo</strong></h3>
+<ul>
+	{% if "07/03/2011"|future_dates_only %}<li>Semana del 07/03/2011: Comienzo del Primer cuatrimestre 2011</li>{% endif %}
+</ul></p>{% endif %}
+
+<!-- <p><h3><strong>Abril</strong></h3>
+<ul>
+</ul></p> -->
+
+{% if "30/05/2011"|future_dates_only %}
+<p><h3><strong>Mayo</strong></h3>
+<ul>
+	{% if "09/05/2011"|future_dates_only %}<li>Semana del 09/05/2011: Evaluaciones Parciales</li>{% endif %}
+	{% if "16/05/2011"|future_dates_only %}<li>Semana del 16/05/2011: Evaluaciones Parciales</li>{% endif %}
+	{% if "30/05/2011"|future_dates_only %}<li>Semana del 30/05/2011: Inscripción para Evaluaciones Integradoras</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "27/06/2011"|future_dates_only %}
+<p><h3><strong>Junio</strong></h3>
+<ul>
+	{% if "06/06/2011"|future_dates_only %}<li>Semana del 06/06/2011:
+		<ul>
+			<li>Evaluaciones Parciales - 1era recuperación</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+		</ul>
+	</li>{% endif %}
+	{% if "13/06/2011"|future_dates_only %}<li>Semana del 13/06/2011:
+		<ul>
+			<li>Evaluaciones Parciales - 1era recuperación</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+		</ul>
+	</li>{% endif %}
+	{% if "20/06/2011"|future_dates_only %}<li>Semana del 20/06/2011: 
+		<ul>
+			<li>Ultima semana de clases del 1er Cuatrimestre 2011</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "27/06/2011"|future_dates_only %}<li>Semana del 27/06/2011: 
+		<ul>
+			<li>Evaluaciones Parciales - 2da recuperación</li>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "25/07/2011"|future_dates_only %}
+<p><h3><strong>Julio</strong></h3>
+<ul>
+	{% if "04/07/2011"|future_dates_only %}<li>Semana del 05/07/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "11/07/2011"|future_dates_only %}<li>Semana del 12/07/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "18/07/2011"|future_dates_only %}<li>Semana del 19/07/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "25/07/2011"|future_dates_only %}<li>Semana del 26/07/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+		</ul>		
+	</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "15/08/2011"|future_dates_only %}
+<p><h3><strong>Agosto</strong></h3>
+<ul>
+	{% if "01/08/2011"|future_dates_only %}<li>Semana del 01/08/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "08/08/2011"|future_dates_only %}<li>Semana del 08/08/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para cursar asignaturas</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "15/08/2011"|future_dates_only %}<li>Semana del 15/08/2011: Comienzo del Segundo cuatrimestre 2011</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "//2011"|future_dates_only %}
+<p><h3><strong>Septiembre</strong></h3>
+<ul>
+</ul></p>{% endif %}
+
+{% if "24/10/2011"|future_dates_only %}
+<p><h3><strong>Octubre</strong></h3>
+<ul>
+	{% if "17/10/2011"|future_dates_only %}<li>Semana del 17/10/2011: Evaluaciones Parciales</li>{% endif %}
+	{% if "24/10/2011"|future_dates_only %}<li>Semana del 24/10/2011: Evaluaciones Parciales</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "28/11/2011"|future_dates_only %}
+<p><h3><strong>Noviembre</strong></h3>
+<ul>
+	{% if "14/11/2011"|future_dates_only %}<li>Semana del 14/11/2011:
+		<ul>
+			<li>Evaluaciones Parciales - 1era recuperación</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+		</ul>
+	</li>{% endif %}
+	{% if "21/11/2011"|future_dates_only %}<li>Semana del 21/11/2011:
+		<ul>
+			<li>Evaluaciones Parciales - 1era recuperación</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>
+	</li>{% endif %}
+	{% if "28/11/2011"|future_dates_only %}<li>Semana del 28/11/2011:
+		<ul>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+			<li>Ultima semana de clases del 2do Cuatrimestre 2011</li>
+		</ul>
+	</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "26/12/2011"|future_dates_only %}
+<p><h3><strong>Diciembre</strong></h3>
+<ul>
+	{% if "05/12/2011"|future_dates_only %}<li>Semana del 05/12/2011: 
+		<ul>
+			<li>Evaluaciones Parciales - 2da recuperación</li>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "12/12/2011"|future_dates_only %}<li>Semana del 12/12/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "19/12/2011"|future_dates_only %}<li>Semana del 19/12/2011: 
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+			<li>Inscripción para Cursos de Verano 2012</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "26/12/2011"|future_dates_only %}<li>Semana del 26/12/2011: 
+		<ul>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "30/01/2012"|future_dates_only %}
+<p><h3><strong>Enero</strong></h3>
+<ul>
+	{% if "02/01/2012"|future_dates_only %}<li>Semana del 02/01/2012: Comienzo de Cursos de Verano 2012</li>{% endif %}
+	{% if "30/01/2012"|future_dates_only %}<li>Semana del 30/01/2012: Inscripción para Evaluaciones Integradoras</li>{% endif %}
+</ul></p>{% endif %}
+
+{% if "27/02/2012"|future_dates_only %}
+<p><h3><strong>Febrero</strong></h3>
+<ul>
+	{% if "06/02/2012"|future_dates_only %}<li>Semana del 06/02/2012:
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "13/02/2012"|future_dates_only %}<li>Semana del 13/02/2012:
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Presentación certificados de trabajo</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "20/02/2012"|future_dates_only %}<li>Semana del 20/02/2012:
+		<ul>
+			<li>Evaluaciones Integradoras</li>
+			<li>Inscripción para Evaluaciones Integradoras</li>
+			<li>Ultima semana de clases de Cursos de Verano 2012</li>
+		</ul>		
+	</li>{% endif %}
+	{% if "27/02/2012"|future_dates_only %}<li>Semana del 27/02/2012: Evaluaciones Integradoras</li>{% endif %}
+</ul></p>{% endif %}
+
+{% comment %}
+<div class="materias">
+{% if list_matcur %}
+  {% for m in list_matcur %}
+  <div class="last-news materia-news">
+    <h3 class="materia-{% if m.falta_final %}final{% else %}cursando{% endif %}">
+    <a class="{{ link_class }}" href="{{ m.materia.url_home }}" title="{% trans 'Editar' %}">
+      {{ m.materia.get_codigo }} {{ m.materia.name }}</a></h3>
+    <ul class="materia-count">
+      {% if m.new_alumnos %}<li><a href="{{ m.materia.url_alumnos }}"><span class="new-count">{{ m.new_alumnos }}</span> <!-- nuevo{{ m.new_alumnos|pluralize }} --> alumno{{ m.new_alumnos|pluralize }}</a></li>{% endif %}{% endif %}
+      {% if m.new_files %}<li><a href="{{ m.materia.url_files }}"><span class="new-count">{{ m.new_files }}</span> <!-- nuevo{{ m.new_files|pluralize }} --> archivo{{ m.new_files|pluralize }}</a></li>{% endif %}{% endif %}
+      {% if is_member %}<li><a href="{{ m.materia.url_group_subscription }}">Suscribirme al grupo</a></li>{% endif %}{% endif %}
+      {% if m.new_messages %}<li><span class="new-count">{{ m.new_messages }}</span> <!-- nuevo{{ m.new_messages|pluralize }} --> mensaje{{ m.new_messages|pluralize }}</li>{% endif %}{% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+{% else %}
+<span>No estás cursando ninguna materia.</span>
+{% endif %}
+</div>
+<div class="clear"></div>
+<div class="carreras">
+  <h1>Mi{{ list_carreras.count|pluralize }} carrera{{ list_carreras.count|pluralize }}</h1>
+{% if list_carreras %}
+  {% comment %}<div class="facultad-news">
+    <span>¡Alegría! <img src="/media/images/emoticon_happy.png" alt=":D" />
+    ¡Faltan sólo {{ faltan_dias }} días de clase!</span>
+  </div>{% endcommen t %}
+  {% for a in list_carreras %}
+  <div class="last-news list-carreras">
+    <h3 class="carrera"><img src="/media/avatars/groups/fiuba-{{ a.carrera.short_name }}_s.png" class="group-picture" alt="" />
+    <a href="/group/fiuba-{{ a.carrera.short_name }}/">{{ a.carrera.abbr_name }}</a></h3>
+    <ul class="materia-count">
+      {% if a.new_alumnos %}<li><a href="{{ a.carrera.url_alumnos }}"><span class="new-count">{{ a.new_alumnos }}</span> alumno{{ a.new_alumnos|pluralize }}</a></li>{% endif %}{% endif %}
+      {% if a.new_messages %}<li><span class="new-count">{{ a.new_messages }}</span> mensaje{{ a.new_messages|pluralize }}</li>{% endif %}{% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+{% else %}
+   <a href="{% url carreras-add %}">¿Qué carrera cursás?</a>
+{% endif %}
+</div>
+<div class="clear"></div>
+{% endcomment %}
+{% endblock %}
+
+
+

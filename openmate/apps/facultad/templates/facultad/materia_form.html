@@ -1,0 +1,42 @@
+{% extends 'facultad/base.html' %}
+{% load i18n facultad_tags %}
+
+{% block title %}{% trans 'Cursando Materia' %}{% endblock %}
+{% block content %}
+{#<div class="materias-error"><span>Estamos trabajando para que aparezca correctamente el cuatrimestre!</span></div>#}
+<h2>{{ materia.get_codigo }} {{ materia.name }}</h2>
+  <form action="" method="post">
+	<div class="type-none"><h3>Estado</h3>
+	  {% if form.state.errors %} <span class="error">{{ form.state.errors|join:", " }}</span>{% endif %}
+	  {{ form.state }}
+	</div>
+
+	<div><h3>Detalles</h3>
+	<table class="no-style">
+	  <tr><td colspan="2">{% if form.cursada_date.errors %} <span class="error">{{ form.cursada_date.errors|join:", " }}</span>{% endif %}</td></tr>
+	  <tr>
+	    <td><label class="inline">{% trans 'Cursada:' %}</label></td>
+	    <td>{{ form.cursada_cuat }} {{ form.cursada_year }}</td>
+	  </tr>
+	<!--<div id="materia_cursos" class="details cursada_date"></div>-->
+	  <tr><td colspan="2">{% if form.aprobada_date.errors %} <span class="error">{{ form.aprobada_date.errors|join:", " }}</span>{% endif %}</td></tr>
+	  <tr>
+	    <td><label class="inline">{% trans 'Aprobada:' %}</label></td>
+	    <td>{{ form.aprobada_cuat }} {{ form.aprobada_year }}</td>
+	  </tr>
+{% comment %}
+	  <div class="same">
+		{{ form.aprobada_same }}
+		<span class="">{{ form.aprobada_same.label }}</span>
+	  </div>
+{% endcomment %}
+	<tr><td colspan="2">{% if form.nota.errors %} <span class="error">{{ form.nota.errors|join:", " }}</span>{% endif %}</td></tr>
+	  <tr>
+	    <td><label class="inline" for="id_nota">{{ form.nota.label }}:</label></td>
+	    <td>{{ form.nota }}</td>
+	  </tr>
+	</table></div>
+	<div><input type="submit" value="{% trans 'Guardar cambios' %}" /></div>
+  </form>
+{% endblock %}
+

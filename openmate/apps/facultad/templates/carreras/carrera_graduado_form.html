@@ -1,0 +1,41 @@
+{% extends 'facultad/base.html' %}
+{% load i18n %}
+
+
+{% block title %}{% trans '¡Me recibí!' %}{% endblock %}
+
+
+{% block content %}
+<h2>{% trans '¡Me recibí!' %}</h2>
+    <form action="" method="post">
+		<p class=""><span class=""></span>{{ alumno.carrera.name }}
+            <br />{% if alumno.plancarrera.orientacion %}<span class="small">{{ alumno.plancarrera.orientacion }} - </span>{% endif %}
+            <span class="smaller">Plan {{ alumno.plancarrera.pub_date.year }}</span><br />
+		</p>
+        {{ form.plancarrera }}
+
+        <div class="clearfix">
+            {% if form.month.errors %} <span class="error">{{ form.month.errors|join:", " }}</span>{% endif %}
+            {% if form.year.errors %} <span class="error">{{ form.year.errors|join:", " }}</span>{% endif %}
+            <div class="float-left">
+                <label for="id_month">{# form.month.label #}Mes:</label>
+                {{ form.month }}
+            </div>
+            <div class="float-left">
+                <label for="id_year">{# form.year.label #}Año:</label>
+                {{ form.year }}
+            </div>
+        </div>
+        <div><input type="submit" value="{% trans '¡Me recibí!' %}" /></div>
+        {% if alumno.is_graduado %}
+        <p>
+		 <img src="/media/images/delete.png" alt="" />
+		 <a href="{{ alumno.url_del_graduado }}">{% trans 'No me recibí todavía.' %}</a>
+        </p>
+        {% endif %}
+    </form>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,39 @@
+{% extends 'base_profile.html' %}
+{% load i18n profile paginator %}
+
+{### HEAD ###}
+{% block title %}{% trans 'Lista de Usuarios' %}{% endblock %}
+{% block link-css %}
+    <link rel="stylesheet" href="/media/css/profile.css" type="text/css" />    
+    <link rel="stylesheet" href="/media/css/paginator.css" type="text/css" />    
+{% endblock %}
+
+{### MAIN ###}
+{% block main-title %}{% trans 'Lista de Usuarios' %}{% endblock %}
+{% block main-content %}
+{% if object_list %}
+<div class="profile-list">
+  <ul class="profile-list">{% for profile in object_list %} 
+    <li>
+      <div class="profile-photo">
+        <a href="{{ profile.url_profile }}" title="{% trans 'Ver perfil' %}">
+          <img src="{% profile_show_avatar profile 'box_s' %}" alt="" title="{{ profile.get_full_name }}" /> 
+        </a>
+      </div>  
+      <div class="profile-info">
+        <div class="user-name">
+          <a href="{{ profile.url_profile }}" titile="{% trans 'Ver perfil' %}">{{ profile.get_full_name }}</a>
+        </div>
+        <div class="profile-carreras">{% for c in profile.get_carrera %}{{ c.carrera.name }}<br />{% endfor %}</div>
+      </div>
+    </li>
+  {% endfor %}</ul>
+</div>
+{% else %}
+<p>{% trans 'No hay usuarios' %}</p>
+{% endif %}
+{% if is_paginated %}<div class="paginator">{% paginator %}</div>{% endif %}
+{% endblock %}
+
+{### SIDEBAR ###}
+{% block sidebar %}{% endblock %} 
