@@ -41,20 +41,8 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['fiubar.tk'])
+ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['dev.fiubar.tk', 'fiubar.tk'])
 # END SITE CONFIGURATION
-
-INSTALLED_APPS += ('gunicorn', )
-
-
-# STORAGE CONFIGURATION
-# ------------------------------------------------------------------------------
-# Uploaded Media Files
-# ------------------------
-# See: http://django-storages.readthedocs.io/en/latest/index.html
-INSTALLED_APPS += (
-    'storages',
-)
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -75,7 +63,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = env.db('DATABASE_URL')
+DATABASES['default'] = get_secret('DATABASE_DEFAULT')
 
 LOGGING = {
     'version': 1,
