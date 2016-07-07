@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # JSON-based secrets module
 try:
-    secret_file = os.path.join(os.path.abspath(__file__), "secrets.json")
+    secret_file = os.path.join(os.path.dirname(__file__), "secrets.json")
     with open(secret_file) as f:
         secrets = json.loads(f.read())
 except:
