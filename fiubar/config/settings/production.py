@@ -41,7 +41,9 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['dev.fiubar.tk', 'fiubar.tk'])
+ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1'])
+DEBUG = get_secret('DJANGO_DEBUG', default=False)
+
 # END SITE CONFIGURATION
 
 # EMAIL
