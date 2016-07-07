@@ -10,10 +10,28 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
 
-from . import get_secret
-import os
+import os, json
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# JSON-based secrets module
+try:
+    with open("secrets.json") as f:
+        secrets = json.loads(f.read())
+except:
+    secrets = {}
+
+def get_secret(setting, default=None, secrets=secrets):
+    """Get the secret variable or return explicit exception."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        if default:
+            return default
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
