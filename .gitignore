@@ -2,3 +2,4 @@ postgresql
 __pycache__
 *.pyc
 secrets.json
+admin
