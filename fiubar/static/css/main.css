@@ -1,0 +1,138 @@
+nav.navbar-extra {
+  border-radius: 0;
+  margin-bottom: 30px;
+  background-color: #8800aa;
+  background-image: linear-gradient(to bottom,#8800aa 0,#520066 100%);
+  border: 1px solid transparent;
+}
+nav.navbar-extra img {
+  width: 85px;
+  margin-top: -6px;
+}
+nav.navbar-extra .navbar-toggle:focus,
+nav.navbar-extra .navbar-toggle:hover {
+  background-color: #8800aa;
+}
+nav.navbar-extra .navbar-nav>.active>a,
+nav.navbar-extra .navbar-nav>.active>a:focus,
+nav.navbar-extra .navbar-nav>.active>a:hover {
+  color: #fff;
+  background-color: #8800aa;
+  background-image: linear-gradient(to bottom,#520066 0,#3d004d 100%);
+}
+nav.navbar-extra .navbar-nav>.open>a,
+nav.navbar-extra .navbar-nav>.open>a:focus,
+nav.navbar-extra .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #8800aa;
+    background-image: linear-gradient(to bottom,#520066 0,#3d004d 100%);
+}
+nav.navbar-extra .navbar-nav>li>a {
+  color: rgba(255,255,255,.8);
+}
+
+/*
+.bd-navbar {
+}
+
+.e > img {
+    display: block;
+}
+img {
+    vertical-align: middle;
+}
+.bd-navbar .navbar-nav a.nav-link {
+  color: rgba(255,255,255,.8);
+}
+.by {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .bd-navbar .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .bd-navbar .container {
+    width: 990px;
+  }
+}
+@media (min-width: 1260px) {
+  .bd-navbar .container {
+    width: 1230px;
+  }
+}
+@media (min-width: 768px) {
+  .or {
+    float: left;
+  }
+}
+.by > .or {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .by > .or {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}*/
+
+.bd-footer{
+  padding:4rem 0;
+  margin-top:4rem;
+  font-size:85%;
+  background-color:#f7f7f7;
+  text-align:center;
+}
+.bd-footer a{
+  font-weight:500;
+  color:#55595c;
+}
+.bd-footer a:hover{
+  color:#0275d8;
+}
+.bd-footer p{
+  margin-bottom:0;
+}
+@media (min-width:544px){
+  .bd-footer{
+    text-align:left;
+  }
+}
+.bd-footer-links{
+  padding-left:0;
+  margin-bottom:1rem;
+}
+.bd-footer-links li{
+  display:inline-block;
+}
+.bd-footer-links li+li{
+  margin-left:2rem;
+}
+
+
+/* These styles are generated from project.scss. */
+
+.alert-debug {
+  color: black;
+  background-color: white;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+/* Display django-debug-toolbar.
+   See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+   and https://github.com/pydanny/cookiecutter-django/issues/317
+*/
+[hidden][style="display: block;"] {
+  display: block !important;
+}
