@@ -63,5 +63,4 @@ DEBUG_TOOLBAR_CONFIG = {
 # ------------------------------------------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-# Your local stuff: Below this line define 3rd party library settings
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'

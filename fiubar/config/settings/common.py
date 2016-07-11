@@ -197,6 +197,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -235,6 +239,8 @@ ACCOUNT_ALLOW_REGISTRATION = get_secret('DJANGO_ACCOUNT_ALLOW_REGISTRATION', Tru
 ACCOUNT_ADAPTER = 'fiubar.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
 
+SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS', default={})
+
 # Custom user app defaults
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
@@ -261,10 +267,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-# django-compressor
-# ------------------------------------------------------------------------------
-
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'
