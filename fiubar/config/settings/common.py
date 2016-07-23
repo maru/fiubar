@@ -15,6 +15,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+
 # JSON-based secrets module
 try:
     secret_file = os.path.join(os.path.dirname(__file__), "secrets.json")
@@ -60,6 +61,8 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.openid',
     'allauth.socialaccount.providers.windowslive',
+    'contact_form',
+    'captcha',
 )
 
 # Apps specific for this project go here.
@@ -253,6 +256,7 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -271,5 +275,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'
 
-
-# Your common stuff: Below this line define 3rd party library settings
+# ReCaptcha keys
+RECAPTCHA_PUBLIC_KEY = get_secret('RECAPTCHA_PUBLIC_KEY', 'public_key')
+RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY', 'private_key')
+NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
+RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
+RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'en')

@@ -1,4 +1,77 @@
 {% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block head_title %}{% trans "About" %}{% endblock head_title %}
+
 {% block content %}
-  <p>Fiubar es...</p>
-{% endblock content %}
+<h2>Acerca de Fiubar</h2>
+<p>
+  Fiubar es el sitio donde los estudiantes de la <a href="http://www.fi.uba.ar/">Facultad de Ingeniería</a> (FIUBA)
+  pueden subir apuntes e intercambiar información sobre materias, conocer a sus compañeros, crear grupos y compartir intereses!
+</p>
+<p>
+  El código de Fiubar fue escrito durante 2007-2016 por Maru Berezin
+  (<a href="http://www.google.com/recaptcha/mailhide/d?k=01kr8p97wUHVAUCnywshksEw==&amp;c=Kpgh-sG3cs6ZyAMynUnrsqKCQ_zUf-crqaPHqmeXVqU=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\x3d01kr8p97wUHVAUCnywshksEw\x3d\x3d\x26c\x3dKpgh-sG3cs6ZyAMynUnrsqKCQ_zUf-crqaPHqmeXVqU\x3d', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">meb...</a>@gmail.com),
+  quien también se encarga del mantenimiento del sitio. Varias funcionalidades fueron agregadas gracias a valiosas sugerencias de usuarios.
+</p>
+<p>
+  Si te interesa mirar el código y participar en el proyecto, podés ver este sitio: <a href="https://github.com/maru/fiubar" target="_blank">https://github.com/maru/fiubar</a>
+</p>
+<h3>Software que nos acompaña</h3>
+<p>
+  <a href="https://fiubar.tk/" title="Fiubar">
+    <img class="valign-middle border-black" alt="Fiubar" src="{% static 'images/fiubar_ico.png' %}" title="Fiubar" />
+  </a> está programado en
+  <a href="http://www.djangoproject.com/" title="Django">
+    <img class="valign-middle border-black" alt="Django" src="{% static 'images/django.png' %}" title="Django" />
+  </a>, que es
+  <a href="http://www.python.org/" title="python">
+    <img class="valign-middle border-black" alt="Python" src="{% static 'images/python.png' %}" title="python" />
+  </a>. Nuestro editor es
+  <a href="http://geany.uvena.de/" title="Geany">
+    <img class="valign-middle border-black" alt="Geany" src="{% static 'images/geany.png' %}" title="Geany" />
+  </a>. El servidor corre GNU/Linux
+  <a href="http://www.debian.org/" title="Debian">
+    <img class="valign-middle border-black" alt="Debian" src="{% static 'images/debian.png' %}" title="" />
+  </a>. La base de datos es
+  <a href="http://www.postgresql.com/" title="Postgresql">
+    <img class="valign-middle border-black" alt="Postgresql" src="{% static 'images/postgresql.png' %}" title="Postgresql" />
+  </a>, usamos listas
+  <a href="http://www.gnu.org/software/mailman/" title="Mailman">
+    <img class="valign-middle border-black" alt="Mailman" src="{% static 'images/mailman.png' %}" title="Mailman" />
+  </a> y nuestro servidor web
+  <a href="http://httpd.apache.org/" title="Apache">
+    <img class="valign-middle border-black" alt="Apache" src="{% static 'images/apache.png' %}" title="Apache" />
+  </a>. Los íconos son creación de
+  <a href="http://famfamfam.com/" title="FamFamFam">
+    <img class="valign-middle border-black" alt="FamFamFam" src="{% static 'images/about-famfamfam.gif' %}" title="FamFamFam" />
+  </a>; las imágenes fueron editadas con
+  <a href="http://www.gimp.org/" title="Gimp">
+    <img class="valign-middle border-black" alt="Gimp" src="{% static 'images/gimp.png' %}" title="Gimp" />
+  </a>. Testeado exitosamente en
+  <a href="http://www.mozilla.com/firefox/" title="Firefox">
+    <img class="valign-middle border-black" alt="Firefox" src="{% static 'images/firefox.png' %}" title="Firefox" />
+  </a>,
+  <a href="http://www.opera.com/" title="Opera">
+    <img class="valign-middle border-black" alt="Opera" src="{% static 'images/operalogo.gif' %}" title="Opera" />
+  </a> y
+  <a href="http://lynx.isc.org/" title="Lynx">
+    <img class="valign-middle border-black" alt="Lynx" src="{% static 'images/optimlynx.gif' %}" title="Lynx"/>
+  </a>. Auspiciaron los momentos de ocio:
+  <a href="http://www.videolan.org/" title="Videolan">
+    <img class="valign-middle border-black" alt="Videolan" src="{% static 'images/videolan.png' %}" title="Videolan" />
+  </a> y
+  <a href="http://amarok.kde.org/" title="Amarok">
+    <img class="valign-middle border-black" alt="Amarok" src="{% static 'images/amarok.png' %}" title="Amarok" />
+  </a>.
+</p>
+<h3>Fotos</h3>
+<p>Usamos las siguientes fotos bajo licencia Creative Commons:</p>
+<ul class="showinfo-list">
+  <li class="showinfo-item-flickr webprofile">
+    <img class="border-black" src="{% static 'images/sicoactiva-fiuba.jpg' %}" /> Flickr: <a title="sicoactiva" href="http://www.flickr.com/photos/sicoactiva/421486343/">sicoactiva</a>
+  </li>
+  <li class="showinfo-item-flickr webprofile">
+    <img class="border-black" src="{% static 'images/sean-b_smile.jpg' %}" /> Flickr: <a class="slink-showinfo" href="http://www.flickr.com/photos/sean-b/245744537/">sean-b</a>
+  </li>
+</ul>{% endblock content %}

@@ -6,26 +6,19 @@
   border-radius: 0 !important;
   xborder: 1px solid transparent !important;
 }
-
+#content {
+  font-size:110%;
+}
 .bd-footer{
-  padding:4rem 0;
-  margin-top:4rem;
-  font-size:85%;
-  background-color:#f7f7f7;
-  text-align:center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
 }
-.bd-footer a{
-  font-weight:500;
-  color:#55595c;
+.bd-footer a {
+  font-weight:bold;
 }
-.bd-footer p{
-  margin-bottom:0;
-}
-@media (min-width:544px){
-  .bd-footer{
-  text-align:left;
-  }
-}
+
 .bd-footer-links{
   padding-left:0;
   margin-bottom:1rem;
@@ -37,7 +30,9 @@
   margin-left:2rem;
 }
 
-
+.action {
+  margin-top: 10px;
+}
 /* These styles are generated from project.scss. */
 
 .alert-debug {
