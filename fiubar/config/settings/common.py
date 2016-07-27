@@ -12,6 +12,7 @@ from __future__ import absolute_import, unicode_literals
 
 import os, json
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -80,6 +81,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'fiubar.middleware.locale.DefaultLocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -142,7 +144,12 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'es-AR'
+LANGUAGE_CODE = 'en'
+LANGUAGE_DEFAULT = 'es_AR'
+LANGUAGES = [('en', 'English'),
+             ('es-ar', 'Argentinian Spanish'),
+             ('es', 'Spanish'),
+            ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -281,3 +288,5 @@ RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY', 'private_key')
 NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
 RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'en')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
