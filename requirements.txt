@@ -6,7 +6,7 @@ django-braces==1.9.0
 django-crispy-forms==1.6.0
 django-floppyforms==1.6.2
 django-recaptcha==1.0.5
-https://github.com/maru/django-contact-form/archive/master.zip
+https://github.com/maru/django-contact-form-recaptcha/archive/master.zip
 
 # Models
 django-model-utils==2.5
