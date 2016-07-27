@@ -26,7 +26,7 @@ Iniciar la base de datos Postgresql
 Crear las tablas en la base de datos y un usuario administrador:
 
     docker-compose run --rm django python manage.py migrate
-    docker-compose run --rm django python manage.py loaddata fiubar.json
+    docker-compose run --rm django python manage.py loaddata fixtures/fiubar.json
     docker-compose run --rm django python manage.py createsuperuser
 
 Ejecutar el servidor web provisto por Django:
