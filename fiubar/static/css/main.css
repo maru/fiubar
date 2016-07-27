@@ -33,6 +33,31 @@
 .action {
   margin-top: 10px;
 }
+h1[id] {
+    padding-top: 20px;
+    margin-top: 0;
+}
+
+#content p {
+  text-align: justify;
+}
+/* pages/about.html */
+img.about-icon {
+  vertical-align: middle;
+  border: 1px solid #000;
+  margin: 1px;
+}
+ul.showinfo-list {
+  margin: 0px;
+  padding: 0px;
+  list-style-image: none;
+  list-style-type: none;
+}
+ul.showinfo-list li {
+  margin: 0px;
+  padding: 0px;
+}
+
 /* These styles are generated from project.scss. */
 
 .alert-debug {
