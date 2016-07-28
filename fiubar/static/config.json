@@ -92,7 +92,7 @@
     "@input-border-radius": "@border-radius-base",
     "@input-border-radius-large": "@border-radius-large",
     "@input-border-radius-small": "@border-radius-small",
-    "@input-border-focus": "#66afe9",
+    "@input-border-focus": "#a944ca",
     "@input-color-placeholder": "#999",
     "@input-height-base": "(@line-height-computed + (@padding-base-vertical * 2) + 2)",
     "@input-height-large": "(ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2)",
@@ -431,5 +431,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=08da00fa1a31a8412461464fcfcc1a5e"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=6f6a414d56241db064ff802098723aac"
 }
