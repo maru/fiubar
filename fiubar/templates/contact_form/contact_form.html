@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags i18n %}
+{% block head_title %}{% trans 'Contact' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6" role="main">
+    {% block inner %}
+    <h1>{% trans "Contact" %}</h1>
+    <form class="login" method="POST" action="{% url 'contact_form' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <div class="action">
+        <button class="primaryAction btn btn-primary" type="submit">{% trans "Submit" %}</button>
+      </div>
+    </form>
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
