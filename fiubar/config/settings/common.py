@@ -62,6 +62,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.openid',
     'allauth.socialaccount.providers.windowslive',
+    'allauth.socialaccount.providers.linkedin',
     'contact_form',
     'captcha',
 )
@@ -148,8 +149,12 @@ LANGUAGE_CODE = 'en'
 LANGUAGE_DEFAULT = 'es_AR'
 LANGUAGES = [('en', 'English'),
              ('es-ar', 'Argentinian Spanish'),
+             ('es_AR', 'Argentinian Spanish'),
              ('es', 'Spanish'),
             ]
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -241,6 +246,8 @@ AUTHENTICATION_BACKENDS = (
 
 # Some really nice defaults
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL', default='https')

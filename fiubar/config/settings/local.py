@@ -64,3 +64,5 @@ DEBUG_TOOLBAR_CONFIG = {
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
+LANGUAGE_DEFAULT = 'es_AR'

@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
+from allauth.account.forms import LoginForm, SignupForm
 
 def home(request):
 	"""
 	Home page: choose template based on logged-in user / new user.
 	"""
+	context = { 'slug' : 'home' }
 	if request.user.is_authenticated():
 		template_file = 'pages/home.html'
 	else:
 		template_file = 'pages/index.html'
-
-	context = { 'slug' : 'home' }
+		forms = { 'login' : LoginForm,
+	              'signup': SignupForm,
+				}
+		context.update({ 'forms' : forms })
+		
 	return render(request, template_file, context)

@@ -1,22 +1,30 @@
+.container {
+  max-width: 960px;
+}
+@media (max-width: 767px) {
+  .front-page .col-sm-6.pull-right,
+  .front-page .col-sm-6.pull-left {
+      float: none !important;
+  }
+}
 .navbar-extra img {
   width: 85px;
   margin-top: -6px;
 }
 .navbar-extra {
   border-radius: 0 !important;
-  xborder: 1px solid transparent !important;
 }
 #content {
   font-size:110%;
 }
 .bd-footer{
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 40px;
   margin-top: 40px;
   border-top: 1px solid #eee;
 }
 .bd-footer a {
-  font-weight:bold;
+  font-weight:normal;
 }
 
 .bd-footer-links{
@@ -38,7 +46,8 @@ h1[id] {
     margin-top: 0;
 }
 
-#content p {
+.page-about p,
+.page-faq p {
   text-align: justify;
 }
 /* pages/about.html */
@@ -57,7 +66,6 @@ ul.showinfo-list li {
   margin: 0px;
   padding: 0px;
 }
-
 /* These styles are generated from project.scss. */
 
 .alert-debug {
@@ -78,4 +86,77 @@ ul.showinfo-list li {
 */
 [hidden][style="display: block;"] {
   display: block !important;
+}
+/* account templates */
+.account {
+    padding: 0px 30px 10px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.socialaccount_ballot { text-align: center;}
+.socialaccount_ballot ul { display:inline-table;}
+.socialaccount_providers li {
+  display:inline;
+  float: left;
+  list-style: none;
+}
+.socialaccount_providers li a {
+  width: 40px;
+  height: 40px;
+  display: block;
+  border: 0;
+  text-indent: -999em;
+  overflow: hidden;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+}
+.github {
+  background: transparent url(/static/images/socialaccounts/github.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.linkedin {
+  background: transparent url(/static/images/socialaccounts/linkedin.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.facebook {
+  background: transparent url(/static/images/socialaccounts/facebook.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.google {
+  background: transparent url(/static/images/socialaccounts/google.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.windowslive {
+  background: transparent url(/static/images/socialaccounts/windowslive.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.openid {
+  background: transparent url(/static/images/socialaccounts/openid.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.yahoo {
+  background: transparent url(/static/images/socialaccounts/yahoo.png) no-repeat 0 0;
+  margin: 0 10px 10px 0;
+}
+.front-page {
+  background-color: transparent;
+}
+.front-welcome-text h1 {
+    color: #fff;
+    font-size: 38px;
+    line-height: 44px;
+    margin-bottom: 30px;
+    text-shadow: none;
+    font-weight: 700;
+}
+.front-welcome-text p {
+    color: #fff;
+    font-size: 21px;
+    line-height: 31px;
+    text-shadow: none;
 }

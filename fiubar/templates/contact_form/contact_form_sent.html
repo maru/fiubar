@@ -5,11 +5,13 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-md-6" role="main">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="account">
     {% block inner %}
-    <h1>{% trans "Message sent" %}</h1>
+    <h1 class="page-header">{% trans "Message sent" %}</h1>
     <p>{% trans "Thank you! We've received your request and we'll contact you shortly." %}</p>
     {% endblock %}
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% load staticfiles i18n %}
+<footer class="bd-footer text-muted" role="contentinfo">
+  <div class="pull-left">
+    <p>{% trans "Made with &#10084;" %} 2007-{% now "Y" %}.</p>
+  </div>
+<div class="pull-right">
+  <ul class="bd-footer-links">
+    <li><a href="https://github.com/maru/fiubar">GitHub</a></li>
+    <li><a href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
+    <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+    <li><a href="{% url 'contact_form' %}">{% trans "Contact" %}</a></li>
+  </ul>
+</div>
+</footer>
