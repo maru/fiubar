@@ -67,4 +67,4 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
 LANGUAGE_DEFAULT = 'es_AR'
 
-# ACCOUNT_ADAPTER = 'fiubar.config.models.SignupClosedAdapter'
+# ACCOUNT_ADAPTER = 'fiubar.models.SignupClosedAdapter'

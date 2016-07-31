@@ -232,7 +232,7 @@ MEDIA_URL = '/media/'
 
 # URL Configuration
 # ------------------------------------------------------------------------------
-ROOT_URLCONF = 'fiubar.config.urls'
+ROOT_URLCONF = 'fiubar.urls'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'fiubar.config.wsgi.application'
@@ -253,10 +253,11 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL', default='https')
 
 ACCOUNT_ALLOW_REGISTRATION = get_secret('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_LOGOUT_ON_GET = True
+
 ACCOUNT_ADAPTER = 'fiubar.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
-
-ACCOUNT_SIGNUP_FORM_CLASS = 'fiubar.config.forms.AllauthSignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'fiubar.forms.AllauthSignupForm'
 
 SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS', default={})
 

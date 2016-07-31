@@ -31,7 +31,7 @@ class DefaultLocaleMiddleware(object):
             language = settings.LANGUAGE_DEFAULT
         else:
             language = translation.get_language_from_request(
-                request, check_path=self.is_language_prefix_patterns_used)
+                request, check_path=False)
         translation.activate(language)
         request.LANGUAGE_CODE = translation.get_language()
 
