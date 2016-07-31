@@ -17,9 +17,6 @@
 .navbar-extra {
   border-radius: 0 !important;
 }
-#content {
-  font-size:110%;
-}
 .bd-footer{
   padding-top: 20px;
   padding-bottom: 40px;
@@ -94,6 +91,9 @@ ul.showinfo-list li {
   display: block !important;
 }
 /* account templates */
+.page-header {
+  margin:20px 0 20px;
+}
 .account {
     padding: 0px 30px 10px;
     margin: 0 auto 20px;
@@ -110,8 +110,8 @@ ul.showinfo-list li {
   list-style: none;
 }
 .socialaccount_providers li a {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: block;
   border: 0;
   text-indent: -999em;
@@ -120,6 +120,8 @@ ul.showinfo-list li {
   background-repeat: no-repeat;
   text-align: left;
   direction: ltr;
+  border-radius: 5px;
+  border: 1px solid #eee;
 }
 .github {
   background: transparent url(/static/images/socialaccounts/github.png) no-repeat 0 0;

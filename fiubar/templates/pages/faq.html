@@ -6,9 +6,9 @@
 
 {% block content %}
 <div class="col-md-9 page-faq" role="main">
-<h1 class="page-header" id="">Preguntas Frecuentes</h1>
+<h2 class="page-header" id="">Preguntas Frecuentes</h2>
 
-<h2>¡No puedo iniciar sesión!</h2>
+<h3>¡No puedo iniciar sesión!</h3>
 <p>¡Buuuuu! Nos ponemos muy tristes... <img src="{% static 'images/emoticon_unhappy.png' %}" alt=":(" class="faq-icon" /></p>
 <ul>
   <li><b>¿Recibiste el mail de activación de cuenta? ¿Pudiste activar tu cuenta?</b> Si tu respuesta es no, informanos sobre esta situación <a href="{% url 'contact_form' %}">en esta página</a>.</li>
@@ -16,7 +16,7 @@
 </ul>
 <p>Recordá que para iniciar sesión, podés ingresar tanto tu nombre de usuario, sin importar minúsculas o mayúsculas, como tu email.</p>
 
-<h2>¿Qué es Fiubar?</h2>
+<h3>¿Qué es Fiubar?</h3>
 <p>
   Fiubar es un proyecto creado por estudiantes de FIUBA, con el objetivo de poder subir apuntes
   e intercambiar información sobre las distintas materias, conocer a nuestros compañeros,
@@ -24,18 +24,18 @@
   No tenemos ninguna relación oficial con la Facultad de Ingeniería de la Universidad de Buenos Aires.
 </p>
 
-<h2>¿Cuál es el origen del nombre Fiubar?</h2>
+<h3>¿Cuál es el origen del nombre Fiubar?</h3>
 <p>
   El origen del nombre deriva de la manera de llamar a nuestra facultad: FIUBA. La sigla significa: Facultad de Ingeniería de la Universidad de Buenos Aires. En ella se estudian varias carreras de Ingeniería y otras de menor duración, así como posgrados y doctorados. Para más información, visitá el sitio <a href="http://www.fi.uba.ar/">http://www.fi.uba.ar/</a>
 </p>
 
-<h2>¿Quiénes pueden registrarse en Fiubar?</h2>
+<h3>¿Quiénes pueden registrarse en Fiubar?</h3>
 <p>
   El uso de Fiubar es exclusivo para la comunidad de FIUBA: alumnos, docentes, graduados y no docentes.
   En el caso de que igualmente estés interesado en participar, contanos por qué querés registrarte, y analizaremos tu pedido.
 </p>
 
-<h2>¿Qué van a hacer con mis datos?</h2>
+<h3>¿Qué van a hacer con mis datos?</h3>
 <p>
   Utilizamos Google Analytics para estadísticas, y los datos provistos por Google OAuth, Facebook Authentication y Windows Live Connect
   para tu cuenta de Fiubar.
@@ -45,7 +45,7 @@
   utilizados para otros fines</strong>.
 </p>
 
-<h2>¿Quién tiene acceso a mi contraseña?</h2>
+<h3>¿Quién tiene acceso a mi contraseña?</h3>
 <p>
   Por seguridad, tu contraseña es guardada en la base de datos utilizando el algoritmo de hash provisto por
   <a href="http://www.djangoproject.com/">Django</a>, haciendo
@@ -53,7 +53,7 @@
   podés leer <a href="https://docs.djangoproject.com/en/1.9/topics/auth/passwords/">la documentación</a>.
 </p>
 
-<h2>¿Está terminado el sitio?</h2>
+<h3>¿Está terminado el sitio?</h3>
 <p>
    Fiubar se encuentra en eterna <i><a href="http://es.wikipedia.org/wiki/Fases_del_desarrollo_de_software#Beta">versión beta</a></i>:
    hay funcionalidades que no están del todo listas y otras que todavía no se pueden usar. Pero tenemos todas las pilas para
@@ -61,12 +61,12 @@
    ¡Esperamos ansiosamente tus comentarios!
 </p>
 
-<h2>¿Cómo borro mi cuenta?</h2>
+<h3>¿Cómo borro mi cuenta?</h3>
 <p>
   Si querés borrar tu cuenta junto a tus datos, solicitalo <a href="{% url 'contact_form' %}">en este formulario</a>.
 </p>
 
-<h2>Mi pregunta no está en la lista.</h2>
+<h3>Mi pregunta no está en la lista.</h3>
 <p>
   Podés contactarnos por medio de <a href="{% url 'contact_form' %}">esta página</a>, ¡te responderemos a la brevedad!
 </p>
