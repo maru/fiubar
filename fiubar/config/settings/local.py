@@ -44,7 +44,7 @@ CACHES = {
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-INSTALLED_APPS += ('debug_toolbar', )
+INSTALLED_APPS += ('debug_toolbar', 'rosetta', )
 
 INTERNAL_IPS = ['127.0.0.1', ]
 # tricks to have debug toolbar when developing with docker
@@ -66,3 +66,5 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
 LANGUAGE_DEFAULT = 'es_AR'
+
+# ACCOUNT_ADAPTER = 'fiubar.config.models.SignupClosedAdapter'

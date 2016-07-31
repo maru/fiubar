@@ -256,6 +256,8 @@ ACCOUNT_ALLOW_REGISTRATION = get_secret('DJANGO_ACCOUNT_ALLOW_REGISTRATION', Tru
 ACCOUNT_ADAPTER = 'fiubar.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'fiubar.config.forms.AllauthSignupForm'
+
 SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS', default={})
 
 # Custom user app defaults

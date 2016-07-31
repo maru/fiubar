@@ -1,11 +1,11 @@
-{% extends "account/base.html" %}
+{% extends "account/base_inner.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
+{% block inner_title %}{% trans "Sign Out" %}{% endblock %}
 {% block inner %}
-<h1>{% trans "Sign Out" %}</h1>
 
 <p>{% trans 'Are you sure you want to sign out?' %}</p>
 
@@ -19,4 +19,3 @@
 
 
 {% endblock %}
-

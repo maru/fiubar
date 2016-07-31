@@ -2,9 +2,12 @@
   max-width: 960px;
 }
 @media (max-width: 767px) {
-  .front-page .col-sm-6.pull-right,
-  .front-page .col-sm-6.pull-left {
+  .front-page .col-sm-6.pull-right {
       float: none !important;
+      margin: 0 auto;
+  }
+  .front-page .col-sm-6.pull-left {
+    float: none !important;
   }
 }
 .navbar-extra img {
@@ -49,6 +52,9 @@ h1[id] {
 .page-about p,
 .page-faq p {
   text-align: justify;
+}
+img.faq-icon {
+  width:24px;
 }
 /* pages/about.html */
 img.about-icon {

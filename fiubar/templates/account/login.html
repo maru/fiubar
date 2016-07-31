@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends "account/base_inner.html" %}
 {% load i18n %}
 {% load socialaccount %}
 {% load crispy_forms_tags %}
@@ -9,10 +9,8 @@
 {% include "socialaccount/snippets/js.html" %}
 {% endblock %}
 
+{% block inner_title %}{% trans "Sign In" %}{% endblock %}
 {% block inner %}
-<div class="account">
-  <h1 class="page-header">{% trans "Sign In" %}</h1>
-
   <form class="login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form|crispy }}
@@ -34,5 +32,4 @@
     </ul>
   </div>
   {% endif %}
-</div>
 {% endblock %}

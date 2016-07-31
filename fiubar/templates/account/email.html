@@ -5,8 +5,8 @@
 
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
+{% block inner_title %}{% trans "E-mail Addresses" %}{% endblock %}
 {% block inner %}
-    <h1>{% trans "E-mail Addresses" %}</h1>
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
 
@@ -72,4 +72,3 @@
 })();
 </script>
 {% endblock %}
-

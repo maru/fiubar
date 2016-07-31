@@ -39,5 +39,8 @@ if settings.DEBUG:
         url(r'^500/$', default_views.server_error),
     ]
 
+    if 'rosetta' in settings.INSTALLED_APPS:
+        urlpatterns += [ url(r'^rosetta/', include('rosetta.urls')) ]
+
     # Static and media files
     urlpatterns += staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

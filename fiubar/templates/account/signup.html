@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends "account/base_inner.html" %}
 
 {% load i18n %}
 {% load socialaccount %}
@@ -10,10 +10,8 @@
 {% include "socialaccount/snippets/js.html" %}
 {% endblock %}
 
+{% block inner_title %}{% trans "Sign Up" %}{% endblock %}
 {% block inner %}
-<div class="account">
-  <h1 class="page-header">{% trans "Sign Up" %}</h1>
-
   <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
@@ -30,11 +28,10 @@
   {% get_providers as socialaccount_providers %}
   {% if socialaccount_providers %}
   <div class="socialaccount_ballot clearfix">
-    <p class="text-center">{% blocktrans %}Or you can sign in with:{% endblocktrans %}</p>
+    <p class="text-center">{% blocktrans %}Or you can sign up with:{% endblocktrans %}</p>
     <ul class="socialaccount_providers">
       {% include "socialaccount/snippets/provider_list.html" with process="login" %}
     </ul>
   </div>
   {% endif %}
-</div>
 {% endblock %}
