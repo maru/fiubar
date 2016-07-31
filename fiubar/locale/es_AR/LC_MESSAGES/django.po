@@ -182,7 +182,7 @@ msgid ""
 msgstr ""
 "Este enlace de verificación de correo ha expirado o es inválido. Por favor "
 "<a href=\"%(email_url)s\">solicite una nueva verificación por correo "
-"electrónico.</a>."
+"electrónico</a>."
 
 #: templates/account/login.html:6 templates/account/login.html.py:12
 #: templates/account/login.html:20 templates/navigation.html:36
@@ -642,8 +642,8 @@ msgstr ""
 #~ msgid "OpenID Sign In"
 #~ msgstr "Iniciar sesión con OpenID"
 
-#~ msgid "Social Network Login Failure"
-#~ msgstr "Error de inicio de sesión con Red Social"
+msgid "Social Network Login Failure"
+msgstr "Error de inicio de sesión con Red Social"
 
 #~ msgid ""
 #~ "An error occurred while attempting to login via your social network account."
@@ -667,8 +667,8 @@ msgstr ""
 #~ msgid "Add a 3rd Party Account"
 #~ msgstr "Agregar una cuenta de una red social externa"
 
-#~ msgid "Login Cancelled"
-#~ msgstr "Incio de sesión cancelado"
+msgid "Login Cancelled"
+msgstr "Inicio de sesión cancelado"
 
 #~ msgid ""
 #~ "You decided to cancel logging in to our site using one of your existing "
