@@ -22,3 +22,4 @@ django-autoslug==1.9.3
 # For local development
 django-debug-toolbar==1.5
 django-extensions==1.6.7
+django-rosetta

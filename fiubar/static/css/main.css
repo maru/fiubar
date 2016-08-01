@@ -122,34 +122,41 @@ ul.showinfo-list li {
   direction: ltr;
   border-radius: 5px;
   border: 1px solid #eee;
+  margin: 0 10px 10px 0;
+}
+span.socialaccount_provider {
+  color: transparent;
+  font-size: 0px;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  padding: 12px;
+  margin: 10px 10px;
+  background-size:24px 24px;
+  background-position: center;
+
 }
 .github {
-  background: transparent url(/static/images/socialaccounts/github.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/github.png) no-repeat center center;
 }
 .linkedin {
-  background: transparent url(/static/images/socialaccounts/linkedin.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/linkedin.png) no-repeat center center;
 }
 .facebook {
-  background: transparent url(/static/images/socialaccounts/facebook.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/facebook.png) no-repeat center center;
 }
 .google {
-  background: transparent url(/static/images/socialaccounts/google.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/google.png) no-repeat center center;
 }
 .windowslive {
-  background: transparent url(/static/images/socialaccounts/windowslive.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/windowslive.png) no-repeat center center;
 }
 .openid {
-  background: transparent url(/static/images/socialaccounts/openid.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/openid.png) no-repeat center center;
 }
 .yahoo {
-  background: transparent url(/static/images/socialaccounts/yahoo.png) no-repeat 0 0;
-  margin: 0 10px 10px 0;
+  background: transparent url(/static/images/socialaccounts/yahoo.png) no-repeat center center;
 }
 .front-page {
   background-color: transparent;
@@ -167,4 +174,11 @@ ul.showinfo-list li {
     font-size: 21px;
     line-height: 31px;
     text-shadow: none;
+}
+
+img.avatar {
+    border-radius: 50%;
+    width:77px;
+    float:left;
+    margin-right: 15px;
 }

@@ -22,6 +22,7 @@ urlpatterns = [
     # User management
     url(r'^users/', include('fiubar.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^profile/', TemplateView.as_view(template_name='users/user_profile.html'), name='profile'),
 
 ]
 
