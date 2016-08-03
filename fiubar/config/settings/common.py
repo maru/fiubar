@@ -61,7 +61,6 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.openid',
-    'allauth.socialaccount.providers.windowslive',
     'allauth.socialaccount.providers.linkedin',
     'contact_form',
     'captcha',
@@ -69,9 +68,7 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    # custom users app
     'fiubar.users.apps.UsersConfig',
-    # Your stuff: custom apps go here
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -198,7 +195,6 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                # Your stuff: custom template context processors go here
             ],
         },
     },
@@ -244,25 +240,26 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-# Some really nice defaults
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_USERNAME_MIN_LENGTH = 3
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL', default='https')
-
 ACCOUNT_ALLOW_REGISTRATION = get_secret('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
-ACCOUNT_LOGOUT_ON_GET = True
 
 ACCOUNT_ADAPTER = 'fiubar.users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
-ACCOUNT_SIGNUP_FORM_CLASS = 'fiubar.forms.AllauthSignupForm'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL', default='https')
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'fiubar.forms.SignupForm'
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+ACCOUNT_USERNAME_REQUIRED = True
 
+SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = False
 SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS', default={})
 
 # Custom user app defaults
-# Select the correct user model
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'users:redirect'
 LOGIN_URL = 'account_login'
@@ -298,5 +295,3 @@ RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY', 'private_key')
 NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
 RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'en')
-
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
