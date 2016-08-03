@@ -11,6 +11,17 @@
 <p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
 {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
 
+<style>
+#id_email:disabled {
+  border: 0px;
+  background: transparent;
+  box-shadow: none;
+  transition:initial;
+  -webkit-box-shadow:none;
+  -webkit-transition:initial;
+}​
+</style>
+
 <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
   {% csrf_token %}
   {{ form|crispy }}
@@ -20,4 +31,7 @@
   <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
+<script>
+$( "#id_email" ).prop( "disabled", true );
+</script>
 {% endblock %}
