@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Account" %}{% endblock head_title %}
+
+{% block accountsocial %}{% endblock %}
+{% block page_messages %}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="{% block panel_class %}col-md-3{% endblock %}">
+    <div class="panel panel-default panel-account">
+      <div class="panel-heading">
+        <h3 class="panel-title">{% trans "Settings" %}</h3>
+      </div>
+
+      <ul class="list-group">
+        <li class="list-group-item {% block panel-item-users-detail %}{% endblock %}">
+            <a href="{% url 'users:update' %}">{% trans "Account" %}</li>
+        <li class="list-group-item {% block panel-item-account-email %}{% endblock %}">
+          <a href="{% url 'account_email' %}">{% trans "E-mail Addresses" %}</a></li>
+        <li class="list-group-item {% block panel-item-account_change-pw %}{% endblock %}">
+          <a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
+        <li class="list-group-item {% block panel-item-social-connections %}{% endblock %}">
+          <a href="{% url 'socialaccount_connections' %}">{% trans "Social Accounts" %}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="{% block content_class %}col-md-8{% endblock %}">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{% block inner_title %}{% endblock %}</h3>
+      </div>
+      <div class="panel-body">
+        {% include 'messages.html' %}
+        {% block inner %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

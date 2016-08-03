@@ -1,5 +1,14 @@
+@media (min-width: 1200px)
 .container {
-  max-width: 960px;
+    width: 1170px;
+}
+@media (min-width: 992px)
+.container {
+    width: 970px;
+}
+@media (min-width: 768px)
+.container {
+    width: 750px;
 }
 @media (max-width: 767px) {
   .front-page .col-sm-6.pull-right {
@@ -181,4 +190,30 @@ img.avatar {
     width:77px;
     float:left;
     margin-right: 15px;
+}
+.navbar-text-login {
+  margin-bottom:0px;
+  margin-top:10px;
+}
+.table-emails>tbody>tr>td {
+  border-bottom: 1px solid #ddd;
+}
+
+.panel-account .list-group-item a {
+  color: #333;
+}
+.panel-account .list-group-active a {
+  font-weight: bold;
+}
+.email_list .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc);
+    background-image: none;
+}
+
+@media (max-width: 479px) {
+  #id_email.form-control {
+      width: 100% !important;
+  }
 }

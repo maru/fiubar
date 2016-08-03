@@ -28,14 +28,25 @@
         <li><a href="#">Page 3</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right navbar-account">
-        {% if request.user.is_authenticated %}
+        {% with user=request.user %}
+        {% if user.is_authenticated %}
         <li class="dropdown {% if slug == 'account' %}active{% endif %}">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ request.user.username }}<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{% url 'profile' %}">{% trans "Edit Profile" %}</a></li>
+            {% if user.avatar %}
+            <p class="navbar-text navbar-text-login">{% trans "Signed in as" %} {{ user.username }}</p>
+            <div class="clearfix"></div>
             <li role="separator" class="divider"></li>
+            {% endif %}
+            <li><a href="{% url 'users:detail' user.username %}">{% trans "Your Profile" %}</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">{% trans "Settings" %}</li>
+            <li><a href="{% url 'users:update' %}">{% trans "Account" %}</a></li>
+            <li><a href="{% url 'account_email' %}">{% trans "E-mail Addresses" %}</a></li>
             <li><a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
+            <li><a href="{% url 'socialaccount_connections' %}">{% trans "Social Accounts" %}</a></li>
             <li role="separator" class="divider"></li>
+            <li><a href="{% url 'contact_form' %}">{% trans "Report a Problem" %}</a></li>
             <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> {% trans "Sign Out" %}</a></li>
           </ul>
         </li>
@@ -43,6 +54,7 @@
         <li><a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-user"></span> {% trans "Sign Up" %}</a></li>
         <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> {% trans "Sign In" %}</a></li>
         {% endif %}
+        {% endwith %}
 
 
       </ul>

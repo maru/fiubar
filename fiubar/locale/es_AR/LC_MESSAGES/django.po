@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-allauth\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-01 16:38+0200\n"
+"POT-Creation-Date: 2016-08-03 18:20+0200\n"
 "PO-Revision-Date: 2016-07-30 16:39-0300\n"
 "Last-Translator: b'  <admin@fiubar.tk>'\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-allauth/"
@@ -28,39 +28,68 @@ msgstr "Cuenta Desactivada"
 msgid "This account is inactive."
 msgstr "Su cuenta está desactivada."
 
-#: templates/account/base.html:3
+#: templates/account/base.html:3 templates/account/base_panel.html:3
+#: templates/account/base_panel.html:18 templates/navigation.html:44
 msgid "Account"
 msgstr "Cuenta"
 
-#: templates/account/email.html:6 templates/account/email.html.py:8
+#: templates/account/base_panel.html:13 templates/navigation.html:43
+msgid "Settings"
+msgstr ""
+
+#: templates/account/base_panel.html:20 templates/account/email.html:4
+#: templates/account/email.html:8 templates/navigation.html:45
 msgid "E-mail Addresses"
 msgstr "Direcciones de correo electrónico"
 
-#: templates/account/email.html:13
+#: templates/account/base_panel.html:22
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:10
+#: templates/account/password_change.html:16
+#: templates/account/password_reset_from_key.html:5
+#: templates/account/password_reset_from_key.html:7
+#: templates/account/password_reset_from_key_done.html:4
+#: templates/account/password_reset_from_key_done.html:6
+#: templates/navigation.html:46
+msgid "Change Password"
+msgstr "Cambiar Contraseña"
+
+#: templates/account/base_panel.html:24 templates/navigation.html:47
+#: templates/socialaccount/connections.html:4
+#: templates/socialaccount/connections.html:8
+#: templates/users/user_profile.html:52
+msgid "Social Accounts"
+msgstr "Cuentas de Redes Sociales"
+
+#: templates/account/email.html:11
 msgid "The following e-mail addresses are associated with your account:"
 msgstr ""
 "Las siguientes direcciones de correo electrónico están asociadas a tu cuenta:"
 
-#: templates/account/email.html:27
-msgid "Verified"
-msgstr "Verificado"
-
-#: templates/account/email.html:29
-msgid "Unverified"
-msgstr "Sin verificar"
-
-#: templates/account/email.html:31
+#: templates/account/email.html:21 templates/users/user_profile.html:89
 msgid "Primary"
 msgstr "Principal"
 
-#: templates/account/email.html:38
-msgid "Re-send Verification"
+#: templates/account/email.html:22
+msgid "Verified"
+msgstr "Verificado"
+
+#: templates/account/email.html:23 templates/users/user_profile.html:90
+msgid "Unverified"
+msgstr "Sin verificar"
+
+#: templates/account/email.html:30
+msgid "Make Primary"
+msgstr "Definir como Principal"
+
+#: templates/account/email.html:33
+msgid "Resend Verification"
 msgstr "Reenviar Verificación"
 
-#: templates/account/email.html:40
-#, fuzzy
-msgid "Change your email address."
-msgstr "Cambie su dirección de correo electrónico."
+#: templates/account/email.html:36 templates/account/email.html:37
+#: templates/socialaccount/connections.html:39
+msgid "Remove"
+msgstr "Eliminar"
 
 #: templates/account/email.html:47
 msgid "Warning:"
@@ -75,15 +104,15 @@ msgstr ""
 "Debes añadir una dirección de correo electrónico para que pueda recibir "
 "notificaciones, restablecer la contraseña, etc."
 
-#: templates/account/email.html:52
+#: templates/account/email.html:51
 msgid "Add E-mail Address"
 msgstr "Añadir correo electrónico"
 
-#: templates/account/email.html:57
-msgid "Add E-mail"
-msgstr "Añadir correo electrónico"
+#: templates/account/email.html:64 templates/users/user_profile.html:132
+msgid "Add"
+msgstr ""
 
-#: templates/account/email.html:66
+#: templates/account/email.html:74
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr ""
 "¿Está seguro de querer eliminar la dirección de correo electrónico "
@@ -117,9 +146,9 @@ msgstr ""
 "<a href=\"%(email_url)s\">solicite una nueva verificación por correo "
 "electrónico</a>."
 
-#: templates/account/login.html:6 templates/account/login.html.py:12
-#: templates/account/login.html:20 templates/navigation.html:44
-#: templates/pages/index.html:33 templates/pages/index.html.py:41
+#: templates/account/login.html:6 templates/account/login.html:12
+#: templates/account/login.html:20 templates/navigation.html:55
+#: templates/pages/index.html:33 templates/pages/index.html:41
 msgid "Sign In"
 msgstr "Iniciar sesión"
 
@@ -131,25 +160,14 @@ msgstr "¿Olvidó su contraseña?"
 msgid "Or you can sign in with:"
 msgstr "O puede iniciar sesión con:"
 
-#: templates/account/logout.html:5 templates/account/logout.html.py:7
-#: templates/account/logout.html:17 templates/navigation.html:39
+#: templates/account/logout.html:5 templates/account/logout.html:7
+#: templates/account/logout.html:17 templates/navigation.html:50
 msgid "Sign Out"
 msgstr "Cerrar sesión"
 
 #: templates/account/logout.html:10
 msgid "Are you sure you want to sign out?"
 msgstr "¿Está seguro de querer cerrar sesión?"
-
-#: templates/account/password_change.html:6
-#: templates/account/password_change.html:8
-#: templates/account/password_change.html:14
-#: templates/account/password_reset_from_key.html:5
-#: templates/account/password_reset_from_key.html:7
-#: templates/account/password_reset_from_key_done.html:4
-#: templates/account/password_reset_from_key_done.html:6
-#: templates/navigation.html:37
-msgid "Change Password"
-msgstr "Cambiar Contraseña"
 
 #: templates/account/password_reset.html:7
 #: templates/account/password_reset.html:9
@@ -201,7 +219,7 @@ msgstr ""
 
 #: templates/account/password_reset_from_key.html:17
 msgid "Change password"
-msgstr "cambiar la contraseña"
+msgstr "Cambiar la contraseña"
 
 #: templates/account/password_reset_from_key.html:20
 #: templates/account/password_reset_from_key_done.html:8
@@ -217,10 +235,10 @@ msgstr "Establecer contraseña"
 msgid "Signup"
 msgstr "Regístrate"
 
-#: templates/account/signup.html:13 templates/account/signup.html.py:23
-#: templates/navigation.html:43 templates/pages/index.html:61
-#: templates/pages/index.html.py:68 templates/socialaccount/signup.html:8
-#: templates/socialaccount/signup.html:20
+#: templates/account/signup.html:13 templates/account/signup.html:23
+#: templates/navigation.html:54 templates/pages/index.html:61
+#: templates/pages/index.html:68 templates/socialaccount/signup.html:8
+#: templates/socialaccount/signup.html:31
 msgid "Sign Up"
 msgstr "Regístrate"
 
@@ -329,9 +347,17 @@ msgstr "Inicio"
 msgid "Facultad"
 msgstr ""
 
-#: templates/navigation.html:35
-msgid "Edit Profile"
-msgstr "Editar Perfil"
+#: templates/navigation.html:37
+msgid "Signed in as"
+msgstr "Conectado como"
+
+#: templates/navigation.html:41
+msgid "Your Profile"
+msgstr "Tu Perfil"
+
+#: templates/navigation.html:49
+msgid "Report a Problem"
+msgstr "Reportar un Problema"
 
 #: templates/pages/faq.html:4
 msgid "Preguntas Frecuentes"
@@ -345,28 +371,20 @@ msgstr "Inicio"
 msgid "Bienvenidos"
 msgstr "Bienvenidos"
 
-#: templates/socialaccount/connections.html:5
-#: templates/socialaccount/connections.html:7
-msgid "Account Connections"
-msgstr "Conexiones de Cuenta"
-
-#: templates/socialaccount/connections.html:11
+#: templates/socialaccount/connections.html:12
 msgid ""
 "You can sign in to your account using any of the following third party "
 "accounts:"
 msgstr "Puede iniciar sesión con alguna de las siguientes cuentas externas:"
 
-#: templates/socialaccount/connections.html:38
-msgid "Remove"
-msgstr "Eliminar"
-
-#: templates/socialaccount/connections.html:46
+#: templates/socialaccount/connections.html:47
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr ""
 "Actualmente no tiene ninguna cuenta de red social asociada a esta cuenta."
 
-#: templates/socialaccount/connections.html:50
+#: templates/socialaccount/connections.html:51
+#: templates/users/user_profile.html:56
 msgid "Add a 3rd Party Account"
 msgstr "Agregar una cuenta de una red social externa"
 
@@ -379,16 +397,91 @@ msgstr ""
 "Esta a punto de utilizar su cuenta %(provider_name)s para acceder a "
 "%(site_name)s. Como paso final, por favor complete el siguiente formulario:"
 
-#: templates/users/user_profile.html:4
-msgid "Profile"
-msgstr "Perfil"
+#: templates/users/user_form.html:23 templates/users/user_form.html:26
+#: templates/users/user_profile.html:24 templates/users/user_profile.html:27
+msgid "Username"
+msgstr ""
 
-#: users/models.py:16
-msgid "Name of User"
-msgstr "Nombre del Usuario"
+#: templates/users/user_form.html:30 templates/users/user_profile.html:31
+msgid "Change"
+msgstr ""
 
-#~ msgid "Make Primary"
-#~ msgstr "Definir como principal"
+#: templates/users/user_form.html:34 templates/users/user_profile.html:35
+msgid "Profile Picture"
+msgstr "Imagen de Perfil"
+
+#: templates/users/user_profile.html:4 templates/users/user_profile.html:11
+msgid "Edit Profile"
+msgstr "Editar Perfil"
+
+#: templates/users/user_profile.html:13
+msgid "Show Profile"
+msgstr "Ver Perfil"
+
+#: templates/users/user_profile.html:78
+msgid "Manage Email"
+msgstr ""
+
+#: templates/users/user_profile.html:82
+msgid ""
+"Your <b>primary email address</b> will be used for account-related "
+"notifications\n"
+"                (e.g. account changes)."
+msgstr ""
+
+#: templates/users/user_profile.html:93
+msgid "Resend verification"
+msgstr "Reenviar Verificación"
+
+#: templates/users/user_profile.html:96
+msgid "Set as primary"
+msgstr ""
+
+#: templates/users/user_profile.html:126
+msgid "Add email address"
+msgstr "Añadir correo electrónico"
+
+#: templates/users/user_profile.html:139
+msgid "Personal Information"
+msgstr ""
+
+#: templates/users/user_profile.html:144 users/models.py:14
+msgid "Name"
+msgstr ""
+
+#: templates/users/user_profile.html:150
+msgid "Location"
+msgstr ""
+
+#: templates/users/user_profile.html:156
+msgid "Website"
+msgstr ""
+
+#: templates/users/user_profile.html:163
+msgid "Occupation"
+msgstr ""
+
+#: templates/users/user_profile.html:166
+msgid "Student"
+msgstr ""
+
+#: templates/users/user_profile.html:168
+msgid "Professional"
+msgstr "Profesional"
+
+#: templates/users/user_profile.html:174
+msgid "About me"
+msgstr "Acerca de mí"
+
+#: templates/users/user_profile.html:181
+msgid "Save Changes"
+msgstr ""
+
+#~ msgid "Change your email address."
+#~ msgstr "Cambie su dirección de correo electrónico."
+
+#~ msgid "Add E-mail"
+#~ msgstr "Añadir correo electrónico"
 
 #~ msgid ""
 #~ "Hello from %(site_name)s!\n"
@@ -445,283 +538,5 @@ msgstr "Nombre del Usuario"
 #~ msgid "Password Reset E-mail"
 #~ msgstr "Correo para restablecer contraseña"
 
-#~ msgid "Usernames can only contain letters, digits and @/./+/-/_."
-#~ msgstr ""
-#~ "Los nombres de usuarios pueden contener solamente letras, números, y @/./"
-#~ "+/-/_."
-
-#~ msgid "Username can not be used. Please use other username."
-#~ msgstr "Este nombre de usuario no puede ser usado. Por favor ingrese otro."
-
-#~ msgid "This username is already taken. Please choose another."
-#~ msgstr "Este usuario ya está en uso. Por favor elija otro."
-
-#~ msgid "Accounts"
-#~ msgstr "Cuentas"
-
-#~ msgid "Password"
-#~ msgstr "Contraseña"
-
-#~ msgid "Password must be a minimum of {0} characters."
-#~ msgstr "Una contraseña necesita al menos {0} caracteres."
-
-#~ msgid "Remember Me"
-#~ msgstr "Recordarme"
-
-#~ msgid "This account is currently inactive."
-#~ msgstr "Esta cuenta está desactivada actualmente."
-
-#~ msgid "The e-mail address and/or password you specified are not correct."
-#~ msgstr ""
-#~ "El correo electrónico y/o la contraseña que especificaste no son "
-#~ "correctos."
-
-#~ msgid "The username and/or password you specified are not correct."
-#~ msgstr "El usuario y/o la contraseña que especificaste no son correctos."
-
-#~ msgid "The login and/or password you specified are not correct."
-#~ msgstr ""
-#~ "El correo electrónico/usuario y/o la contraseña que especificaste no son "
-#~ "correctos."
-
-#~ msgid "E-mail address"
-#~ msgstr "Correo electrónico"
-
-#~ msgid "E-mail"
-#~ msgstr "Correo electrónico"
-
-#~ msgid "Username"
-#~ msgstr "Usuario"
-
-#~ msgid "Username or e-mail"
-#~ msgstr "Nombre de usuario o correo electrónico"
-
-#~ msgctxt "field label"
-#~ msgid "Login"
-#~ msgstr "Usuario o correo electrónico"
-
-#~ msgid "E-mail (optional)"
-#~ msgstr "Correo Electrónico (opcional)"
-
-#~ msgid "A user is already registered with this e-mail address."
-#~ msgstr ""
-#~ "Un usuario ya fue registrado con esta dirección de correo electrónico."
-
-#~ msgid "Password (again)"
-#~ msgstr "Contraseña (de nuevo)"
-
-#~ msgid "You must type the same password each time."
-#~ msgstr "Tiene que escribir la misma contraseña cada vez."
-
-#~ msgid "This e-mail address is already associated with this account."
-#~ msgstr "Este correo electrónico ya está asociado con esta cuenta."
-
-#~ msgid "This e-mail address is already associated with another account."
-#~ msgstr "Este correo electrónico ya está asociado con otra cuenta."
-
-#~ msgid "Current Password"
-#~ msgstr "Contraseña actual"
-
-#~ msgid "New Password"
-#~ msgstr "Nueva contraseña"
-
-#~ msgid "New Password (again)"
-#~ msgstr "Nueva contraseña (de nuevo)"
-
-#~ msgid "Please type your current password."
-#~ msgstr "Por favor, escriba su contraseña actual."
-
-#~ msgid "The e-mail address is not assigned to any user account"
-#~ msgstr ""
-#~ "La dirección de correo electrónico no está asignada a ninguna cuenta de "
-#~ "usuario"
-
-#~ msgid "user"
-#~ msgstr "usuario"
-
-#~ msgid "e-mail address"
-#~ msgstr "correo electrónico"
-
-#~ msgid "verified"
-#~ msgstr "verificado"
-
-#~ msgid "primary"
-#~ msgstr "primero"
-
-#~ msgid "email address"
-#~ msgstr "correo electrónico"
-
-#~ msgid "email addresses"
-#~ msgstr "correos electrónicos"
-
-#~ msgid "created"
-#~ msgstr "creado"
-
-#~ msgid "sent"
-#~ msgstr "enviado"
-
-#~ msgid "email confirmation"
-#~ msgstr "confirmación de correo electrónico"
-
-#~ msgid "email confirmations"
-#~ msgstr "confirmación de correos electrónicos"
-
-#~ msgid "Your account has no password set up."
-#~ msgstr "Su cuenta no tiene una contraseña definida."
-
-#~ msgid "Your account has no verified e-mail address."
-#~ msgstr "Su cuenta no tiene un correo electrónico verificado."
-
-#~ msgid "Social Accounts"
-#~ msgstr "Cuentas Sociales"
-
-#~ msgid ""
-#~ "An account already exists with this e-mail address. Please sign in to "
-#~ "that account first, then connect your %s account."
-#~ msgstr ""
-#~ "Ya existe una cuenta asociada a esta dirección de correo electrónico. Por "
-#~ "favor, autentíquese usando esa cuenta, y luego vincule su cuenta de %s."
-
-#~ msgid "provider"
-#~ msgstr "proveedor"
-
-#~ msgid "name"
-#~ msgstr "nombre"
-
-#~ msgid "last login"
-#~ msgstr "último inicio de sesión"
-
-#~ msgid "Invalid response while obtaining request token from \"%s\"."
-#~ msgstr "Respuesta no válida al obtener token de solicitud de \"%s\"."
-
-#~ msgid "Invalid response while obtaining access token from \"%s\"."
-#~ msgstr "Respuesta inválida al obtener token de acceso de \"%s\"."
-
-#~ msgid "No request token saved for \"%s\"."
-#~ msgstr "No hay token de solicitud guardados para \"%s\"."
-
-#~ msgid "No access token saved for \"%s\"."
-#~ msgstr "No hay token de acceso guardado para  \"%s\"."
-
-#~ msgid "No access to private resources at \"%s\"."
-#~ msgstr "Sin acceso a recursos privados de \"%s\"."
-
-#~ msgid ""
-#~ "You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an "
-#~ "e-mail address for user %(user_display)s."
-#~ msgstr ""
-#~ "Usted ha confirmado que <a href=\"mailto:%(email)s\">%(email)s</a> es una "
-#~ "dirección de correo electrónico del usuario %(user_display)s."
-
-#~ msgid ""
-#~ "Please sign in with one\n"
-#~ "of your existing third party accounts. Or, <a href=\"%(signup_url)s"
-#~ "\">sign up</a>\n"
-#~ "for a %(site_name)s account and sign in below:"
-#~ msgstr ""
-#~ "Por favor inicie sesión con una\n"
-#~ "cuenta de otra red social. O, <a href=\"%(signup_url)s\">regístrese</a> \n"
-#~ "como usuario de %(site_name)s e inicie sesión a continuación:"
-
-#~ msgid "or"
-#~ msgstr "o"
-
-#~ msgid ""
-#~ "If you have not created an account yet, then please\n"
-#~ "<a href=\"%(signup_url)s\">sign up</a> first."
-#~ msgstr ""
-#~ "Si todavía no has creado una cuenta, entonces por favor\n"
-#~ "<a href=\"%(signup_url)s\">regístrate</a> primero."
-
-#~ msgid "Thanks for using our site!"
-#~ msgstr "¡Gracias por utilizar nuestro sitio!"
-
-#~ msgid "You cannot remove your primary e-mail address (%(email)s)."
-#~ msgstr "No puede eliminar su correo electrónico principal (%(email)s)."
-
-#~ msgid "Confirmation e-mail sent to %(email)s."
-#~ msgstr "Correo electrónico enviado a %(email)s."
-
-#~ msgid "You have confirmed %(email)s."
-#~ msgstr "Ha confirmado %(email)s."
-
-#~ msgid "Removed e-mail address %(email)s."
-#~ msgstr "Correo electrónico eliminado %(email)s."
-
-#~ msgid "Successfully signed in as %(name)s."
-#~ msgstr "Ha iniciado sesión exitosamente como %(name)s."
-
-#~ msgid "You have signed out."
-#~ msgstr "Has cerrado sesión."
-
-#~ msgid "Password successfully changed."
-#~ msgstr "Contraseña cambiada con éxito."
-
-#~ msgid "Password successfully set."
-#~ msgstr "Contraseña establecida exitosamente."
-
-#~ msgid "Primary e-mail address set."
-#~ msgstr "Dirección principal de correo eletrónico establecida."
-
-#~ msgid "Your primary e-mail address must be verified."
-#~ msgstr "Su dirección principal de correo eletrónico debe ser verificado."
-
-#~ msgid "Note"
-#~ msgstr "Nota"
-
-#~ msgid "you are already logged in as %(user_display)s."
-#~ msgstr "ha iniciado sesión como %(user_display)s."
-
-#~ msgid "OpenID Sign In"
-#~ msgstr "Iniciar sesión con OpenID"
-
-#~ msgid "Social Network Login Failure"
-#~ msgstr "Error de inicio de sesión con Red Social"
-
-#~ msgid ""
-#~ "An error occurred while attempting to login via your social network "
-#~ "account."
-#~ msgstr ""
-#~ "Se produjo un error al intentar iniciar sesión a través de tu cuenta de "
-#~ "red social."
-
-#~ msgid "Login Cancelled"
-#~ msgstr "Inicio de sesión cancelado"
-
-#~ msgid ""
-#~ "You decided to cancel logging in to our site using one of your existing "
-#~ "accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
-#~ "\">sign in</a>."
-#~ msgstr ""
-#~ "Ha decidido cancelar el inicio de sesión a nuestro sitio usando las "
-#~ "siguientes cuentas. Si esto fue un error, <a href=\"%(login_url)s"
-#~ "\">inicie sesión</a>."
-
-#~ msgid "The social account has been connected."
-#~ msgstr "La cuenta externa ha sido conectada."
-
-#~ msgid "The social account is already connected to a different account."
-#~ msgstr "Esta cuenta externa ya ha sido conetada a otra cuenta."
-
-#~ msgid "The social account has been disconnected."
-#~ msgstr "La cuenta externa ha sido desconectada."
-
-#~ msgid "Confirmation e-mail sent to %(email)s"
-#~ msgstr "Correo de confirmación enviado a %(email)s"
-
-#~ msgid "Delete Password"
-#~ msgstr "Eliminar Contraseña"
-
-#~ msgid ""
-#~ "You may delete your password since you are currently logged in using "
-#~ "OpenID."
-#~ msgstr "Puedes eliminar tu contraseña ya que ingresaste con OpenID."
-
-#~ msgid "delete my password"
-#~ msgstr "eliminar mi contraseña"
-
-#~ msgid "Password Deleted"
-#~ msgstr "Contraseña Eliminada"
-
-#~ msgid "Your password has been deleted."
-#~ msgstr "Su contraseña fue eliminada."
+#~ msgid "Account Connections"
+#~ msgstr "Conexiones de Cuenta"
