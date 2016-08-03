@@ -12,7 +12,7 @@
 {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
 
 <style>
-#id_email:disabled {
+#id_email {
   border: 0px;
   background: transparent;
   box-shadow: none;
@@ -31,7 +31,4 @@
   <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
-<script>
-$( "#id_email" ).prop( "disabled", true );
-</script>
 {% endblock %}
