@@ -35,7 +35,7 @@ msgstr "Cuenta"
 
 #: templates/account/base_panel.html:13 templates/navigation.html:43
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
 
 #: templates/account/base_panel.html:20 templates/account/email.html:4
 #: templates/account/email.html:8 templates/navigation.html:45
