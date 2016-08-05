@@ -1,14 +1,9 @@
 "This is the locale selecting middleware that will look at accept headers"
 
 from django.conf import settings
-from django.core.urlresolvers import (
-    LocaleRegexURLResolver, get_resolver, get_script_prefix, is_valid_path,
-)
 from django.http import HttpResponseRedirect
 from django.utils import translation
 from django.utils.translation.trans_real import parse_accept_lang_header
-from django.utils.cache import patch_vary_headers
-from django.utils.functional import cached_property
 
 
 class DefaultLocaleMiddleware(object):
@@ -25,7 +20,8 @@ class DefaultLocaleMiddleware(object):
     def process_request(self, request):
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
         # Keep only the main languages
-        accept_languages = [ lang.split('-')[0] for lang, _ in parse_accept_lang_header(accept) ]
+        accept_languages = [lang.split('-')[0]
+                            for lang, _ in parse_accept_lang_header(accept)]
         # Sublanguages have minor changes ;)
         if settings.LANGUAGE_DEFAULT.split('_')[0] in accept_languages:
             language = settings.LANGUAGE_DEFAULT

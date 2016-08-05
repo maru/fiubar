@@ -29,7 +29,7 @@ EMAIL_PORT = 1025
 
 EMAIL_HOST = 'localhost'
 EMAIL_BACKEND = get_secret('DJANGO_EMAIL_BACKEND',
-                    default='django.core.mail.backends.console.EmailBackend')
+                           'django.core.mail.backends.console.EmailBackend')
 
 
 # CACHING

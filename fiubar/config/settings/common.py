@@ -10,11 +10,13 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
 
-import os, json
-from django.core.exceptions import ImproperlyConfigured
-from django.utils.translation import ugettext_lazy as _
+import os
+import json
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from django.core.exceptions import ImproperlyConfigured
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
+                                                os.path.abspath(__file__))))
 
 
 # JSON-based secrets module
@@ -24,6 +26,7 @@ try:
         secrets = json.loads(f.read())
 except:
     secrets = {}
+
 
 def get_secret(setting, default=None, secrets=secrets):
     """Get the secret variable or return explicit exception."""
@@ -106,7 +109,8 @@ FIXTURE_DIRS = (
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = get_secret('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_BACKEND = get_secret('DJANGO_EMAIL_BACKEND',
+                           'django.core.mail.backends.smtp.EmailBackend')
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -147,8 +151,7 @@ LANGUAGE_DEFAULT = 'es_AR'
 LANGUAGES = [('en', 'English'),
              ('es-ar', 'Argentinian Spanish'),
              ('es_AR', 'Argentinian Spanish'),
-             ('es', 'Spanish'),
-            ]
+             ('es', 'Spanish'), ]
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
@@ -240,11 +243,13 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-ACCOUNT_ALLOW_REGISTRATION = get_secret('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_ALLOW_REGISTRATION = get_secret('DJANGO_ACCOUNT_ALLOW_REGISTRATION',
+                                        True)
 
 ACCOUNT_ADAPTER = 'fiubar.users.adapters.AccountAdapter'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL', default='https')
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL',
+                                           default='https')
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_LOGOUT_ON_GET = True
@@ -257,7 +262,8 @@ SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
 SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_VERIFICATION = False
-SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS', default={})
+SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS',
+                                     default={})
 
 # Custom user app defaults
 AUTH_USER_MODEL = 'users.User'

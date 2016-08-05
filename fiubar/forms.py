@@ -9,8 +9,7 @@ class SignupForm(forms.Form):
     """
     captcha = ReCaptchaField()
 
-    field_order = ['username', 'email', 'password1',  'captcha',]
-
+    field_order = ['username', 'email', 'password1',  'captcha', ]
 
     def signup(self, request, user):
         """ Required, or else it throws deprecation warnings """

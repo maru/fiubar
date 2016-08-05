@@ -7,8 +7,6 @@ Production Configurations
 """
 from __future__ import absolute_import, unicode_literals
 
-from django.utils import six
-
 import logging
 
 
@@ -49,8 +47,9 @@ DEBUG = get_secret('DJANGO_DEBUG', default=False)
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = get_secret('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='fiubar <noreply@fiubar.tk>')
-EMAIL_SUBJECT_PREFIX = get_secret('DJANGO_EMAIL_SUBJECT_PREFIX', default='[fiubar] ')
+                                default='fiubar <noreply@fiubar.tk>')
+EMAIL_SUBJECT_PREFIX = get_secret('DJANGO_EMAIL_SUBJECT_PREFIX',
+                                  default='[fiubar] ')
 SERVER_EMAIL = get_secret('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
 # TEMPLATE CONFIGURATION
@@ -59,7 +58,8 @@ SERVER_EMAIL = get_secret('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
 TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', [
-        'django.template.loaders.filesystem.Loader', 'django.template.loaders.app_directories.Loader', ]),
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader', ]),
 ]
 
 # DATABASE CONFIGURATION
