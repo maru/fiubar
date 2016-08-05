@@ -7,6 +7,11 @@ De manera simple y ordenada, podés organizar tu carrera y decidir qué materias
 
 # Para acceder a fiubar: http://fiubar.tk/
 
+Participá:
+
+https://fiubar.slack.com/messages/general/
+
+https://groups.google.com/forum/#!forum/fiubar-dev
 
 Instalación
 ===========
