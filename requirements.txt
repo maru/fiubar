@@ -19,6 +19,9 @@ django-allauth==0.25.2
 unicode-slugify==0.1.3
 django-autoslug==1.9.3
 
+# Avatar
+Pillow==3.3.0
+
 # For local development
 django-debug-toolbar==1.5
 django-extensions==1.6.7
