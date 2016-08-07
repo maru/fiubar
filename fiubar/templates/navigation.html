@@ -40,11 +40,7 @@
             {% endif %}
             <li><a href="{% url 'users:detail' user.username %}">{% trans "Your Profile" %}</a></li>
             <li role="separator" class="divider"></li>
-            <li class="dropdown-header">{% trans "Settings" %}</li>
-            <li><a href="{% url 'users:update' %}">{% trans "Account" %}</a></li>
-            <li><a href="{% url 'account_email' %}">{% trans "E-mail Addresses" %}</a></li>
-            <li><a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
-            <li><a href="{% url 'socialaccount_connections' %}">{% trans "Social Accounts" %}</a></li>
+            <li><a href="{% url 'users:update' %}">{% trans "Settings" %}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="{% url 'contact_form' %}">{% trans "Report a Problem" %}</a></li>
             <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> {% trans "Sign Out" %}</a></li>

@@ -14,18 +14,21 @@
       </div>
 
       <ul class="list-group">
-        <li class="list-group-item {% block panel-item-users-detail %}{% endblock %}">
-            <a href="{% url 'users:update' %}">{% trans "Account" %}</li>
+        <li class="list-group-item {% block panel-item-users-update %}{% endblock %}">
+            <a href="{% url 'users:update' %}">{% trans "Profile" %}</li>
+        <li class="list-group-item {% block panel-item-users-account %}{% endblock %}">
+            <a href="{% url 'users:account' %}">{% trans "Account" %}</li>
+              <li class="list-group-item {% block panel-item-account_change-pw %}{% endblock %}">
+                <a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
         <li class="list-group-item {% block panel-item-account-email %}{% endblock %}">
           <a href="{% url 'account_email' %}">{% trans "E-mail Addresses" %}</a></li>
-        <li class="list-group-item {% block panel-item-account_change-pw %}{% endblock %}">
-          <a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
         <li class="list-group-item {% block panel-item-social-connections %}{% endblock %}">
           <a href="{% url 'socialaccount_connections' %}">{% trans "Social Accounts" %}</a></li>
       </ul>
     </div>
   </div>
   <div class="{% block content_class %}col-sm-9 col-md-8{% endblock %}">
+    {% block panel-main %}
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">{% block inner_title %}{% endblock %}</h3>
@@ -35,6 +38,7 @@
         {% block inner %}{% endblock %}
       </div>
     </div>
+    {% endblock %}
   </div>
 </div>
 {% endblock %}

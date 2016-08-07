@@ -205,7 +205,12 @@ span.socialaccount_provider {
     border-color: #ccc);
     background-image: none;
 }
-
+.edit-profile .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    background-image: none;
+}
 @media (max-width: 479px) {
   #id_email.form-control {
       width: 100% !important;
