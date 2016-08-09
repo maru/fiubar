@@ -115,7 +115,7 @@ msgstr "Añadir correo electrónico"
 
 #: templates/account/email.html:71
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: templates/account/email.html:83
 msgid "Do you really want to remove the selected e-mail address?"
@@ -384,15 +384,15 @@ msgstr ""
 #: templates/contact_form/contact_form_sent.html:3
 #: templates/contact_form/contact_form_subject.txt:1 templates/footer.html:11
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #: templates/contact_form/contact_form.html:18
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 #: templates/contact_form/contact_form_sent.html:11
 msgid "Message sent"
-msgstr ""
+msgstr "Mensaje enviado"
 
 #: templates/contact_form/contact_form_sent.html:12
 msgid "Thank you! We've received your request and we'll contact you shortly."
@@ -551,7 +551,7 @@ msgstr "Borrar su cuenta"
 
 #: users/forms.py:112 users/forms.py:124
 msgid "The login and/or password you specified are not correct."
-msgstr ""
+msgstr "El correo electrónico/usuario y/o la contraseña que especificaste no son correctos."
 
 #: users/forms.py:119
 msgid "Confirmation phrase is not correct."
