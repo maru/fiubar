@@ -587,7 +587,7 @@ msgstr "¡Cambios guardados!"
 
 #: users/views.py:91
 msgid "User deleted"
-msgstr ""
+msgstr "Usuario borrado con éxito"
 
 #: users/views.py:117
 msgid "Username changed"
