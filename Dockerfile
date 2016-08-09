@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 
 ADD requirements.txt /usr/src/app/
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 RUN apt-get remove --purge -y gcc \
     && apt-get autoremove -y && apt-get autoclean \
