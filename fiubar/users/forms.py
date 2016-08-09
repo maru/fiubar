@@ -107,14 +107,12 @@ class UserDeleteForm(forms.ModelForm):
 
     def clean_sudo_login(self):
         login = self.cleaned_data.get("sudo_login")
-        self.user = self.instance
         if login != self.user.username and login != self.user.email:
             raise forms.ValidationError(_("The login and/or password you "
                                           "specified are not correct."))
         return self.cleaned_data["sudo_login"]
 
     def clean_confirmation_phrase(self):
-        print(str(DELETE_CONFIRMATION_PHRASE))
         if str(DELETE_CONFIRMATION_PHRASE) != self.cleaned_data.get("confirmation_phrase"):
             raise forms.ValidationError(_("Confirmation phrase is not correct."))
         return self.cleaned_data["confirmation_phrase"]
@@ -124,6 +122,10 @@ class UserDeleteForm(forms.ModelForm):
             raise forms.ValidationError(_("The login and/or password you "
                                           "specified are not correct."))
         return self.cleaned_data["sudo_password"]
+
+    def is_valid(self):
+        self.user = self.instance
+        return super(UserDeleteForm, self).is_valid()
 
     class Meta:
         model = User
