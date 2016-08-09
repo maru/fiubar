@@ -1,5 +1,3 @@
-import hashlib
-
 COLORS = ["871f22", "59e747", "a44af3", "7deb36", "4937d2", "b0ef26",
 "731cbe", "a5e841", "c441e9", "56ea6d", "e450ea", "38b931", "e431cb",
 "e1ec2c", "7c51e7", "84c831", "b422bc", "90ea66", "344dd6", "c4e143",
@@ -38,23 +36,29 @@ COLORS = ["871f22", "59e747", "a44af3", "7deb36", "4937d2", "b0ef26",
 "c47c8d", "745e41", "98728f", "925a3e", "786179", "a87962", "7d525f",
 "b58982", "76544f", "ac7e8b", "a36365", "8e7975"]
 
+import hashlib
 from PIL import Image, ImageColor, ImageFont, ImageDraw
 from io import BytesIO
 import os
-from fiubar.config.settings.common import BASE_DIR, MEDIA_ROOT
+from fiubar.config.settings.common import BASE_DIR, MEDIA_ROOT, MEDIA_URL
 
 FULLSIZE  = 120 * 3
 POINTSIZE = 280
 OFFSET_Y = 47
 
-def generate_avatar(letter, data, size=(FULLSIZE,FULLSIZE)):
+def generate_avatar(letter, data, size=FULLSIZE):
+    if size > FULLSIZE:
+        size = FULLSIZE
+
+    # Determine color
     h = hashlib.sha256()
     h.update(data.encode('utf-8'))
 
-    color = int(h.hexdigest()[0:6], 16) % 256
+    color = int(h.hexdigest()[0:16], 16) % 256
     bg_color = ImageColor.getrgb('#' + COLORS[color])
 
-    img = Image.new('RGBA', size, bg_color + (255, ))
+    # Create image
+    img = Image.new('RGBA', (FULLSIZE, FULLSIZE), bg_color + (255, ))
 
     font_path = os.path.join(BASE_DIR, 'static/fonts/Helvetica.ttf')
     font = ImageFont.truetype(font_path, POINTSIZE)
@@ -66,14 +70,19 @@ def generate_avatar(letter, data, size=(FULLSIZE,FULLSIZE)):
                 (FULLSIZE - OFFSET_Y - text_size[1])/2)
     draw.text(position, letter.upper(), font=font, fill=font_color)
 
-    path = os.path.join(MEDIA_ROOT, 'avatars/letter/' + letter.lower() + '/' + COLORS[color])
+    dir_path = 'avatars/letter/' + letter.lower() + '/' + COLORS[color] + '/'
+    file_name = str(size) + '.png'
 
+    image_path = os.path.join(MEDIA_ROOT, dir_path)
     try:
-        os.makedirs(path, 0o755)
+        os.makedirs(image_path, 0o755)
     except:
         pass
-    img.save(path + '/120.png', 'PNG')
-    output = BytesIO()
-    img.save(output, format='PNG')
-    response_string = output.getvalue()
-    return response_string
+    # Create image
+    image_path = os.path.join(image_path, file_name)
+    img.save(image_path, 'PNG')
+
+    # Return URL
+    file_url = os.path.join(MEDIA_URL, dir_path)
+    file_url = os.path.join(file_url, file_name)
+    return file_url

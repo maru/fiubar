@@ -31,9 +31,12 @@
         {% with user=request.user %}
         {% if user.is_authenticated %}
         <li class="dropdown {% if slug == 'account' %}active{% endif %}">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.username }}<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {% if user.profile.avatar and todo %}<img alt="" src="{{ user.profile.avatar }}" class="avatar img-rounded" style="width:32px;background-color:#fff;">
+            {% else %}{{ user.username }}
+            {% endif %}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            {% if user.avatar %}
+            {% if user.profile.avatar and todo %}
             <p class="navbar-text navbar-text-login">{% trans "Signed in as" %} {{ user.username }}</p>
             <div class="clearfix"></div>
             <li role="separator" class="divider"></li>

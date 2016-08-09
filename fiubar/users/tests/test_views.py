@@ -4,7 +4,7 @@ from test_plus.test import TestCase
 
 from ..views import (
     UserRedirectView,
-    UserUpdateView
+    UserAccountView
 )
 
 
@@ -34,13 +34,13 @@ class TestUserRedirectView(BaseUserTestCase):
         )
 
 
-class TestUserUpdateView(BaseUserTestCase):
+class TestUserAccountView(BaseUserTestCase):
 
     def setUp(self):
         # call BaseUserTestCase.setUp()
-        super(TestUserUpdateView, self).setUp()
+        super(TestUserAccountView, self).setUp()
         # Instantiate the view directly. Never do this outside a test!
-        self.view = UserUpdateView()
+        self.view = UserAccountView()
         # Generate a fake request
         request = self.factory.get('/fake-url')
         # Attach the user to the request

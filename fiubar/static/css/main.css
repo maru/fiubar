@@ -247,3 +247,14 @@ span.socialaccount_provider {
     float:left;
     margin-right: 15px;
 }
+.confirmation-phrase {
+    font-style: italic;
+    font-weight: normal;
+}
+.do-not-copy-me {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

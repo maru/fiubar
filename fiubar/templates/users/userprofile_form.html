@@ -1,0 +1,13 @@
+{% extends "account/base_panel.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+
+{% block panel-item-users-update %}list-group-active{% endblock %}
+
+{% block inner_title %}{% trans "Profile" %}{% endblock %}
+{% block inner %}
+  {% crispy form %}
+{% endblock %}

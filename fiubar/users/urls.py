@@ -6,30 +6,27 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # URL pattern for the UserRedirectView
     url(
         regex=r'^~redirect/$',
         view=views.UserRedirectView.as_view(),
         name='redirect'
     ),
 
-    # URL pattern for the UserDetailView
     url(
         regex=r'^(?P<username>[\w]+)/$',
         view=views.UserDetailView.as_view(),
         name='detail'
     ),
 
-    # URL pattern for the UserUpdateView
     url(
         regex=r'^~update/$',
-        view=views.UserUpdateView.as_view(),
+        view=views.ProfileUpdateView.as_view(),
         name='update'
     ),
 
     url(
-        regex=r'^~show_avatar/(?P<username>[\w]+)/$$',
-        view=views.show_avatar,
-        name='show_avatar'
+        regex=r'^~account/$',
+        view=views.UserAccountView.as_view(),
+        name='account'
     ),
 ]
