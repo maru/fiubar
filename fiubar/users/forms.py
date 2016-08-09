@@ -33,10 +33,10 @@ class UserProfileForm(forms.ModelForm):
     Edit user profile
     """
     # avatar = forms.ImageField(required=False) # TODO
-    name = forms.CharField(required=False, max_length=255)
-    location = forms.CharField(required=False, max_length=255)
-    website = forms.CharField(required=False, max_length=255)
-    bio = forms.CharField(
+    name = forms.CharField(label=_('Name'), required=False, max_length=255)
+    location = forms.CharField(label=_('Location'), required=False, max_length=255)
+    website = forms.CharField(label=_('Website'), required=False, max_length=255)
+    bio = forms.CharField(label=_('About me'),
         required = False,
         widget = forms.Textarea(),
     )
@@ -49,7 +49,9 @@ class UserProfileForm(forms.ModelForm):
         'name',
         'location',
         'website',
-        HTML('{% load i18n %}<label for="id_status" class="control-label ">{% trans "Status" %}</label>'),
+        HTML('<label for="id_status" class="control-label ">'),
+        HTML(_('Occupation')),
+        HTML('</label>'),
         Div('student', 'assistant', 'professional', 'professor', css_class='users-update-status'),
         Field('bio', rows="3", css_class='input-xlarge'),
         FormActions(
@@ -61,15 +63,16 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = [ 'user', 'avatar' ]
 
+
 DELETE_CONFIRMATION_PHRASE = _('delete my account')
 class UserDeleteForm(forms.ModelForm):
+    confirmation_phrase_en =  _('To verify, type "<span '\
+                              'class="confirmation-phrase do-not-copy-me">'\
+                              'delete my account'\
+                              '</span>" below:')
     form_labels = {
         'sudo_login': _('Your username or email:'),
-        'confirmation_phrase':
-            str(_('To verify, type')) +
-            '"<span class="confirmation-phrase do-not-copy-me">' +
-            str(DELETE_CONFIRMATION_PHRASE) + '</span>"' +
-            str(_(' below:')),
+        'confirmation_phrase': confirmation_phrase_en,
         'sudo_password': _('Confirm your password:'),
     }
 
@@ -111,6 +114,7 @@ class UserDeleteForm(forms.ModelForm):
         return self.cleaned_data["sudo_login"]
 
     def clean_confirmation_phrase(self):
+        print(str(DELETE_CONFIRMATION_PHRASE))
         if str(DELETE_CONFIRMATION_PHRASE) != self.cleaned_data.get("confirmation_phrase"):
             raise forms.ValidationError(_("Confirmation phrase is not correct."))
         return self.cleaned_data["confirmation_phrase"]

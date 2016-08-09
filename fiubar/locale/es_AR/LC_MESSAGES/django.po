@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-allauth\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 18:20+0200\n"
+"POT-Creation-Date: 2016-08-09 23:38+0200\n"
 "PO-Revision-Date: 2016-07-30 16:39-0300\n"
 "Last-Translator: b'  <admin@fiubar.tk>'\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-allauth/"
@@ -29,18 +29,20 @@ msgid "This account is inactive."
 msgstr "Su cuenta está desactivada."
 
 #: templates/account/base.html:3 templates/account/base_panel.html:3
-#: templates/account/base_panel.html:18 templates/navigation.html:44
+#: templates/account/base_panel.html:20 templates/users/user_form.html:4
+#: templates/users/user_form.html:11
 msgid "Account"
 msgstr "Cuenta"
 
-#: templates/account/base_panel.html:13 templates/navigation.html:43
+#: templates/account/base_panel.html:13 templates/navigation.html:46
 msgid "Settings"
 msgstr "Configuración"
 
-#: templates/account/base_panel.html:20 templates/account/email.html:4
-#: templates/account/email.html:8 templates/navigation.html:45
-msgid "E-mail Addresses"
-msgstr "Direcciones de correo electrónico"
+#: templates/account/base_panel.html:18 templates/users/user_detail.html:6
+#: templates/users/userprofile_form.html:6
+#: templates/users/userprofile_form.html:10
+msgid "Profile"
+msgstr "Tu Perfil"
 
 #: templates/account/base_panel.html:22
 #: templates/account/password_change.html:6
@@ -50,52 +52,55 @@ msgstr "Direcciones de correo electrónico"
 #: templates/account/password_reset_from_key.html:7
 #: templates/account/password_reset_from_key_done.html:4
 #: templates/account/password_reset_from_key_done.html:6
-#: templates/navigation.html:46
 msgid "Change Password"
 msgstr "Cambiar Contraseña"
 
-#: templates/account/base_panel.html:24 templates/navigation.html:47
+#: templates/account/base_panel.html:24 templates/account/email.html:4
+#: templates/account/email.html:11
+msgid "E-mail Addresses"
+msgstr "Direcciones de correo electrónico"
+
+#: templates/account/base_panel.html:26
 #: templates/socialaccount/connections.html:4
 #: templates/socialaccount/connections.html:8
-#: templates/users/user_profile.html:52
 msgid "Social Accounts"
 msgstr "Cuentas de Redes Sociales"
 
-#: templates/account/email.html:11
+#: templates/account/email.html:16
 msgid "The following e-mail addresses are associated with your account:"
 msgstr ""
 "Las siguientes direcciones de correo electrónico están asociadas a tu cuenta:"
 
-#: templates/account/email.html:21 templates/users/user_profile.html:89
+#: templates/account/email.html:26
 msgid "Primary"
 msgstr "Principal"
 
-#: templates/account/email.html:22
+#: templates/account/email.html:27
 msgid "Verified"
 msgstr "Verificado"
 
-#: templates/account/email.html:23 templates/users/user_profile.html:90
+#: templates/account/email.html:28
 msgid "Unverified"
 msgstr "Sin verificar"
 
-#: templates/account/email.html:30
+#: templates/account/email.html:35
 msgid "Make Primary"
 msgstr "Definir como Principal"
 
-#: templates/account/email.html:33
+#: templates/account/email.html:38
 msgid "Resend Verification"
 msgstr "Reenviar Verificación"
 
-#: templates/account/email.html:36 templates/account/email.html:37
+#: templates/account/email.html:41 templates/account/email.html:42
 #: templates/socialaccount/connections.html:39
 msgid "Remove"
 msgstr "Eliminar"
 
-#: templates/account/email.html:47
+#: templates/account/email.html:53
 msgid "Warning:"
 msgstr "Advertencia:"
 
-#: templates/account/email.html:47
+#: templates/account/email.html:53
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
 "an e-mail address so you can receive notifications, reset your password, etc."
@@ -104,19 +109,85 @@ msgstr ""
 "Debes añadir una dirección de correo electrónico para que pueda recibir "
 "notificaciones, restablecer la contraseña, etc."
 
-#: templates/account/email.html:51
+#: templates/account/email.html:58
 msgid "Add E-mail Address"
 msgstr "Añadir correo electrónico"
 
-#: templates/account/email.html:64 templates/users/user_profile.html:132
+#: templates/account/email.html:71
 msgid "Add"
 msgstr ""
 
-#: templates/account/email.html:74
+#: templates/account/email.html:83
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr ""
 "¿Está seguro de querer eliminar la dirección de correo electrónico "
 "seleccionada?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You're receiving this e-mail because user %(user_display)s at "
+"%(site_domain)s has given yours as an e-mail address to connect their "
+"account.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s\n"
+msgstr ""
+"¡Saludos de %(site_name)s!\n"
+"\n"
+"El usuario %(user_display)s de %(site_domain)s ha proporcionado este como su "
+"correo electrónico.\n"
+"\n"
+"Para confirmar que esto es correcto, haga clic en %(activate_url)s\n"
+
+#: templates/account/email/email_confirmation_message.txt:7
+#, python-format
+msgid ""
+"Thank you from %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"¡Gracias de parte de %(site_name)s!\n"
+"%(site_domain)s"
+
+#: templates/account/email/email_confirmation_subject.txt:3
+msgid "Please Confirm Your E-mail Address"
+msgstr "Confirmar dirección de correo electrónico"
+
+#: templates/account/email/password_reset_key_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You're receiving this e-mail because you or someone else has requested a "
+"password for your user account at %(site_domain)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password."
+msgstr ""
+"¡Saludos de %(site_name)s!\n"
+" \n"
+"Ha recibido este correo porque usted u otra persona ha pedido una nueva "
+"contraseña para su cuenta en %(site_domain)s.\n"
+"Si usted no pidió restablecer su contraseña, ignore este correo. Haga clic "
+"en el enlace de abajo para restablecer su contraseña."
+
+#: templates/account/email/password_reset_key_message.txt:8
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "En caso de haber olvidado su nombre de usuario, es %(username)s."
+
+#: templates/account/email/password_reset_key_message.txt:10
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"¡Gracias por usar %(site_name)s!\n"
+"%(site_domain)s"
+
+#: templates/account/email/password_reset_key_subject.txt:3
+msgid "Password Reset E-mail"
+msgstr "Correo para restablecer contraseña"
 
 #: templates/account/email_confirm.html:6
 #: templates/account/email_confirm.html:9
@@ -147,7 +218,7 @@ msgstr ""
 "electrónico</a>."
 
 #: templates/account/login.html:6 templates/account/login.html:12
-#: templates/account/login.html:20 templates/navigation.html:55
+#: templates/account/login.html:20 templates/navigation.html:54
 #: templates/pages/index.html:33 templates/pages/index.html:41
 msgid "Sign In"
 msgstr "Iniciar sesión"
@@ -161,7 +232,7 @@ msgid "Or you can sign in with:"
 msgstr "O puede iniciar sesión con:"
 
 #: templates/account/logout.html:5 templates/account/logout.html:7
-#: templates/account/logout.html:17 templates/navigation.html:50
+#: templates/account/logout.html:17 templates/navigation.html:49
 msgid "Sign Out"
 msgstr "Cerrar sesión"
 
@@ -226,8 +297,8 @@ msgstr "Cambiar la contraseña"
 msgid "Your password is now changed."
 msgstr "Su contraseña ha cambiado."
 
-#: templates/account/password_set.html:6 templates/account/password_set.html:8
-#: templates/account/password_set.html:14
+#: templates/account/password_set.html:6 templates/account/password_set.html:10
+#: templates/account/password_set.html:16
 msgid "Set Password"
 msgstr "Establecer contraseña"
 
@@ -236,7 +307,7 @@ msgid "Signup"
 msgstr "Regístrate"
 
 #: templates/account/signup.html:13 templates/account/signup.html:23
-#: templates/navigation.html:54 templates/pages/index.html:61
+#: templates/navigation.html:53 templates/pages/index.html:61
 #: templates/pages/index.html:68 templates/socialaccount/signup.html:8
 #: templates/socialaccount/signup.html:31
 msgid "Sign Up"
@@ -347,15 +418,15 @@ msgstr "Inicio"
 msgid "Facultad"
 msgstr ""
 
-#: templates/navigation.html:37
+#: templates/navigation.html:40
 msgid "Signed in as"
 msgstr "Conectado como"
 
-#: templates/navigation.html:41
+#: templates/navigation.html:44
 msgid "Your Profile"
 msgstr "Tu Perfil"
 
-#: templates/navigation.html:49
+#: templates/navigation.html:48
 msgid "Report a Problem"
 msgstr "Reportar un Problema"
 
@@ -384,7 +455,6 @@ msgstr ""
 "Actualmente no tiene ninguna cuenta de red social asociada a esta cuenta."
 
 #: templates/socialaccount/connections.html:51
-#: templates/users/user_profile.html:56
 msgid "Add a 3rd Party Account"
 msgstr "Agregar una cuenta de una red social externa"
 
@@ -397,146 +467,128 @@ msgstr ""
 "Esta a punto de utilizar su cuenta %(provider_name)s para acceder a "
 "%(site_name)s. Como paso final, por favor complete el siguiente formulario:"
 
-#: templates/users/user_form.html:23 templates/users/user_form.html:26
-#: templates/users/user_profile.html:24 templates/users/user_profile.html:27
-msgid "Username"
-msgstr ""
+#: templates/users/user_detail.html:4
+msgid "Profile: "
+msgstr "Perfil: "
 
-#: templates/users/user_form.html:30 templates/users/user_profile.html:31
-msgid "Change"
-msgstr ""
-
-#: templates/users/user_form.html:34 templates/users/user_profile.html:35
-msgid "Profile Picture"
-msgstr "Imagen de Perfil"
-
-#: templates/users/user_profile.html:4 templates/users/user_profile.html:11
+#: templates/users/user_detail.html:16
 msgid "Edit Profile"
 msgstr "Editar Perfil"
 
-#: templates/users/user_profile.html:13
-msgid "Show Profile"
-msgstr "Ver Perfil"
-
-#: templates/users/user_profile.html:78
-msgid "Manage Email"
-msgstr ""
-
-#: templates/users/user_profile.html:82
-msgid ""
-"Your <b>primary email address</b> will be used for account-related "
-"notifications\n"
-"                (e.g. account changes)."
-msgstr ""
-
-#: templates/users/user_profile.html:93
-msgid "Resend verification"
-msgstr "Reenviar Verificación"
-
-#: templates/users/user_profile.html:96
-msgid "Set as primary"
-msgstr ""
-
-#: templates/users/user_profile.html:126
-msgid "Add email address"
-msgstr "Añadir correo electrónico"
-
-#: templates/users/user_profile.html:139
-msgid "Personal Information"
-msgstr ""
-
-#: templates/users/user_profile.html:144 users/models.py:14
-msgid "Name"
-msgstr ""
-
-#: templates/users/user_profile.html:150
-msgid "Location"
-msgstr ""
-
-#: templates/users/user_profile.html:156
+#: templates/users/user_detail.html:26 users/forms.py:38 users/models.py:24
 msgid "Website"
-msgstr ""
+msgstr "Sitio web"
 
-#: templates/users/user_profile.html:163
+#: templates/users/user_detail.html:35 users/forms.py:37 users/models.py:23
+msgid "Location"
+msgstr "Ubicación"
+
+#: templates/users/user_detail.html:42 users/forms.py:53
 msgid "Occupation"
-msgstr ""
+msgstr "Ocupación"
 
-#: templates/users/user_profile.html:166
-msgid "Student"
-msgstr ""
-
-#: templates/users/user_profile.html:168
-msgid "Professional"
-msgstr "Profesional"
-
-#: templates/users/user_profile.html:174
+#: templates/users/user_detail.html:51 users/forms.py:39 users/models.py:29
 msgid "About me"
 msgstr "Acerca de mí"
 
-#: templates/users/user_profile.html:181
-msgid "Save Changes"
+#: templates/users/user_form.html:20
+msgid "Change Username"
+msgstr "Cambiar Nombre de Usuario"
+
+#: templates/users/user_form.html:28
+msgid "Delete Account"
+msgstr "Borrar Cuenta"
+
+#: templates/users/user_form.html:34
+msgid ""
+"Once you delete your account, there is no going back.\n"
+"            Please be certain."
+msgstr "Una vez que haya borrado su cuenta, no hay vuelta atrás."
+
+#: users/admin.py:54
+msgid "Status"
+msgstr "Ocupación"
+
+#: users/forms.py:19
+msgid "Please choose a different username."
+msgstr "Por favor elija un nombre de usuario diferente."
+
+#: users/forms.py:22
+msgid "A user with that username already exists."
 msgstr ""
 
-#~ msgid "Change your email address."
-#~ msgstr "Cambie su dirección de correo electrónico."
+#: users/forms.py:36 users/models.py:18
+msgid "Name"
+msgstr "Nombre"
 
-#~ msgid "Add E-mail"
-#~ msgstr "Añadir correo electrónico"
+#: users/forms.py:58
+msgid "Update Profile"
+msgstr "Editar Perfil"
 
-#~ msgid ""
-#~ "Hello from %(site_name)s!\n"
-#~ "\n"
-#~ "You're receiving this e-mail because user %(user_display)s at "
-#~ "%(site_domain)s has given yours as an e-mail address to connect their "
-#~ "account.\n"
-#~ "\n"
-#~ "To confirm this is correct, go to %(activate_url)s\n"
-#~ msgstr ""
-#~ "¡Saludos de %(site_name)s!\n"
-#~ "\n"
-#~ "El usuario %(user_display)s de %(site_domain)s ha proporcionado este como "
-#~ "su correo electrónico.\n"
-#~ "\n"
-#~ "Para confirmar que esto es correcto, haga clic en %(activate_url)s\n"
+#: users/forms.py:67
+msgid "delete my account"
+msgstr "borrar mi cuenta"
 
-#~ msgid ""
-#~ "Thank you from %(site_name)s!\n"
-#~ "%(site_domain)s"
-#~ msgstr ""
-#~ "¡Gracias de parte de %(site_name)s!\n"
-#~ "%(site_domain)s"
+#: users/forms.py:69
+msgid ""
+"To verify, type \"<span class=\"confirmation-phrase do-not-copy-me\">delete "
+"my account</span>\" below:"
+msgstr ""
+"Para verificar, escriba \"<span class=\"confirmation-phrase do-not-copy-me"
+"\">borrar mi cuenta</span>\" a continuación:"
 
-#~| msgid "Confirm E-mail Address"
-#~ msgid "Please Confirm Your E-mail Address"
-#~ msgstr "Confirmar dirección de correo electrónico"
+#: users/forms.py:74
+msgid "Your username or email:"
+msgstr "Tu nombre de usuario o dirección electrónica:"
 
-#~ msgid ""
-#~ "Hello from %(site_name)s!\n"
-#~ "\n"
-#~ "You're receiving this e-mail because you or someone else has requested a "
-#~ "password for your user account at %(site_domain)s.\n"
-#~ "It can be safely ignored if you did not request a password reset. Click "
-#~ "the link below to reset your password."
-#~ msgstr ""
-#~ "¡Saludos de %(site_name)s!\n"
-#~ " \n"
-#~ "Ha recibido este correo porque usted u otra persona ha pedido una nueva "
-#~ "contraseña para su cuenta en %(site_domain)s.\n"
-#~ "Si usted no pidió restablecer su contraseña, ignore este correo. Haga "
-#~ "clic en el enlace de abajo para restablecer su contraseña."
+#: users/forms.py:76
+msgid "Confirm your password:"
+msgstr "Confirmar tu contraseña:"
 
-#~ msgid "In case you forgot, your username is %(username)s."
-#~ msgstr "En caso de haber olvidado su nombre de usuario, es %(username)s."
+#: users/forms.py:104
+msgid "Delete your account"
+msgstr "Borrar su cuenta"
 
-#~ msgid ""
-#~ "Thank you for using %(site_name)s!\n"
-#~ "%(site_domain)s"
-#~ msgstr ""
-#~ "¡Gracias por usar %(site_name)s!\n"
-#~ "%(site_domain)s"
+#: users/forms.py:112 users/forms.py:124
+msgid "The login and/or password you specified are not correct."
+msgstr ""
 
-#~ msgid "Password Reset E-mail"
-#~ msgstr "Correo para restablecer contraseña"
+#: users/forms.py:119
+msgid "Confirmation phrase is not correct."
+msgstr "La frase de confirmación no es correcta."
 
-#~ msgid "Account Connections"
-#~ msgstr "Conexiones de Cuenta"
+#: users/models.py:22
+msgid "Picture"
+msgstr "Imagen de Perfil"
+
+#: users/models.py:25 users/models.py:46
+msgid "Student"
+msgstr "Estudiante"
+
+#: users/models.py:26 users/models.py:42
+msgid "Professor"
+msgstr "Profesor"
+
+#: users/models.py:27 users/models.py:44
+msgid "Assistant"
+msgstr "Ayudante"
+
+#: users/models.py:28 users/models.py:40
+msgid "Professional"
+msgstr "Profesional"
+
+#: users/models.py:51
+msgid "profile"
+msgstr "perfil"
+
+#: users/views.py:37
+msgid "Changes saved!"
+msgstr "¡Cambios guardados!"
+
+#: users/views.py:91
+msgid "User deleted"
+msgstr ""
+
+#: users/views.py:117
+msgid "Username changed"
+msgstr "Cambio de nombre de usuario exitoso"
