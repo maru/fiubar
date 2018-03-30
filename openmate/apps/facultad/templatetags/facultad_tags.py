@@ -65,7 +65,10 @@ def display_row_materia(context, planmateria):
 		"""
 
 	# Marcar las aprobadas
-	l = planmateria.correlativas.split('-')
+	try:
+		l = planmateria.correlativas.split('-')
+	except: 
+		l = []
 	new_l = []
 	for m in l:
 		try:
