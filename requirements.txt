@@ -1,27 +1,27 @@
-django==1.9.9
-psycopg2==2.6.1
+Django
+pytz
 
 # Forms
-django-braces==1.9.0
-django-crispy-forms==1.6.0
-django-floppyforms==1.6.2
-django-recaptcha==1.0.5
+django-braces
+django-crispy-forms
+django-floppyforms
+django-recaptcha
 https://github.com/maru/django-contact-form-recaptcha/archive/master.zip
 
 # Models
-django-model-utils==2.5
+django-model-utils
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.25.2
+django-allauth
 
 # Unicode slugification
-unicode-slugify==0.1.3
-django-autoslug==1.9.3
+unicode-slugify
+django-autoslug
 
 # Avatar
-Pillow==3.3.0
+Pillow
 
 # For local development
-django-debug-toolbar==1.5
-django-extensions==1.6.7
+django-debug-toolbar
+django-extensions
