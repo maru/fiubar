@@ -5,3 +5,4 @@ secrets.json
 admin
 pip-packages
 media
+db.sqlite3
