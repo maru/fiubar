@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
 
 # JSON-based secrets module
 try:
-    secret_file = os.path.join(os.path.dirname(__file__), "secrets.json")
+    secret_file = os.getenv("FIUBAR_SECRET_FILE")
     with open(secret_file) as f:
         secrets = json.loads(f.read())
 except:
@@ -41,7 +41,7 @@ def get_secret(setting, default=None, secrets=secrets):
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
-DJANGO_APPS = (
+DJANGO_APPS = [
     # Default Django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,8 +55,8 @@ DJANGO_APPS = (
 
     # Admin
     'django.contrib.admin',
-)
-THIRD_PARTY_APPS = (
+]
+THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
     'allauth',  # registration
     'allauth.account',  # registration
@@ -67,19 +67,19 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount.providers.linkedin',
     'contact_form',
     'captcha',
-)
+]
 
 # Apps specific for this project go here.
-LOCAL_APPS = (
+LOCAL_APPS = [
     'fiubar.users.apps.UsersConfig',
-)
+]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'fiubar.middleware.locale.DefaultLocaleMiddleware',
@@ -88,7 +88,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -127,11 +127,8 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3'
     }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
@@ -148,8 +145,7 @@ TIME_ZONE = get_secret('TIME_ZONE', default='America/Argentina/Buenos_Aires')
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en'
 LANGUAGE_DEFAULT = 'es_AR'
-LANGUAGES = [('en', 'English'),
-             ('es-ar', 'Argentinian Spanish'),
+LANGUAGES = [('es-AR', 'Argentinian Spanish'),
              ('es_AR', 'Argentinian Spanish'),
              ('es', 'Spanish'), ]
 LOCALE_PATHS = [
@@ -293,7 +289,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
-ADMIN_URL = r'^admin/'
+ADMIN_URL = 'admin/'
 
 # ReCaptcha keys
 RECAPTCHA_PUBLIC_KEY = get_secret('RECAPTCHA_PUBLIC_KEY', 'public_key')
