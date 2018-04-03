@@ -4,9 +4,10 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.utils import translation
 from django.utils.translation.trans_real import parse_accept_lang_header
+from django.utils.deprecation import MiddlewareMixin
 
 
-class DefaultLocaleMiddleware(object):
+class DefaultLocaleMiddleware(MiddlewareMixin):
     """
     This is a very simple middleware that parses a request
     and decides what translation object to install in the current
