@@ -41,21 +41,18 @@ def get_secret(setting, default=None, secrets=secrets):
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
+# Default Django apps:
 DJANGO_APPS = [
-    # Default Django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Useful template tags:
     'django.contrib.humanize',
-
-    # Admin
     'django.contrib.admin',
 ]
+# Other apps
 THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
     'allauth',  # registration
@@ -69,9 +66,10 @@ THIRD_PARTY_APPS = [
     'captcha',
 ]
 
-# Apps specific for this project go here.
+# Fiubar apps
 LOCAL_APPS = [
     'fiubar.users.apps.UsersConfig',
+    'fiubar.facultad.apps.FacultadConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

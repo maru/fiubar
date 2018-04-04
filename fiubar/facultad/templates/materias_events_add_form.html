@@ -1,0 +1,40 @@
+{% extends 'base_facultad.html' %}
+{% load i18n groups profile %}
+
+{% block title %}{% trans 'Agregar Fecha' %}{% endblock %}
+
+{% block main-content %}
+<h2>{% trans 'Agregar Fecha' %}</h2>
+  <form id="materia-events-add" action="" method="post">
+    {% csrf_token %}
+    <div>
+      {% if form.cod_materia.errors %} <span class="error">{{ form.cod_materia.errors|join:", " }}</span>{% endif %}
+      <label class="inline">{{ form.cod_materia.label }}</label>
+      {{ form.cod_materia }}
+    </div>
+    <div>
+      {% if form.title.errors %} <span class="error">{{ form.title.errors|join:", " }}</span>{% endif %}
+      <label class="inline">{{ form.title.label }}</label>
+      {{ form.title }}
+    </div>
+    <div>
+      {% if form.where.errors %} <span class="error">{{ form.where.errors|join:", " }}</span>{% endif %}
+      <label class="inline">{{ form.where.label }}</label>
+      {{ form.where }}
+    </div>
+    <div>
+      {% if form.date_event.errors %} <span class="error">{{ form.date_event.errors|join:", " }}</span>{% endif %}
+      <label class="inline">{{ form.date_event.label }}</label>
+      {{ form.date_day }} {{ form.date_month }} {{ form.date_year }}
+      <label class="inline time">{% trans 'Hora:' %}</label> {{ form.time_hour }}:{{ form.time_minute }}
+    </div>
+    <div>
+      <label>{{ form.description.label }}</label>
+      {% if form.description.errors %} <span class="error">{{ form.description.errors|join:", " }}</span>{% endif %}
+      {{ form.description }}
+    </div>
+    <div>
+      <input type="submit" id="submit" value="Agregar" />
+    </div>
+  </form>
+{% endblock %}

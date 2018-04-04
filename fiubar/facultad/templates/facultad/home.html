@@ -1,0 +1,57 @@
+{% extends 'facultad/base.html' %}
+{% load i18n facultad_tags %}
+
+{% block title %}{% trans 'Mis Materias' %}{% endblock %}
+{% block link-css %}
+    <link rel="stylesheet" href="/media/css/facultad.css" type="text/css" />
+{% endblock %}
+
+{% block main-css %}facultad{% endblock %}
+<h2>{% trans 'Mis Materias' %}</h2>
+{% block inner %}
+
+{% comment %}
+<div class="materias">
+{% if list_matcur %}
+  {% for m in list_matcur %}
+  <div class="last-news materia-news">
+    <h3 class="materia-{% if m.falta_final %}final{% else %}cursando{% endif %}">
+    <a class="{{ link_class }}" href="{{ m.materia.url_home }}" title="{% trans 'Editar' %}">
+      {{ m.materia.get_codigo }} {{ m.materia.name }}</a></h3>
+    <ul class="materia-count">
+      {% if m.new_alumnos %}<li><a href="{{ m.materia.url_alumnos }}"><span class="new-count">{{ m.new_alumnos }}</span> <!-- nuevo{{ m.new_alumnos|pluralize }} --> alumno{{ m.new_alumnos|pluralize }}</a></li>{% endif %}{% endif %}
+      {% if m.new_files %}<li><a href="{{ m.materia.url_files }}"><span class="new-count">{{ m.new_files }}</span> <!-- nuevo{{ m.new_files|pluralize }} --> archivo{{ m.new_files|pluralize }}</a></li>{% endif %}{% endif %}
+      {% if is_member %}<li><a href="{{ m.materia.url_group_subscription }}">Suscribirme al grupo</a></li>{% endif %}{% endif %}
+      {% if m.new_messages %}<li><span class="new-count">{{ m.new_messages }}</span> <!-- nuevo{{ m.new_messages|pluralize }} --> mensaje{{ m.new_messages|pluralize }}</li>{% endif %}{% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+{% else %}
+<span>No estás cursando ninguna materia.</span>
+{% endif %}
+</div>
+<div class="clear"></div>
+<div class="carreras">
+  <h1>Mi{{ list_carreras.count|pluralize }} carrera{{ list_carreras.count|pluralize }}</h1>
+{% if list_carreras %}
+  {% comment %}<div class="facultad-news">
+    <span>¡Alegría! <img src="/media/images/emoticon_happy.png" alt=":D" />
+    ¡Faltan sólo {{ faltan_dias }} días de clase!</span>
+  </div>{% endcommen t %}
+  {% for a in list_carreras %}
+  <div class="last-news list-carreras">
+    <h3 class="carrera"><img src="/media/avatars/groups/fiuba-{{ a.carrera.short_name }}_s.png" class="group-picture" alt="" />
+    <a href="/group/fiuba-{{ a.carrera.short_name }}/">{{ a.carrera.abbr_name }}</a></h3>
+    <ul class="materia-count">
+      {% if a.new_alumnos %}<li><a href="{{ a.carrera.url_alumnos }}"><span class="new-count">{{ a.new_alumnos }}</span> alumno{{ a.new_alumnos|pluralize }}</a></li>{% endif %}{% endif %}
+      {% if a.new_messages %}<li><span class="new-count">{{ a.new_messages }}</span> mensaje{{ a.new_messages|pluralize }}</li>{% endif %}{% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+{% else %}
+   <a href="{% url 'facultad:carreras-add' %}">¿Qué carrera cursás?</a>
+{% endif %}
+</div>
+<div class="clear"></div>
+{% endcomment %}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% load i18n humanize %}
+{% for c in carrera_list %}
+
+<span style="font-size: {{ c.font_size}}px">{{ c.short_name }}</span>
+{% endfor %}

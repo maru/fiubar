@@ -1,0 +1,33 @@
+{% extends 'facultad/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Agregar carrera' %}{% endblock %}
+
+{% block inner %}
+<h2>{% trans 'Agregar carrera' %}</h2>
+    <form id="carreras-form" action="" method="post">
+      {% csrf_token %}
+        <div>
+            <label for="id_carrera">Carrera:</label>
+            {% if form.plancarrera.errors %} <span class="error">{{ form.plancarrera.errors|join:", " }}</span>{% endif %}
+            {{ form.plancarrera }}
+        </div>
+
+        <div class="clearfix">
+            {{ form.begin_date }}
+            <h3 class="underlined">{% trans 'Ingreso a FIUBA' %}</h3>
+            <div class="float-left">
+                <label for="id_cuatrimestre">{{ form.cuatrimestre.label }}:</label>
+                {% if form.cuatrimestre.errors %} <span class="error">{{ form.cuatrimestre.errors|join:", " }}</span>{% endif %}
+                {{ form.cuatrimestre }}
+            </div>
+            <div class="float-left">
+                <label for="id_year">{# form.year.label #}Año:</label>
+                {% if form.year.errors %} <span class="error">{{ form.year.errors|join:", " }}</span>{% endif %}
+                {{ form.year }}
+            </div>
+        </div>
+        <div><input type="submit" value="{% trans 'Agregar Carrera' %}" /></div>
+    </form>
+
+{% endblock %}

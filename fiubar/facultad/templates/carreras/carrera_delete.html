@@ -1,0 +1,36 @@
+{% extends 'facultad/base.html' %}
+{% load i18n facultad_tags %}
+
+{% block title %}{% trans 'Carreras' %}{% endblock %}
+
+{% block content %}
+<h2>{% trans 'Borrar Carrera' %}</h2>
+    {% if not list_carreras %}
+        <p>{% trans 'No estás cursando ninguna carrera.' %}</p>
+    {% else %}
+    <!--<div class="delete-nota">
+        Atención: se borrarán también todas las materias cargadas.
+    </div>-->
+    <table>
+        <tr>
+            <th class="icon-left carrera">{% trans 'Carrera' %}</th>
+            <th class="delete">{% trans 'Borrar' %}</th>
+        </tr>
+        {% for a in list_carreras %}
+        <tr>
+            <td class="carrera">
+                {{ a.carrera.name }}
+	            <br />{% if a.plancarrera.orientacion %}<span class="small">{{ a.plancarrera.orientacion }} - </span>{% endif %}
+    	        <span class="smaller">Plan {{ a.plancarrera.pub_date.year }}</span><br />
+		</p>
+            </td>
+            <td>
+                <a href="{{ a.url_delete }}" class="delete">
+                    <img src="/media/images/delete.png" alt="{% trans 'Borrar' %}" />
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

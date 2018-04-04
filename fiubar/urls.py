@@ -29,7 +29,8 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
 
     # User management
-    path('users/', include('fiubar.users.urls', namespace='users')),
+    path('users/',
+        include('fiubar.users.urls', namespace='users')),
 
     path('accounts/',
         include('allauth.urls')),
@@ -38,6 +39,8 @@ urlpatterns = [
         TemplateView.as_view(template_name='users/user_profile.html'),
         name='profile'),
 
+    path('facultad/',
+        include('fiubar.facultad.urls', namespace='facultad')),
 ]
 
 if settings.DEBUG:
