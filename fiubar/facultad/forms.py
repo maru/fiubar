@@ -7,8 +7,8 @@ from datetime import date
 
 
 class SelectCarreraForm(forms.Form):
-    plancarrera = forms.ChoiceField(choices= \
-                       [(pc.id, pc.name) for pc in PlanCarrera.objects.all()])
+    plancarrera = forms.ModelChoiceField(queryset=PlanCarrera.objects.all(),
+                  empty_label=None, to_field_name="name")
     cuatrimestre = forms.ChoiceField(choices= \
               [(1, _(u'1° Cuatrimestre')), (2, _(u'2° Cuatrimestre'))])
     year = forms.ChoiceField(choices= \

@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <li class="{% if slug == 'home' %}active{% endif %}"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
         <li class="dropdown {% if slug == 'facultad' %}active{% endif %}">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans "Facultad" %}<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'facultad:home' %}">{% trans "Facultad" %}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Page 1-1</a></li>
             <li><a href="#">Page 1-2</a></li>

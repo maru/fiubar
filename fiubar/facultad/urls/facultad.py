@@ -7,7 +7,7 @@ from ..views import facultad
 urlpatterns = [
 	# Portada de materias
 	path('', facultad.home,
-		name='facultad-home'),
+		name='home'),
 
 	# Materias de las carreras cursadas.
 	#path('materias/', 'plancarrera_all',
