@@ -1,17 +1,10 @@
-FROM django:1.9.8-python3
+FROM python:3-onbuild
 MAINTAINER Maru Berezin
 
-ENV PYTHONUNBUFFERED 1
+ENV FIUBAR_SECRET_FILE config/secret.json
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+COPY start.sh /start.sh
 
-ADD requirements.txt /usr/src/app/
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+EXPOSE 8000
 
-RUN apt-get remove --purge -y gcc \
-    && apt-get autoremove -y && apt-get autoclean \
-    && rm -rf /tmp/* /var/tmp/* && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm requirements.txt
+CMD ["/start.sh"]
