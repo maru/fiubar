@@ -1,3 +1,13 @@
+import hashlib
+from PIL import Image, ImageColor, ImageFont, ImageDraw
+from io import BytesIO
+import os
+from django.conf import settings
+
+FULLSIZE  = 120 * 3
+POINTSIZE = 280
+OFFSET_Y = 47
+
 COLORS = ["871f22", "59e747", "a44af3", "7deb36", "4937d2", "b0ef26",
 "731cbe", "a5e841", "c441e9", "56ea6d", "e450ea", "38b931", "e431cb",
 "e1ec2c", "7c51e7", "84c831", "b422bc", "90ea66", "344dd6", "c4e143",
@@ -36,16 +46,6 @@ COLORS = ["871f22", "59e747", "a44af3", "7deb36", "4937d2", "b0ef26",
 "c47c8d", "745e41", "98728f", "925a3e", "786179", "a87962", "7d525f",
 "b58982", "76544f", "ac7e8b", "a36365", "8e7975"]
 
-import hashlib
-from PIL import Image, ImageColor, ImageFont, ImageDraw
-from io import BytesIO
-import os
-from fiubar.config.settings.common import BASE_DIR, MEDIA_ROOT, MEDIA_URL
-
-FULLSIZE  = 120 * 3
-POINTSIZE = 280
-OFFSET_Y = 47
-
 def generate_avatar(letter, data, size=FULLSIZE):
     if size > FULLSIZE:
         size = FULLSIZE
@@ -60,7 +60,7 @@ def generate_avatar(letter, data, size=FULLSIZE):
     # Create image
     img = Image.new('RGBA', (FULLSIZE, FULLSIZE), bg_color + (255, ))
 
-    font_path = os.path.join(BASE_DIR, 'static/fonts/Helvetica.ttf')
+    font_path = os.path.join(settings.MEDIA_ROOT, 'fonts/Helvetica.ttf')
     font = ImageFont.truetype(font_path, POINTSIZE)
     font_color = (bg_color) + (0x33, )
 
@@ -73,7 +73,7 @@ def generate_avatar(letter, data, size=FULLSIZE):
     dir_path = 'avatars/letter/' + letter.lower() + '/' + COLORS[color] + '/'
     file_name = str(size) + '.png'
 
-    image_path = os.path.join(MEDIA_ROOT, dir_path)
+    image_path = os.path.join(settings.MEDIA_ROOT, dir_path)
     try:
         os.makedirs(image_path, 0o755)
     except:
@@ -83,6 +83,6 @@ def generate_avatar(letter, data, size=FULLSIZE):
     img.save(image_path, 'PNG')
 
     # Return URL
-    file_url = os.path.join(MEDIA_URL, dir_path)
+    file_url = os.path.join(settings.MEDIA_URL, dir_path)
     file_url = os.path.join(file_url, file_name)
     return file_url

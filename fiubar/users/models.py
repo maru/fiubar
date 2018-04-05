@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
-
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.db import models
+from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
@@ -16,9 +15,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 related_name='profile')
     name = models.CharField(_('Name'), blank=True, max_length=255)
-    # TODO
-    # avatar = models.ImageField(_('Avatar'), upload_to='avatars/users/',
-    #                            null=True, blank=True, max_length=255)
     avatar = models.CharField(_('Picture'), blank=True, max_length=255)
     location = models.CharField(_('Location'), blank=True, max_length=255)
     website = models.URLField(_('Website'), blank=True, max_length=255)
@@ -54,9 +50,11 @@ from allauth.account.signals import user_signed_up
 from django.dispatch import receiver
 from .utils import generate_avatar
 
-@receiver(user_signed_up, dispatch_uid="create_profile_when_user_signed_up")
-def user_signed_up_(request, user, **kwargs):
-    profile = UserProfile.objects.get_or_create(user=user)[0]
-    profile.avatar = generate_avatar(user.username[0], user.email)
-    profile.save()
-    return profile
+# @receiver(user_signed_up, dispatch_uid="create_profile_when_user_signed_up")
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile = UserProfile.objects.get_or_create(user=instance)[0]
+        profile.avatar = generate_avatar(instance.username[0], instance.email)
+        profile.save()
+        return profile

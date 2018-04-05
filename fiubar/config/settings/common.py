@@ -8,16 +8,13 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-from __future__ import absolute_import, unicode_literals
-
 import os
 import json
 
 from django.core.exceptions import ImproperlyConfigured
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
-                                                os.path.abspath(__file__))))
-
+BASE_DIR = os.path.abspath('')
+FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
 
 # JSON-based secrets module
 try:
@@ -102,7 +99,8 @@ DEBUG = False
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
 FIXTURE_DIRS = (
-    os.path.join(BASE_DIR, 'fixtures'),
+    os.path.join(FIUBAR_DIR, 'fixtures'),
+    os.path.join(BASE_DIR,   'fixtures'),
 )
 
 # EMAIL CONFIGURATION
@@ -147,7 +145,7 @@ LANGUAGES = [('es-AR', 'Argentinian Spanish'),
              ('es_AR', 'Argentinian Spanish'),
              ('es', 'Spanish'), ]
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(FIUBAR_DIR, 'locale'),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
@@ -171,7 +169,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(FIUBAR_DIR, 'templates'),
         ],
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
@@ -206,7 +204,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(FIUBAR_DIR, 'static'),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -218,7 +216,7 @@ STATICFILES_FINDERS = (
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = get_secret('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT = get_secret('MEDIA_ROOT', os.path.join(FIUBAR_DIR, 'media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'

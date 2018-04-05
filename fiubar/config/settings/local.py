@@ -20,13 +20,14 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key only used for development and testing.
-SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
+SECRET_KEY = get_secret('DJANGO_SECRET_KEY',
+                        default='Z&r}+t&ZTLV`*M3`i|50FWCPWfdyuPigh8')
 
 # DATABASE CONFIGURATION
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.abspath(os.path.join(BASE_DIR, '../db.sqlite3'))
+        'NAME': os.path.abspath(os.path.join(BASE_DIR, 'db.sqlite3'))
     }
 }
 

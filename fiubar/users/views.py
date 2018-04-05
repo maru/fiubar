@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView, DeleteView
 
@@ -11,7 +9,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
-from .models import User, UserProfile, user_signed_up_
+from .models import User, UserProfile, create_user_profile
 from .forms import UserForm, UserProfileForm, UserDeleteForm
 
 
@@ -41,7 +39,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         try:
             profile = UserProfile.objects.get(user=self.request.user)
         except:
-            profile = user_signed_up_(self.request, self.request.user, **self.kwargs)
+            profile = create_user_profile(self.request, self.request.user, True, **self.kwargs)
         return profile
 
 class UserAccountView(LoginRequiredMixin, UpdateView):
