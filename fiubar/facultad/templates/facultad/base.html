@@ -1,39 +1,20 @@
 {% extends 'base.html' %}
-{% load i18n tabs %}
+{% load staticfiles i18n tabs %}
 {% block navigation %}{% activetab	"topnav"	"Facultad" %}{{ block.super }}{% endblock %}
 {% block title %}{% trans 'Materias' %}{% endblock %}
 {% csrf_token %}
 
-{% block head-extra %}<link rel="stylesheet" href="/media/css/facultad.css" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="/media/css/print.css" />
+{% block css-extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/facultad.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/paginator.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/print.css' %}" media="print" />
 {% endblock %}
 
-{% block content%}
-{% block menu %}<div class="box">
-          <h2>{% trans 'Facultad' %}</h2>
-          <ul>
-            <li><a href="{% url 'facultad:home' %}"><span>{% trans 'Home' %}</span></a></li>
-        {% if list_carreras %}
-        	<hr />
-            <!-- <li><a href="{% url 'facultad:facultad-materias' %}"><span>{% trans 'Mis Materias' %}</span></a></li> -->
-            {% for a in list_carreras %}
-                <li><a href="{{ a.url_materias }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
-                	<br />{% if a.plancarrera.orientacion %}<span class="small" style="display:block">{{ a.plancarrera.orientacion }}</span>{% endif %}
-                	<span class="smaller">Plan {{ a.plancarrera.pub_date.year }}</span>
-                	</a></li>
-            {% endfor %}
-        	<hr />
-			<li><a href="{% url 'facultad:facultad-cargar_materias' %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
-			{#<li><a href="{% url 'facultad:facultad-search' %}">{% trans 'Search Materias' %}</a></li>#}
-        {% endif %}
-			{% comment %}<li><a href="{% url 'facultad:facultad-events' %}">{% trans 'Calendario' %}</a>
-				<ul class="menu-list">
-					<li><a href="{% url 'facultad:facultad-events_add' %}">{% trans 'Agregar Fecha' %}</a></li>
-				</ul>
-			</li>{% endcomment %}
-			<li><a href="{% url 'facultad:carreras-home' %}"><span>{% trans 'Carreras' %}</span></a></li>
-          </ul>
-        </div>{% endblock %}
-
+{% block content %}
+    <div id="inner" class="">
 {% block inner %}{% endblock %}
+    </div>
 {% endblock %}

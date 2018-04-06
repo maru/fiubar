@@ -2,7 +2,7 @@
 {% load i18n facultad_tags %}
 
 {% block title %}{% trans 'Cursando Materia' %}{% endblock %}
-{% block content %}
+{% block inner %}
 {#<div class="materias-error"><span>Estamos trabajando para que aparezca correctamente el cuatrimestre!</span></div>#}
 <h2>{{ materia.get_codigo }} {{ materia.name }}</h2>
   <form action="" method="post">

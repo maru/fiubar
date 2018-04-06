@@ -10,31 +10,31 @@ from fiubar.core.log import logger
 
 from ..models.models import Materia, AlumnoMateria
 
-dict_data = {}
+context = {}
 
 @login_required
 def home(request):
-	return render_to_response('materias_home.html', dict_data,
+	return render_to_response('materias_home.html', context,
 							  context_instance=RequestContext(request))
 @login_required
 def show(request, cod_materia):
 	materia = _get_common_vars(cod_materia)
-	dict_data['members_list'] = Member.objects.get_members(dict_data['group'])[:10]
-	return render_to_response('materia_show.html', dict_data,
+	context['members_list'] = Member.objects.get_members(context['group'])[:10]
+	return render_to_response('materia_show.html', context,
 							  context_instance=RequestContext(request))
 
 @login_required
 def cursos(request, cod_materia):
 	materia = _get_common_vars(cod_materia)
-	dict_data['cursando_list'] = AlumnoMateria.objects.filter(materia=materia, state='C')
-	dict_data['aprobando_list'] = AlumnoMateria.objects.filter(materia=materia).exclude(state='C')
-	return render_to_response('materia_cursos.html', dict_data,
+	context['cursando_list'] = AlumnoMateria.objects.filter(materia=materia, state='C')
+	context['aprobando_list'] = AlumnoMateria.objects.filter(materia=materia).exclude(state='C')
+	return render_to_response('materia_cursos.html', context,
 							  context_instance=RequestContext(request))
 
 def _get_common_vars(cod_materia):
-	dict_data['materia'] = get_object_or_404(Materia, id=cod_materia)
+	context['materia'] = get_object_or_404(Materia, id=cod_materia)
 	try:
-		dict_data['group'] = Group.objects.get(email=dict_data['materia'].group_name())
+		context['group'] = Group.objects.get(email=context['materia'].group_name())
 	except:
-		dict_data['group'] = None
-	return dict_data['materia']
+		context['group'] = None
+	return context['materia']

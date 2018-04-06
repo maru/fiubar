@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.urls import reverse
+from django.contrib import messages
 
 from fiubar.core.log import logger
 
@@ -17,88 +18,87 @@ from . import sist_acad
 #from event.forms import CreateEventMateriaForm
 #from event.models import EventMateria, Event
 
-dict_data = {}
+context = {'slug': 'facultad'}
 
 @login_required
 @get_carreras
 def home(request):
     # Carreras and Materias
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
-    dict_data['list_matcur'] = AlumnoMateria.objects.get_summary(request.user)
-    return render(request, 'facultad/home.html', dict_data)
+    context['list_matcur'] = AlumnoMateria.objects.get_summary(request.user)
+    return render(request, 'facultad/home.html', context)
 
 @login_required
 @get_carreras
 def plancarrera_all(request):
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
     # Menu
-    dict_data.update(_menu_materias(request.GET))
-    dict_data['th_correlativas'] = _(u' ')
+    context.update(_menu_materias(request.GET))
+    context['th_correlativas'] = _(u' ')
     # Materias
-    if dict_data['tab_selected'] == 'cursando':
+    if context['tab_selected'] == 'cursando':
         # Busco las que están en  AlumnoMateria y no aprobadas
         lista_materias = AlumnoMateria.objects.list_materias_cursando(request.user).order_by('state')
-        dict_data['th_estado'] = _(u'Estado')
-    elif dict_data['tab_selected'] == 'aprobadas':
+        context['th_estado'] = _(u'Estado')
+    elif context['tab_selected'] == 'aprobadas':
         # Busco las que están en  AlumnoMateria y aprobadas
         lista_materias = AlumnoMateria.objects.list_materias_aprobadas(request.user)
-        dict_data['th_estado'] = _(u'Aprobada')
-        dict_data['th_correlativas'] = u'Nota '
+        context['th_estado'] = _(u'Aprobada')
+        context['th_correlativas'] = u'Nota '
     else:
         raise Http404(_('Error 404'))
 
-    dict_data['lista_materias'] = lista_materias
-    return render(request, 'facultad/plancarrera_all.html', dict_data)
+    context['lista_materias'] = lista_materias
+    return render(request, 'facultad/plancarrera_all.html', context)
 
 @login_required
 @get_carreras
 def plancarrera(request, plancarrera):
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
 
     # Get carrera y plan
-    request.session['plancarrera'] = plancarrera
     alumno = get_object_or_404(Alumno, plancarrera__short_name=plancarrera, user=request.user)
-    dict_data['carrera'] = alumno.carrera
+    context['carrera'] = alumno.carrera
     plancarrera = alumno.plancarrera
-    dict_data['plancarrera'] = plancarrera
+    context['plancarrera'] = plancarrera
 
     # Menu
-    dict_data.update(_menu_materias(request.GET))
-    dict_data['th_correlativas'] = _(u' ')
+    context.update(_menu_materias(request.GET))
+    context['th_correlativas'] = _(u' ')
     # Materias
-    if dict_data['tab_selected'] == 'cursando':
+    if context['tab_selected'] == 'cursando':
         # Busco las que están en  AlumnoMateria y no aprobadas
         #lista_materias = AlumnoMateria.objects.list_materias_cursando(request.user).order_by('state')
         lista_materias = PlanMateria.objects.list_materias_cursando(request.user, plancarrera)
-        dict_data['th_estado'] = _(u' Estado ')
-    elif dict_data['tab_selected'] == 'para_cursar':
+        context['th_estado'] = _(u' Estado ')
+    elif context['tab_selected'] == 'para_cursar':
         # Busco las que no tienen correlativas pendientes y no están en AlumnoMateria
         lista_materias = PlanMateria.objects.list_materias_para_cursar(request.user, plancarrera)
-        dict_data['th_estado'] = _(u' ')
-    elif dict_data['tab_selected'] == 'faltan_correl':
+        context['th_estado'] = _(u' ')
+    elif context['tab_selected'] == 'faltan_correl':
         # Busco las que tienen correlativas pendientes y no están en AlumnoMateria
         lista_materias = PlanMateria.objects.list_materias_faltan_correl(request.user, plancarrera)
-        # dict_data['th_estado'] = _(u' ')
-    elif dict_data['tab_selected'] == 'aprobadas':
+        # context['th_estado'] = _(u' ')
+    elif context['tab_selected'] == 'aprobadas':
         # Busco las que están en  AlumnoMateria y aprobadas
         #lista_materias = AlumnoMateria.objects.list_materias_aprobadas(request.user)
         lista_materias = PlanMateria.objects.list_materias_aprobadas(request.user, plancarrera)
-        dict_data['th_estado'] = _(u' Aprobada ')
-        dict_data['th_correlativas'] = _(u' Nota ')
-    elif dict_data['tab_selected'] == 'todas':
+        context['th_estado'] = _(u' Aprobada ')
+        context['th_correlativas'] = _(u' Nota ')
+    elif context['tab_selected'] == 'todas':
         lista_materias = PlanMateria.objects.filter(plancarrera=plancarrera).order_by('cuatrimestre', 'materia')
         lista_materias_a_cursar = PlanMateria.objects.list_materias_para_cursar(request.user, plancarrera)
-        dict_data['lista_materias_a_cursar'] = lista_materias_a_cursar
-        dict_data['th_estado'] = _(u' Estado ')
-        dict_data['th_correlativas'] = _(u' Correlativas ')
+        context['lista_materias_a_cursar'] = lista_materias_a_cursar
+        context['th_estado'] = _(u' Estado ')
+        context['th_correlativas'] = _(u' Correlativas ')
     else:
         raise Http404(_('Error 404'))
 
-    dict_data['lista_materias'] = lista_materias
-    return render(request, 'facultad/plancarrera.html', dict_data)
+    context['lista_materias'] = lista_materias
+    return render(request, 'facultad/plancarrera.html', context)
 
 def _get_correlativas(lista_materias, plancarrera):
     new_list = []
@@ -113,7 +113,7 @@ def _get_correlativas(lista_materias, plancarrera):
         # Calcular cuándo se cursan
         list_correl = {}
         l = {}
-        for pc in dict_data['lista_materias']:
+        for pc in context['lista_materias']:
             # Initial
             materia = pc.materia
             if not l.has_key(materia.codigo):
@@ -146,21 +146,21 @@ def _get_correlativas(lista_materias, plancarrera):
                 list_cuat.append(l[c.codigo])
             if list_cuat:
                 l[materia.codigo] = max(list_cuat) + 1
-        dict_data['list_falta_cuat'] = l
-        dict_data['list_correl'] = list_correl
+        context['list_falta_cuat'] = l
+        context['list_correl'] = list_correl
     except ObjecthoesNotExist:
         # Redirect to main carrera.
         alumno = Alumno.objects.get_main_carrera(user=request.user)
         return HttpResponseRedirect(alumno.url_materias())
     form = forms.MateriasFilterForm()
-    dict_data['form'] = form
-    return render(request, 'plan_materias.html', dict_data)
+    context['form'] = form
+    return render(request, 'plan_materias.html', context)
 """
 
 @login_required
 @get_carreras
 def materia(request, codigo):
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
     materia = get_object_or_404(Materia, id=codigo)
 
@@ -168,7 +168,7 @@ def materia(request, codigo):
         form = forms.CursadaForm(request.POST)
         if form.is_valid():
             form.save(request.user, materia)
-            AlumnoMateria.objects.update_creditos(request.user, dict_data['list_carreras'])
+            AlumnoMateria.objects.update_creditos(request.user, context['list_carreras'])
             messages.add_message(request, messages.SUCCESS, _('Cambios guardados.'))
             logger.info("%s - facultadmateria: user '%s', materia '%s', state '%s', form %s" % (request.META.get('REMOTE_ADDR'), request.user, codigo, form.cleaned_data['state'], form.cleaned_data))
             if request.session.has_key('plancarrera'):
@@ -177,8 +177,8 @@ def materia(request, codigo):
         initial_data = AlumnoMateria.objects.get_initial_data(request.user, materia)
         form = forms.CursadaForm(initial=initial_data)
         #request.session.set('redirect_url', request.META.get('HTTP_REFERER', ''))
-    dict_data.update({ 'form' : form, 'materia' : materia, })
-    return render(request, 'facultad/materia_form.html', dict_data)
+    context.update({ 'form' : form, 'materia' : materia, })
+    return render(request, 'facultad/materia_form.html', context)
 
 def _menu_materias(GET):
     # Tab selected
@@ -199,7 +199,7 @@ def _menu_materias(GET):
 @get_carreras
 def events_add(request):
     """
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
     if request.method == 'POST':
         form = CreateEventMateriaForm(request.POST)
@@ -223,29 +223,29 @@ def events_add(request):
     else:
         form = CreateEventMateriaForm()
         form.get_initial_data(request.user)
-    dict_data['form'] = form
+    context['form'] = form
     """
-    return render(request, 'materias_events_add_form.html', dict_data)
+    return render(request, 'materias_events_add_form.html', context)
 
 @login_required
 @get_carreras
 def events(request):
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
-    #dict_data['event_list'] = EventMateria.objects.list_event_materia_cursando(request.user)
-    return render(request, 'facultad/events.html', dict_data)
+    #context['event_list'] = EventMateria.objects.list_event_materia_cursando(request.user)
+    return render(request, 'facultad/events.html', context)
 
 
 @login_required
 @get_carreras
 def cargar_materias(request):
-    dict_data['list_carreras'] = request.session.get('list_carreras', list())
+    context['list_carreras'] = request.session.get('list_carreras', list())
     request.session['list_carreras'] = []
     if request.method == 'POST':
         dict_result = sist_acad.parse_materias_aprobadas(request.POST['paste'], request)
-        AlumnoMateria.objects.update_creditos(request.user, dict_data['list_carreras'])
-        dict_data.update(dict_result)
+        AlumnoMateria.objects.update_creditos(request.user, context['list_carreras'])
+        context.update(dict_result)
     else:
         # Clean cache!
-        dict_data.update({ 'text_paste' : '', 'materia_list' : '', 'notfound_list' : '' })
-    return render(request, 'facultad/cargar_materias.html', dict_data)
+        context.update({ 'text_paste' : '', 'materia_list' : '', 'notfound_list' : '' })
+    return render(request, 'facultad/cargar_materias.html', context)

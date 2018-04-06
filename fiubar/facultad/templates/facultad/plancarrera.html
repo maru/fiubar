@@ -1,17 +1,17 @@
 {% extends 'facultad/base.html' %}
-{% load i18n facultad_tags %}
+{% load staticfiles i18n facultad_tags %}
 
 {% block title %}{% trans 'Materias' %}{% endblock %}
 
-{% block content %}
+{% block inner %}
 <h2>{{ carrera.name }}
 	{% if plancarrera.orientacion %}<span class="small">{{ plancarrera.orientacion }} - </span>{% endif %}
     <span class="small">Plan {{ plancarrera.pub_date.year }}</span>
 </h2>
 	<div id="command-details" class="tab-box">
 		<div id="tools">
-			{#<a href="#" onClick="alert('¡Muy pronto!\nEstamos implementándolo.')">Bajar <img src="{{ MEDIA_URL }}images/page_white_acrobat.png" alt="PDF" title="Bajar PDF" /></a>&nbsp;&nbsp;&nbsp;#}
-			<a href="#" onClick="window.print();return false">Imprimir <img src="{{ MEDIA_URL }}images/printer.png" alt="Imprimir" title="Imprimir" /></a>
+			{#<a href="#" onClick="alert('¡Muy pronto!\nEstamos implementándolo.')">Bajar <img src="{% static 'images/page_white_acrobat.png' %}" alt="PDF" title="Bajar PDF" /></a>&nbsp;&nbsp;&nbsp;#}
+			<a href="#" onClick="window.print();return false">Imprimir <img src="{% static 'images/facultad/printer.png' %}" alt="Imprimir" title="Imprimir" /></a>
 		</div>
 		{% autoescape off %}<ul class="head">
 			<li{{ class_cursando }}>
@@ -64,6 +64,3 @@
 		</div>
 	</div>
 {% endblock %}
-
-
-

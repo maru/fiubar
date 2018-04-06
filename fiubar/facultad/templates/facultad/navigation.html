@@ -2,7 +2,7 @@
 {# Barra de navegación #}
 <li class="{% if slug == 'facultad' %}active{% endif %}">
   <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'facultad:home' %}">{% trans "Facultad" %}<span class="caret"></span></a>
-  <ul class="xdropdown-menu">
+  <ul class="dropdown-menu">
     <li><a href="{% url 'facultad:home' %}"><span>{% trans 'Home' %}</span></a></li>
     <li role="separator" class="divider"></li>
     {% get_carreras %}

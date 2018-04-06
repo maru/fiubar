@@ -21,7 +21,7 @@ class Alumno(models.Model):
 	objects = AlumnoManager()
 
 	def __str__(self):
-		return "alumno"
+		return self.user
 
 	def url_delete(self):
 		return reverse('facultad:carreras-delete', args=[self.plancarrera.short_name])
@@ -187,7 +187,7 @@ class Carrera(models.Model):
 	plan_vigente = models.ForeignKey('PlanCarrera', related_name='plan', null=True, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return "carrera"
+		return self.short_name
 
 	def url_materias(self):
 		return reverse('facultad:facultad-materias-carrera', args=[self.short_name])

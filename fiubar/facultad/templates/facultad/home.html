@@ -1,9 +1,9 @@
 {% extends 'facultad/base.html' %}
-{% load i18n facultad_tags %}
+{% load staticfiles i18n facultad_tags %}
 
 {% block title %}{% trans 'Mis Materias' %}{% endblock %}
-{% block link-css %}
-    <link rel="stylesheet" href="/media/css/facultad.css" type="text/css" />
+{% block css-extra %}
+    <link rel="stylesheet" href="{% static 'css/facultad.css' %}" type="text/css" />
 {% endblock %}
 
 {% block main-css %}facultad{% endblock %}
@@ -35,12 +35,12 @@
   <h1>Mi{{ list_carreras.count|pluralize }} carrera{{ list_carreras.count|pluralize }}</h1>
 {% if list_carreras %}
   {% comment %}<div class="facultad-news">
-    <span>¡Alegría! <img src="/media/images/emoticon_happy.png" alt=":D" />
+    <span>¡Alegría! <img src="{% static 'images/facultad/emoticon_happy.png' %}" alt=":D" />
     ¡Faltan sólo {{ faltan_dias }} días de clase!</span>
   </div>{% endcommen t %}
   {% for a in list_carreras %}
   <div class="last-news list-carreras">
-    <h3 class="carrera"><img src="/media/avatars/groups/fiuba-{{ a.carrera.short_name }}_s.png" class="group-picture" alt="" />
+    <h3 class="carrera"><img src="{% static 'avatars/groups/fiuba-{{ a.carrera.short_name }}_s.png' %}" class="group-picture" alt="" />
     <a href="/group/fiuba-{{ a.carrera.short_name }}/">{{ a.carrera.abbr_name }}</a></h3>
     <ul class="materia-count">
       {% if a.new_alumnos %}<li><a href="{{ a.carrera.url_alumnos }}"><span class="new-count">{{ a.new_alumnos }}</span> alumno{{ a.new_alumnos|pluralize }}</a></li>{% endif %}{% endif %}

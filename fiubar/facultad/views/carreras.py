@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.urls import reverse
 from django.core.cache import cache
 from django.views.generic import ListView
+from django.contrib import messages
 
 from fiubar.core.log import logger
 
@@ -14,22 +15,25 @@ from ..models.models import Carrera, Alumno, AlumnoMateria, PlanCarrera
 from ..decorators import get_carreras
 from .. import forms
 
-dict_data = {}
+context = {'slug': 'facultad'}
 
 @login_required
 @get_carreras
 def home(request):
-	dict_data['list_carreras'] = request.session.get('list_carreras', list())
-	return render(request, 'carreras/carreras_home.html', dict_data)
+	context['list_carreras'] = request.session.get('list_carreras', list())
+	request.session['list_carreras'] = []
+	return render(request, 'carreras/carreras_home.html', context)
 
 @login_required
 @get_carreras
 def add(request):
-	dict_data['list_carreras'] = request.session.get('list_carreras', list())
+	context['list_carreras'] = request.session.get('list_carreras', list())
+	request.session['list_carreras'] = []
 	if request.method == 'POST':
 		form = forms.SelectCarreraForm(request.POST)
 		if form.is_valid():
-			plancarrera = PlanCarrera.objects.get(id=form.cleaned_data['plancarrera'])
+			print(form.cleaned_data)
+			plancarrera = form.cleaned_data['plancarrera']
 			begin_date = form.cleaned_data['begin_date']
 			alumno = Alumno.objects.create(user=request.user, carrera=plancarrera.carrera,
 					   plancarrera=plancarrera, begin_date=begin_date)
@@ -45,8 +49,8 @@ def add(request):
 			logger.error("%s - carreras-add: user '%s', plancarrera '%s', \"Form not valid.\"" % (request.META.get('REMOTE_ADDR'), request.user, form.cleaned_data['plancarrera']))
 
 	form = forms.SelectCarreraForm()
-	dict_data['form'] = form
-	return render(request, 'carreras/carrera_add_form.html', dict_data)
+	context['form'] = form
+	return render(request, 'carreras/carrera_add_form.html', context)
 
 @login_required
 @get_carreras
@@ -58,13 +62,15 @@ def delete(request, plancarrera=None):
 		logger.info("%s - carreras-delete: user '%s', plancarrera '%s'" % (request.META.get('REMOTE_ADDR'), request.user, plancarrera))
 		return HttpResponseRedirect(reverse('facultad:carreras-home'))
 	# Show list of carreras
-	dict_data['list_carreras'] = request.session.get('list_carreras', list())
-	return render(request, 'carreras/carrera_delete.html', dict_data)
+	context['list_carreras'] = request.session.get('list_carreras', list())
+	request.session['list_carreras'] = []
+	return render(request, 'carreras/carrera_delete.html', context)
 
 @login_required
 @get_carreras
 def graduado(request, plancarrera):
-	dict_data['list_carreras'] = request.session.get('list_carreras', list())
+	context['list_carreras'] = request.session.get('list_carreras', list())
+	request.session['list_carreras'] = []
 	alumno = get_object_or_404(Alumno, user=request.user, plancarrera__short_name=plancarrera)
 	if request.method == 'POST':
 		form = forms.GraduadoForm(request.POST)
@@ -82,12 +88,11 @@ def graduado(request, plancarrera):
 			initial_data['year'] = alumno.graduado_date.year
 		form = forms.GraduadoForm(initial=initial_data)
 
-	dict_data['form'] = form
-	dict_data['alumno'] = alumno
-	return render(request, 'carreras/carrera_graduado_form.html', dict_data)
+	context['form'] = form
+	context['alumno'] = alumno
+	return render(request, 'carreras/carrera_graduado_form.html', context)
 
 @login_required
-@get_carreras
 def del_graduado(request, plancarrera):
 	alumno = get_object_or_404(Alumno, user=request.user, plancarrera__short_name=plancarrera)
 	alumno.del_graduado()
@@ -99,13 +104,14 @@ RESULTS_PER_PAGE = 10
 @login_required
 @get_carreras
 def alumnos(request, plancarrera):
-	dict_data['list_carreras'] = request.session.get('list_carreras', list())
+	context['list_carreras'] = request.session.get('list_carreras', list())
+	request.session['list_carreras'] = []
 	plancarrera = get_object_or_404(PlanCarrera, short_name=plancarrera)
 	page = int(request.GET.get('p', 1))
 	queryset = Alumno.objects.filter(plancarrera=plancarrera).order_by('-begin_date', '-id')
-	dict_data.update({ 'plancarrera' : plancarrera, 'object' : _(u'alumno') })
+	context.update({ 'plancarrera' : plancarrera, 'object' : _(u'alumno') })
 	return ListView.object_list(request, queryset=queryset,
 				paginate_by=RESULTS_PER_PAGE, page=page,
-				extra_context=dict_data, template_name = 'carreras/carrera_alumnos.html',
+				extra_context=context, template_name = 'carreras/carrera_alumnos.html',
 			)
 """
