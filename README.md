@@ -35,15 +35,14 @@ Instalación
 -----------
 
     git clone https://github.com/maru/fiubar.git
-
     cd fiubar/
 
-Ejecutar el container en docker:
+Si usás [docker](https://docs.docker.com/get-started/), crear la imagen y ejecutar el container:
 
     docker build -t fiubar .
     docker run -it -p 8000:8000 --rm --name fiubar-local fiubar
 
-... y abrir el navegador en http://127.0.0.1:8000/ :)
+... y abrir el navegador en http://127.0.0.1:8000/ :smile:
 
 Testing
 -------
