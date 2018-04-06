@@ -6,6 +6,14 @@ from ..models.models import PlanMateria, Alumno, Carrera, AlumnoMateria, Materia
 
 register = template.Library()
 
+@register.simple_tag(takes_context=True)
+def get_carreras(context):
+    user = context.get('user')
+    if user.is_authenticated:
+        carreras = Alumno.objects.select_related('carrera').filter(user=user).order_by('plancarrera')
+        context['list_carreras'] = carreras
+    return ''
+
 @register.filter
 def display_row_materia(context, planmateria):
 	materia = planmateria.materia
