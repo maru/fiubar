@@ -81,3 +81,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
 # ACCOUNT_ADAPTER = 'fiubar.models.SignupClosedAdapter'
+
+ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1', 'dev.fiubar.tk'])
+
