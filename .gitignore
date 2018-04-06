@@ -7,3 +7,7 @@ pip-packages
 media
 db.sqlite3
 fiubar.log
+geckodriver.log
+fiubar.egg-info
+.tox
+.coverage
