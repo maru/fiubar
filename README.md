@@ -1,5 +1,4 @@
-fiubar
-======
+![fiubar](fiubar/static/images/fiubar-logo.png)
 
 Administrador de materias para FIUBA.
 
@@ -7,28 +6,28 @@ De manera simple y ordenada, podés organizar tu carrera y decidir qué materias
 
 # Para acceder a fiubar: http://fiubar.tk/
 
-Participá!
-----------
+:sparkles: ¡Participá! :sparkles:
+---------------------------------
 
 Tenemos una lista de discusión:
 http://groups.google.com/d/forum/fiubar-dev
 
-¿*Encontraste un error*? Por favor incluí la mayor cantidad de información
+:bug: ¿*Encontraste un error*? Por favor incluí la mayor cantidad de información
 posible, como el link de la página y los pasos que hay que seguir para
 reproducir el error.
 
 También podés reportar errores usando la plataforma de github: https://github.com/maru/fiubar/issues
 
-¿Se te ocurrió una *excelente idea* para Fiubar? ¡Contanos!
+:bulb: ¿Se te ocurrió una *excelente idea* para Fiubar? ¡Contanos!
 
-Se aceptan *contribuciones de código*: https://github.com/maru/fiubar/pulls
+:woman_technologist: Se aceptan *contribuciones de código*: https://github.com/maru/fiubar/pulls
 
-¿Tenés ganas de participar y no sabés por dónde empezar?
+:tired_face: ¿Tenés ganas de participar y no sabés por dónde empezar?
   - Usamos Django (python): https://tutorial.djangogirls.org/es/
   - Probá de bajar el código de fiubar e instalarlo en tu computadora.
   - Si tenés una duda, ¡podés escribirnos en esta lista!
 
-Chat:
+:computer: Chat:
 https://fiubar.slack.com/messages/general/
 
 Instalación
