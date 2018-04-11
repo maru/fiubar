@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext as _
 
 from fiubar.core.log import logger
 
-from ..models.models import Materia, AlumnoMateria
+from ..models.models import AlumnoMateria, Materia
+
 
 context = {}
 

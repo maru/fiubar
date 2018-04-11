@@ -3,6 +3,7 @@ from django.urls import path
 
 from ..views import carreras
 
+
 urlpatterns = [
 
 	path('carreras/', carreras.home,

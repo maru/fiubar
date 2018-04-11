@@ -1,6 +1,7 @@
 """ From django-tabs """
 from django import template
 
+
 register = template.Library()
 
 ACTIVE_TAB_NAME = 'ACTIVE_TABS'

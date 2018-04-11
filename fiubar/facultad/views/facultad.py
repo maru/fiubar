@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from django.utils.translation import ugettext as _
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.urls import reverse
-from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 from fiubar.core.log import logger
 
-from ..models.models import PlanMateria, Alumno, Carrera, AlumnoMateria, Materia
-from ..decorators import get_carreras
-from .. import forms
 from . import sist_acad
+from .. import forms
+from ..decorators import get_carreras
+from ..models.models import (Alumno, AlumnoMateria, Carrera, Materia,
+                             PlanMateria)
+
+
 #from event.forms import CreateEventMateriaForm
 #from event.models import EventMateria, Event
 

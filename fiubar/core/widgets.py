@@ -4,10 +4,11 @@ Extra HTML Widget classes
 
 import datetime
 
-from django.forms.widgets import Widget, Select
-from django.utils.translation import ugettext as _
+from django.forms.widgets import Select, Widget
 from django.utils.dates import MONTHS
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
+
 
 __all__ = ('SelectDateWidget',)
 

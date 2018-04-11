@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext as _
-from django.db import models
-from fiubar.users.models import User
-from django.urls import reverse
-from .managers import AlumnoManager, AlumnoMateriaManager, PlanMateriaManager
-from .functions import calculate_time
 from django.contrib import admin
+from django.db import models
+from django.urls import reverse
+from django.utils.translation import ugettext as _
+
+from fiubar.users.models import User
+
+from .functions import calculate_time
+from .managers import AlumnoManager, AlumnoMateriaManager, PlanMateriaManager
+
 
 # -*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*-
 class Alumno(models.Model):

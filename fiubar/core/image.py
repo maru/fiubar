@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext as _
 from StringIO import StringIO
+
+from django.utils.translation import ugettext as _
 from PIL import Image
+
 
 def rescale_upload(photo, size, path=None, quality=100, format='jpeg', canvas=None):
 	"""Function is used"""

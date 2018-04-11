@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext as _
 from django.db import models
+from django.utils.translation import ugettext as _
+
+
 Q = models.Q
 
 class AlumnoManager(models.Manager):

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.db import models
 from django.contrib import admin
+from django.db import models
+
 
 "MateriaCurso"
 class MateriaCurso(models.Model):

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-import re, datetime
+import datetime
+import re
 
 from fiubar.core.log import logger
 
-from ..models.models import Materia, AlumnoMateria
+from ..models.models import AlumnoMateria, Materia
+
 
 re_infoacad = re.compile(r"""^\s*
 	(?P<cod_materia>\d+)\s+

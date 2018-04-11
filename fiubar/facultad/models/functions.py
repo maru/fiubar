@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext as _
 import math
+
+from django.utils.translation import ugettext as _
+
 
 def calculate_time(begin_date, end_date):
     # Calculates total time

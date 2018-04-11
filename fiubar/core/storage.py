@@ -1,8 +1,13 @@
-from django.core.files.storage import FileSystemStorage
-from django.core.files.base import ContentFile
+import errno
+import md5
+import os
+
 from django.conf import settings
+from django.core.files.base import ContentFile
+from django.core.files.storage import FileSystemStorage
+
 from fiubar.core.log import logger
-import md5, os, errno
+
 
 class StaticDirSystemStorage(FileSystemStorage):
 	"""

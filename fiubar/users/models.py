@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from allauth.account.signals import user_signed_up
 from django.contrib.auth.models import AbstractUser
-from django.urls import reverse
 from django.db import models
 from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.urls import reverse
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+
+from .utils import generate_avatar
 
 
 @python_2_unicode_compatible
@@ -46,9 +50,6 @@ class UserProfile(models.Model):
     class Meta:
         verbose_name = _("profile")
 
-from allauth.account.signals import user_signed_up
-from django.dispatch import receiver
-from .utils import generate_avatar
 
 # @receiver(user_signed_up, dispatch_uid="create_profile_when_user_signed_up")
 @receiver(post_save, sender=User)

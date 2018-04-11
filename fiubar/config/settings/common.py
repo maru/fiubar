@@ -3,15 +3,16 @@
 Django settings for fiubar project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/dev/topics/settings/
+https://docs.djangoproject.com/en/2.0/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/dev/ref/settings/
+https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-import os
 import json
+import os
 
 from django.core.exceptions import ImproperlyConfigured
+
 
 BASE_DIR = os.path.abspath('')
 FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
@@ -25,15 +26,15 @@ except:
     secrets = {}
 
 
-def get_secret(setting, default=None, secrets=secrets):
-    """Get the secret variable or return explicit exception."""
+def get_secret(setting, default=None):
+    """
+    Get the value of a Django setting, return None if it doesn't exist.
+    The optional second argument can specify an alternate default.
+    """
     try:
         return secrets[setting]
     except KeyError:
-        if default:
-            return default
-        error_msg = "Set the {0} variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
+        return default
 
 
 # APP CONFIGURATION
@@ -59,8 +60,6 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.openid',
     'allauth.socialaccount.providers.linkedin',
-    'contact_form',
-    'captcha',
 ]
 
 # Fiubar apps
@@ -69,7 +68,7 @@ LOCAL_APPS = [
     'fiubar.facultad.apps.FacultadConfig',
 ]
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIDDLEWARE CONFIGURATION
@@ -92,12 +91,12 @@ MIGRATION_MODULES = {
 
 # DEBUG
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#debug
 DEBUG = False
 
 # FIXTURE CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-FIXTURE_DIRS
 FIXTURE_DIRS = (
     os.path.join(FIUBAR_DIR, 'fixtures'),
     os.path.join(BASE_DIR,   'fixtures'),
@@ -110,21 +109,21 @@ EMAIL_BACKEND = get_secret('DJANGO_EMAIL_BACKEND',
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#admins
 ADMINS = (
     ("""Admin""", 'admin@fiubar.tk'),
 )
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#managers
 MANAGERS = ADMINS
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3'
+        'NAME': os.path.abspath(os.path.join(BASE_DIR, 'local/db.sqlite3'))
     }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
@@ -138,7 +137,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # In a Windows environment this must be set to your system time zone.
 TIME_ZONE = get_secret('TIME_ZONE', default='America/Argentina/Buenos_Aires')
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#language-code
 LANGUAGE_CODE = 'en'
 LANGUAGE_DEFAULT = 'es_AR'
 LANGUAGES = [('es-AR', 'Argentinian Spanish'),
@@ -148,39 +147,39 @@ LOCALE_PATHS = [
     os.path.join(FIUBAR_DIR, 'locale'),
 ]
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#site-id
 SITE_ID = 1
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#use-i18n
 USE_I18N = True
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#use-l10n
 USE_L10N = True
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#use-tz
 USE_TZ = True
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#templates
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#templates
 TEMPLATES = [
     {
-        # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
+        # See: https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-TEMPLATES-BACKEND
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
+        # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-dirs
         'DIRS': [
             os.path.join(FIUBAR_DIR, 'templates'),
         ],
         'OPTIONS': {
-            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
+            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-debug
             'debug': DEBUG,
-            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
-            # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
+            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-loaders
+            # https://docs.djangoproject.com/en/2.0/ref/templates/api/#loader-types
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
-            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
+            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-context-processors
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -200,14 +199,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#static-url
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(FIUBAR_DIR, 'static'),
 )
 
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+# See: https://docs.djangoproject.com/en/2.0/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -215,17 +214,17 @@ STATICFILES_FINDERS = (
 
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = get_secret('MEDIA_ROOT', os.path.join(FIUBAR_DIR, 'media'))
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#media-root
+MEDIA_ROOT = get_secret('MEDIA_ROOT', os.path.join(BASE_DIR, 'local/media'))
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#media-url
 MEDIA_URL = '/media/'
 
 # URL Configuration
 # ------------------------------------------------------------------------------
 ROOT_URLCONF = 'fiubar.urls'
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'fiubar.config.wsgi.application'
 
 # AUTHENTICATION CONFIGURATION
@@ -250,12 +249,12 @@ ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
 ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_USERNAME_REQUIRED = True
 
-SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
-SOCIALACCOUNT_AUTO_SIGNUP = False
-SOCIALACCOUNT_EMAIL_REQUIRED = True
-SOCIALACCOUNT_EMAIL_VERIFICATION = False
-SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS',
-                                     default={})
+if get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS') is not None:
+    SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS')
+    SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
+    SOCIALACCOUNT_AUTO_SIGNUP = False
+    SOCIALACCOUNT_EMAIL_REQUIRED = True
+    SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
 # Custom user app defaults
 AUTH_USER_MODEL = 'users.User'
@@ -288,8 +287,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ADMIN_URL = 'admin/'
 
 # ReCaptcha keys
-RECAPTCHA_PUBLIC_KEY = get_secret('RECAPTCHA_PUBLIC_KEY', 'public_key')
-RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY', 'private_key')
+RECAPTCHA_PUBLIC_KEY = get_secret('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
 NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
 RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
-RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'en')
+RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'es-419')

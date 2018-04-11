@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.urls import path, include
+from django.urls import include, path
 from django.views.generic.base import RedirectView
 
 from ..views import materias
+
 
 urlpatterns = [
     path('',

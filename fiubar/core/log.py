@@ -1,9 +1,11 @@
 import logging as _logging
+
 from django.conf import settings
+
 
 LOG_FORMAT = getattr(settings, 'LOG_FORMAT', '[%(asctime)s] %(levelname)-8s %(message)s')
 LOG_DATEFMT = getattr(settings, 'LOG_DATEFMT', '%Y-%m-%d %H:%M:%S')
-LOG_FILE = getattr(settings, 'LOG_FILE', 'fiubar.log')
+LOG_FILE = getattr(settings, 'LOG_FILE', 'local/fiubar.log')
 
 if getattr(settings, 'DEBUG', False):
 	LOG_LEVEL = getattr(settings, 'LOG_LEVEL', _logging.DEBUG)

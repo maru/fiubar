@@ -4,6 +4,7 @@ from django.contrib import admin
 
 from .models.models import Alumno, AlumnoMateria
 
+
 @admin.register(Alumno)
 class AlumnoAdmin(admin.ModelAdmin):
 	list_display = ['user', 'carrera', 'plancarrera', 'begin_date',

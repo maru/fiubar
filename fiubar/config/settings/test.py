@@ -16,7 +16,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = False
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key
 # Note: This key only used for development and testing.
 SECRET_KEY = get_secret('DJANGO_SECRET_KEY',
                         default='mc,kdjsl983hskasheg2jsssLdjcn(2js)')

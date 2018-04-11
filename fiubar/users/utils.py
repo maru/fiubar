@@ -1,8 +1,10 @@
 import hashlib
-from PIL import Image, ImageColor, ImageFont, ImageDraw
-from io import BytesIO
 import os
+from io import BytesIO
+
 from django.conf import settings
+from PIL import Image, ImageColor, ImageDraw, ImageFont
+
 
 FULLSIZE  = 120 * 3
 POINTSIZE = 280

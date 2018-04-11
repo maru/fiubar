@@ -8,8 +8,12 @@ Local settings
 - Add django-extensions as app
 """
 
-from .common import *  # noqa
 import socket
+
+from django.contrib.messages import constants as message_constants
+
+from .common import *  # noqa
+
 
 # DEBUG
 # ------------------------------------------------------------------------------
@@ -18,22 +22,14 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key
 # Note: This key only used for development and testing.
 SECRET_KEY = get_secret('DJANGO_SECRET_KEY',
                         default='Z&r}+t&ZTLV`*M3`i|50FWCPWfdyuPigh8')
 
 # DATABASE CONFIGURATION
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.abspath(os.path.join(BASE_DIR, 'db.sqlite3'))
-    }
-}
+DATABASES['default'] = get_secret('DATABASE_DEFAULT', DATABASES['default'])
 
-# MESSAGES
-# ------------------------------------------------------------------------------
-from django.contrib.messages import constants as message_constants
 MESSAGE_LEVEL = message_constants.DEBUG
 
 # Mail settings
@@ -78,7 +74,8 @@ DEBUG_TOOLBAR_CONFIG = {
 # ------------------------------------------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL',
+                                           default='http')
 
 # ACCOUNT_ADAPTER = 'fiubar.models.SignupClosedAdapter'
 

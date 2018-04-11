@@ -7,12 +7,12 @@ Production Configurations
 """
 import logging
 
-
 from .common import *  # noqa
+
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key
 # Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in secret.json
 SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
 
@@ -53,7 +53,7 @@ SERVER_EMAIL = get_secret('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See:
-# https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
+# https://docs.djangoproject.com/en/2.0/ref/templates/api/#django.template.loaders.cached.Loader
 TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', [
         'django.template.loaders.filesystem.Loader',

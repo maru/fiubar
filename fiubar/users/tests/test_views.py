@@ -2,10 +2,7 @@ from django.test import RequestFactory
 
 from test_plus.test import TestCase
 
-from ..views import (
-    UserRedirectView,
-    UserAccountView
-)
+from ..views import UserAccountView, UserRedirectView
 
 
 class BaseUserTestCase(TestCase):

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from django import forms
-from django.utils.translation import ugettext_lazy as _
-from django.core.exceptions import ValidationError
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from allauth.account.forms import UserForm
+from crispy_forms.bootstrap import AppendedText, FormActions, PrependedText
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import HTML, Button, Div, Field, Layout, Row, Submit
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 from .models import User, UserProfile
+
 
 class UserForm(forms.ModelForm):
     """

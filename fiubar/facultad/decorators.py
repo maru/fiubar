@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext as _
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib import messages
+from django.utils.translation import ugettext as _
+
 from .models.models import Alumno
+
 
 def get_carreras(function):
     """

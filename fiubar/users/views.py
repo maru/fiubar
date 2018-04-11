@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView, DeleteView
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.translation import ugettext as _
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse, reverse_lazy
+from django.utils.translation import ugettext as _
+from django.views.generic import (DeleteView, DetailView, ListView,
+                                  RedirectView, UpdateView)
 
+from .forms import UserDeleteForm, UserForm, UserProfileForm
 from .models import User, UserProfile, create_user_profile
-from .forms import UserForm, UserProfileForm, UserDeleteForm
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):

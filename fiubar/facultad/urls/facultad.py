@@ -4,6 +4,7 @@ from django.views.generic.base import RedirectView
 
 from ..views import facultad
 
+
 urlpatterns = [
 	# Portada de materias
 	path('', facultad.home,

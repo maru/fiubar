@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext as _
+from datetime import date, timedelta
+
 from django import template
+from django.contrib.humanize.templatetags import humanize
 from django.utils.dates import MONTHS
-from ..models.models import PlanMateria, Alumno, Carrera, AlumnoMateria, Materia
+from django.utils.translation import ugettext as _
+
+from ..models.models import (Alumno, AlumnoMateria, Carrera, Materia,
+                             PlanMateria)
+
 
 register = template.Library()
 
@@ -106,7 +112,6 @@ def display_row_materia(context, planmateria):
 	}
 register.inclusion_tag('facultad/plancarrera_materia.html', takes_context=True)(display_row_materia)
 
-from django.contrib.humanize.templatetags import humanize
 @register.filter
 def apnumber(value):
 	retvalue = '-'
@@ -176,7 +181,6 @@ def facultad_user_menu(context):
 	return { 'carrera' : carrera, }
 register.inclusion_tag('facultad/plugins/facultad_user_menu.html', takes_context=True)(facultad_user_menu)
 
-from datetime import date, timedelta
 @register.filter
 def future_dates_only(the_date):
 	dd, mm, yy = the_date.split('/')
