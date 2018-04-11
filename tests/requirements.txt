@@ -28,3 +28,6 @@ django-extensions
 
 # Testing
 selenium<4
+coverage
+flake8
+mock

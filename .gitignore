@@ -11,3 +11,4 @@ geckodriver.log
 fiubar.egg-info
 .tox
 .coverage
+local
