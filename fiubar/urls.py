@@ -21,7 +21,7 @@ urlpatterns = [
         TemplateView.as_view(template_name='pages/faq.html'),
         name='faq'),
 
-    path('contact/', include('contact_form.urls')),
+    path('contact/', include('contact_form.recaptcha_urls')),
 
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
