@@ -79,5 +79,4 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL',
 
 # ACCOUNT_ADAPTER = 'fiubar.models.SignupClosedAdapter'
 
-ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1', 'dev.fiubar.tk'])
-
+ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])

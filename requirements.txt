@@ -1,4 +1,4 @@
-Django
+Django>=2.0
 pytz
 
 # Forms
@@ -25,6 +25,3 @@ Pillow
 # For local development
 django-debug-toolbar
 django-extensions
-
-# Testing
-selenium<4

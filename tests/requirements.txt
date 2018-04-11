@@ -1,33 +1,4 @@
-Django
-pytz
-
-# Forms
-django-braces
-django-crispy-forms
-django-floppyforms
-django-recaptcha
-django-contact-form-recaptcha
-
-# Models
-django-model-utils
-
-# For user registration, either via email or social
-# Well-built with regular release cycles!
-django-allauth
-
-# Unicode slugification
-unicode-slugify
-django-autoslug
-
-# Avatar
-Pillow
-
-# For local development
-django-debug-toolbar
-django-extensions
-
-# Testing
-selenium<4
 coverage
 flake8
 mock
+selenium<4

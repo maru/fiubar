@@ -25,7 +25,6 @@ try:
 except:
     secrets = {}
 
-
 def get_secret(setting, default=None):
     """
     Get the value of a Django setting, return None if it doesn't exist.
@@ -49,6 +48,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.admin',
+    'captcha',
 ]
 # Other apps
 THIRD_PARTY_APPS = [
