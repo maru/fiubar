@@ -4,3 +4,6 @@
 # For local development
 django-debug-toolbar
 django-extensions
+
+# Testing
+tox

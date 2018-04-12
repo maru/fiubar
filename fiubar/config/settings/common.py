@@ -248,12 +248,18 @@ ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
 ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_USERNAME_REQUIRED = True
 
-if get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS') is not None:
-    SOCIALACCOUNT_PROVIDERS = get_secret('ALLAUTH_SOCIALACCOUNT_PROVIDERS')
-    SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
-    SOCIALACCOUNT_AUTO_SIGNUP = False
-    SOCIALACCOUNT_EMAIL_REQUIRED = True
-    SOCIALACCOUNT_EMAIL_VERIFICATION = False
+SOCIALACCOUNT_PROVIDERS = {
+    "openid": {
+        "SERVERS": [{
+            "id": "yahoo",
+            "name": "Yahoo",
+            "openid_url": "http://me.yahoo.com"}]
+    }
+}
+SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
 # Custom user app defaults
 AUTH_USER_MODEL = 'users.User'
