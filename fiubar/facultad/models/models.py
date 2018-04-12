@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext as _
-
 from fiubar.users.models import User
 
 from .functions import calculate_time

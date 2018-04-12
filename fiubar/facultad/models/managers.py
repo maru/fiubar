@@ -51,7 +51,7 @@ class AlumnoMateriaManager(models.Manager):
             if am.aprobada_cuat:
                 d['aprobada_cuat'], d['aprobada_year'] = \
                     am.aprobada_cuat.split('-')
-        except AlumnoMateria.DoesNotExist:
+        except self.model.DoesNotExist:
             pass
         return d
 
@@ -92,7 +92,7 @@ class AlumnoMateriaManager(models.Manager):
             al.state = 'A'
             al.aprobada_date = final_date
             al.nota = nota
-        except AlumnoMateria.DoesNotExist:
+        except self.model.DoesNotExist:
             al = self.create(user=user, materia=materia, state='A',
                              aprobada_date=final_date, nota=nota)
         al.aprobada_date_to_cuat()
@@ -102,7 +102,7 @@ class AlumnoMateriaManager(models.Manager):
     def get_or_none(self, user, materia):
         try:
             materia_cursada = self.get(user=user, materia=materia)
-        except AlumnoMateria.DoesNotExist:
+        except self.model.DoesNotExist:
             materia_cursada = None
         return materia_cursada
 
@@ -135,7 +135,7 @@ class AlumnoMateriaManager(models.Manager):
 class PlanMateriaManager(models.Manager):
 
     def list_materias_para_cursar(self, user, plancarrera):
-
+        from .models import AlumnoMateria, Alumno, Correlativa
         # Materias cursadas y aprobadas
         am_list = AlumnoMateria.objects.list_materias(user)
         aprobada_list = AlumnoMateria.objects.list_materias_aprobadas(user)
@@ -195,6 +195,8 @@ class PlanMateriaManager(models.Manager):
         return list
 
     def list_materias_cursando(self, user, plancarrera):
+        from .models import AlumnoMateria
+
         aprobada_list = AlumnoMateria.objects.list_materias_cursando(user)
 
         list = None
@@ -208,6 +210,8 @@ class PlanMateriaManager(models.Manager):
         return None
 
     def list_materias_aprobadas(self, user, plancarrera):
+        from .models import AlumnoMateria
+
         aprobada_list = AlumnoMateria.objects.list_materias_aprobadas(user)
 
         list = None

@@ -20,7 +20,7 @@ try:
     secret_file = os.getenv("FIUBAR_SECRET_FILE")
     with open(secret_file) as f:
         secrets = json.loads(f.read())
-except IOError:
+except (IOError, TypeError):
     secrets = {}
 
 

@@ -2,7 +2,6 @@ import hashlib
 import os
 
 from django.conf import settings
-
 from PIL import Image, ImageColor, ImageDraw, ImageFont
 
 

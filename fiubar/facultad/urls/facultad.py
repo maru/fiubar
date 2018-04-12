@@ -16,14 +16,14 @@ urlpatterns = [
 
     path('materias/',
          RedirectView.as_view(url='/facultad/'),
-         name='facultad-materias'),
+         name='materias'),
 
     path('materias/cargar/', facultad.cargar_materias,
-         name='facultad-cargar_materias'),
+         name='cargar_materias'),
 
     path('materias/<str:plancarrera>/', facultad.plancarrera,
-         name='facultad-materias-carrera'),
+         name='materias-carrera'),
 
     path('materia/<str:codigo>/', facultad.materia,
-         name='facultad-materia'),
+         name='materia'),
 ]
