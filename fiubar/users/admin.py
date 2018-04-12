@@ -35,29 +35,26 @@ class MyUserCreationForm(UserCreationForm):
 class MyUserAdmin(AuthUserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
-    fieldsets = (
-            ('User Profile', {'fields': ()}),
-    ) + AuthUserAdmin.fieldsets
-    list_display = ('username', 'email', 'is_active', 'is_staff', 'is_superuser')
+    fieldsets = (('User Profile', {'fields': ()})) + AuthUserAdmin.fieldsets
+    list_display = ('username', 'email', 'is_active',
+                    'is_staff', 'is_superuser')
     search_fields = ['username', 'email']
+
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     # form = MyUserChangeForm
     # add_form = MyUserCreationForm
-    fieldsets = (
-         (None, {
-            'fields': ('user', 'name', 'avatar', 'location', 'website', 'bio')
-         }),
-         (_('Status'), {
-            'fields': ( 'student', 'assistant', 'professional', 'professor')
-        }),
-    )
+    fieldsets = ((None, {'fields': ('user', 'name', 'avatar', 'location',
+                                    'website', 'bio')}),
+                 (_('Status'), {'fields': ('student', 'assistant',
+                                           'professional', 'professor')}))
     list_display = ['user', 'name', 'bio']
     search_fields = ['user', 'name', 'bio']
 
     def formfield_for_dbfield(self, db_field, **kwargs):
-        formfield = super(UserProfileAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        formfield = super(UserProfileAdmin, self).\
+            formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'bio':
             formfield.widget.attrs.update({'class': 'vURLField', 'rows': '4'})
             formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)

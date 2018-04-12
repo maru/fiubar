@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from allauth.account.forms import UserForm
-from crispy_forms.bootstrap import AppendedText, FormActions, PrependedText
+from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import HTML, Button, Div, Field, Layout, Row, Submit
+from crispy_forms.layout import HTML, Div, Field, Layout, Submit
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -16,10 +15,12 @@ class UserForm(forms.ModelForm):
     """
     def clean_username(self):
         if self.initial['username'] == self.cleaned_data['username']:
-            raise forms.ValidationError(_("Please choose a different username."))
+            raise forms.ValidationError(
+                _("Please choose a different username."))
         try:
-            user = User.objects.get(username=self.cleaned_data['username'])
-            raise ValidationError(_('A user with that username already exists.'))
+            User.objects.get(username=self.cleaned_data['username'])
+            raise ValidationError(
+                _('A user with that username already exists.'))
         except User.DoesNotExist:
             pass
         return self.cleaned_data['username']
@@ -28,18 +29,20 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username']
 
+
 class UserProfileForm(forms.ModelForm):
     """
     Edit user profile
     """
     # avatar = forms.ImageField(required=False) # TODO
     name = forms.CharField(label=_('Name'), required=False, max_length=255)
-    location = forms.CharField(label=_('Location'), required=False, max_length=255)
-    website = forms.CharField(label=_('Website'), required=False, max_length=255)
+    location = forms.CharField(label=_('Location'),
+                               required=False, max_length=255)
+    website = forms.CharField(label=_('Website'),
+                              required=False, max_length=255)
     bio = forms.CharField(label=_('About me'),
-        required = False,
-        widget = forms.Textarea(),
-    )
+                          required=False,
+                          widget=forms.Textarea())
 
     helper = FormHelper()
     helper.form_class = 'users-update'
@@ -52,7 +55,8 @@ class UserProfileForm(forms.ModelForm):
         HTML('<label for="id_status" class="control-label ">'),
         HTML(_('Occupation')),
         HTML('</label>'),
-        Div('student', 'assistant', 'professional', 'professor', css_class='users-update-status'),
+        Div('student', 'assistant', 'professional', 'professor',
+            css_class='users-update-status'),
         Field('bio', rows="3", css_class='input-xlarge'),
         FormActions(
             Submit('submit', _('Update Profile'), css_class="btn-primary"),
@@ -61,15 +65,17 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        exclude = [ 'user', 'avatar' ]
+        exclude = ['user', 'avatar']
 
 
 DELETE_CONFIRMATION_PHRASE = _('delete my account')
+
+
 class UserDeleteForm(forms.ModelForm):
-    confirmation_phrase_en =  _('To verify, type "<span '\
-                              'class="confirmation-phrase do-not-copy-me">'\
-                              'delete my account'\
-                              '</span>" below:')
+
+    confirmation_phrase_en = _('To verify, type "<span class='
+                               '"confirmation-phrase do-not-copy-me">'
+                               'delete my account</span>" below:')
     form_labels = {
         'sudo_login': _('Your username or email:'),
         'confirmation_phrase': confirmation_phrase_en,
@@ -101,7 +107,8 @@ class UserDeleteForm(forms.ModelForm):
         Field('confirmation_phrase', css_class='form-control'),
         Field('sudo_password', css_class='form-control'),
         FormActions(
-            Submit('submit_delete', _('Delete your account'), css_class="btn btn-danger"),
+            Submit('submit_delete', _('Delete your account'),
+                   css_class="btn btn-danger"),
         ),
     )
 
@@ -113,12 +120,15 @@ class UserDeleteForm(forms.ModelForm):
         return self.cleaned_data["sudo_login"]
 
     def clean_confirmation_phrase(self):
-        if str(DELETE_CONFIRMATION_PHRASE) != self.cleaned_data.get("confirmation_phrase"):
-            raise forms.ValidationError(_("Confirmation phrase is not correct."))
+        confirmation_phrase = self.cleaned_data.get("confirmation_phrase")
+        if str(DELETE_CONFIRMATION_PHRASE) != confirmation_phrase:
+            raise forms.ValidationError(
+                _("Confirmation phrase is not correct."))
         return self.cleaned_data["confirmation_phrase"]
 
     def clean_sudo_password(self):
-        if not self.user.check_password(self.cleaned_data.get("sudo_password")):
+        password = self.cleaned_data.get("sudo_password")
+        if not self.user.check_password(password):
             raise forms.ValidationError(_("The login and/or password you "
                                           "specified are not correct."))
         return self.cleaned_data["sudo_password"]
@@ -129,4 +139,4 @@ class UserDeleteForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = [ ]
+        fields = []

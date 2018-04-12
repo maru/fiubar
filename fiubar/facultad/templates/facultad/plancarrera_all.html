@@ -10,13 +10,13 @@
 		<!-- menu -->
 		{% autoescape off %}<ul class="head">
 			<li{{ class_cursando }}>
-				<span><a href="{% url 'facultad:facultad-materias' %}">Cursando</a></span>
+				<span><a href="{% url 'facultad:materias' %}">Cursando</a></span>
 			</li>
 			<!-- <li{{ class_para_cursar }}>
-				<span><a href="{% url 'facultad:facultad-materias' %}?show=para_cursar">Para Cursar</a></span>
+				<span><a href="{% url 'facultad:materias' %}?show=para_cursar">Para Cursar</a></span>
 			</li> -->
 			<li{{ class_aprobadas }}>
-				<span><a href="{% url 'facultad:facultad-materias' %}?show=aprobadas">Aprobadas</a></span>
+				<span><a href="{% url 'facultad:materias' %}?show=aprobadas">Aprobadas</a></span>
 			</li>
 		</ul>{% endautoescape %}
 		<div class="content">

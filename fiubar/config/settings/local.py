@@ -12,7 +12,7 @@ import socket
 
 from django.contrib.messages import constants as message_constants
 
-from .common import *  # noqa
+from .common import * # noqa
 
 
 # DEBUG
@@ -61,7 +61,7 @@ INTERNAL_IPS = ['127.0.0.1', ]
 # tricks to have debug toolbar when developing with docker
 if get_secret('USE_DOCKER', default='no') == 'yes':
     ip = socket.gethostbyname(socket.gethostname())
-    INTERNAL_IPS += [ip[:-1]+"1"]
+    INTERNAL_IPS += [ip[:-1] + "1"]
 
 DEBUG_TOOLBAR_CONFIG = {
     'DISABLE_PANELS': [
@@ -79,4 +79,5 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = get_secret('ACCOUNT_DEFAULT_HTTP_PROTOCOL',
 
 # ACCOUNT_ADAPTER = 'fiubar.models.SignupClosedAdapter'
 
-ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])
+ALLOWED_HOSTS = get_secret('DJANGO_ALLOWED_HOSTS',
+                           default=['127.0.0.1', 'localhost'])

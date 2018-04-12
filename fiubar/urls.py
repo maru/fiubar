@@ -11,16 +11,16 @@ from . import views
 """fiubar URL Configuration"""
 urlpatterns = [
     path('',
-        views.home,
-        name='home'),
+         views.home,
+         name='home'),
 
     path('about/',
-        TemplateView.as_view(template_name='pages/about.html'),
-        name='about'),
+         TemplateView.as_view(template_name='pages/about.html'),
+         name='about'),
 
     path('faq/',
-        TemplateView.as_view(template_name='pages/faq.html'),
-        name='faq'),
+         TemplateView.as_view(template_name='pages/faq.html'),
+         name='faq'),
 
     path('contact/', include('contact_form.recaptcha_urls')),
 
@@ -29,17 +29,17 @@ urlpatterns = [
 
     # User management
     path('users/',
-        include('fiubar.users.urls', namespace='users')),
+         include('fiubar.users.urls', namespace='users')),
 
     path('accounts/',
-        include('allauth.urls')),
+         include('allauth.urls')),
 
     path('profile/',
-        TemplateView.as_view(template_name='users/user_profile.html'),
-        name='profile'),
+         TemplateView.as_view(template_name='users/user_profile.html'),
+         name='profile'),
 
     path('facultad/',
-        include('fiubar.facultad.urls', namespace='facultad')),
+         include('fiubar.facultad.urls', namespace='facultad')),
 ]
 
 if settings.DEBUG:
@@ -51,16 +51,16 @@ if settings.DEBUG:
     # these urls in the browser to see how these error pages look like.
     urlpatterns += [
         path('400/',
-            default_views.bad_request,
-            kwargs={'exception': Exception('Bad Request!')}),
+             default_views.bad_request,
+             kwargs={'exception': Exception('Bad Request!')}),
         path('403/',
-            default_views.permission_denied,
-            kwargs={'exception': Exception('Permission Denied')}),
+             default_views.permission_denied,
+             kwargs={'exception': Exception('Permission Denied')}),
         path('404/',
-            default_views.page_not_found,
-            kwargs={'exception': Exception('Page not Found')}),
+             default_views.page_not_found,
+             kwargs={'exception': Exception('Page not Found')}),
         path('500/',
-            default_views.server_error),
+             default_views.server_error),
     ]
 
     if 'rosetta' in settings.INSTALLED_APPS:

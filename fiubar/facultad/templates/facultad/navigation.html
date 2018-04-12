@@ -7,7 +7,7 @@
     <li role="separator" class="divider"></li>
     {% get_carreras %}
     {% if list_carreras %}
-    <!-- <li><a href="{% url 'facultad:facultad-materias' %}"><span>{% trans 'Mis Materias' %}</span></a></li> -->
+    <!-- <li><a href="{% url 'facultad:materias' %}"><span>{% trans 'Mis Materias' %}</span></a></li> -->
     {% for a in list_carreras %}
         <li><a href="{{ a.url_materias }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
           <br />{% if a.plancarrera.orientacion %}<span class="small" style="display:block">{{ a.plancarrera.orientacion }}</span>{% endif %}
@@ -15,9 +15,9 @@
           </a></li>
     {% endfor %}
     <li role="separator" class="divider"></li>
-    {#<li><a href="{% url 'facultad:facultad-search' %}">{% trans 'Search Materias' %}</a></li>#}
+    {#<li><a href="{% url 'facultad:search' %}">{% trans 'Search Materias' %}</a></li>#}
     {% endif %}
-    <li><a href="{% url 'facultad:facultad-cargar_materias' %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
+    <li><a href="{% url 'facultad:cargar_materias' %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
     <li><a href="{% url 'facultad:carreras-home' %}"><span>{% trans 'Carreras' %}</span></a></li>
   </ul>
 </li>

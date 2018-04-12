@@ -37,14 +37,14 @@
     <ul class="menu-list">
         <li><a href="{% url 'facultad:home' %}">{% trans 'Home' %}</a></li>
         {% if list_carreras %}
-        <li class="list"><a href="{% url 'facultad:facultad-materias' %}">{% trans 'Mis Materias' %}</a>
+        <li class="list"><a href="{% url 'facultad:materias' %}">{% trans 'Mis Materias' %}</a>
             <ul class="menu-list">
             {% for a in list_carreras %}
                 <li><a href="{{ a.url_materias }}">{{ a.carrera.abbr_name }}</a></li>
             {% endfor %}
             </ul>
         </li>
-        {#<li><a href="{% url 'facultad:facultad-search' %}">{% trans 'Search Materias' %}</a></li>#}
+        {#<li><a href="{% url 'facultad:search' %}">{% trans 'Search Materias' %}</a></li>#}
         {% endif %}
         <li><a href="{% url 'facultad:carreras-home' %}">{% trans 'Carreras' %}</a></li>
     </ul>

@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
-import math
-
 from django.utils.translation import ugettext as _
 
 
 def calculate_time(begin_date, end_date):
     # Calculates total time
-    total_time = end_date - begin_date 
-    if total_time.days <= 0: 
+    total_time = end_date - begin_date
+    if total_time.days <= 0:
         return _('???')
     years = total_time.days / 365
     months = (total_time.days % 365) / 30.5
     # Plural
     plural = 's'
-    if years == 1: 
+    if years == 1:
         plural = ''
     # -
     if months <= 3:

@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.contrib import messages
-from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import ugettext as _
-from django.views.generic import (DeleteView, DetailView, ListView,
-                                  RedirectView, UpdateView)
+from django.views.generic import DetailView, RedirectView, UpdateView
 
 from .forms import UserDeleteForm, UserForm, UserProfileForm
 from .models import User, UserProfile, create_user_profile
@@ -20,12 +17,14 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = 'username'
     slug_url_kwarg = 'username'
 
+
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
         return reverse('users:detail',
                        kwargs={'username': self.request.user.username})
+
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
@@ -38,9 +37,11 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         try:
             profile = UserProfile.objects.get(user=self.request.user)
-        except:
-            profile = create_user_profile(self.request, self.request.user, True, **self.kwargs)
+        except User.DoesNotExist:
+            profile = create_user_profile(self.request, self.request.user,
+                                          True, **self.kwargs)
         return profile
+
 
 class UserAccountView(LoginRequiredMixin, UpdateView):
     model = User
@@ -68,7 +69,8 @@ class UserAccountView(LoginRequiredMixin, UpdateView):
         elif self.form_class is UserDeleteForm:
             context.setdefault('form_username', UserForm)
             if 'username' in context['form_username'].base_fields:
-                context['form_username'].base_fields['username'].initial = self.object.username
+                context['form_username'].\
+                    base_fields['username'].initial = self.object.username
             context.setdefault('form_delete', context['form'])
 
         del context['form']
@@ -86,7 +88,8 @@ class UserAccountView(LoginRequiredMixin, UpdateView):
             self.object = self.get_object()
             self.object.delete()
             success_url = self.delete_success_url
-            messages.add_message(self.request, messages.SUCCESS, _('User deleted'))
+            messages.add_message(self.request, messages.SUCCESS,
+                                 _('User deleted'))
 
         return HttpResponseRedirect(success_url)
 
@@ -112,5 +115,6 @@ class UserAccountView(LoginRequiredMixin, UpdateView):
         If the form is valid, set message and redirect to the supplied URL.
         """
         if type(form) == UserForm:
-            messages.add_message(self.request, messages.SUCCESS, _('Username changed'))
+            messages.add_message(self.request, messages.SUCCESS,
+                                 _('Username changed'))
         return super(UserAccountView, self).form_valid(form)

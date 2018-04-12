@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles i18n tabs %}
-{% block navigation %}{% activetab	"topnav"	"Facultad" %}{{ block.super }}{% endblock %}
 {% block title %}{% trans 'Materias' %}{% endblock %}
 {% csrf_token %}
 

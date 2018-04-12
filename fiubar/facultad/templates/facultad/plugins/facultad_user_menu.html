@@ -4,8 +4,8 @@
             {% if not carrera %}
                 <li><a href="{% url 'facultad:carreras-add' %}">{% trans 'Agregar Carrera' %}</a></li>
             {% else %}
-                <li><a href="{% url 'facultad:facultad-materias' %}">{% trans 'Mis Materias' %}</li>
-                <li><a href="{% url 'facultad:facultad-cargar_materias' %}">{% trans 'Cargar Materias' %}</a></li>
+                <li><a href="{% url 'facultad:materias' %}">{% trans 'Mis Materias' %}</li>
+                <li><a href="{% url 'facultad:cargar_materias' %}">{% trans 'Cargar Materias' %}</a></li>
             {% endif %}
               </ul>
             </li>

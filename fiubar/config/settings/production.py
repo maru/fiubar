@@ -5,9 +5,7 @@ Production Configurations
 - Use djangosecure
 
 """
-import logging
-
-from .common import *  # noqa
+from .common import * # NOQA
 
 
 # SECRET CONFIGURATION
@@ -18,8 +16,8 @@ SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
 
 # SECURITY CONFIGURATION
 # ------------------------------------------------------------------------------
-# See https://docs.djangoproject.com/en/1.9/ref/middleware/#module-django.middleware.security
-# and https://docs.djangoproject.com/ja/1.9/howto/deployment/checklist/#run-manage-py-check-deploy
+# See https://docs.djangoproject.com/en/1.9/ref/middleware/#module-django.middleware.security      # NOQA: E501
+# and https://docs.djangoproject.com/ja/1.9/howto/deployment/checklist/#run-manage-py-check-deploy # NOQA: E501
 
 # set this to 60 seconds and then to 518400 when you can prove it works
 SECURE_HSTS_SECONDS = 60

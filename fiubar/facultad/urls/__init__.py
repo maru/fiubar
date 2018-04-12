@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-app_name = 'facultad'
-
 from . import facultad, carreras
+
+app_name = 'facultad'
 
 urlpatterns = []
 urlpatterns += facultad.urlpatterns

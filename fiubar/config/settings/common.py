@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import json
 import os
 
-from django.core.exceptions import ImproperlyConfigured
-
 
 BASE_DIR = os.path.abspath('')
 FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
@@ -22,8 +20,9 @@ try:
     secret_file = os.getenv("FIUBAR_SECRET_FILE")
     with open(secret_file) as f:
         secrets = json.loads(f.read())
-except:
+except IOError:
     secrets = {}
+
 
 def get_secret(setting, default=None):
     """
@@ -96,10 +95,10 @@ DEBUG = False
 
 # FIXTURE CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-FIXTURE_DIRS
+# See: https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-FIXTURE_DIRS # noqa
 FIXTURE_DIRS = (
     os.path.join(FIUBAR_DIR, 'fixtures'),
-    os.path.join(BASE_DIR,   'fixtures'),
+    os.path.join(BASE_DIR, 'fixtures'),
 )
 
 # EMAIL CONFIGURATION
@@ -164,22 +163,22 @@ USE_TZ = True
 # See: https://docs.djangoproject.com/en/2.0/ref/settings/#templates
 TEMPLATES = [
     {
-        # See: https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-TEMPLATES-BACKEND
+        # See: https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-TEMPLATES-BACKEND # noqa
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-dirs
+        # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-dirs # noqa
         'DIRS': [
             os.path.join(FIUBAR_DIR, 'templates'),
         ],
         'OPTIONS': {
-            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-debug
+            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-debug # noqa
             'debug': DEBUG,
-            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-loaders
-            # https://docs.djangoproject.com/en/2.0/ref/templates/api/#loader-types
+            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-loaders # noqa
+            # https://docs.djangoproject.com/en/2.0/ref/templates/api/#loader-types # noqa
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
-            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-context-processors
+            # See: https://docs.djangoproject.com/en/2.0/ref/settings/#template-context-processors # noqa
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -194,7 +193,7 @@ TEMPLATES = [
     },
 ]
 
-# See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
+# See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs # noqa
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # STATIC FILE CONFIGURATION
@@ -206,7 +205,7 @@ STATICFILES_DIRS = (
     os.path.join(FIUBAR_DIR, 'static'),
 )
 
-# See: https://docs.djangoproject.com/en/2.0/ref/contrib/staticfiles/#staticfiles-finders
+# See: https://docs.djangoproject.com/en/2.0/ref/contrib/staticfiles/#staticfiles-finders # noqa
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -269,19 +268,13 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+    {"NAME": f"django.contrib.auth.password_validation.{name}"}
+    for name in [
+        "UserAttributeSimilarityValidator",
+        "MinimumLengthValidator",
+        "CommonPasswordValidator",
+        "NumericPasswordValidator"
+    ]]
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = 'admin/'

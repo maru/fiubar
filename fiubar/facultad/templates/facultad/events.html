@@ -8,7 +8,7 @@
 {% block inner %}
 <h2>{% trans 'Calendario' %}</h2>
   <div class="events-list">
-    <p><a class="link-button add-event" href="{% url 'facultad:facultad-events_add' %}">{% trans 'Agregar Fecha' %}</a></p>
+    <p><a class="link-button add-event" href="{% url 'facultad:events_add' %}">{% trans 'Agregar Fecha' %}</a></p>
     {% if event_list %}
     <p class="group-num_members">{{ event_list.count }} evento{{ event_list.count|pluralize }} en los próximos 30 días</p>
     <ul class="events">
