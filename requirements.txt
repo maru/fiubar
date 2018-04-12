@@ -11,8 +11,7 @@ django-contact-form-recaptcha
 # Models
 django-model-utils
 
-# For user registration, either via email or social
-# Well-built with regular release cycles!
+# User registration
 django-allauth
 
 # Unicode slugification
@@ -21,7 +20,3 @@ django-autoslug
 
 # Avatar
 Pillow
-
-# For local development
-django-debug-toolbar
-django-extensions

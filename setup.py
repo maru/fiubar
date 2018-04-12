@@ -12,8 +12,8 @@ setup(name='fiubar',
                                          'README.md')).read(),
       author='Maru Berezin',
       url='https://github.com/maru/fiubar/',
-      packages=['fiubar', 'fiubar.tests'],
-      test_suite='fiubar.runtests.run_tests',
+      packages=['fiubar'],
+      test_suite='tests.runtests.run_tests',
       classifiers=['Development Status :: 5 - Production/Stable',
                    'Environment :: Web Environment',
                    'Framework :: Django',
@@ -25,4 +25,4 @@ setup(name='fiubar',
       install_requires=[
           'Django>=2',
       ],
-)
+      )

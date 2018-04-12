@@ -1,0 +1,6 @@
+-e .
+-r requirements.txt
+
+# For local development
+django-debug-toolbar
+django-extensions

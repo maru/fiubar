@@ -1,4 +1,9 @@
+-e .
+-r ../requirements.txt
+
 coverage
 flake8
 mock
 selenium<4
+django-test-plus
+factory_boy
