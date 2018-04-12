@@ -5,7 +5,7 @@ Production Configurations
 - Use djangosecure
 
 """
-from .common import * # NOQA
+from .common import *  # NOQA
 
 
 # SECRET CONFIGURATION

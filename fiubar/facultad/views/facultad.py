@@ -13,6 +13,7 @@ from .. import forms
 from ..decorators import get_carreras
 from ..models.models import Alumno, AlumnoMateria, Materia, PlanMateria
 
+
 context = {'slug': 'facultad'}
 
 

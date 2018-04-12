@@ -12,7 +12,7 @@ import socket
 
 from django.contrib.messages import constants as message_constants
 
-from .common import * # noqa
+from .common import *  # noqa
 
 
 # DEBUG

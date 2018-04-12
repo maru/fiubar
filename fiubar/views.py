@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from allauth.account.forms import LoginForm, SignupForm
 from django.shortcuts import render
+
+from allauth.account.forms import LoginForm, SignupForm
 
 
 def home(request):
