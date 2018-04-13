@@ -19,7 +19,7 @@ def get_carreras(function):
             # User has to choose a carrera
             if not function.__name__ == 'add':
                 messages.add_message(request, messages.INFO,
-                                     _(u'¿Qué carrera cursás?'))
+                                     _('¿Qué carrera cursás?'))
                 return HttpResponseRedirect(reverse('facultad:carreras-add'))
         request.session['list_carreras'] = [c for c in carreras]
         return function(request, *args, **kwargs)

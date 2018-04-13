@@ -12,12 +12,18 @@ class SelectCarreraForm(forms.Form):
     plancarrera = forms.ModelChoiceField(queryset=PlanCarrera.objects.all(),
                                          empty_label=None)
     cuatrimestre = forms.ChoiceField(choices=[
-                                     (1, _(u'1° Cuatrimestre')),
-                                     (2, _(u'2° Cuatrimestre'))])
+                                     (1, _('1° Cuatrimestre')),
+                                     (2, _('2° Cuatrimestre'))])
     year = forms.ChoiceField(choices=[
                              (i, i) for i in
                              range(date.today().year, 1940, -1)])
-    begin_date = forms.CharField(widget=forms.HiddenInput, required=False)
+    begin_date = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['plancarrera'].widget.attrs.update({'class': 'form-control'})
+        self.fields['cuatrimestre'].widget.attrs.update({'class': 'form-control'})
+        self.fields['year'].widget.attrs.update({'class': 'form-control'})
 
     def clean_begin_date(self):
         if 'cuatrimestre' not in self.cleaned_data or \
@@ -37,6 +43,12 @@ class GraduadoForm(forms.Form):
                              range(date.today().year, 1940, -1)])
     graduado_date = forms.CharField(widget=forms.HiddenInput, required=False)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['month'].widget.attrs.update({'class': 'form-control'})
+        self.fields['year'].widget.attrs.update({'class': 'form-control'})
+        self.fields['graduado_date'].widget.attrs.update({'class': 'form-control'})
+
     def clean_graduado_date(self):
         if 'month' not in self.cleaned_data or \
            'year' not in self.cleaned_data:
@@ -50,7 +62,7 @@ class GraduadoForm(forms.Form):
 class MateriasFilterForm(forms.Form):
     CHOICES = (('', _('Mostrar todas')),
                ('-', _('--------------------------')),
-               ('0', _(u'Podés cursar')),
+               ('0', _('Podés cursar')),
                ('1', _('En 1 cuatrimestre')),
                ('2', _('En 2 cuatrimestres')),
                ('3', _('En 3 cuatrimestres')),
@@ -74,23 +86,23 @@ class CursadaForm(forms.Form):
 
     CUAT_CURSADA = (
         ('', _('Cuatrimestre')),
-        ('1', _(u'1° Cuatrimestre')),
-        ('2', _(u'2° Cuatrimestre')),
-        ('V', _(u'Curso de Verano')),
+        ('1', _('1° Cuatrimestre')),
+        ('2', _('2° Cuatrimestre')),
+        ('V', _('Curso de Verano')),
     )
 
     CUAT_APROBADA = (
         ('', _('Cuatrimestre')),
-        ('1', _(u'1° Cuatrimestre')),
-        ('2', _(u'2° Cuatrimestre')),
+        ('1', _('1° Cuatrimestre')),
+        ('2', _('2° Cuatrimestre')),
     )
 
-    YEAR_CHOICES = [('0', _(u'Año'))] + \
+    YEAR_CHOICES = [('0', _('Año'))] + \
                    [(year, year) for year in
                     range(date.today().year, 1940, -1)]
 
     state = forms.ChoiceField(initial='-', widget=forms.RadioSelect(),
-                              label=_(u'Estado'), choices=CURSADA_CHOICES)
+                              label=_('Estado'), choices=CURSADA_CHOICES)
 
     # Cuatrimestre en el que cursó la materia
     cursada_cuat = forms.ChoiceField(label='', choices=CUAT_CURSADA,
@@ -112,6 +124,15 @@ class CursadaForm(forms.Form):
                    [(nota, nota) for nota in range(10, 3, -1)] + [(2, 2)]
     nota = forms.ChoiceField(required=False, choices=NOTA_CHOICES)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['cursada_cuat'].widget.attrs.update({'class': 'form-control'})
+        self.fields['cursada_year'].widget.attrs.update({'class': 'form-control'})
+        self.fields['aprobada_cuat'].widget.attrs.update({'class': 'form-control'})
+        self.fields['aprobada_year'].widget.attrs.update({'class': 'form-control'})
+        self.fields['nota'].widget.attrs.update({'class': 'form-control'})
+        self.fields['state'].widget.attrs.update({'class': 'list-unstyled'})
+
     def clean_cursada_date(self):
         return self._calculate_date('cursada')
 
@@ -119,15 +140,15 @@ class CursadaForm(forms.Form):
         return self._calculate_date('aprobada')
 
     def _calculate_date(self, field_prefix):
-        if self.cleaned_data[field_prefix + '_cuat'] == u'' or \
-           self.cleaned_data[field_prefix + '_year'] == u'0':
-            if self.cleaned_data[field_prefix + '_cuat'] == u'' and \
-               self.cleaned_data[field_prefix + '_year'] == u'0':
+        if self.cleaned_data[field_prefix + '_cuat'] == '' or \
+           self.cleaned_data[field_prefix + '_year'] == '0':
+            if self.cleaned_data[field_prefix + '_cuat'] == '' and \
+               self.cleaned_data[field_prefix + '_year'] == '0':
                 # Not entered.
                 return None
             # Just one field.
             raise forms.ValidationError(
-                _(u'Completar con cuatrimestre y año.'))
+                _('Completar con cuatrimestre y año.'))
         if not self.cleaned_data[field_prefix + '_date']:
             return None
         return self.cleaned_data[field_prefix + '_date']

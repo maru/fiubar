@@ -11,8 +11,8 @@
     </a></li>
     {% endwith %}
 {% endif %}
-
-
+  <li class="{% if slug == 'facultad-todo' %}active{% endif %}"><a href="{% url 'facultad:home' %}">{% trans "Facultad" %}</a></li>
+{% comment %}
 <li class="{% if slug == 'facultad-todo' %}active{% endif %}">
   <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'facultad:home' %}">{% trans "Facultad" %}<span class="caret"></span></a>
   <ul class="dropdown-menu">
@@ -28,7 +28,8 @@
     {% endfor %}
     <li role="separator" class="divider"></li>
     {% endif %}
-    <li><a href="{% url 'facultad:cargar_materias' %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
+    <li><a href="{% url 'facultad:cargar-materias' %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
     <li><a href="{% url 'facultad:carreras-home' %}"><span>{% trans 'Carreras' %}</span></a></li>
   </ul>
 </li>
+{% endcomment %}

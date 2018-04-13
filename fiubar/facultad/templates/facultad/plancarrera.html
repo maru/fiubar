@@ -1,4 +1,4 @@
-{% extends 'facultad/base.html' %}
+{% extends 'facultad/base_panel.html' %}
 {% load staticfiles i18n facultad_tags %}
 
 {% block head_title %}{% trans 'Materias' %}{% endblock %}
@@ -10,7 +10,6 @@
 </h2>
 	<div id="command-details" class="tab-box">
 		<div id="tools">
-			{#<a href="#" onClick="alert('¡Muy pronto!\nEstamos implementándolo.')">Bajar <img src="{% static 'images/page_white_acrobat.png' %}" alt="PDF" title="Bajar PDF" /></a>&nbsp;&nbsp;&nbsp;#}
 			<a href="#" onClick="window.print();return false">Imprimir <img src="{% static 'images/facultad/printer.png' %}" alt="Imprimir" title="Imprimir" /></a>
 		</div>
 		{% autoescape off %}<ul class="head">
@@ -20,9 +19,6 @@
 			<li{{ class_para_cursar }}>
 				<span><a href="{{ plancarrera.url_materias }}?show=para_cursar">Para Cursar</a></span>
 			</li>
-			<!--<li{{ class_faltan_correl }}>
-				<span><a href="{{ plancarrera.url_materias }}?show=faltan_correl">Proximos Cuatrimestres</a></span>
-			</li>-->
 			<li{{ class_aprobadas }}>
 				<span><a href="{{ plancarrera.url_materias }}?show=aprobadas">Aprobadas</a></span>
 			</li>
@@ -31,15 +27,14 @@
 			</li>
 		</ul>{% endautoescape %}
 		<div class="content">
-		  <div>
-		  <table class="materias-list {{ tab_selected }}">
+		  <table class="table materias-list table-hover table-condensed {{ tab_selected }}">
+      <tbody>
 		  {% if lista_materias %}
 			<tr>
 			  <th class="icono"></th>
 			  <th class="margin-left">{% trans 'Materias' %}</th>
 			  <th>{{ th_estado }}</th>
 			  <th>{{ th_correlativas }}</th>
-			  {#<th class="actions">{% trans 'Acciones' %}</th>#}
 			  {% if class_para_cursar %}<th>Créditos</th>{% endif %}
 			</tr>
 			{% for planmateria in lista_materias %}
@@ -59,8 +54,8 @@
 			  </td>
 			</tr>
 		  {% endif %}
+      </tbody>
 		  </table>
-		  </div>
 		</div>
 	</div>
 {% endblock %}

@@ -66,7 +66,7 @@ class Alumno(models.Model):
             return ''
         to_cuatrimestre = {2: 'V', 3: '1', 8: '2'}
         cuatrimestre = to_cuatrimestre[self.begin_date.month]
-        return _(u'%(cuatrimestre)s° Cuatrimestre %(year)s') % \
+        return _('%(cuatrimestre)s° Cuatrimestre %(year)s') % \
                 ({'cuatrimestre': cuatrimestre,
                   'year': self.begin_date.year})
 
@@ -101,7 +101,7 @@ class AlumnoMateria(models.Model):
     objects = AlumnoMateriaManager()
 
     def __str__(self):
-        return u'%s' % (self.materia)
+        return '%s' % (self.materia)
 
     def update(self, user, materia, d):
         self.user = user
@@ -136,8 +136,8 @@ class AlumnoMateria(models.Model):
             self.aprobada_date_to_cuat()
         cuatrimestre, year = self.aprobada_cuat.split('-')
         if cuatrimestre == 'V':
-            return _(u'Verano %(year)s') % ({'year': year})
-        return _(u'%(cuatrimestre)s° Cuatrimestre %(year)s') % \
+            return _('Verano %(year)s') % ({'year': year})
+        return _('%(cuatrimestre)s° Cuatrimestre %(year)s') % \
                 ({'cuatrimestre': cuatrimestre, 'year': year})
 
     def cursando(self):
@@ -217,7 +217,7 @@ class PlanCarrera(models.Model):
     orientacion = models.CharField(max_length=255, null=True, blank=True)
     abbr_name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=20)
-    min_creditos = models.IntegerField(u'Creditos')
+    min_creditos = models.IntegerField('Créditos')
 
     def __str__(self):
         return self.name
@@ -282,11 +282,11 @@ class Materia(models.Model):
         return self.id
 
     def get_codigo(self):
-        return u'%s.%s' % (self.departamento, self.codigo)
+        return '%s.%s' % (self.departamento, self.codigo)
     get_codigo.short_description = 'Codigo'
 
     def get_name(self):
-        return u'%s.%s %s' % (self.departamento, self.codigo, self.name)
+        return '%s.%s %s' % (self.departamento, self.codigo, self.name)
 
     def url_home(self):
         return reverse('facultad:materia-show', args=[self.id])
@@ -345,7 +345,7 @@ class PlanMateria(models.Model):
     objects = PlanMateriaManager()
 
     def __str__(self):
-        return u'%s/%s' % (self.plancarrera, self.materia)
+        return '%s/%s' % (self.plancarrera, self.materia)
 
     def url_edit_materia(self):
         return reverse('facultad:materia', args=[self.materia])

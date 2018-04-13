@@ -1,39 +1,48 @@
-{% extends 'facultad/base.html' %}
+{% extends 'facultad/base_panel.html' %}
 {% load staticfiles i18n %}
 
-
 {% block head_title %}{% trans '¡Me recibí!' %}{% endblock %}
+{% block panel-item-carreras %}list-group-active{% endblock %}
 
-
+{% block inner_title %}{% trans '¡Me recibí!' %}{% endblock %}
 {% block inner %}
-<h2>{% trans '¡Me recibí!' %}</h2>
-    <form action="" method="post">
-    {% csrf_token %}
-		<p class=""><span class=""></span>{{ alumno.carrera.name }}
-            <br />{% if alumno.plancarrera.orientacion %}<span class="small">{{ alumno.plancarrera.orientacion }} - </span>{% endif %}
-            <span class="smaller">Plan {{ alumno.plancarrera.pub_date.year }}</span><br />
-		</p>
-        {{ form.plancarrera }}
 
-        <div class="clearfix">
-            {% if form.month.errors %} <span class="error">{{ form.month.errors|join:", " }}</span>{% endif %}
-            {% if form.year.errors %} <span class="error">{{ form.year.errors|join:", " }}</span>{% endif %}
-            <div class="float-left">
-                <label for="id_month">{# form.month.label #}Mes:</label>
-                {{ form.month }}
-            </div>
-            <div class="float-left">
-                <label for="id_year">{# form.year.label #}Año:</label>
-                {{ form.year }}
-            </div>
-        </div>
-        <div><input type="submit" value="{% trans '¡Me recibí!' %}" /></div>
+  <p class=""><span class=""></span>{{ alumno.carrera.name }}
+    <br />{% if alumno.plancarrera.orientacion %}<span class="small">{{ alumno.plancarrera.orientacion }} - </span>{% endif %}
+    <span class="small">Plan {{ alumno.plancarrera.pub_date.year }}</span><br />
+  </p>
+
+  <form action="" class="" method="post">
+    {% csrf_token %}
+    {{ form.plancarrera }}
+    {% if form.month.errors %} <span class="error">{{ form.month.errors|join:", " }}</span>{% endif %}
+    {% if form.year.errors %} <span class="error">{{ form.year.errors|join:", " }}</span>{% endif %}
+
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <label for="id_month">Mes:</label>
+        {{ form.month }}
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="id_year">Año:</label>
+        {{ form.year }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-6">
         {% if alumno.is_graduado %}
-        <p>
-		 <img src="{% static 'images/facultad/delete.png' %}" alt="" />
-		 <a href="{{ alumno.url_del_graduado }}">{% trans 'No me recibí todavía.' %}</a>
-        </p>
+        <a class="btn btn-default pull-right" role="button" href="{{ alumno.url_del_graduado }}">
+          <span class="glyphicon glyphicon-remove-sign" style="color:#a94442" aria-hidden="true"></span>
+          {% trans 'No me recibí todavía' %}</a>
+        {% else %}
+        <button type="submit" class="pull-right btn btn-default" value="" />
+          <span class="glyphicon glyphicon-education" style="color:#31708f" aria-hidden="true"></span>
+          {% trans '¡Me recibí!' %}
+        </button>
         {% endif %}
+      </div>
+    </div>
     </form>
 
 {% endblock %}

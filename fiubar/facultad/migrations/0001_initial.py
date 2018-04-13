@@ -97,7 +97,7 @@ class Migration(migrations.Migration):
                 ('orientacion', models.CharField(blank=True, max_length=255, null=True)),
                 ('abbr_name', models.CharField(max_length=100)),
                 ('short_name', models.CharField(max_length=20)),
-                ('min_creditos', models.IntegerField(verbose_name='Creditos')),
+                ('min_creditos', models.IntegerField(verbose_name='Créditos')),
                 ('carrera', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='facultad.Carrera')),
             ],
             options={

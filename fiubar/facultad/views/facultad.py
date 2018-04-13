@@ -33,19 +33,19 @@ def plancarrera_all(request):
     request.session['list_carreras'] = []
     # Menu
     context.update(_menu_materias(request.GET))
-    context['th_correlativas'] = _(u' ')
+    context['th_correlativas'] = _(' ')
     # Materias
     if context['tab_selected'] == 'cursando':
         # Busco las que están en  AlumnoMateria y no aprobadas
         lista_materias = AlumnoMateria.objects\
             .list_materias_cursando(request.user).order_by('state')
-        context['th_estado'] = _(u'Estado')
+        context['th_estado'] = _('Estado')
     elif context['tab_selected'] == 'aprobadas':
         # Busco las que están en  AlumnoMateria y aprobadas
         lista_materias = AlumnoMateria.objects\
             .list_materias_aprobadas(request.user)
-        context['th_estado'] = _(u'Aprobada')
-        context['th_correlativas'] = u'Nota '
+        context['th_estado'] = _('Aprobada')
+        context['th_correlativas'] = 'Nota '
     else:
         raise Http404(_('Error 404'))
 
@@ -69,29 +69,29 @@ def plancarrera(request, plancarrera):
 
     # Menu
     context.update(_menu_materias(request.GET))
-    context['th_correlativas'] = _(u' ')
+    context['th_correlativas'] = _(' ')
     # Materias
     if context['tab_selected'] == 'cursando':
         # Busco las que están en  AlumnoMateria y no aprobadas
         lista_materias = PlanMateria.objects\
             .list_materias_cursando(request.user, plancarrera)
-        context['th_estado'] = _(u' Estado ')
+        context['th_estado'] = _(' Estado ')
     elif context['tab_selected'] == 'para_cursar':
         # No tienen correlativas pendientes y no están en AlumnoMateria
         lista_materias = PlanMateria.objects\
             .list_materias_para_cursar(request.user, plancarrera)
-        context['th_estado'] = _(u' ')
+        context['th_estado'] = _(' ')
     elif context['tab_selected'] == 'faltan_correl':
         # Tienen correlativas pendientes y no están en AlumnoMateria
         lista_materias = PlanMateria.objects\
             .list_materias_faltan_correl(request.user, plancarrera)
-        # context['th_estado'] = _(u' ')
+        # context['th_estado'] = _(' ')
     elif context['tab_selected'] == 'aprobadas':
         # Busco las que están en  AlumnoMateria y aprobadas
         lista_materias = PlanMateria.objects\
             .list_materias_aprobadas(request.user, plancarrera)
-        context['th_estado'] = _(u' Aprobada ')
-        context['th_correlativas'] = _(u' Nota ')
+        context['th_estado'] = _(' Aprobada ')
+        context['th_correlativas'] = _(' Nota ')
     elif context['tab_selected'] == 'todas':
         lista_materias = PlanMateria.objects\
             .filter(plancarrera=plancarrera).order_by('cuatrimestre',
@@ -99,8 +99,8 @@ def plancarrera(request, plancarrera):
         lista_materias_a_cursar = PlanMateria.objects\
             .list_materias_para_cursar(request.user, plancarrera)
         context['lista_materias_a_cursar'] = lista_materias_a_cursar
-        context['th_estado'] = _(u' Estado ')
-        context['th_correlativas'] = _(u' Correlativas ')
+        context['th_estado'] = _(' Estado ')
+        context['th_correlativas'] = _(' Correlativas ')
     else:
         raise Http404(_('Error 404'))
 

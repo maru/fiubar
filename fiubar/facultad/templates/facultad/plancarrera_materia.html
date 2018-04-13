@@ -5,7 +5,6 @@
 			</td>
 			<td class="margin-left">
 				<a name="{{ materia.codigo }}"></a>
-				{#<a class="{{ link_class }}" href="{{ materia.url_home }}" title="{% trans 'Editar' %}">#}
 				<a href="{{ materia.url_edit_materia }}">
 					{{ materia.get_codigo }}
 					{{ materia.name }}
@@ -20,7 +19,7 @@
 			<td>
 			  {% if tab_aprobadas %}{{ nota|apnumber }}{% endif %}
 			  {% if tab_todas %}{# {{ planmateria.correlativas }} #}
-			  {% for m in planmateria.correlativas %}<span class="{{ m.0 }}" title="{{ m.2 }}">{{ m.1 }}{% if not forloop.last %}-{% endif %}</span>{% endfor %}{% endif %}
+			  {% for m in planmateria.correlativas %}<span class="{{ m.0 }}" title="{{ m.2 }}">{{ m.1 }}{% if not forloop.last %} - {% endif %}</span>{% endfor %}{% endif %}
 			</td>
 			{% if tab_para_cursar %}<td>{{ planmateria.creditos }}</td>{% endif %}
 			{% comment %}<td class="actions">

@@ -15,11 +15,11 @@
 
       <ul class="list-group">
         <li class="list-group-item {% block panel-item-users-update %}{% endblock %}">
-            <a href="{% url 'users:update' %}">{% trans "Profile" %}</li>
+          <a href="{% url 'users:update' %}">{% trans "Profile" %}</a></li>
         <li class="list-group-item {% block panel-item-users-account %}{% endblock %}">
-            <a href="{% url 'users:account' %}">{% trans "Account" %}</li>
-              <li class="list-group-item {% block panel-item-account_change-pw %}{% endblock %}">
-                <a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
+          <a href="{% url 'users:account' %}">{% trans "Account" %}</a></li>
+        <li class="list-group-item {% block panel-item-account_change-pw %}{% endblock %}">
+          <a href="{% url 'account_change_password' %}">{% trans "Change Password" %}</a></li>
         <li class="list-group-item {% block panel-item-account-email %}{% endblock %}">
           <a href="{% url 'account_email' %}">{% trans "E-mail Addresses" %}</a></li>
         <li class="list-group-item {% block panel-item-social-connections %}{% endblock %}">

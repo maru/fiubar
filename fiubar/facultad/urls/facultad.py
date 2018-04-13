@@ -19,7 +19,7 @@ urlpatterns = [
          name='materias'),
 
     path('materias/cargar/', facultad.cargar_materias,
-         name='cargar_materias'),
+         name='cargar-materias'),
 
     path('materias/<str:plancarrera>/', facultad.plancarrera,
          name='materias-carrera'),

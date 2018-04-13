@@ -1,4 +1,4 @@
-{% extends 'facultad/base.html' %}
+{% extends 'facultad/base_panel.html' %}
 {% load staticfiles i18n facultad_tags %}
 
 {% block head_title %}{% trans 'Mis Materias' %}{% endblock %}
@@ -7,6 +7,10 @@
 {% endblock %}
 
 {% block main-css %}facultad{% endblock %}
+
+{% block panel-item-facultad-home %}list-group-active{% endblock %}
+
+{% block inner_title %}{% trans 'Mis Materias' %}{% endblock %}
 {% block inner %}
 
 <div class="carreras">

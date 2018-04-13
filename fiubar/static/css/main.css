@@ -203,10 +203,12 @@ span.socialaccount_provider {
   border-bottom: 1px solid #ddd;
 }
 
-.panel-account .list-group-item a {
+.panel-account .list-group-item a,
+.panel-facultad .list-group-item a {
   color: #333;
 }
-.panel-account .list-group-active a {
+.panel-account .list-group-active a,
+.panel-facultad .list-group-active a {
   font-weight: bold;
 }
 .email_list .btn-default {
@@ -267,4 +269,154 @@ span.socialaccount_provider {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.fiuba-minilogo {
+  background: transparent url('/static/images/facultad/fiuba.gif') no-repeat 8px 5px;
+}
+.fiuba-minilogo span {
+  padding-left: 20px;
+}
+/*** tabs in plan_materias ***/
+#command-details ul {
+  margin-left:0px;
+  padding-left:20px;
+  margin-bottom:0px;
+  margin-top:5px;
+}
+@media (max-width:360px) {
+  #command-details ul {
+    padding-left:0px;
+  }
+}
+#command-details li {
+  margin-bottom:5px;
+}
+.tab-box ul.head {
+  background:transparent url('/static/images/facultad/bg_tab_box_head.gif') repeat-x scroll left bottom;
+  font-size:12px;
+  font-weight:bold;
+  height:23px;
+  list-style-type:none;
+  margin:0px;
+  padding:0px 0px 0px 2px;
+}
+.tab-box ul.head li {
+  background:transparent url('/static/images/facultad/bg_tab.gif') no-repeat scroll left top;
+  display:block;
+  float:left;
+  margin:0px;
+  padding:0px;
+}
+.tab-box ul.head li span {
+  background:#FFFFFF url('/static/images/facultad/bg_tab.gif') no-repeat scroll right top;
+  display:block;
+  float:left;
+  height:23px;
+  margin:0px 0px 0px 5px;
+  padding:0px 15px 0px 10px;
+}
+.tab-box ul.head li span a {
+  color:#999999;
+  display:block;
+  padding-top:1px;
+  text-decoration:none;
+}
+.tab-box ul.head li span a:hover {
+  text-decoration: none !important;
+}
+#command-details a {
+  outline-color:invert;
+  outline-style:none;
+  outline-width:medium;
+}
+.tab-box ul.head li.selected {
+  background:transparent url('/static/images/facultad/bg_tab_s.gif') no-repeat scroll left top;
+}
+.tab-box ul.head li.selected span {
+  background:#FFFFFF url('/static/images/facultad/bg_tab_s.gif') no-repeat scroll right top;
+}
+.tab-box ul.head li.selected span a, .tab-box ul.head li span a:hover {
+  color:#666666;
+}
+.tab-box .content {
+  margin:0px;
+  padding:5px;
+}
+.tab-box .content > div {
+  margin:1px;
+}
+.tab-box {
+  width: 100%;
+}
+#tools {
+    color: #666;
+    font-size: 12px;
+    text-align: right;
+    position: relative;
+}
+table.materias-list {
+  color: #666;
+}
+table.materias-list th {
+  color: #666;
+}
+table.materias-list td.cuatrimestre {
+  text-align: left !important;
+  padding-left: 12px;
+  background-color: #F6F6F6;
+  border-top: 1px solid #CCC;
+  color: #666;
+}
+table.carreras {
+  max-width: 700px;
+}
+table.carreras th {
+  text-align: center;
+}
+table.carreras td {
+  border-bottom: 1px solid #CCC;
+  padding: 5px 15px;
+  vertical-align: middle;
+  text-align: center !important;
+}
+table.carreras td p {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+table.carreras a.delete {
+  color: #e04e4f;
+  font-size: 12px;
+}
+table.carreras .label {
+  color: #999 !important;
+  font-size: 11px !important;
+}
+table.carreras .label-big {
+  color: #666;
+  font-size: 12px;
+}
+table.carreras th.carrera,
+table.carreras td.carrera {
+  max-width: 300px;
+  text-align:left!important;
+  vertical-align: top;
+}
+th.icono {
+  max-width: 20px;
+}
+th.icon-left {
+  text-align: left;
+  padding-left: 20px;
+}
+th.materias, td.materias {
+  max-width: 80px;
+}
+th.graduado, td.graduado {
+  max-width: 90px;
+}
+th.delete {
+  max-width: 80px;
+}
+#id_state label {
+  font-weight: normal;
 }

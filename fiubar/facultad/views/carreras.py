@@ -47,7 +47,7 @@ def add(request):
                              plancarrera.name))
             else:
                 messages.add_message(request, messages.ERROR,
-                                     _(u'Ya cursás esa carrera.'))
+                                     _('Ya cursás esa carrera.'))
                 logger.error("%s - carreras-add: user '%s', plancarrera '%s', "
                              '"Ya cursás esa carrera."' %
                              (request.META.get('REMOTE_ADDR'),
@@ -95,7 +95,7 @@ def graduado(request, plancarrera):
             alumno.graduado_date = form.cleaned_data['graduado_date']
             alumno.save()
             messages.add_message(request, messages.SUCCESS,
-                                 _(u'¡Felicitaciones!'))
+                                 _('¡Felicitaciones!'))
             logger.info("%s - carreras-graduado: user '%s', plancarrera '%s'" %
                         (request.META.get('REMOTE_ADDR'),
                          request.user, alumno.plancarrera))
@@ -120,23 +120,3 @@ def del_graduado(request, plancarrera):
     alumno.del_graduado()
     messages.add_message(request, messages.INFO, _('A seguir estudiando...'))
     return HttpResponseRedirect(reverse('facultad:carreras-home'))
-
-
-"""
-RESULTS_PER_PAGE = 10
-@login_required
-@get_carreras
-def alumnos(request, plancarrera):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
-    plancarrera = get_object_or_404(PlanCarrera, short_name=plancarrera)
-    page = int(request.GET.get('p', 1))
-    queryset = Alumno.objects.filter(plancarrera=plancarrera).\
-               order_by('-begin_date', '-id')
-    context.update({ 'plancarrera' : plancarrera, 'object' : _(u'alumno') })
-    return ListView.object_list(request, queryset=queryset,
-                paginate_by=RESULTS_PER_PAGE, page=page,
-                extra_context=context,
-                template_name = 'carreras/carrera_alumnos.html',
-            )
-"""
