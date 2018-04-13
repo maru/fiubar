@@ -1,9 +1,8 @@
 {% extends 'facultad/base.html' %}
 {% load i18n facultad_tags %}
 
-{% block title %}{% trans 'Cursando Materia' %}{% endblock %}
+{% block head_title %}{% trans 'Cursando Materia' %}{% endblock %}
 {% block inner %}
-{#<div class="materias-error"><span>Estamos trabajando para que aparezca correctamente el cuatrimestre!</span></div>#}
 <h2>{{ materia.get_codigo }} {{ materia.name }}</h2>
   <form action="" method="post">
   {% csrf_token %}
@@ -25,12 +24,6 @@
 	    <td><label class="inline">{% trans 'Aprobada:' %}</label></td>
 	    <td>{{ form.aprobada_cuat }} {{ form.aprobada_year }}</td>
 	  </tr>
-{% comment %}
-	  <div class="same">
-		{{ form.aprobada_same }}
-		<span class="">{{ form.aprobada_same.label }}</span>
-	  </div>
-{% endcomment %}
 	<tr><td colspan="2">{% if form.nota.errors %} <span class="error">{{ form.nota.errors|join:", " }}</span>{% endif %}</td></tr>
 	  <tr>
 	    <td><label class="inline" for="id_nota">{{ form.nota.label }}:</label></td>

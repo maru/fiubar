@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-allauth\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 11:01-0300\n"
+"POT-Creation-Date: 2018-04-13 09:04-0300\n"
 "PO-Revision-Date: 2016-07-30 16:39-0300\n"
 "Last-Translator: b'  <admin@fiubar.tk>'\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-allauth/"
@@ -18,6 +18,384 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.11\n"
+
+#: fiubar/facultad/decorators.py:22
+msgid "¿Qué carrera cursás?"
+msgstr ""
+
+#: fiubar/facultad/forms.py:15 fiubar/facultad/forms.py:77
+#: fiubar/facultad/forms.py:84
+msgid "1° Cuatrimestre"
+msgstr ""
+
+#: fiubar/facultad/forms.py:16 fiubar/facultad/forms.py:78
+#: fiubar/facultad/forms.py:85
+msgid "2° Cuatrimestre"
+msgstr ""
+
+#: fiubar/facultad/forms.py:26
+msgid "La fecha de ingreso a FIUBA es obligatoria"
+msgstr ""
+
+#: fiubar/facultad/forms.py:34
+msgid "Month"
+msgstr ""
+
+#: fiubar/facultad/forms.py:35
+msgid "Year"
+msgstr ""
+
+#: fiubar/facultad/forms.py:44
+msgid "La fecha de egreso de FIUBA es obligatoria"
+msgstr ""
+
+#: fiubar/facultad/forms.py:51
+msgid "Mostrar todas"
+msgstr ""
+
+#: fiubar/facultad/forms.py:52
+msgid "--------------------------"
+msgstr ""
+
+#: fiubar/facultad/forms.py:53
+msgid "Podés cursar"
+msgstr ""
+
+#: fiubar/facultad/forms.py:54
+msgid "En 1 cuatrimestre"
+msgstr ""
+
+#: fiubar/facultad/forms.py:55
+msgid "En 2 cuatrimestres"
+msgstr ""
+
+#: fiubar/facultad/forms.py:56
+msgid "En 3 cuatrimestres"
+msgstr ""
+
+#: fiubar/facultad/forms.py:57
+msgid "En 4 cuatrimestres"
+msgstr ""
+
+#: fiubar/facultad/forms.py:58 fiubar/facultad/forms.py:69
+#: fiubar/facultad/models/models.py:86
+msgid "Cursando"
+msgstr ""
+
+#: fiubar/facultad/forms.py:59
+msgid "Dar final"
+msgstr ""
+
+#: fiubar/facultad/forms.py:60 fiubar/facultad/views/facultad.py:47
+msgid "Aprobada"
+msgstr ""
+
+#: fiubar/facultad/forms.py:68
+msgid "No estoy cursando esta materia"
+msgstr ""
+
+#: fiubar/facultad/forms.py:70 fiubar/facultad/models/models.py:87
+msgid "Cursada Aprobada"
+msgstr ""
+
+#: fiubar/facultad/forms.py:71 fiubar/facultad/models/models.py:88
+msgid "Materia Aprobada"
+msgstr ""
+
+#: fiubar/facultad/forms.py:72 fiubar/facultad/models/models.py:89
+msgid "Equivalencia"
+msgstr ""
+
+#: fiubar/facultad/forms.py:76 fiubar/facultad/forms.py:83
+msgid "Cuatrimestre"
+msgstr ""
+
+#: fiubar/facultad/forms.py:79
+msgid "Curso de Verano"
+msgstr ""
+
+#: fiubar/facultad/forms.py:88
+msgid "Año"
+msgstr ""
+
+#: fiubar/facultad/forms.py:93 fiubar/facultad/views/facultad.py:42
+msgid "Estado"
+msgstr ""
+
+#: fiubar/facultad/forms.py:130
+msgid "Completar con cuatrimestre y año."
+msgstr ""
+
+#: fiubar/facultad/models/functions.py:9
+msgid "???"
+msgstr ""
+
+#: fiubar/facultad/models/models.py:69 fiubar/facultad/models/models.py:140
+#, python-format
+msgid "%(cuatrimestre)s° Cuatrimestre %(year)s"
+msgstr ""
+
+#: fiubar/facultad/models/models.py:82
+msgid "Verano"
+msgstr ""
+
+#: fiubar/facultad/models/models.py:139
+#, python-format
+msgid "Verano %(year)s"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_add_form.html:4
+#: fiubar/facultad/templates/carreras/carrera_add_form.html:7
+#: fiubar/facultad/templates/carreras/carreras_home.html:60
+msgid "Agregar carrera"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_add_form.html:18
+msgid "Ingreso a FIUBA"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_add_form.html:30
+msgid "Agregar Carrera"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_alumnos.html:14
+#: fiubar/facultad/templates/carreras/carrera_alumnos.html:20
+msgid "Ver perfil"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_delete.html:4
+#: fiubar/facultad/templates/carreras/carreras_home.html:6
+#: fiubar/facultad/templates/carreras/carreras_home.html:10
+#: fiubar/facultad/templates/facultad/navigation.html:32
+#: fiubar/facultad/templates/materias/base.html:46
+msgid "Carreras"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_delete.html:7
+msgid "Borrar Carrera"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_delete.html:9
+#: fiubar/facultad/templates/carreras/carreras_home.html:12
+msgid "No estás cursando ninguna carrera."
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_delete.html:16
+#: fiubar/facultad/templates/carreras/carreras_home.html:16
+msgid "Carrera"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_delete.html:17
+#: fiubar/facultad/templates/carreras/carrera_delete.html:29
+msgid "Borrar"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_graduado_form.html:5
+#: fiubar/facultad/templates/carreras/carrera_graduado_form.html:9
+#: fiubar/facultad/templates/carreras/carrera_graduado_form.html:30
+#: fiubar/facultad/templates/carreras/carreras_home.html:20
+#: fiubar/facultad/templates/carreras/carreras_home.html:52
+msgid "¡Me recibí!"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carrera_graduado_form.html:34
+msgid "No me recibí todavía."
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carreras_home.html:17
+msgid "Créditos"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carreras_home.html:18
+msgid "Promedio"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carreras_home.html:19
+#: fiubar/facultad/templates/facultad/base.html:3
+#: fiubar/facultad/templates/facultad/plancarrera.html:4
+#: fiubar/facultad/templates/facultad/plancarrera.html:39
+#: fiubar/facultad/templates/facultad/plancarrera_all.html:4
+#: fiubar/facultad/templates/facultad/plancarrera_all.html:28
+#: fiubar/facultad/templates/materias/base.html:5
+#: fiubar/facultad/templates/materias/materias_home.html:5
+#: fiubar/facultad/templates/materias/materias_home.html:8
+msgid "Materias"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carreras_home.html:28
+msgid "comienzo:"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carreras_home.html:40
+msgid "Ver"
+msgstr ""
+
+#: fiubar/facultad/templates/carreras/carreras_home.html:62
+msgid "Borrar carrera"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/cargar_materias.html:4
+#: fiubar/facultad/templates/facultad/cargar_materias.html:7
+#: fiubar/facultad/templates/facultad/cargar_materias.html:38
+#: fiubar/facultad/templates/facultad/navigation.html:31
+msgid "Cargar Materias"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/cargar_materias.html:20
+#: fiubar/facultad/templates/materias/base.html:14
+msgid "Materia"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/cargar_materias.html:21
+msgid "Nota"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/cargar_materias.html:22
+msgid "Fecha Aprobada"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/cargar_materias.html:34
+msgid ""
+"Ciertas líneas no pudieron ser parseadas (las materias con nota 2 no son "
+"tenidas en cuenta):"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/home.html:4
+#: fiubar/facultad/templates/facultad/navigation.html:22
+#: fiubar/facultad/templates/materias/base.html:32
+#: fiubar/facultad/templates/materias/base.html:37
+msgid "Mis Materias"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/materia_form.html:4
+msgid "Cursando Materia"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/materia_form.html:18
+msgid "Cursada:"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/materia_form.html:24
+msgid "Aprobada:"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/materia_form.html:33
+msgid "Guardar cambios"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/navigation.html:17
+msgid "Facultad"
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/navigation.html:19
+#: fiubar/facultad/templates/materias/base.html:17
+#: fiubar/facultad/templates/materias/base.html:35
+#: fiubar/templates/navigation.html:20
+msgid "Home"
+msgstr "Inicio"
+
+#: fiubar/facultad/templates/facultad/plancarrera.html:58
+#: fiubar/facultad/templates/facultad/plancarrera_all.html:46
+msgid "No hay materias."
+msgstr ""
+
+#: fiubar/facultad/templates/facultad/plancarrera_all.html:7
+msgid "Lista de Materias"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/base.html:18
+msgid "Quiénes Cursan"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/base.html:19
+msgid "Calendario"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/base.html:20
+#: fiubar/facultad/templates/materias/materia_show.html:22
+msgid "Grupo"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/base.html:21
+msgid "Archivos"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/materia_cursos.html:10
+msgid "Están cursando"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/materia_cursos.html:22
+msgid "Ya cursaron"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/materia_show.html:10
+msgid "Información"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/materia_show.html:24
+msgid "miembro"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/materia_show.html:42
+msgid "Encuestas"
+msgstr ""
+
+#: fiubar/facultad/templates/materias/materia_show.html:68
+msgid "Apuntes"
+msgstr ""
+
+#: fiubar/facultad/templatetags/facultad_tags.py:123
+msgid "diez"
+msgstr ""
+
+#: fiubar/facultad/views/carreras.py:44
+msgid "Carrera agregada."
+msgstr ""
+
+#: fiubar/facultad/views/carreras.py:50
+msgid "Ya cursás esa carrera."
+msgstr ""
+
+#: fiubar/facultad/views/carreras.py:74
+msgid "Carrera borrada."
+msgstr ""
+
+#: fiubar/facultad/views/carreras.py:98
+msgid "¡Felicitaciones!"
+msgstr ""
+
+#: fiubar/facultad/views/carreras.py:121
+msgid "A seguir estudiando..."
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:36 fiubar/facultad/views/facultad.py:72
+#: fiubar/facultad/views/facultad.py:83
+msgid " "
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:50 fiubar/facultad/views/facultad.py:105
+msgid "Error 404"
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:78 fiubar/facultad/views/facultad.py:102
+msgid " Estado "
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:93
+msgid " Aprobada "
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:94
+msgid " Nota "
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:103
+msgid " Correlativas "
+msgstr ""
+
+#: fiubar/facultad/views/facultad.py:136
+msgid "Cambios guardados."
+msgstr ""
 
 #: fiubar/templates/account/account_inactive.html:5
 #: fiubar/templates/account/account_inactive.html:7
@@ -37,7 +415,7 @@ msgid "Account"
 msgstr "Cuenta"
 
 #: fiubar/templates/account/base_panel.html:13
-#: fiubar/templates/navigation.html:46
+#: fiubar/templates/navigation.html:39
 msgid "Settings"
 msgstr "Configuración"
 
@@ -223,7 +601,7 @@ msgstr ""
 "electrónico</a>."
 
 #: fiubar/templates/account/login.html:6 fiubar/templates/account/login.html:12
-#: fiubar/templates/account/login.html:20 fiubar/templates/navigation.html:54
+#: fiubar/templates/account/login.html:20 fiubar/templates/navigation.html:47
 #: fiubar/templates/pages/index.html:33 fiubar/templates/pages/index.html:41
 msgid "Sign In"
 msgstr "Iniciar sesión"
@@ -238,7 +616,7 @@ msgstr "También podés iniciar sesión usando tu cuenta de:"
 
 #: fiubar/templates/account/logout.html:5
 #: fiubar/templates/account/logout.html:7
-#: fiubar/templates/account/logout.html:17 fiubar/templates/navigation.html:49
+#: fiubar/templates/account/logout.html:17 fiubar/templates/navigation.html:42
 msgid "Sign Out"
 msgstr "Cerrar sesión"
 
@@ -315,7 +693,7 @@ msgid "Signup"
 msgstr "Regístrate"
 
 #: fiubar/templates/account/signup.html:13
-#: fiubar/templates/account/signup.html:23 fiubar/templates/navigation.html:53
+#: fiubar/templates/account/signup.html:23 fiubar/templates/navigation.html:46
 #: fiubar/templates/pages/index.html:61 fiubar/templates/pages/index.html:68
 #: fiubar/templates/socialaccount/signup.html:8
 #: fiubar/templates/socialaccount/signup.html:31
@@ -407,39 +785,31 @@ msgstr "Mensaje enviado"
 msgid "Thank you! We've received your request and we'll contact you shortly."
 msgstr ""
 
-#: fiubar/templates/footer.html:4
+#: fiubar/templates/footer.html:5
 msgid "Hecho con &#10084;"
 msgstr "Hecho con &#10084;"
 
-#: fiubar/templates/footer.html:8
+#: fiubar/templates/footer.html:9
 msgid "Sobre Fiubar"
 msgstr ""
 
-#: fiubar/templates/footer.html:9
+#: fiubar/templates/footer.html:10
 msgid "FAQ"
 msgstr ""
 
-#: fiubar/templates/footer.html:11
+#: fiubar/templates/footer.html:12
 msgid "Contacto"
 msgstr "Contacto"
 
-#: fiubar/templates/navigation.html:17
-msgid "Home"
-msgstr "Inicio"
-
-#: fiubar/templates/navigation.html:19
-msgid "Facultad"
-msgstr ""
-
-#: fiubar/templates/navigation.html:40
+#: fiubar/templates/navigation.html:33
 msgid "Signed in as"
 msgstr "Conectado como"
 
-#: fiubar/templates/navigation.html:44
+#: fiubar/templates/navigation.html:37
 msgid "Your Profile"
 msgstr "Tu Perfil"
 
-#: fiubar/templates/navigation.html:48
+#: fiubar/templates/navigation.html:41
 msgid "Report a Problem"
 msgstr "Reportar un Problema"
 
@@ -492,22 +862,22 @@ msgstr "Perfil: "
 msgid "Edit Profile"
 msgstr "Editar Perfil"
 
-#: fiubar/templates/users/user_detail.html:26 fiubar/users/forms.py:38
-#: fiubar/users/models.py:24
+#: fiubar/templates/users/user_detail.html:26 fiubar/users/forms.py:41
+#: fiubar/users/models.py:25
 msgid "Website"
 msgstr "Sitio web"
 
-#: fiubar/templates/users/user_detail.html:35 fiubar/users/forms.py:37
-#: fiubar/users/models.py:23
+#: fiubar/templates/users/user_detail.html:35 fiubar/users/forms.py:39
+#: fiubar/users/models.py:24
 msgid "Location"
 msgstr "Ubicación"
 
-#: fiubar/templates/users/user_detail.html:42 fiubar/users/forms.py:53
+#: fiubar/templates/users/user_detail.html:42 fiubar/users/forms.py:56
 msgid "Occupation"
 msgstr "Ocupación"
 
-#: fiubar/templates/users/user_detail.html:51 fiubar/users/forms.py:39
-#: fiubar/users/models.py:29
+#: fiubar/templates/users/user_detail.html:51 fiubar/users/forms.py:43
+#: fiubar/users/models.py:30
 msgid "About me"
 msgstr "Acerca de mí"
 
@@ -525,7 +895,7 @@ msgid ""
 "            Please be certain."
 msgstr "Una vez que haya borrado su cuenta, no hay vuelta atrás."
 
-#: fiubar/users/admin.py:54
+#: fiubar/users/admin.py:52
 msgid "Status"
 msgstr "Ocupación"
 
@@ -533,23 +903,23 @@ msgstr "Ocupación"
 msgid "Please choose a different username."
 msgstr "Por favor elija un nombre de usuario diferente."
 
-#: fiubar/users/forms.py:22
+#: fiubar/users/forms.py:23
 msgid "A user with that username already exists."
 msgstr ""
 
-#: fiubar/users/forms.py:36 fiubar/users/models.py:18
+#: fiubar/users/forms.py:38 fiubar/users/models.py:22
 msgid "Name"
 msgstr "Nombre"
 
-#: fiubar/users/forms.py:58
+#: fiubar/users/forms.py:62
 msgid "Update Profile"
 msgstr "Editar Perfil"
 
-#: fiubar/users/forms.py:67
+#: fiubar/users/forms.py:71
 msgid "delete my account"
 msgstr "borrar mi cuenta"
 
-#: fiubar/users/forms.py:69
+#: fiubar/users/forms.py:76
 msgid ""
 "To verify, type \"<span class=\"confirmation-phrase do-not-copy-me\">delete "
 "my account</span>\" below:"
@@ -557,60 +927,60 @@ msgstr ""
 "Para verificar, escriba \"<span class=\"confirmation-phrase do-not-copy-me"
 "\">borrar mi cuenta</span>\" a continuación:"
 
-#: fiubar/users/forms.py:74
+#: fiubar/users/forms.py:80
 msgid "Your username or email:"
 msgstr "Tu nombre de usuario o dirección electrónica:"
 
-#: fiubar/users/forms.py:76
+#: fiubar/users/forms.py:82
 msgid "Confirm your password:"
 msgstr "Confirmar tu contraseña:"
 
-#: fiubar/users/forms.py:104
+#: fiubar/users/forms.py:110
 msgid "Delete your account"
 msgstr "Borrar su cuenta"
 
-#: fiubar/users/forms.py:111 fiubar/users/forms.py:122
+#: fiubar/users/forms.py:118 fiubar/users/forms.py:132
 msgid "The login and/or password you specified are not correct."
 msgstr ""
 "El correo electrónico/usuario y/o la contraseña que especificaste no son "
 "correctos."
 
-#: fiubar/users/forms.py:117
+#: fiubar/users/forms.py:126
 msgid "Confirmation phrase is not correct."
 msgstr "La frase de confirmación no es correcta."
 
-#: fiubar/users/models.py:22
+#: fiubar/users/models.py:23
 msgid "Picture"
 msgstr "Imagen de Perfil"
 
-#: fiubar/users/models.py:25 fiubar/users/models.py:46
+#: fiubar/users/models.py:26 fiubar/users/models.py:47
 msgid "Student"
 msgstr "Estudiante"
 
-#: fiubar/users/models.py:26 fiubar/users/models.py:42
+#: fiubar/users/models.py:27 fiubar/users/models.py:43
 msgid "Professor"
 msgstr "Profesor"
 
-#: fiubar/users/models.py:27 fiubar/users/models.py:44
+#: fiubar/users/models.py:28 fiubar/users/models.py:45
 msgid "Assistant"
 msgstr "Ayudante"
 
-#: fiubar/users/models.py:28 fiubar/users/models.py:40
+#: fiubar/users/models.py:29 fiubar/users/models.py:41
 msgid "Professional"
 msgstr "Profesional"
 
-#: fiubar/users/models.py:51
+#: fiubar/users/models.py:52
 msgid "profile"
 msgstr "perfil"
 
-#: fiubar/users/views.py:37
+#: fiubar/users/views.py:34
 msgid "Changes saved!"
 msgstr "¡Cambios guardados!"
 
-#: fiubar/users/views.py:91
+#: fiubar/users/views.py:92
 msgid "User deleted"
 msgstr "Usuario borrado con éxito"
 
-#: fiubar/users/views.py:117
+#: fiubar/users/views.py:119
 msgid "Username changed"
 msgstr "Cambio de nombre de usuario exitoso"

@@ -8,7 +8,7 @@
   }
 }
 .navbar-extra img {
-  width: 100px;
+  height: 30px;
   margin-top: -6px;
 }
 .navbar-extra {
@@ -21,10 +21,13 @@
   border-top: 1px solid #eee;
 }
 .bd-footer a {
+  color:#373737;
   font-weight:normal;
 }
-
-.bd-footer-links{
+body.footer-light .bd-footer a {
+  color:#c3c3c3;
+}
+.bd-footer-links {
   padding-left:0;
   margin-bottom:1rem;
 }
@@ -33,6 +36,13 @@
 }
 .bd-footer-links li+li{
   margin-left:2rem;
+}
+@media (max-width: 550px) {
+  .bd-footer .pull-left,
+  .bd-footer .pull-right {
+    float: none !important;
+    text-align: center;
+  }
 }
 
 .action {

@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles i18n %}
-{% block title %}{% trans 'Materias' %}{% endblock %}
+{% block head_title %}{% trans 'Materias' %}{% endblock %}
 {% csrf_token %}
-
-{% block css-extra %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/facultad.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/paginator.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/print.css' %}" media="print" />
-{% endblock %}
 
 {% block content %}
     <div id="inner" class="">

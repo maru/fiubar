@@ -13,7 +13,7 @@ def home(request):
     else:
         template_file = 'pages/index.html'
         forms = {'login': LoginForm,
-                 'signup': SignupForm, }
+                 'signup': SignupForm}
         context.update({'forms': forms})
 
     return render(request, template_file, context)

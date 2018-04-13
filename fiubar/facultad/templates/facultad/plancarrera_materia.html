@@ -21,16 +21,6 @@
 			  {% if tab_aprobadas %}{{ nota|apnumber }}{% endif %}
 			  {% if tab_todas %}{# {{ planmateria.correlativas }} #}
 			  {% for m in planmateria.correlativas %}<span class="{{ m.0 }}" title="{{ m.2 }}">{{ m.1 }}{% if not forloop.last %}-{% endif %}</span>{% endfor %}{% endif %}
-			{%comment%}
-			  <!--{% if count_correl %}
-				{% for m in list_correl %}
-				{#<a class="label" href="{{ m.url_home }}">{{ m.get_codigo }}</a>#}
-				<a class="label" href="#{{ m.codigo }}">{{ m.get_codigo }}</a>
-				{% if not forloop.last %} - {% endif %}
-				{% endfor %}
-			  {% endif %}
-			  {# if final %}{{ final }}{% endif #}-->
-			{%endcomment%}
 			</td>
 			{% if tab_para_cursar %}<td>{{ planmateria.creditos }}</td>{% endif %}
 			{% comment %}<td class="actions">

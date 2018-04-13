@@ -62,7 +62,7 @@ def generate_avatar(letter, data, size=FULLSIZE):
     # Create image
     img = Image.new('RGBA', (FULLSIZE, FULLSIZE), bg_color + (255, ))
 
-    font_path = os.path.join(settings.MEDIA_ROOT, 'fonts/Helvetica.ttf')
+    font_path = os.path.join(settings.FIUBAR_DIR, 'static/fonts/Helvetica.ttf')
     font = ImageFont.truetype(font_path, POINTSIZE)
     font_color = (bg_color) + (0x33, )
 

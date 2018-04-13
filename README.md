@@ -10,7 +10,7 @@ De manera simple y ordenada, podés organizar tu carrera y decidir qué materias
 ---------------------------------
 
 Tenemos una lista de discusión:
-http://groups.google.com/d/forum/fiubar-dev
+:computer: http://groups.google.com/d/forum/fiubar-dev
 
 :bug: ¿*Encontraste un error*? Por favor incluí la mayor cantidad de información
 posible, como el link de la página y los pasos que hay que seguir para
@@ -25,10 +25,7 @@ También podés reportar errores usando la plataforma de github: https://github.
 :tired_face: ¿Tenés ganas de participar y no sabés por dónde empezar?
   - Usamos Django (python): https://tutorial.djangogirls.org/es/
   - Probá de bajar el código de fiubar e instalarlo en tu computadora.
-  - Si tenés una duda, ¡podés escribirnos en esta lista!
-
-:computer: Chat:
-https://fiubar.slack.com/messages/general/
+  - Si tenés una duda, ¡podés escribirnos a la lista!
 
 Instalación
 -----------
@@ -36,17 +33,22 @@ Instalación
     git clone https://github.com/maru/fiubar.git
     cd fiubar/
 
-Si usás [docker](https://docs.docker.com/get-started/), crear la imagen y ejecutar el container:
+Podés personalizar ciertos valores de configuración en el siguiente archivo:
+
+    export FIUBAR_SECRET_FILE=local/secret.json
+
+Si usás [docker](https://docs.docker.com/get-started/), creá la imagen y corré el contenedor:
 
     docker build -t fiubar .
     docker run -it -p 8000:8000 --rm --name fiubar-local fiubar
 
-... y abrir el navegador en http://127.0.0.1:8000/ :smile:
+... y abrí el navegador en http://127.0.0.1:8000/ :smile:
 
-Testing
--------
 
-Para correr los tests, primero creamos un [entorno virtual](https://tutorial.djangogirls.org/es/django_installation/#entorno-virtual):
+Desarrollar
+-----------
+
+Recomendamos crear un [entorno virtual](https://tutorial.djangogirls.org/es/django_installation/#entorno-virtual):
 
     python3 -m venv fiubarenv
     source fiubarenv/bin/activate
@@ -55,11 +57,21 @@ Resultado, terminal con prefijo:
 
     (fiubarenv) $
 
-Luego es necesario instalar los siguientes programas:
+Instalar los paquetes necesarios:
 
-- Django, Selenium y otros requerimientos:
+    pip install --upgrade pip
+    pip install -r requirements_dev.txt
 
-      pip install -r requirements.txt
+
+Testing
+-------
+
+Es necesario instalar los siguientes programas:
+
+- Firefox:
+
+    Si no tenés Firefox instalado, podés bajarlo de https://www.mozilla.org/firefox/.
+    En Linux, podés instalarlo con tu gestor de paquetes.
 
 - geckodriver:
 
@@ -78,16 +90,14 @@ Luego es necesario instalar los siguientes programas:
       This program is subject to the terms of the Mozilla Public License 2.0.
       You can obtain a copy of the license at https://mozilla.org/MPL/2.0/.
 
-- Firefox:
-
-    Si no tenés Firefox instalado, podés bajarlo de https://www.mozilla.org/firefox/.
-    En Linux, podés instalarlo con tu gestor de paquetes.
-
 Setear las siguientes variables de entorno en la terminal, por ejemplo:
 
     export TEST_FIREFOX_PATH=/usr/bin/firefox
     export TEST_SERVER_NAME=http://localhost:8000/
 
-Ejecutar los tests (el servidor tiene que estar corriendo :smile:):
+Para ejecutar los tests, podés correr el comando `tox` o ejecutarlos manualmente.
 
-    python tests/run.py
+Para hacerlo manualmente, es necesario instalar los paquetes necesarios:
+
+    pip install -r tests/requirements.txt
+    python manage.py test --settings=fiubar.config.settings.test

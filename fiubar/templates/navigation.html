@@ -1,7 +1,7 @@
 {% load staticfiles i18n %}
 {# Barra de navegación principal #}
 {% block navbar %}
-<nav class="navbar navbar-inverse navbar-extra">
+<nav class="navbar navbar-inverse navbar-extra navbar-expand navbar-dark">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#fb-navbar">
@@ -14,12 +14,14 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="fb-navbar">
+      {% with user=request.user %}
+      {% if user.is_authenticated %}
       <ul class="nav navbar-nav">
-        <li class="{% if slug == 'home' %}active{% endif %}"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+        <!-- <li class="{% if slug == 'home' %}active{% endif %}"><a href="{% url 'home' %}">{% trans "Home" %}</a></li> -->
         {% include 'facultad/navigation.html' %}
       </ul>
+      {% endif %}
       <ul class="nav navbar-nav navbar-right navbar-account">
-        {% with user=request.user %}
         {% if user.is_authenticated %}
         <li class="dropdown {% if slug == 'account' %}active{% endif %}">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -45,8 +47,6 @@
         <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> {% trans "Sign In" %}</a></li>
         {% endif %}
         {% endwith %}
-
-
       </ul>
     </div>
   </div>

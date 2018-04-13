@@ -2,10 +2,7 @@
 {% load i18n %}
 
 
-{% block title %}{% trans 'Materias' %}{% endblock %}
-{% block link-css %}
-    <link rel="stylesheet" href="{% static 'css/files.css" type="text/css" />
-{% endblock %}
+{% block head_title %}{% trans 'Materias' %}{% endblock %}
 
 {% block main-content %}
 <h2>{% trans 'Materias' %}</h2>
@@ -27,6 +24,3 @@
 
 
 {% endblock %}
-
-
-

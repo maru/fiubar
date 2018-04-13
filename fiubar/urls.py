@@ -28,21 +28,17 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
 
     # User management
-    path('users/',
+    path('profile/',
          include('fiubar.users.urls', namespace='users')),
 
     path('accounts/',
          include('allauth.urls')),
 
-    path('profile/',
-         TemplateView.as_view(template_name='users/user_profile.html'),
-         name='profile'),
-
     path('facultad/',
          include('fiubar.facultad.urls', namespace='facultad')),
 ]
 
-if settings.DEBUG:
+if getattr(settings, 'DEBUG', False):
 
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     from django.conf.urls.static import static

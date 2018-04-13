@@ -1,7 +1,7 @@
 {% extends 'base_materias.html' %}
 {% load i18n groups profile %}
 
-{% block title %}{{ materia.get_codigo }} {{ materia.name }}{% endblock %}
+{% block head_title %}{{ materia.get_codigo }} {{ materia.name }}{% endblock %}
 
 {% block main-content %}
   <ul class="materia-items">

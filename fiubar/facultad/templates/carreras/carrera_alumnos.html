@@ -2,7 +2,7 @@
 {% load staticfiles i18n profile paginator facultad_tags %}
 
 
-{% block title %}{{ carrera.name }}{% endblock %}
+{% block head_title %}{{ carrera.name }}{% endblock %}
 
 {% block inner %}
 <h2><img class="group-picture" src="{% static 'avatars/groups/fiuba-{{ carrera.short_name }}_s.png' %}" alt="" title="{{ carrera.name }}" /> {{ carrera.name }}</h2>
