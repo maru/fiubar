@@ -3,18 +3,15 @@
 
 {% block head_title %}{% trans 'Materias' %}{% endblock %}
 
+{% block inner_title %}{% trans 'Lista de Materias' %}{% endblock %}
+
 {% block inner %}
-<h2>{% trans 'Lista de Materias' %}</h2>
-{#{% if class_aprobadas %}<div class="materias-error"><span>Estamos trabajando para que aparezca correctamente el cuatrimestre!</span></div>{% endif %}#}
 	<div id="command-details" class="tab-box">
 		<!-- menu -->
 		{% autoescape off %}<ul class="head">
 			<li{{ class_cursando }}>
 				<span><a href="{% url 'facultad:materias' %}">Cursando</a></span>
 			</li>
-			<!-- <li{{ class_para_cursar }}>
-				<span><a href="{% url 'facultad:materias' %}?show=para_cursar">Para Cursar</a></span>
-			</li> -->
 			<li{{ class_aprobadas }}>
 				<span><a href="{% url 'facultad:materias' %}?show=aprobadas">Aprobadas</a></span>
 			</li>

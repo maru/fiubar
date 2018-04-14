@@ -13,18 +13,21 @@
     Libro/Folio, podés borrarla).
   </p>
  {% if materia_list %}
-  <p class="user-messages"><span class="status-correct">
-      {% ifequal materia_list_count 1 %}Se cargó 1 materia{% else %}Se cargaron {{ materia_list_count }} materias{% endifequal %}
-  </span></p>
-  <table>
-    <tr>
-      <th class="margin-left">{% trans 'Materia' %}</th>
+ <div class="alert alert-success fade in">
+   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+   {% ifequal materia_list_count 1 %}Se cargó 1 materia{% else %}Se cargaron {{ materia_list_count }} materias{% endifequal %}
+ </div>
+  <table class="table table-responsive table-bordered table-condensed">
+    <thead>
+    <tr class="active">
+      <th class="">{% trans 'Materia' %}</th>
       <th class="materias">{% trans 'Nota' %}</th>
       <th>{% trans 'Fecha Aprobada' %}</th>
     </tr>
+    </thead>
   {% for m, final_date, nota in materia_list %}
     <tr>
-      <td class="margin-left">{{ m.get_name }}</td>
+      <td class="">{{ m.get_name }}</td>
       <td>{{ nota }}</td>
       <td>{{ final_date|date:"d-m-Y" }}</td>
     </tr>
@@ -32,7 +35,13 @@
   </table>
   <hr />
  {% endif %}
-  {% if text_paste %}<p>{% trans 'Ciertas líneas no pudieron ser parseadas (las materias con nota 2 no son tenidas en cuenta):' %}</p>{% endif %}
+  {% if text_paste %}
+  <div class="alert alert-danger fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {% trans 'Ciertas líneas no pudieron ser parseadas (las materias con nota 2 no son tenidas en cuenta):' %}
+  </div>
+  {% endif %}
+
   <form action="" method="post">
     {% csrf_token %}
     <div class="form-group">

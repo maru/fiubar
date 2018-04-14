@@ -1,6 +1,8 @@
 {% load i18n facultad_tags %}
 {# Barra de navegación #}
 {% get_carreras %}
+
+{% comment %}
 {% if list_carreras %}
   {% with a=list_carreras|first %}
   <li class="{% if slug == 'todo' %}active{% endif %}">
@@ -11,6 +13,7 @@
     </a></li>
     {% endwith %}
 {% endif %}
+{% endcomment %}
   <li class="{% if slug == 'facultad-todo' %}active{% endif %}"><a href="{% url 'facultad:home' %}">{% trans "Facultad" %}</a></li>
 {% comment %}
 <li class="{% if slug == 'facultad-todo' %}active{% endif %}">

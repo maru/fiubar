@@ -13,9 +13,11 @@
 {% block inner_title %}{% trans 'Mis Materias' %}{% endblock %}
 {% block inner %}
 
+
 <div class="carreras">
-  <h1>Mi{{ list_carreras.count|pluralize }} carrera{{ list_carreras.count|pluralize }}</h1>
 {% if list_carreras %}
+{% comment %}
+  <h1>Mi{{ list_carreras.count|pluralize }} carrera{{ list_carreras.count|pluralize }}</h1>
   <ul>
   {% for a in list_carreras %}
       <li><a href="{{ a.url_materias }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
@@ -24,6 +26,7 @@
         </a></li>
   {% endfor %}
   </ul>
+  {% endcomment %}
 {% else %}
    <a href="{% url 'facultad:carreras-add' %}">¿Qué carrera cursás?</a>
 {% endif %}

@@ -19,7 +19,6 @@ re_infoacad = re.compile(r"""^\s*
     (?P<correlativas>.*)$
 """, re.X)
 
-
 def parse_materias_aprobadas(paste, request):
     lines = paste.split("\n")
     materia_list = []
@@ -31,11 +30,12 @@ def parse_materias_aprobadas(paste, request):
             dict_materia = match.groupdict()
             try:
                 # Find materia
-                cod_materia = dict_materia['cod_materia']
+                cod_materia = dict_materia.setdefault('cod_materia', '0')
                 materia = Materia.objects.get(id=cod_materia)
-                nota = dict_materia['nota']
-                day, month, year = dict_materia['final_date'].split('-')
-                final_date = datetime.date(int(year), int(month), int(day))
+                nota = dict_materia.setdefault('nota', 0)
+                day, month, year = dict_materia.setdefault('final_date', '0-0-0').split('-')
+                final_date = datetime.date(int(year), int(month), int(day)) \
+                    if year != '0' else None
                 AlumnoMateria.objects.create_or_update(request.user,
                                                        materia, final_date,
                                                        nota)

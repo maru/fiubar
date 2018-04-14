@@ -3,11 +3,12 @@
 
 {% block head_title %}{% trans 'Materias' %}{% endblock %}
 
-{% block inner %}
-<h2>{{ carrera.name }}
+{% block inner_title %}
+{{ carrera.name }}
 	{% if plancarrera.orientacion %}<span class="small">{{ plancarrera.orientacion }} - </span>{% endif %}
     <span class="small">Plan {{ plancarrera.pub_date.year }}</span>
-</h2>
+{% endblock %}
+{% block inner %}
 	<div id="command-details" class="tab-box">
 		<div id="tools">
 			<a href="#" onClick="window.print();return false">Imprimir <img src="{% static 'images/facultad/printer.png' %}" alt="Imprimir" title="Imprimir" /></a>

@@ -271,7 +271,7 @@ span.socialaccount_provider {
     user-select: none;
 }
 .fiuba-minilogo {
-  background: transparent url('/static/images/facultad/fiuba.gif') no-repeat 8px 5px;
+  background: transparent url('/static/images/facultad/fiuba.gif') no-repeat 0px 0px;
 }
 .fiuba-minilogo span {
   padding-left: 20px;
@@ -419,4 +419,9 @@ th.delete {
 }
 #id_state label {
   font-weight: normal;
+}
+.abbr {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
 }

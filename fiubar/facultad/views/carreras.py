@@ -67,6 +67,8 @@ def add(request):
 @login_required
 @get_carreras
 def delete(request, plancarrera=None):
+    context['list_carreras'] = request.session.get('list_carreras', list())
+    request.session['list_carreras'] = []
     if plancarrera:
         alumno = get_object_or_404(Alumno, user=request.user,
                                    plancarrera__short_name=plancarrera)
@@ -77,8 +79,6 @@ def delete(request, plancarrera=None):
                      request.user, plancarrera))
         return HttpResponseRedirect(reverse('facultad:carreras-home'))
     # Show list of carreras
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
     return render(request, 'carreras/carrera_delete.html', context)
 
 
