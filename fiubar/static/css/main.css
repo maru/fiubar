@@ -1,0 +1,427 @@
+@media (max-width: 767px) {
+  .front-page .col-sm-6.pull-right {
+      float: none !important;
+      margin: 0 auto;
+  }
+  .front-page .col-sm-6.pull-left {
+    float: none !important;
+  }
+}
+.navbar-extra img {
+  height: 30px;
+  margin-top: -6px;
+}
+.navbar-extra {
+  border-radius: 0 !important;
+}
+.bd-footer{
+  padding-top: 20px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
+.bd-footer a {
+  color:#373737;
+  font-weight:normal;
+}
+body.footer-light .bd-footer a {
+  color:#c3c3c3;
+}
+.bd-footer-links {
+  padding-left:0;
+  margin-bottom:1rem;
+}
+.bd-footer-links li{
+  display:inline-block;
+}
+.bd-footer-links li+li{
+  margin-left:2rem;
+}
+@media (max-width: 550px) {
+  .bd-footer .pull-left,
+  .bd-footer .pull-right {
+    float: none !important;
+    text-align: center;
+  }
+}
+
+.action {
+  margin-top: 10px;
+}
+h1[id] {
+    padding-top: 20px;
+    margin-top: 0;
+}
+
+.page-about p,
+.page-faq p {
+  text-align: justify;
+}
+img.faq-icon {
+  width:24px;
+}
+/* pages/about.html */
+img.about-icon {
+  vertical-align: middle;
+  border: 1px solid #000;
+  margin: 1px;
+}
+ul.showinfo-list {
+  margin: 0px;
+  padding: 0px;
+  list-style-image: none;
+  list-style-type: none;
+}
+ul.showinfo-list li {
+  margin: 0px;
+  padding: 0px;
+}
+/* These styles are generated from project.scss. */
+
+.alert-debug {
+  color: black;
+  background-color: white;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+/* Display django-debug-toolbar.
+   See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+   and https://github.com/pydanny/cookiecutter-django/issues/317
+*/
+[hidden][style="display: block;"] {
+  display: block !important;
+}
+/* account templates */
+.page-header {
+  margin:20px 0 20px;
+}
+.account {
+    padding: 0px 30px 10px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+@media (max-width: 479px) {
+  .account {
+      padding-left: 0px;
+      padding-right: 0px;
+      border: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .account {
+      border: 0px;
+  }
+}
+.socialaccount_ballot { text-align: center;}
+.socialaccount_ballot ul { display:inline-table;}
+.socialaccount_providers li {
+  display:inline;
+  float: left;
+  list-style: none;
+}
+.socialaccount_providers li a {
+  width: 42px;
+  height: 42px;
+  display: block;
+  border: 0;
+  text-indent: -999em;
+  overflow: hidden;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  margin: 0 10px 10px 0;
+}
+span.socialaccount_provider {
+  color: transparent;
+  font-size: 0px;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  padding: 12px;
+  margin: 10px 10px;
+  background-size:24px 24px;
+  background-position: center;
+
+}
+.github {
+  background: transparent url(/static/images/socialaccounts/github.png) no-repeat center center;
+}
+.linkedin {
+  background: transparent url(/static/images/socialaccounts/linkedin.png) no-repeat center center;
+}
+.facebook {
+  background: transparent url(/static/images/socialaccounts/facebook.png) no-repeat center center;
+}
+.google {
+  background: transparent url(/static/images/socialaccounts/google.png) no-repeat center center;
+}
+.windowslive {
+  background: transparent url(/static/images/socialaccounts/windowslive.png) no-repeat center center;
+}
+.openid {
+  background: transparent url(/static/images/socialaccounts/openid.png) no-repeat center center;
+}
+.yahoo {
+  background: transparent url(/static/images/socialaccounts/yahoo.png) no-repeat center center;
+}
+.front-page {
+  background-color: transparent;
+}
+.front-welcome-text h1 {
+    color: #fff;
+    font-size: 38px;
+    line-height: 44px;
+    margin-bottom: 30px;
+    text-shadow: none;
+    font-weight: 700;
+}
+.front-welcome-text p {
+    color: #fff;
+    font-size: 21px;
+    line-height: 31px;
+    text-shadow: none;
+}
+
+.navbar-text-login {
+  margin-bottom:0px;
+  margin-top:10px;
+}
+.table-emails>tbody>tr>td {
+  border-bottom: 1px solid #ddd;
+}
+
+.panel-account .list-group-item a,
+.panel-facultad .list-group-item a {
+  color: #333;
+}
+.panel-account .list-group-active a,
+.panel-facultad .list-group-active a {
+  font-weight: bold;
+}
+.email_list .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc);
+    background-image: none;
+}
+.edit-profile .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    background-image: none;
+}
+@media (max-width: 479px) {
+  #id_email.form-control {
+      width: 100% !important;
+  }
+}
+.account-panel-body {
+  padding: 0;
+}
+.users-update-status .form-group {
+  display: inline-block;
+  padding-right: 20px;
+  margin-top: 0;
+}
+.users-update-status .checkbox {
+  margin-top: 0;
+}
+.glyphicon {
+  margin-right: 2px;
+}
+.about-me {
+  margin-top:10px;
+}
+.content-right-cut {
+    width: 60%;
+    width: calc(60%);
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.avatar {
+    border-radius: 50%;
+    width:77px;
+    float:left;
+    margin-right: 15px;
+}
+.confirmation-phrase {
+    font-style: italic;
+    font-weight: normal;
+}
+.do-not-copy-me {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.fiuba-minilogo {
+  background: transparent url('/static/images/facultad/fiuba.gif') no-repeat 0px 0px;
+}
+.fiuba-minilogo span {
+  padding-left: 20px;
+}
+/*** tabs in plan_materias ***/
+#command-details ul {
+  margin-left:0px;
+  padding-left:20px;
+  margin-bottom:0px;
+  margin-top:5px;
+}
+@media (max-width:360px) {
+  #command-details ul {
+    padding-left:0px;
+  }
+}
+#command-details li {
+  margin-bottom:5px;
+}
+.tab-box ul.head {
+  background:transparent url('/static/images/facultad/bg_tab_box_head.gif') repeat-x scroll left bottom;
+  font-size:12px;
+  font-weight:bold;
+  height:23px;
+  list-style-type:none;
+  margin:0px;
+  padding:0px 0px 0px 2px;
+}
+.tab-box ul.head li {
+  background:transparent url('/static/images/facultad/bg_tab.gif') no-repeat scroll left top;
+  display:block;
+  float:left;
+  margin:0px;
+  padding:0px;
+}
+.tab-box ul.head li span {
+  background:#FFFFFF url('/static/images/facultad/bg_tab.gif') no-repeat scroll right top;
+  display:block;
+  float:left;
+  height:23px;
+  margin:0px 0px 0px 5px;
+  padding:0px 15px 0px 10px;
+}
+.tab-box ul.head li span a {
+  color:#999999;
+  display:block;
+  padding-top:1px;
+  text-decoration:none;
+}
+.tab-box ul.head li span a:hover {
+  text-decoration: none !important;
+}
+#command-details a {
+  outline-color:invert;
+  outline-style:none;
+  outline-width:medium;
+}
+.tab-box ul.head li.selected {
+  background:transparent url('/static/images/facultad/bg_tab_s.gif') no-repeat scroll left top;
+}
+.tab-box ul.head li.selected span {
+  background:#FFFFFF url('/static/images/facultad/bg_tab_s.gif') no-repeat scroll right top;
+}
+.tab-box ul.head li.selected span a, .tab-box ul.head li span a:hover {
+  color:#666666;
+}
+.tab-box .content {
+  margin:0px;
+  padding:5px;
+}
+.tab-box .content > div {
+  margin:1px;
+}
+.tab-box {
+  width: 100%;
+}
+#tools {
+    color: #666;
+    font-size: 12px;
+    text-align: right;
+    position: relative;
+}
+table.materias-list {
+  color: #666;
+}
+table.materias-list th {
+  color: #666;
+}
+table.materias-list td.cuatrimestre {
+  text-align: left !important;
+  padding-left: 12px;
+  background-color: #F6F6F6;
+  border-top: 1px solid #CCC;
+  color: #666;
+}
+table.carreras {
+  max-width: 700px;
+}
+table.carreras th {
+  text-align: center;
+}
+table.carreras td {
+  border-bottom: 1px solid #CCC;
+  padding: 5px 15px;
+  vertical-align: middle;
+  text-align: center !important;
+}
+table.carreras td p {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+table.carreras a.delete {
+  color: #e04e4f;
+  font-size: 12px;
+}
+table.carreras .label {
+  color: #999 !important;
+  font-size: 11px !important;
+}
+table.carreras .label-big {
+  color: #666;
+  font-size: 12px;
+}
+table.carreras th.carrera,
+table.carreras td.carrera {
+  max-width: 300px;
+  text-align:left!important;
+  vertical-align: top;
+}
+th.icono {
+  max-width: 20px;
+}
+th.icon-left {
+  text-align: left;
+  padding-left: 20px;
+}
+th.materias, td.materias {
+  max-width: 80px;
+}
+th.graduado, td.graduado {
+  max-width: 90px;
+}
+th.delete {
+  max-width: 80px;
+}
+#id_state label {
+  font-weight: normal;
+}
+.abbr {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}

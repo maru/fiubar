@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n %}
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Bienvenidos" %}{% endblock head_title %}
+
+{% block accountsocial %}
+{% include "socialaccount/snippets/js.html" %}
+{% endblock %}
+
+{% block body_class %}front-page footer-light{% endblock %}
+
+
+{% block content %}
+<style>
+html {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ), url({% static 'images/fiuba-sicoactiva.jpg' %}) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+
+    <div class="row">
+      <div class="col-sm-5 pull-right">
+        {% with form=forms.login %}
+        <div class="account">
+          <h3 class="page-header">{% trans "Sign In" %}</h1>
+
+          <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+            <a class="button secondaryAction pull-right" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          </form>
+
+          <hr />
+
+          {% get_providers as socialaccount_providers %}
+          {% if socialaccount_providers %}
+          <div class="socialaccount_ballot clearfix">
+            <p class="text-center">{% blocktrans %}Or you can sign in with:{% endblocktrans %}</p>
+            <ul class="socialaccount_providers">
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+        {% endwith %}
+
+        {% with form=forms.signup %}
+        <div class="account">
+          <h3 class="page-header">{% trans "Sign Up" %}</h1>
+          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+          </form>
+        </div>
+        {% endwith %}
+      </div>
+
+      <div class="col-sm-7 pull-left">
+        <div class="front-welcome">
+          <div class="front-welcome-text">
+            <!-- <h1>Fiubar</h1> -->
+            <p><strong>Organizá tus materias de FIUBA</strong></p>
+            <p>Fiubar es el sitio donde los estudiantes de la Facultad de Ingeniería (FIUBA)
+              pueden subir apuntes e intercambiar información sobre materias, conocer a
+              sus compañeros, crear grupos y compartir intereses!</p>
+          </div>
+        </div>
+        {% include "footer.html" %}
+      </div>
+    </div>
+    {% endblock %}
+{% block footer %}{%endblock%}

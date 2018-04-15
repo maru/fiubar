@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load staticfiles i18n %}
+<html lang="en">
+<head>
+  <title>{% block title %}Fiubar · {% block head_title %}Fiubar{% endblock head_title %}{% endblock title %}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+
+  {% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/print.css' %}" media="print" />
+  {% block css-extra %}{% endblock css-extra %}
+  {% endblock css %}
+
+  {% block javascript %}
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  {% endblock javascript %}
+
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<div class="content-wrapper">
+  {% block accountsocial %}{% endblock %}
+  <div class="menu">
+    {% include 'navigation.html' %}
+  </div>
+
+  {% block container %}
+  <div class="container" id="content">
+    {% block page_messages %}{% include 'messages.html' %}{% endblock %}
+
+    {% block content %}
+    {% endblock content %}
+  </div>
+  {% endblock container %}
+
+  {% block footer %}
+  <div class="container">
+    {% include "footer.html" %}
+  </div>
+  {% endblock footer %}
+
+  {% block modal %}{% endblock modal %}
+  {% block extra_body %}{% endblock extra_body %}
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% extends "account/base_panel.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
+
+{% block panel-item-account-email %}list-group-active{% endblock %}
+
+{% block panel-main %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% block inner_title %}{% trans "E-mail Addresses" %}{% endblock %}</h3>
+  </div>
+  {% if user.emailaddress_set.all %}
+  <div class="panel-body">
+    {% include 'messages.html' %}
+    <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+  </div>
+
+  {% with emailaddress_set=user.emailaddress_set.all|dictsortreversed:"primary" %}
+  <ul class="list-group list-group-emails">
+    {% for emailaddress in emailaddress_set %}
+    <li class="clearfix list-group-item">
+      <span class="pull-left" style="vertical-align:middle">
+        {{ emailaddress.email }}
+
+        {% if emailaddress.primary %}<span class="label label-info">{% trans "Primary" %}</span>{% endif %}
+        {% if emailaddress.verified %}<span class="label label-success">{% trans "Verified" %}</span>
+        {% else %}<span class="label label-danger">{% trans "Unverified" %}</span>{% endif %}
+      </span>
+      <span class="pull-right">
+        <form action="{% url 'account_email' %}" class="email_list" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="email" value="{{emailaddress.email}}"/>
+          {% if emailaddress.verified and not emailaddress.primary %}
+          <button class="btn btn-default" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+          {% endif %}
+          {% if not emailaddress.verified %}
+          <button class="btn btn-link" type="submit" name="action_send" >{% trans 'Resend Verification' %}</button>
+          {% endif %}
+          {% if not emailaddress.primary %}
+          <button class="btn btn-link" type="submit" name="action_remove" title="{% trans 'Remove' %}">
+            <span class="glyphicon glyphicon-trash text-danger"></span><span style="font-size:0px">{% trans 'Remove' %}</span></button>
+          {% endif %}
+        </form>
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endwith %}
+
+  {% else %}
+  <div class="panel-body">
+    <p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+  </div>
+  {% endif %}
+
+  <div class="panel-body">
+    <h4>{% trans "Add E-mail Address" %}</h4>
+    <style>#id_email.form-control { display: inline;width: auto; }</style>
+
+    {{ form.non_field_errors }}
+    <form method="post" action="{% url 'account_email' %}" class="add_email">
+      {% csrf_token %}
+      <div id="div_id_email" class="form-group{% if form.email.errors %} has-error{% endif %}">
+        <div class="controls{% if form.email.errors %} help-block{% endif %}">
+          {% if field.help_text %}<p class="help">{{ field.help_text|safe }}</p>{% endif %}
+          {% for error in form.email.errors %}
+          <p><strong>{{ error|escape }}</strong></p>
+          {% endfor %}
+          <input class="textinput textInput form-control" id="id_email" name="email" value="{{ form.email.value|default_if_none:"" }}" placeholder="Correo electrónico" size="30" type="email">
+          <button class="btn btn-default" name="action_add" type="submit">{% trans "Add" %}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_body %}
+<script type="text/javascript">
+(function() {
+  var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+  var actions = document.getElementsByName('action_remove');
+  for (i = 0; i < actions.length; i++) {
+    actions[i].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+</script>
+{% endblock %}

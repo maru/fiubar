@@ -1,0 +1,48 @@
+{% extends 'facultad/base_panel.html' %}
+{% load staticfiles i18n %}
+
+{% block head_title %}{% trans '¡Me recibí!' %}{% endblock %}
+{% block panel-item-carreras %}list-group-active{% endblock %}
+
+{% block inner_title %}{% trans '¡Me recibí!' %}{% endblock %}
+{% block inner %}
+
+  <p class=""><span class=""></span>{{ alumno.carrera.name }}
+    <br />{% if alumno.plancarrera.orientacion %}<span class="small">{{ alumno.plancarrera.orientacion }} - </span>{% endif %}
+    <span class="small">Plan {{ alumno.plancarrera.pub_date.year }}</span><br />
+  </p>
+
+  <form action="" class="" method="post">
+    {% csrf_token %}
+    {{ form.plancarrera }}
+    {% if form.month.errors %} <span class="error">{{ form.month.errors|join:", " }}</span>{% endif %}
+    {% if form.year.errors %} <span class="error">{{ form.year.errors|join:", " }}</span>{% endif %}
+
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <label for="id_month">Mes:</label>
+        {{ form.month }}
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="id_year">Año:</label>
+        {{ form.year }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-8">
+        {% if alumno.is_graduado %}
+        <a class="btn btn-default pull-right" role="button" href="{{ alumno.url_del_graduado }}">
+          <span class="glyphicon glyphicon-remove-sign" style="color:#a94442" aria-hidden="true"></span>
+          {% trans 'No me recibí todavía' %}</a>
+        {% else %}
+        <button type="submit" class="pull-right btn btn-default" value="" />
+          <span class="glyphicon glyphicon-education" style="color:#31708f" aria-hidden="true"></span>
+          {% trans '¡Me recibí!' %}
+        </button>
+        {% endif %}
+      </div>
+    </div>
+    </form>
+
+{% endblock %}

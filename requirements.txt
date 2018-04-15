@@ -1,0 +1,22 @@
+Django>=2.0
+pytz
+
+# Forms
+django-braces
+django-crispy-forms
+django-floppyforms
+django-recaptcha
+django-contact-form-recaptcha
+
+# Models
+django-model-utils
+
+# User registration
+django-allauth
+
+# Unicode slugification
+unicode-slugify
+django-autoslug
+
+# Avatar
+Pillow

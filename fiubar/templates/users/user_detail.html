@@ -1,0 +1,58 @@
+{% extends "account/base.html" %}
+{% load static i18n %}
+
+{% block head_title %}{% trans "Profile: " %}{{ user.username }}{% endblock %}
+
+{% block inner_title %}{% trans "Profile" %}{% endblock %}
+{% block content_class %}col-sm-9 col-sm-offset-1 col-md-6 col-md-offset-3{% endblock %}
+{% block inner %}
+{% with profile=user.profile %}
+      <div class="panel panel-default">
+        <div class="panel-body edit-profile">
+          <img alt="" src="{{ profile.avatar }}" class="avatar img-rounded">
+          <h4>{% if profile.name %}{{ profile.name }}{% endif %}
+            {% if user == request.user %}
+            <a class="btn btn-sm btn-default pull-right" href="{% url 'users:update' %}">
+              {% trans "Edit Profile" %}
+            </a>
+            {% endif %}
+          </h4>
+          <p>{{ user.username }}</p>
+        </div>
+
+        <ul class="list-group">
+          {% if profile.website %}
+          <li class="list-group-item">
+            <span class="glyphicon glyphicon-link"></span>&nbsp;{% trans "Website" %}
+            <a target="_blank" href="{{ profile.website }}">
+              <span class="pull-right content-right-cut">{{ profile.website }}</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if profile.location %}
+          <li class="list-group-item">
+            <span class="glyphicon glyphicon-globe"></span>&nbsp;{% trans "Location" %}
+            <span class="pull-right content-right-cut">{{ profile.location }}</span>
+          </li>
+          {% endif %}
+
+          {% if profile.status %}
+          <li class="list-group-item">
+            <span class="glyphicon glyphicon-briefcase"></span>&nbsp;{% trans "Occupation" %}
+            <span class="pull-right content-right-cut">
+              {{ profile.status }}
+            </span>
+          </li>
+          {% endif %}
+
+          {% if profile.bio %}
+          <li class="list-group-item">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;{% trans "About me" %}
+            <p class="about-me">{{ profile.bio }}</p>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+{% endwith %}
+{% endblock %}
