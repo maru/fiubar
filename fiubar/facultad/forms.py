@@ -21,9 +21,8 @@ class SelectCarreraForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['plancarrera'].widget.attrs.update({'class': 'form-control'})
-        self.fields['cuatrimestre'].widget.attrs.update({'class': 'form-control'})
-        self.fields['year'].widget.attrs.update({'class': 'form-control'})
+        for f in ['plancarrera', 'cuatrimestre', 'year']:
+            self.fields[f].widget.attrs.update({'class': 'form-control'})
 
     def clean_begin_date(self):
         if 'cuatrimestre' not in self.cleaned_data or \
@@ -45,9 +44,10 @@ class GraduadoForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['month'].widget.attrs.update({'class': 'form-control'})
-        self.fields['year'].widget.attrs.update({'class': 'form-control'})
-        self.fields['graduado_date'].widget.attrs.update({'class': 'form-control'})
+        for f in ['month', 'year']:
+            self.fields[f].widget.attrs.update({'class': 'form-control'})
+        self.fields['graduado_date']\
+            .widget.attrs.update({'class': 'form-control'})
 
     def clean_graduado_date(self):
         if 'month' not in self.cleaned_data or \
@@ -126,11 +126,9 @@ class CursadaForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['cursada_cuat'].widget.attrs.update({'class': 'form-control'})
-        self.fields['cursada_year'].widget.attrs.update({'class': 'form-control'})
-        self.fields['aprobada_cuat'].widget.attrs.update({'class': 'form-control'})
-        self.fields['aprobada_year'].widget.attrs.update({'class': 'form-control'})
-        self.fields['nota'].widget.attrs.update({'class': 'form-control'})
+        for f in ['cursada_cuat', 'cursada_year', 'aprobada_cuat',
+                  'aprobada_year', 'nota']:
+            self.fields[f].widget.attrs.update({'class': 'form-control'})
         self.fields['state'].widget.attrs.update({'class': 'list-unstyled'})
 
     def clean_cursada_date(self):

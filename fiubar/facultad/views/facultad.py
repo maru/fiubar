@@ -23,7 +23,7 @@ def home(request):
     context['list_carreras'] = request.session.get('list_carreras', list())
     del request.session['list_carreras']
     context['list_matcur'] = AlumnoMateria.objects\
-            .list_materias_cursando(request.user)
+        .list_materias_cursando(request.user)
     return render(request, 'facultad/home.html', context)
 
 

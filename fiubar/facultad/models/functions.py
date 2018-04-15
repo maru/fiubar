@@ -7,7 +7,7 @@ def calculate_time(begin_date, end_date):
     if total_time.days <= 0:
         return '???'
     years = total_time.days / 365
-    months = (total_time.days % 365) / (365/12.)
+    months = (total_time.days % 365) / (365 / 12.)
     # Plural
     plural = 's'
     if years <= 1:
