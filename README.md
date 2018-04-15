@@ -42,6 +42,25 @@ Si usás [docker](https://docs.docker.com/get-started/), creá la imagen y corr�
     docker build -t fiubar .
     docker run -it -p 8000:8000 --rm --name fiubar-local fiubar
 
+El servidor se ejecutará automáticamente, y pedirá de crear una cuenta administrador:
+
+    ```bash
+    Crear un usuario administrador
+    Username: admin
+    Email address: admin@example.com
+    Password: ****
+    Password (again): ****
+    Superuser created successfully.
+    Performing system checks...
+
+    System check identified no issues (0 silenced).
+    April 15, 2018 - 15:20:51
+    Django version 2.0.4, using settings 'fiubar.config.settings.local'
+    Starting development server at http://0.0.0.0:8000/
+    Quit the server with CONTROL-C.
+    ```
+
+
 ... y abrí el navegador en http://127.0.0.1:8000/ :smile:
 
 
@@ -61,6 +80,10 @@ Instalar los paquetes necesarios:
 
     pip install --upgrade pip
     pip install -r requirements_dev.txt
+
+Ejecutar servidor:
+
+    ./local/start.sh
 
 
 Testing
