@@ -21,8 +21,9 @@ context = {'slug': 'facultad'}
 def home(request):
     # Carreras and Materias
     context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
-    context['list_matcur'] = AlumnoMateria.objects.get_summary(request.user)
+    del request.session['list_carreras']
+    context['list_matcur'] = AlumnoMateria.objects\
+            .list_materias_cursando(request.user)
     return render(request, 'facultad/home.html', context)
 
 
@@ -30,7 +31,7 @@ def home(request):
 @get_carreras
 def plancarrera_all(request):
     context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
+    del request.session['list_carreras']
     # Menu
     context.update(_menu_materias(request.GET))
     context['th_correlativas'] = _(' ')
@@ -57,7 +58,7 @@ def plancarrera_all(request):
 @get_carreras
 def plancarrera(request, plancarrera):
     context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
+    del request.session['list_carreras']
 
     # Get carrera y plan
     alumno = get_object_or_404(Alumno,
@@ -123,7 +124,7 @@ def _get_correlativas(lista_materias, plancarrera):
 @get_carreras
 def materia(request, codigo):
     context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
+    del request.session['list_carreras']
     materia = get_object_or_404(Materia, id=codigo)
 
     if request.method == 'POST':
@@ -169,7 +170,7 @@ def _menu_materias(GET):
 @get_carreras
 def cargar_materias(request):
     context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
+    del request.session['list_carreras']
     if request.method == 'POST':
         dict_result = sist_acad.parse_materias_aprobadas(request.POST['paste'],
                                                          request)

@@ -14,7 +14,7 @@
 
       <ul class="list-group">
         <li class="list-group-item {% block panel-item-materias %}{% endblock %}">
-          <a href="{% url 'facultad:materias' %}">{% trans "Mis Materias" %}</a></li>
+          <a href="{% url 'facultad:home' %}">{% trans "Mis Materias" %}</a></li>
         {% get_carreras %}
         {% if list_carreras %}
         {% for a in list_carreras %}

@@ -14,20 +14,24 @@
 {% block inner %}
 
 
-<div class="carreras">
-{% if list_carreras %}
-{% comment %}
-  <h1>Mi{{ list_carreras.count|pluralize }} carrera{{ list_carreras.count|pluralize }}</h1>
+<div class="materias">
+{% if list_matcur.count %}
   <ul>
-  {% for a in list_carreras %}
-      <li><a href="{{ a.url_materias }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
-        <br />{% if a.plancarrera.orientacion %}<span class="small" style="display:block">{{ a.plancarrera.orientacion }}</span>{% endif %}
-        <span class="smaller">Plan {{ a.plancarrera.pub_date.year }}</span>
-        </a></li>
+  {% for m in list_matcur %}
+    {% with materia=m.materia %}
+      <li class="materia-{% if m.falta_final %}final{% else %}cursando{% endif %}">
+        <a class="{{ link_class }}" href="{{ materia.url_edit_materia }}" title="{% trans 'Editar' %}">
+        {{ materia.get_codigo }}
+        {{ materia.name }}
+        </a>
+      </li>
+  {% endwith %}
   {% endfor %}
   </ul>
-  {% endcomment %}
 {% else %}
+  <span>No estás cursando ninguna materia.</span>
+{% endif %}
+{% if not list_carreras %}
    <a href="{% url 'facultad:carreras-add' %}">¿Qué carrera cursás?</a>
 {% endif %}
 </div>

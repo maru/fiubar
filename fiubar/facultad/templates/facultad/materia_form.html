@@ -1,14 +1,13 @@
 {% extends 'facultad/base_panel.html' %}
 {% load i18n facultad_tags %}
 
-{% block head_title %}{% trans 'Cursando Materia' %}{% endblock %}
+{% block head_title %}{% trans 'Editar Materia' %}{% endblock %}
 {% block main-css %}facultad{% endblock %}
 
 {% block panel-item-facultad-materia %}list-group-active{% endblock %}
 
-{% block inner_title %}{% trans 'Agregar materia' %}{% endblock %}
+{% block inner_title %}{{ materia.get_codigo }} {{ materia.name }}{% endblock %}
 {% block inner %}
-  <h3>{{ materia.get_codigo }} {{ materia.name }}</h3>
   <form action="" method="post">
     {% csrf_token %}
     <div class="form-group radio">

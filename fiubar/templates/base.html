@@ -40,7 +40,11 @@
   </div>
   {% endblock container %}
 
-  {% block footer %}{% include "footer.html" %}{% endblock footer %}
+  {% block footer %}
+  <div class="container">
+    {% include "footer.html" %}
+  </div>
+  {% endblock footer %}
 
   {% block modal %}{% endblock modal %}
   {% block extra_body %}{% endblock extra_body %}
