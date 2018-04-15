@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Account" %}{% endblock head_title %}
+
+{% block accountsocial %}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="{% block content_class %}col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3{% endblock %}">
+    <div class="account">
+      <h3 class="page-header">{% block inner_title %}{% endblock %}</h3>
+      {% block inner %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

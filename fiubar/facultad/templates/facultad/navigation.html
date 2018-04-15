@@ -1,0 +1,38 @@
+{% load i18n facultad_tags %}
+{# Barra de navegación #}
+{% get_carreras %}
+
+{% comment %}
+{% if list_carreras %}
+  {% with a=list_carreras|first %}
+  <li class="{% if slug == 'todo' %}active{% endif %}">
+    <a href="{{ a.url_materias }}" class="fiuba-minilogox"
+    title="{{ a.carrera.abbr_name }}
+{% if a.plancarrera.orientacion %}{{ a.plancarrera.orientacion }}
+{% endif %}Plan {{ a.plancarrera.pub_date.year }}"> <span>{{ a.carrera.abbr_name }}</span>
+    </a></li>
+    {% endwith %}
+{% endif %}
+{% endcomment %}
+  <li class="{% if slug == 'facultad-todo' %}active{% endif %}"><a href="{% url 'facultad:home' %}">{% trans "Facultad" %}</a></li>
+{% comment %}
+<li class="{% if slug == 'facultad-todo' %}active{% endif %}">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'facultad:home' %}">{% trans "Facultad" %}<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="{% url 'facultad:home' %}"><span>{% trans 'Home' %}</span></a></li>
+    <li role="separator" class="divider"></li>
+    {% if list_carreras %}
+    <!-- <li><a href="{% url 'facultad:materias' %}"><span>{% trans 'Mis Materias' %}</span></a></li> -->
+    {% for a in list_carreras %}
+        <li><a href="{{ a.url_materias }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
+          <br />{% if a.plancarrera.orientacion %}<span class="small" style="display:block">{{ a.plancarrera.orientacion }}</span>{% endif %}
+          <span class="smaller">Plan {{ a.plancarrera.pub_date.year }}</span>
+          </a></li>
+    {% endfor %}
+    <li role="separator" class="divider"></li>
+    {% endif %}
+    <li><a href="{% url 'facultad:cargar-materias' %}"><span>{% trans 'Cargar Materias' %}</span></a></li>
+    <li><a href="{% url 'facultad:carreras-home' %}"><span>{% trans 'Carreras' %}</span></a></li>
+  </ul>
+</li>
+{% endcomment %}

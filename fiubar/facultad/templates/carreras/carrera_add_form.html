@@ -1,0 +1,36 @@
+{% extends 'facultad/base_panel.html' %}
+{% load i18n %}
+
+{% block head_title %}{% trans 'Agregar carrera' %}{% endblock %}
+{% block panel-item-carreras %}list-group-active{% endblock %}
+
+{% block inner_title %}{% trans 'Agregar carrera' %}{% endblock %}
+{% block inner %}
+    <form id="carreras-form" action="" method="post">
+      {% csrf_token %}
+        <div class="form-group">
+            <label for="id_carrera">Carrera:</label>
+            {% if form.plancarrera.errors %} <span class="error">{{ form.plancarrera.errors|join:", " }}</span>{% endif %}
+            {{ form.plancarrera }}
+        </div>
+
+        <div class="form-group">
+            {{ form.begin_date }}
+            <h4 class="underlined">{% trans 'Ingreso a FIUBA' %}</h4>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label for="id_cuatrimestre">{{ form.cuatrimestre.label }}:</label>
+                {% if form.cuatrimestre.errors %} <span class="error">{{ form.cuatrimestre.errors|join:", " }}</span>{% endif %}
+                {{ form.cuatrimestre }}
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="id_year">Año:</label>
+                {% if form.year.errors %} <span class="error">{{ form.year.errors|join:", " }}</span>{% endif %}
+                {{ form.year }}
+              </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-default" value="{% trans 'Agregar Carrera' %}" />
+    </form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags i18n %}
+{% block head_title %}{% trans 'Contact' %}{% endblock %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+    <div class="account">
+    {% block inner %}
+    <h1 class="page-header">{% trans "Message sent" %}</h1>
+    <p>{% trans "Thank you! We've received your request and we'll contact you shortly." %}</p>
+    {% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

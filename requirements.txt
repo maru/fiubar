@@ -1,7 +1,22 @@
-Django==1.2.7
-MySQL-python==1.2.3
-Pillow==2.6.1
-argparse==1.2.1
-python-dateutil==2.2
-six==1.10.0
-wsgiref==0.1.2
+Django>=2.0
+pytz
+
+# Forms
+django-braces
+django-crispy-forms
+django-floppyforms
+django-recaptcha
+django-contact-form-recaptcha
+
+# Models
+django-model-utils
+
+# User registration
+django-allauth
+
+# Unicode slugification
+unicode-slugify
+django-autoslug
+
+# Avatar
+Pillow

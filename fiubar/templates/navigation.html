@@ -1,0 +1,54 @@
+{% load staticfiles i18n %}
+{# Barra de navegación principal #}
+{% block navbar %}
+<nav class="navbar navbar-inverse navbar-extra navbar-expand navbar-dark">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#fb-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/brand-white.png' %}" alt="Fiubar">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="fb-navbar">
+      {% with user=request.user %}
+      {% if user.is_authenticated %}
+      <ul class="nav navbar-nav">
+        <!-- <li class="{% if slug == 'home' %}active{% endif %}"><a href="{% url 'home' %}">{% trans "Home" %}</a></li> -->
+        {% include 'facultad/navigation.html' %}
+      </ul>
+      {% endif %}
+      <ul class="nav navbar-nav navbar-right navbar-account">
+        {% if user.is_authenticated %}
+        <li class="dropdown {% if slug == 'account' %}active{% endif %}">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {% if user.profile.avatar and todo %}<img alt="" src="{{ user.profile.avatar }}" class="avatar img-rounded" style="width:32px;background-color:#fff;">
+            {% else %}{{ user.username }}
+            {% endif %}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {% if user.profile.avatar and todo %}
+            <p class="navbar-text navbar-text-login">{% trans "Signed in as" %} {{ user.username }}</p>
+            <div class="clearfix"></div>
+            <li role="separator" class="divider"></li>
+            {% endif %}
+            <li><a href="{% url 'users:detail' user.username %}">{% trans "Your Profile" %}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'users:update' %}">{% trans "Settings" %}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'contact_form' %}">{% trans "Report a Problem" %}</a></li>
+            <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> {% trans "Sign Out" %}</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li><a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-user"></span> {% trans "Sign Up" %}</a></li>
+        <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> {% trans "Sign In" %}</a></li>
+        {% endif %}
+        {% endwith %}
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock navbar %}

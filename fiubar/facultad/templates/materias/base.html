@@ -1,0 +1,58 @@
+{% extends 'base_site.html' %}
+{% load i18n %}
+
+{### HEAD ###}
+{% block title %}{% trans 'Materias' %}{% endblock %}
+
+
+{% block link-js %}{% endblock %}
+
+{### NAVBAR ###}
+{% block navbar-menu-id %}menu-materias{% endblock %}
+
+{### MENU ###}
+{% block menu-title %}{% trans 'Materia' %} {{ materia.get_codigo }}{% endblock %}
+{% block menu-content %}
+    <ul class="menu-list">
+        {% block materia-home %}<li><a href="{{ materia.url_home }}">{% trans 'Home' %}</a></li>{% endblock %}
+        {% block materia-cursos %}<li><a href="{{ materia.url_alumnos }}">{% trans 'Quiénes Cursan' %}</a></li>{% endblock %}
+        {% block materia-events %}<li><a href="{{ materia.url_events }}">{% trans 'Calendario' %}</a></li>{% endblock %}
+        {% if group %}{% block materia-group %}<li><a href="{{ materia.url_group }}">{% trans 'Grupo' %}</a></li>{% endblock %}
+        {% block materia-files %}<li><a href="{{ materia.url_files }}">{% trans 'Archivos' %}</a></li>{% endblock %}{% endif%}
+        {% comment %}
+        {% block materia-info %}<li><a href="{{ materia.url_info }}">{% trans 'Informacion' %}</a></li>{% endblock %}
+        {% block materia-links %}<li><a href="{{ materia.url_links }}">{% trans 'Links' %}</a></li>{% endblock %}
+        {% block materia-encuestas %}<li><a href="{{ materia.url_encuestas }}">{% trans 'Encuestas' %}</a></li>{% endblock %}
+        {% endcomment %}
+    </ul>
+{% endblock %}
+{% block extra-menu %}
+<div class="menubox">
+  <div class="menu-top"><h2>{% trans 'Mis Materias' %}</h2></div>
+  <div class="menu-content">
+    <ul class="menu-list">
+        <li><a href="{% url 'facultad:home' %}">{% trans 'Home' %}</a></li>
+        {% if list_carreras %}
+        <li class="list"><a href="{% url 'facultad:materias' %}">{% trans 'Mis Materias' %}</a>
+            <ul class="menu-list">
+            {% for a in list_carreras %}
+                <li><a href="{{ a.url_materias }}">{{ a.carrera.abbr_name }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+        {#<li><a href="{% url 'facultad:search' %}">{% trans 'Search Materias' %}</a></li>#}
+        {% endif %}
+        <li><a href="{% url 'facultad:carreras-home' %}">{% trans 'Carreras' %}</a></li>
+    </ul>
+  </div>
+  <div class="menu-bottom"></div>
+</div>
+{% endblock %}
+
+{### MAIN ###}
+{% block main-css %}materias{% endblock %}
+{% block main-title %}<img class="group-picture" src="{% static 'avatars/groups/fiuba-{{ materia.id }}_s.png" alt="{{ materia.name }}" title="{{ materia.name }}" /> {{ materia.get_codigo }} {{ materia.name }}{% endblock %}
+{% block main-content %}{% endblock %}
+
+{### SIDEBAR ###}
+{% block sidebar %}{% endblock %}

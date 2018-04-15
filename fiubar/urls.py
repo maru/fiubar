@@ -1,26 +1,77 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls.defaults import *
 from django.conf import settings
-from openmate.core import global_urls
-from django.views.generic.simple import direct_to_template, redirect_to
+from django.contrib import admin
+from django.urls import include, path
+from django.views import defaults as default_views
+from django.views.generic import TemplateView
 
-urlpatterns = patterns('',
-	# temporary...
-	url(r'^home/', redirect_to, {'url' : '/noticias/'}),
-	url(r'^$', redirect_to, {'url' : '/noticias/'}),
-)
+from . import views
 
-if getattr(settings, 'DEBUG', True):
 
-	urlpatterns += patterns('',
+"""fiubar URL Configuration"""
+urlpatterns = [
+    path('',
+         views.home,
+         name='home'),
 
-		url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-		  { 'document_root': settings.STATIC_ROOT, 'show_indexes': True, },
-		),
-		url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
-		  { 'document_root': settings.MEDIA_ROOT, 'show_indexes': True, },
-		),
+    path('about/',
+         TemplateView.as_view(template_name='pages/about.html'),
+         name='about'),
 
-	)
+    path('faq/',
+         TemplateView.as_view(template_name='pages/faq.html'),
+         name='faq'),
 
-urlpatterns += global_urls.urlpatterns
+    path('contact/', include('contact_form.recaptcha_urls')),
+
+    # Django Admin, use {% url 'admin:index' %}
+    path(settings.ADMIN_URL, admin.site.urls),
+
+    # User management
+    path('profile/',
+         include('fiubar.users.urls', namespace='users')),
+
+    path('accounts/',
+         include('allauth.urls')),
+
+    path('facultad/',
+         include('fiubar.facultad.urls', namespace='facultad')),
+]
+
+if getattr(settings, 'DEBUG', False):
+
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    from django.conf.urls.static import static
+
+    # This allows the error pages to be debugged during development, just visit
+    # these urls in the browser to see how these error pages look like.
+    urlpatterns += [
+        path('400/',
+             default_views.bad_request,
+             kwargs={'exception': Exception('Bad Request!')}),
+        path('403/',
+             default_views.permission_denied,
+             kwargs={'exception': Exception('Permission Denied')}),
+        path('404/',
+             default_views.page_not_found,
+             kwargs={'exception': Exception('Page not Found')}),
+        path('500/',
+             default_views.server_error),
+    ]
+
+    if 'rosetta' in settings.INSTALLED_APPS:
+        urlpatterns += [path('rosetta/', include('rosetta.urls'))]
+
+    # Static and media files
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+
+    try:
+        import debug_toolbar
+
+        urlpatterns += [
+            path('__debug__/', include(debug_toolbar.urls)),
+        ]
+    except ImportError:
+        pass

@@ -1,3 +1,14 @@
+postgresql
+__pycache__
 *.pyc
-*.sqlite*
-*.log
+secrets.json
+admin
+pip-packages
+media
+db.sqlite3
+fiubar.log
+geckodriver.log
+fiubar.egg-info
+.tox
+.coverage
+local

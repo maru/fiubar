@@ -1,1 +1,1 @@
-[Fiubar] Contacto
+{% load i18n %}[{% trans "Contact" %}] {{ title }}

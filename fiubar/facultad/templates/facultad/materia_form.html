@@ -1,0 +1,52 @@
+{% extends 'facultad/base_panel.html' %}
+{% load i18n facultad_tags %}
+
+{% block head_title %}{% trans 'Editar Materia' %}{% endblock %}
+{% block main-css %}facultad{% endblock %}
+
+{% block panel-item-facultad-materia %}list-group-active{% endblock %}
+
+{% block inner_title %}{{ materia.get_codigo }} {{ materia.name }}{% endblock %}
+{% block inner %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group radio">
+      <h4>{% trans 'Estado' %}</h4>
+      {% if form.state.errors %} <span class="error">{{ form.state.errors|join:", " }}</span>{% endif %}
+      {{ form.state }}
+	  </div>
+
+    <div class="form-group"><h4>{% trans 'Detalles' %}</h4></div>
+    <div class="row">{% if form.cursada_date.errors %} <span class="error">{{ form.cursada_date.errors|join:", " }}</span>{% endif %}</div>
+    <label class="">{% trans 'Cursada:' %}</label>
+    <div class="row">
+      <div class="form-group col-sm-4">
+        {{ form.cursada_cuat }}
+      </div>
+      <div class="form-group col-sm-4">
+        {{ form.cursada_year }}
+      </div>
+    </div>
+
+    <div class="row">{% if form.aprobada_date.errors %} <span class="error">{{ form.aprobada_date.errors|join:", " }}</span>{% endif %}</div>
+    <label class="">{% trans 'Aprobada:' %}</label>
+    <div class="row">
+      <div class="form-group col-sm-4">
+        {{ form.aprobada_cuat }}
+      </div>
+      <div class="form-group col-sm-4">
+        {{ form.aprobada_year }}
+      </div>
+    </div>
+
+    <div class="row">{% if form.nota.errors %} <span class="error">{{ form.nota.errors|join:", " }}</span>{% endif %}</div>
+    <div class="row">
+      <div class="form-group col-sm-4">
+        <label class="inline" for="id_nota">{{ form.nota.label }}:</label>
+        {{ form.nota }}
+      </div>
+    </div>
+
+	  <div><input type="submit" class="btn btn-default" value="{% trans 'Guardar cambios' %}" /></div>
+  </form>
+{% endblock %}

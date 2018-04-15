@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block head_title %}{% trans "About" %}{% endblock head_title %}
+
+{% block content %}
+<div class="col-md-9 page-about" role="main">
+<h2 class="page-header" id="">Acerca de Fiubar</h2>
+
+<p>
+  Fiubar es un administrador de materias para <a href="http://www.fi.uba.ar/">Facultad de Ingeniería</a> (FIUBA).<br />
+  De manera simple y ordenada, podés organizar tu carrera y decidir qué materias cursar.
+</p>
+<p>
+  El código de Fiubar fue escrito por <a href="https://github.com/maru">Maru Berezin</a>,
+  quien también se encarga del mantenimiento del sitio web.
+</p>
+<p>
+  Si te interesa mirar el código y participar en el proyecto, podés ver este sitio: <a href="https://github.com/maru/fiubar" target="_blank">https://github.com/maru/fiubar</a>
+</p>
+<h3>Software que nos acompaña</h3>
+<p>
+  <a href="https://fiubar.tk/" title="Fiubar">
+    <img class="about-icon" alt="Fiubar" src="{% static 'images/about-icons/fiubar_ico.png' %}" title="Fiubar" />
+  </a> está programado en
+  <a href="http://www.djangoproject.com/" title="Django">
+    <img class="about-icon" alt="Django" src="{% static 'images/about-icons/django.png' %}" title="Django" />
+  </a>, que es
+  <a href="http://www.python.org/" title="python">
+    <img class="about-icon" alt="Python" src="{% static 'images/about-icons/python.png' %}" title="python" />
+  </a>. Nuestro editor es
+  <a href="http://geany.uvena.de/" title="Geany">
+    <img class="about-icon" alt="Geany" src="{% static 'images/about-icons/geany.png' %}" title="Geany" />
+  </a>. El servidor corre GNU/Linux
+  <a href="http://www.debian.org/" title="Debian">
+    <img class="about-icon" alt="Debian" src="{% static 'images/about-icons/debian.png' %}" title="" />
+  </a>. La base de datos es
+  <a href="http://www.postgresql.com/" title="Postgresql">
+    <img class="about-icon" alt="Postgresql" src="{% static 'images/about-icons/postgresql.png' %}" title="Postgresql" />
+  </a>, usamos listas
+  <a href="http://www.gnu.org/software/mailman/" title="Mailman">
+    <img class="about-icon" alt="Mailman" src="{% static 'images/about-icons/mailman.png' %}" title="Mailman" />
+  </a> y nuestro servidor web
+  <a href="http://httpd.apache.org/" title="Apache">
+    <img class="about-icon" alt="Apache" src="{% static 'images/about-icons/apache.png' %}" title="Apache" />
+  </a>. Los íconos son creación de
+  <a href="http://famfamfam.com/" title="FamFamFam">
+    <img class="about-icon" alt="FamFamFam" src="{% static 'images/about-icons/about-famfamfam.gif' %}" title="FamFamFam" />
+  </a>; las imágenes fueron editadas con
+  <a href="http://www.gimp.org/" title="Gimp">
+    <img class="about-icon" alt="Gimp" src="{% static 'images/about-icons/gimp.png' %}" title="Gimp" />
+  </a>. Testeado exitosamente en
+  <a href="http://www.mozilla.com/firefox/" title="Firefox">
+    <img class="about-icon" alt="Firefox" src="{% static 'images/about-icons/firefox.png' %}" title="Firefox" />
+  </a>,
+  <a href="http://www.opera.com/" title="Opera">
+    <img class="about-icon" alt="Opera" src="{% static 'images/about-icons/operalogo.gif' %}" title="Opera" />
+  </a> y
+  <a href="http://lynx.isc.org/" title="Lynx">
+    <img class="about-icon" alt="Lynx" src="{% static 'images/about-icons/optimlynx.gif' %}" title="Lynx"/>
+  </a>. Auspiciaron los momentos de ocio:
+  <a href="http://www.videolan.org/" title="Videolan">
+    <img class="about-icon" alt="Videolan" src="{% static 'images/about-icons/videolan.png' %}" title="Videolan" />
+  </a> y
+  <a href="http://amarok.kde.org/" title="Amarok">
+    <img class="about-icon" alt="Amarok" src="{% static 'images/about-icons/amarok.png' %}" title="Amarok" />
+  </a>.
+</p>
+<h3>Fotos</h3>
+<p>Usamos las siguientes fotos bajo licencia Creative Commons:</p>
+<ul class="showinfo-list">
+  <li class="showinfo-item-flickr webprofile">
+    <img class="about-icon" src="{% static 'images/about-icons/sicoactiva-fiuba.jpg' %}" /> Flickr: <a title="sicoactiva" href="http://www.flickr.com/photos/sicoactiva/421486343/">sicoactiva</a>
+  </li>
+  <li class="showinfo-item-flickr webprofile">
+    <img class="about-icon" src="{% static 'images/about-icons/sean-b_smile.jpg' %}" /> Flickr: <a class="slink-showinfo" href="http://www.flickr.com/photos/sean-b/245744537/">sean-b</a>
+  </li>
+</ul>
+</div>
+{% endblock content %}
