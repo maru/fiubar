@@ -293,3 +293,5 @@ RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
 NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
 RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'es-419')
+
+LOG_FILE = get_secret('LOG_FILE', 'local/fiubar.log')
