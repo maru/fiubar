@@ -52,7 +52,7 @@ SERVER_EMAIL = get_secret('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # ------------------------------------------------------------------------------
 # See:
 # https://docs.djangoproject.com/en/2.0/ref/templates/api/#django.template.loaders.cached.Loader
-TEMPLATES[0]['OPTIONS']['loaders'] += [
+TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', [
         'django.template.loaders.filesystem.Loader',
         'django.template.loaders.app_directories.Loader', ]),
