@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n %}
+
+{% block head_title %}{% trans 'Política de Privacidad' %}{% endblock %}
+
+{% block content %}
+<div class="col-md-9 page-faq" role="main">
+<h2 class="page-header" id="">Política de Privacidad</h2>
+
+<p>Los usuarios tienen derechos de acceder,
+  cancelar y actualizar su Información Personal, incluyendo su dirección de e-mail.
+</p>
+
+<h3>¿Qué van a hacer con mis datos?</h3>
+<p>
+  Utilizamos Google Analytics para estadísticas, y los datos provistos por Google OAuth, Facebook Authentication y Windows Live Connect
+  para tu cuenta de Fiubar.
+</p>
+<p>
+  Nuestra <a href="{% url 'tos' %}">política de privacidad</a> es la siguiente:
+  <strong>en ningún caso tus datos serán proporcionados a terceros ni
+  utilizados para otros fines</strong>.
+</p>
+
+<h3>¿Quién tiene acceso a mi contraseña?</h3>
+<p>
+  Por seguridad, tu contraseña es guardada en la base de datos utilizando el algoritmo de hash provisto por
+  <a href="http://www.djangoproject.com/">Django</a>, haciendo
+  imposible que cualquier persona, incluído el administrador, pueda descifrarla. Para más información,
+  podés leer <a href="https://docs.djangoproject.com/en/2.0/topics/auth/passwords/">la documentación</a>.
+</p>
+
+<h3>¿Cómo borro mi cuenta?</h3>
+<p>
+  Si querés borrar tu cuenta junto a tus datos, podés hacerlo fácilmente desde
+  <a href="{% url 'users:account' %}">tu página de configuración</a>.
+</p>
+
+{% endblock %}
