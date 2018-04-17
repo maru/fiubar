@@ -61,7 +61,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = get_secret('DATABASE_DEFAULT')
+DATABASES = get_secret('DATABASES', default=DATABASES)
 
 LOGGING = {
     'version': 1,
