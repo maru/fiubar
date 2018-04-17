@@ -30,7 +30,13 @@ def get_secret(setting, default=None):
     The optional second argument can specify an alternate default.
     """
     try:
-        return secrets[setting]
+        value = secrets[setting]
+        if value == 'True':
+            return True
+        elif value == 'False':
+            return False
+        else:
+            return value
     except KeyError:
         return default
 
