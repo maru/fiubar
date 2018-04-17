@@ -12,7 +12,7 @@ import json
 import os
 
 
-BASE_DIR = os.path.abspath('')
+BASE_DIR = os.path.dirname(__file__).replace('/fiubar/config/settings', '')
 FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
 
 # JSON-based secrets module
