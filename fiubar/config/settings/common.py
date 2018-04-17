@@ -12,7 +12,7 @@ import json
 import os
 
 
-BASE_DIR = os.path.abspath('')
+BASE_DIR = os.path.dirname(__file__).replace('/fiubar/config/settings', '')
 FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
 
 # JSON-based secrets module
@@ -30,7 +30,13 @@ def get_secret(setting, default=None):
     The optional second argument can specify an alternate default.
     """
     try:
-        return secrets[setting]
+        value = secrets[setting]
+        if value == 'True':
+            return True
+        elif value == 'False':
+            return False
+        else:
+            return value
     except KeyError:
         return default
 
@@ -293,3 +299,5 @@ RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
 NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
 RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'es-419')
+
+LOG_FILE = get_secret('LOG_FILE', 'local/fiubar.log')

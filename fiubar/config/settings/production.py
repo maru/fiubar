@@ -43,7 +43,7 @@ DEBUG = get_secret('DJANGO_DEBUG', default=False)
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = get_secret('DJANGO_DEFAULT_FROM_EMAIL',
-                                default='fiubar <noreply@fiubar.tk>')
+                                default='fiubar <noreply@localhost>')
 EMAIL_SUBJECT_PREFIX = get_secret('DJANGO_EMAIL_SUBJECT_PREFIX',
                                   default='[fiubar] ')
 SERVER_EMAIL = get_secret('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
@@ -61,7 +61,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = get_secret('DATABASE_DEFAULT')
+DATABASES = get_secret('DATABASES', default=DATABASES)
 
 LOGGING = {
     'version': 1,
