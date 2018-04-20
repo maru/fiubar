@@ -11,8 +11,9 @@ class SignupFormTestCase(TestCase):
         self.factory = RequestFactory()
 
     def test_signup(self):
-        form = SignupForm()
+        form = SignupForm({})
         del form.fields['captcha']
+
         # Run is_valid() to trigger the validation
         valid = form.is_valid()
         self.assertTrue(valid)
