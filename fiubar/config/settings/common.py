@@ -15,13 +15,20 @@ import os
 BASE_DIR = os.path.dirname(__file__).replace('/fiubar/config/settings', '')
 FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
 
-# JSON-based secrets module
-try:
-    secret_file = os.getenv("FIUBAR_SECRET_FILE")
-    with open(secret_file) as f:
-        secrets = json.loads(f.read())
-except (IOError, TypeError):
-    secrets = {}
+
+def read_secret_file():
+    # JSON-based secrets module
+    try:
+        secret_file = os.getenv("FIUBAR_SECRET_FILE")
+        with open(secret_file) as f:
+            secrets = json.loads(f.read())
+    except (IOError, TypeError):
+        secrets = {}
+    return secrets
+
+
+# Read custom settings
+secrets = read_secret_file()
 
 
 def get_secret(setting, default=None):
