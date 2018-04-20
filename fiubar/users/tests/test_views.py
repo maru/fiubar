@@ -49,7 +49,7 @@ class TestUserAccountView(BaseUserTestCase):
         #   self.make_user()
         self.assertEqual(
             self.view.get_success_url(),
-            '/users/testuser/'
+            '/users/~account/'
         )
 
     def test_get_object(self):

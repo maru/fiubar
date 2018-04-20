@@ -13,7 +13,9 @@ from .utils import generate_avatar
 
 @python_2_unicode_compatible
 class User(AbstractUser):
-    pass
+
+    def get_absolute_url(self):
+        return reverse('users:detail', kwargs={'username': self.username})
 
 
 class UserProfile(models.Model):

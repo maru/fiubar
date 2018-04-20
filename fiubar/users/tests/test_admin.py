@@ -12,8 +12,8 @@ class TestMyUserCreationForm(TestCase):
         # Instantiate the form with a new username
         form = MyUserCreationForm({
             'username': 'alamode',
-            'password1': '123456',
-            'password2': '123456',
+            'password1': 'ghfjdksl',
+            'password2': 'ghfjdksl',
         })
         # Run is_valid() to trigger the validation
         valid = form.is_valid()
@@ -27,8 +27,8 @@ class TestMyUserCreationForm(TestCase):
         # Instantiate the form with the same username as self.user
         form = MyUserCreationForm({
             'username': self.user.username,
-            'password1': '123456',
-            'password2': '123456',
+            'password1': 'ghfjdksl',
+            'password2': 'ghfjdksl',
         })
         # Run is_valid() to trigger the validation, which is going to fail
         # because the username is already taken

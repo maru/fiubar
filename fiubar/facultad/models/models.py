@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext as _
@@ -204,10 +203,6 @@ class Carrera(models.Model):
     class Meta:
         ordering = ['name']
 
-    class Admin(admin.ModelAdmin):
-        list_display = ('name', 'abbr_name', 'short_name',
-                        'codigo', 'plan_vigente')
-
 
 # -*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*-
 class PlanCarrera(models.Model):
@@ -228,10 +223,6 @@ class PlanCarrera(models.Model):
     class Meta:
         ordering = ['name']
 
-    class Admin(admin.ModelAdmin):
-        list_display = ('name', 'carrera', 'orientacion', 'abbr_name',
-                        'short_name', 'pub_date', 'min_creditos')
-
 
 # -*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*-
 class PlanOrientacion(models.Model):
@@ -245,10 +236,6 @@ class PlanOrientacion(models.Model):
 
     def get_codigo(self):
         return 'R%s' % (self.id)
-
-    class Admin(admin.ModelAdmin):
-        list_display = ('get_codigo', 'plancarrera', 'name', 'descripcion')
-        list_display_links = ('get_codigo', 'name', )
 
     class Meta:
         pass
@@ -265,10 +252,6 @@ class Departamento(models.Model):
 
     class Meta:
         ordering = ['codigo']
-
-    class Admin(admin.ModelAdmin):
-        list_display = ('codigo', 'name', 'vigente')
-        list_display_links = ('codigo', 'name')
 
 
 # -*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*-
@@ -325,12 +308,6 @@ class Materia(models.Model):
         unique_together = (('departamento', 'codigo'),)
         ordering = ('departamento', 'codigo')
 
-    class Admin(admin.ModelAdmin):
-        list_display = ('departamento', 'codigo', 'get_codigo', 'name')
-        list_display_links = ('departamento', 'codigo', 'get_codigo', 'name')
-        list_filter = ('departamento',)
-        search_fields = ('name', 'departamento__codigo', 'codigo', )
-
 
 # -*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*-
 class PlanMateria(models.Model):
@@ -350,12 +327,6 @@ class PlanMateria(models.Model):
     def url_edit_materia(self):
         return reverse('facultad:materia', args=[self.materia])
 
-    class Admin(admin.ModelAdmin):
-        list_display = ('materia', 'plancarrera', 'creditos', 'cuatrimestre',
-                        'caracter', 'correlativas', 'vigente')
-        list_filter = ['plancarrera', 'vigente']
-        list_per_page = 20
-
     class Meta:
         ordering = ['plancarrera', 'materia']
 
@@ -369,9 +340,6 @@ class Correlativa(models.Model):
     def __str__(self):
         return self.materia
 
-    class Admin(admin.ModelAdmin):
-        list_display = ('materia', 'correlativa')
-
 
 # -*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*---*-
 class MateriaExcluyente(models.Model):
@@ -384,9 +352,6 @@ class MateriaExcluyente(models.Model):
 
     def get_codigo(self):
         return 'X%s' % (self.id)
-
-    class Admin(admin.ModelAdmin):
-        list_display = ('get_codigo', 'name', 'descripcion')
 
     class Meta:
         pass

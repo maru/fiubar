@@ -32,7 +32,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
 
     # User management
-    path('profile/',
+    path('users/',
          include('fiubar.users.urls', namespace='users')),
 
     path('accounts/',
