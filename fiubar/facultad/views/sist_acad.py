@@ -2,9 +2,10 @@
 import datetime
 import re
 
-from fiubar.core.log import logger
+from ..models import Materia
+from fiubar.alumnos.models import Materia as AlumnoMateria
 
-from ..models.models import AlumnoMateria, Materia
+from fiubar.core.log import logger
 
 
 re_infoacad = re.compile(r"""^\s*

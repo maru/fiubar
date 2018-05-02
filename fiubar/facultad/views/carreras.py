@@ -5,11 +5,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils.translation import ugettext as _
-from fiubar.core.log import logger
 
 from .. import forms
-from ..decorators import get_carreras
-from ..models.models import Alumno, AlumnoMateria
+from fiubar.alumnos.decorators import get_carreras
+from fiubar.alumnos.models import Materia as AlumnoMateria
+from fiubar.alumnos.models import PlanCarrera as Alumno
+
+from fiubar.core.log import logger
 
 
 context = {'slug': 'facultad'}

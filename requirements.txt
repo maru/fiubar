@@ -20,3 +20,6 @@ django-autoslug
 
 # Avatar
 Pillow
+
+djangorestframework
+django-newsletter

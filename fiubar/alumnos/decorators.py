@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 
-from .models.models import Alumno
+from .models import PlanCarrera
 
 
 def get_carreras(function):
@@ -13,7 +13,7 @@ def get_carreras(function):
     carrera.
     """
     def f(request, *args, **kwargs):
-        carreras = Alumno.objects.select_related('carrera').\
+        carreras = PlanCarrera.objects.select_related('carrera').\
             filter(user=request.user).order_by('plancarrera')
         if not carreras:
             # User has to choose a carrera

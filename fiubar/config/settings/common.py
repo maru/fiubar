@@ -61,6 +61,7 @@ DJANGO_APPS = [
     'django.contrib.humanize',
     'django.contrib.admin',
     'captcha',
+    'rest_framework'
 ]
 # Other apps
 THIRD_PARTY_APPS = [
@@ -78,6 +79,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'fiubar.users.apps.UsersConfig',
     'fiubar.facultad.apps.FacultadConfig',
+    'fiubar.alumnos.apps.AlumnosConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/2.0/ref/settings/#installed-apps
@@ -308,3 +310,9 @@ RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'es-419')
 
 LOG_FILE = get_secret('LOG_FILE', 'local/fiubar.log')
+
+
+# REST API
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+}

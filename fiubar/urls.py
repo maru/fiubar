@@ -10,6 +10,10 @@ from . import views
 
 """fiubar URL Configuration"""
 urlpatterns = [
+    path('new',
+         TemplateView.as_view(template_name='pages/new.html'),
+         name='new'),
+
     path('',
          views.home,
          name='home'),
@@ -62,9 +66,6 @@ if getattr(settings, 'DEBUG', False):
         path('500/',
              default_views.server_error),
     ]
-
-    if 'rosetta' in settings.INSTALLED_APPS:
-        urlpatterns += [path('rosetta/', include('rosetta.urls'))]
 
     # Static and media files
     urlpatterns += staticfiles_urlpatterns()

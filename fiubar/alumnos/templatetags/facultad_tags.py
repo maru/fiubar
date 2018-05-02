@@ -3,7 +3,10 @@ from django import template
 from django.contrib.humanize.templatetags import humanize
 from django.utils.translation import ugettext as _
 
-from ..models.models import Alumno, AlumnoMateria, Materia
+from ..models import Materia as AlumnoMateria
+from ..models import PlanCarrera as Alumno
+
+from fiubar.facultad.models import Materia
 
 
 register = template.Library()
