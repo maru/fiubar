@@ -15,13 +15,20 @@ import os
 BASE_DIR = os.path.dirname(__file__).replace('/fiubar/config/settings', '')
 FIUBAR_DIR = os.path.join(BASE_DIR, 'fiubar')
 
-# JSON-based secrets module
-try:
-    secret_file = os.getenv("FIUBAR_SECRET_FILE")
-    with open(secret_file) as f:
-        secrets = json.loads(f.read())
-except (IOError, TypeError):
-    secrets = {}
+
+def read_secret_file():
+    # JSON-based secrets module
+    try:
+        secret_file = os.getenv("FIUBAR_SECRET_FILE")
+        with open(secret_file) as f:
+            secrets = json.loads(f.read())
+    except (IOError, TypeError):
+        secrets = {}
+    return secrets
+
+
+# Read custom settings
+secrets = read_secret_file()
 
 
 def get_secret(setting, default=None):
@@ -54,6 +61,7 @@ DJANGO_APPS = [
     'django.contrib.humanize',
     'django.contrib.admin',
     'captcha',
+    'rest_framework'
 ]
 # Other apps
 THIRD_PARTY_APPS = [
@@ -71,6 +79,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'fiubar.users.apps.UsersConfig',
     'fiubar.facultad.apps.FacultadConfig',
+    'fiubar.alumnos.apps.AlumnosConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/2.0/ref/settings/#installed-apps
@@ -301,3 +310,9 @@ RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'es-419')
 
 LOG_FILE = get_secret('LOG_FILE', 'local/fiubar.log')
+
+
+# REST API
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+}

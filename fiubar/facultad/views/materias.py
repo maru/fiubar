@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
-from ..models.models import AlumnoMateria, Materia
+from ..models import Materia
+from fiubar.alumnos.models import Materia as AlumnoMateria
 
 
 context = {}

@@ -5,7 +5,9 @@ from django import forms
 from django.utils.dates import MONTHS
 from django.utils.translation import ugettext as _
 
-from .models.models import AlumnoMateria, PlanCarrera
+from .models import PlanCarrera
+
+from fiubar.alumnos.models import Materia as AlumnoMateria
 
 
 class SelectCarreraForm(forms.Form):
@@ -57,22 +59,6 @@ class GraduadoForm(forms.Form):
         month = int(self.cleaned_data['month'])
         year = int(self.cleaned_data['year'])
         return date(year, month, 1)
-
-
-class MateriasFilterForm(forms.Form):
-    CHOICES = (('', _('Mostrar todas')),
-               ('-', _('--------------------------')),
-               ('0', _('Podés cursar')),
-               ('1', _('En 1 cuatrimestre')),
-               ('2', _('En 2 cuatrimestres')),
-               ('3', _('En 3 cuatrimestres')),
-               ('4', _('En 4 cuatrimestres')),
-               ('C', _('Cursando')),
-               ('F', _('Dar final')),
-               ('A', _('Aprobada')),
-               # ('N', _('No quiero cursar!')),
-               )
-    materias = forms.ChoiceField(choices=CHOICES)
 
 
 class CursadaForm(forms.Form):
