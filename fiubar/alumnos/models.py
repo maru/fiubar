@@ -6,14 +6,18 @@ from django.utils.translation import ugettext as _
 from .managers import MateriaManager, PlanCarreraManager
 from .utils import calculate_time
 
-from fiubar.users.models import User
-from fiubar.facultad.models import Carrera, Materia as FacultadMateria
+from fiubar.facultad.models import Carrera
+from fiubar.facultad.models import Materia as FacultadMateria
 from fiubar.facultad.models import PlanCarrera as FacultadPlanCarrera
+from fiubar.users.models import User
+
 
 class PlanCarrera(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, related_name='+', null=True)
-    plancarrera = models.ForeignKey(FacultadPlanCarrera, on_delete=models.CASCADE, null=True)
+    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,
+                                related_name='+', null=True)
+    plancarrera = models.ForeignKey(FacultadPlanCarrera,
+                                    on_delete=models.CASCADE, null=True)
     begin_date = models.DateField()
     graduado_date = models.DateField(null=True)
     creditos = models.IntegerField(default=0)
@@ -88,7 +92,8 @@ class Materia(models.Model):
         ('E', _('Equivalencia')),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    materia = models.ForeignKey(FacultadMateria, on_delete=models.CASCADE, null=True)
+    materia = models.ForeignKey(FacultadMateria, on_delete=models.CASCADE,
+                                null=True)
     state = models.CharField(choices=MATERIA_STATE, default='C', max_length=1)
     cursada_cuat = models.CharField(max_length=10, null=True, blank=True)
     cursada_date = models.DateField(null=True, blank=True)
