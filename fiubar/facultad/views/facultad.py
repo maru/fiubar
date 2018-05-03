@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
@@ -8,13 +9,15 @@ from django.utils.translation import ugettext as _
 
 from . import sist_acad
 from .. import forms
-from fiubar.alumnos.decorators import get_carreras
 from ..models import Materia, PlanMateria
+
+from fiubar.alumnos.decorators import get_carreras
 from fiubar.alumnos.models import Materia as AlumnoMateria
 from fiubar.alumnos.models import PlanCarrera as Alumno
 
-from fiubar.core.log import logger
 
+# Get an instance of a logger
+logger = logging.getLogger('fiubar')
 
 context = {'slug': 'facultad'}
 

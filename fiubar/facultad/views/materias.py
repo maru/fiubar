@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
 from ..models import Materia
+
 from fiubar.alumnos.models import Materia as AlumnoMateria
 
 

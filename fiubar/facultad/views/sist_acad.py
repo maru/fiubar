@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import datetime
+import logging
 import re
 
 from ..models import Materia
+
 from fiubar.alumnos.models import Materia as AlumnoMateria
 
-from fiubar.core.log import logger
 
+# Get an instance of a logger
+logger = logging.getLogger('fiubar')
 
 re_infoacad = re.compile(r"""^\s*
     (?P<cod_materia>\d+)\s+
