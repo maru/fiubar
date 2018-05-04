@@ -3,6 +3,8 @@ import datetime
 import logging
 import re
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from ..models import Materia
 
 from fiubar.alumnos.models import Materia as AlumnoMateria
@@ -50,7 +52,7 @@ def parse_materias_aprobadas(paste, request):
                             (request.META.get('REMOTE_ADDR'),
                              request.user, materia.id, final_date, nota))
                 materia_list.append([materia, final_date, nota])
-            except Materia.DoesNotExist:
+            except ObjectDoesNotExist:
                 # Materia not found
                 notfound_list.append(l)
                 logger.error("%s - cargar_materias: user '%s', "

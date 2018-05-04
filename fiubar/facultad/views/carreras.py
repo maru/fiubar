@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -12,6 +13,7 @@ from .. import forms
 from fiubar.alumnos.decorators import get_carreras
 from fiubar.alumnos.models import Materia as AlumnoMateria
 from fiubar.alumnos.models import PlanCarrera as Alumno
+
 
 # Get an instance of a logger
 logger = logging.getLogger('fiubar')

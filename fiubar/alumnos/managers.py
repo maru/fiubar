@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 
@@ -51,7 +52,7 @@ class MateriaManager(models.Manager):
             if am.aprobada_cuat:
                 d['aprobada_cuat'], d['aprobada_year'] = \
                     am.aprobada_cuat.split('-')
-        except self.model.DoesNotExist:
+        except ObjectDoesNotExist:
             pass
         return d
 
@@ -92,7 +93,7 @@ class MateriaManager(models.Manager):
             al.state = 'A'
             al.aprobada_date = final_date
             al.nota = nota
-        except self.model.DoesNotExist:
+        except ObjectDoesNotExist:
             al = self.create(user=user, materia=materia, state='A',
                              aprobada_date=final_date, nota=nota)
         al.aprobada_date_to_cuat()
@@ -102,7 +103,7 @@ class MateriaManager(models.Manager):
     def get_or_none(self, user, materia):
         try:
             materia_cursada = self.get(user=user, materia=materia)
-        except self.model.DoesNotExist:
+        except ObjectDoesNotExist:
             materia_cursada = None
         return materia_cursada
 
