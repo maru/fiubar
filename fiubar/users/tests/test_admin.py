@@ -1,6 +1,9 @@
+from django import forms
+from django.contrib import admin
 from test_plus.test import TestCase
 
-from ..admin import MyUserCreationForm
+from ..admin import MyUserCreationForm, UserProfileAdmin
+from ..models import UserProfile
 
 
 class TestMyUserCreationForm(TestCase):
@@ -38,3 +41,26 @@ class TestMyUserCreationForm(TestCase):
         # The form.errors dict should contain a single error called 'username'
         self.assertTrue(len(form.errors) == 1)
         self.assertTrue('username' in form.errors)
+
+
+class TestUserProfileAdmin(TestCase):
+
+    def test_form_field(self):
+        model = UserProfile
+        ma = UserProfileAdmin(model, admin.site)
+        ff = ma.formfield_for_dbfield(model._meta.get_field('name'),
+                                      request=None)
+
+        widget = ff.widget
+        self.assertIsInstance(widget, forms.TextInput)
+
+    def test_form_field_bio(self):
+        model = UserProfile
+        ma = UserProfileAdmin(model, admin.site)
+        ff = ma.formfield_for_dbfield(model._meta.get_field('bio'),
+                                      request=None)
+
+        widget = ff.widget
+        self.assertIsInstance(widget, forms.Textarea)
+        self.assertTrue(widget.attrs['class'], 'vURLField')
+        self.assertTrue(widget.attrs['rows'], '4')

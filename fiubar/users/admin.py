@@ -3,6 +3,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 
 from .models import User, UserProfile
@@ -26,7 +27,7 @@ class MyUserCreationForm(UserCreationForm):
         username = self.cleaned_data["username"]
         try:
             User.objects.get(username=username)
-        except User.DoesNotExist:
+        except ObjectDoesNotExist:
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 

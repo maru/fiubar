@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import ugettext as _
@@ -37,7 +38,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         try:
             profile = UserProfile.objects.get(user=self.request.user)
-        except User.DoesNotExist:
+        except ObjectDoesNotExist:
             profile = create_user_profile(self.request, self.request.user,
                                           True, **self.kwargs)
         return profile
