@@ -4,7 +4,7 @@ from test_plus.test import TestCase
 from .forms import SignupForm
 
 
-class SignupFormTestCase(TestCase):
+class TestSignupForm(TestCase):
 
     def setUp(self):
         self.user = self.make_user()
@@ -23,3 +23,19 @@ class SignupFormTestCase(TestCase):
         # Attach the user to the request
         request.user = self.user
         form.signup(request, self.user)
+
+
+class TestHomeView(TestCase):
+
+    def setUp(self):
+        self.user = self.make_user()
+
+    def test_home_page(self):
+        self.client.force_login(self.user)
+        assert self.user.is_authenticated
+
+        response = self.client.get('/')
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTemplateUsed(response, 'pages/home.html')
