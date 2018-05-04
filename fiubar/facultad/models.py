@@ -22,7 +22,7 @@ class Alumno(models.Model):
     objects = AlumnoManager()
 
     def __str__(self):
-        return self.user
+        return '%s/%s' % (self.user, self.plancarrera)
 
     def url_delete(self):
         return reverse('facultad:carreras-delete',
@@ -43,9 +43,6 @@ class Alumno(models.Model):
     def url_del_graduado(self):
         return reverse('facultad:carrera-graduado-del',
                        args=[self.plancarrera.short_name])
-
-    def url_profile(self):
-        return self.user.profile_set.all()[0].url_profile()
 
     def get_creditos(self):
         return (self.creditos * 100 / self.plancarrera.min_creditos)
@@ -93,13 +90,13 @@ class AlumnoMateria(models.Model):
     cursada_date = models.DateField(null=True, blank=True)
     aprobada_cuat = models.CharField(max_length=10, null=True, blank=True)
     aprobada_date = models.DateField(null=True, blank=True)
-    nota = models.IntegerField(null=True, blank=True)
+    nota = models.IntegerField(null=True, default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
 
     objects = AlumnoMateriaManager()
 
     def __str__(self):
-        return '%s' % (self.materia)
+        return '%s/%s' % (self.user, self.materia)
 
     def update(self, user, materia, d):
         self.user = user
