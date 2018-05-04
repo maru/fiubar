@@ -5,9 +5,7 @@ import re
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from ..models import Materia
-
-from fiubar.alumnos.models import Materia as AlumnoMateria
+from ..models import AlumnoMateria, Materia
 
 
 # Get an instance of a logger

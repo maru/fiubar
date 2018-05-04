@@ -4,10 +4,7 @@ from django.contrib.humanize.templatetags import humanize
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
-from ..models import Materia as AlumnoMateria
-from ..models import PlanCarrera as Alumno
-
-from fiubar.facultad.models import Materia
+from ..models import Alumno, AlumnoMateria, Materia
 
 
 register = template.Library()

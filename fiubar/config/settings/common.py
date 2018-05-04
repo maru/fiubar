@@ -79,7 +79,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'fiubar.users.apps.UsersConfig',
     'fiubar.facultad.apps.FacultadConfig',
-    'fiubar.alumnos.apps.AlumnosConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/2.0/ref/settings/#installed-apps

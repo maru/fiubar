@@ -7,4 +7,3 @@ app_name = 'facultad'
 urlpatterns = []
 urlpatterns += facultad.urlpatterns
 urlpatterns += carreras.urlpatterns
-urlpatterns += materias.urlpatterns

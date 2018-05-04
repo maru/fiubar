@@ -10,11 +10,9 @@ from django.utils.translation import ugettext as _
 
 from . import sist_acad
 from .. import forms
-from ..models import Materia, PlanMateria
+from ..decorators import get_carreras
+from ..models import Alumno, AlumnoMateria, Materia, PlanMateria
 
-from fiubar.alumnos.decorators import get_carreras
-from fiubar.alumnos.models import Materia as AlumnoMateria
-from fiubar.alumnos.models import PlanCarrera as Alumno
 
 
 # Get an instance of a logger
