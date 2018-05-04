@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 import datetime
+import logging
 import re
 
-from ..models import Materia
-from fiubar.alumnos.models import Materia as AlumnoMateria
+from django.core.exceptions import ObjectDoesNotExist
 
-from fiubar.core.log import logger
+from ..models import AlumnoMateria, Materia
 
+
+# Get an instance of a logger
+logger = logging.getLogger('fiubar')
 
 re_infoacad = re.compile(r"""^\s*
     (?P<cod_materia>\d+)\s+
@@ -47,7 +50,7 @@ def parse_materias_aprobadas(paste, request):
                             (request.META.get('REMOTE_ADDR'),
                              request.user, materia.id, final_date, nota))
                 materia_list.append([materia, final_date, nota])
-            except Materia.DoesNotExist:
+            except ObjectDoesNotExist:
                 # Materia not found
                 notfound_list.append(l)
                 logger.error("%s - cargar_materias: user '%s', "

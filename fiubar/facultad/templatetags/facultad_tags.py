@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from django import template
 from django.contrib.humanize.templatetags import humanize
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
-from ..models import Materia as AlumnoMateria
-from ..models import PlanCarrera as Alumno
-
-from fiubar.facultad.models import Materia
+from ..models import Alumno, AlumnoMateria, Materia
 
 
 register = template.Library()
@@ -53,7 +51,7 @@ def display_row_materia(context, planmateria):
             title = 'Cursando'
             link_class = 'cursando'
             falta_cuat = 'Cursando'
-    except AlumnoMateria.DoesNotExist:
+    except ObjectDoesNotExist:
         # Materia todavia no cursada
         icon_file = 'materia_notyet.png'
         title = 'Faltan correlativas'
@@ -81,7 +79,7 @@ def display_row_materia(context, planmateria):
     for m in lm:
         try:
             m_name = Materia.objects.get(id=m.replace('.', '')).name
-        except Materia.DoesNotExist:
+        except ObjectDoesNotExist:
             m_name = ''
         if m == 'CBC':
             new_m = ('small chelp lt', m, m)

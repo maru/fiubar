@@ -49,8 +49,7 @@ COLORS = ["871f22", "59e747", "a44af3", "7deb36", "4937d2", "b0ef26",
 
 
 def generate_avatar(letter, data, size=FULLSIZE):
-    if size > FULLSIZE:
-        size = FULLSIZE
+    size = FULLSIZE if size > FULLSIZE else size
 
     # Determine color
     h = hashlib.sha256()

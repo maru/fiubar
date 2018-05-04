@@ -10,10 +10,6 @@ urlpatterns = [
     path('', facultad.home,
          name='home'),
 
-    # Materias de las carreras cursadas.
-    # path('materias/', 'plancarrera_all',
-    #      name='facultad-materias'),
-
     path('materias/',
          RedirectView.as_view(url='/facultad/'),
          name='materias'),

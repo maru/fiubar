@@ -5,9 +5,7 @@ from django import forms
 from django.utils.dates import MONTHS
 from django.utils.translation import ugettext as _
 
-from .models import PlanCarrera
-
-from fiubar.alumnos.models import Materia as AlumnoMateria
+from .models import AlumnoMateria, PlanCarrera
 
 
 class SelectCarreraForm(forms.Form):

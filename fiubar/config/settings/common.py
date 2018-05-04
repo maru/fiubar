@@ -79,7 +79,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'fiubar.users.apps.UsersConfig',
     'fiubar.facultad.apps.FacultadConfig',
-    'fiubar.alumnos.apps.AlumnosConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/2.0/ref/settings/#installed-apps
@@ -309,8 +308,43 @@ NOCAPTCHA = get_secret('RECAPTCHA_NOCAPTCHA', True)
 RECAPTCHA_USE_SSL = get_secret('RECAPTCHA_USE_SSL', True)
 RECAPTCHA_LANG = get_secret('RECAPTCHA_LANG', 'es-419')
 
+# LOGGING
+# ------------------------------------------------------------------------------
 LOG_FILE = get_secret('LOG_FILE', 'local/fiubar.log')
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)-8s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': LOG_FILE,
+        },
+    },
+    'loggers': {
+        'fiubar': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 # REST API
 # ------------------------------------------------------------------------------

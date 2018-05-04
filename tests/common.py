@@ -1,23 +1,25 @@
-# -*- coding: utf-8 -*-
-
 import os
 import unittest
-from selenium import webdriver
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
-FIREFOX_PATH = os.getenv('TEST_FIREFOX_PATH', '/usr/local/bin/firefox-44.0/firefox')
+from selenium import webdriver
+from selenium.webdriver.firefox import firefox_binary
+
+
+FIREFOX_PATH = os.getenv('TEST_FIREFOX_PATH', '/usr/bin/firefox')
 SERVER_NAME = os.getenv('TEST_SERVER_NAME', 'http://localhost:8000/')
 
 class FiubarTest(unittest.TestCase):
-    firefox_path = FIREFOX_PATH
-    server_name = SERVER_NAME
-
+    """
+    Base class for tests using selenium.
+    """
     def __init__(self, methodName='runTest'):
         super(FiubarTest, self).__init__(methodName)
         self.browser = None
+        self.server_name = SERVER_NAME
 
     def setUp(self):
-        self.browser = webdriver.Firefox(firefox_binary=FirefoxBinary(self.firefox_path))
+        binary = firefox_binary.FirefoxBinary(FIREFOX_PATH)
+        self.browser = webdriver.Firefox(firefox_binary=binary)
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
