@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import (Alumno, AlumnoMateria,Carrera, Correlativa, Departamento,
+from .models import (Alumno, AlumnoMateria, Carrera, Correlativa, Departamento,
                      Materia, PlanCarrera, PlanMateria)
 
 
@@ -21,6 +21,7 @@ class AlumnoMateriaAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'user__first_name',
                      'user__last_name', 'user__email',
                      'materia__id', 'materia__name']
+
 
 @admin.register(Carrera)
 class CarreraAdmin(admin.ModelAdmin):

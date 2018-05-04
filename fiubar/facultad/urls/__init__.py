@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from . import facultad, carreras, materias
+from . import facultad, carreras
 
 app_name = 'facultad'
 

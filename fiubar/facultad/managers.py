@@ -132,6 +132,7 @@ class AlumnoMateriaManager(models.Manager):
             al.save()
         return
 
+
 class PlanMateriaManager(models.Manager):
 
     def list_materias_para_cursar(self, user, plancarrera):

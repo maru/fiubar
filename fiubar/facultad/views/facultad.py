@@ -14,7 +14,6 @@ from ..decorators import get_carreras
 from ..models import Alumno, AlumnoMateria, Materia, PlanMateria
 
 
-
 # Get an instance of a logger
 logger = logging.getLogger('fiubar')
 

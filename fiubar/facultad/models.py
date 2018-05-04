@@ -3,11 +3,10 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 
-from .managers import AlumnoManager, MateriaManager, PlanMateriaManager
+from .managers import AlumnoManager, AlumnoMateriaManager, PlanMateriaManager
 from .utils import calculate_time
 
 from fiubar.users.models import User
-
 
 
 class Alumno(models.Model):
