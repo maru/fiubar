@@ -25,6 +25,9 @@ re_infoacad = re.compile(r"""^\s*
 
 
 def parse_materias_aprobadas(paste, request):
+    if paste is None:
+        return {}
+
     lines = paste.split("\n")
     materia_list = []
     notfound_list = []

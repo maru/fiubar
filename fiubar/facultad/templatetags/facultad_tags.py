@@ -21,6 +21,7 @@ def get_carreras(context):
 
 
 @register.filter
+# C901: is too complex
 def display_row_materia(context, planmateria):
     materia = planmateria.materia
     user = context['user']

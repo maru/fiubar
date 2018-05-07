@@ -57,15 +57,6 @@ class Alumno(models.Model):
     def tiempo_carrera(self):
         return calculate_time(self.begin_date, self.graduado_date)
 
-    def begin_date_to_cuat(self):
-        if not self.begin_date:
-            return ''
-        to_cuatrimestre = {2: 'V', 3: '1', 8: '2'}
-        cuatrimestre = to_cuatrimestre[self.begin_date.month]
-        return _('%(cuatrimestre)s° Cuatrimestre %(year)s') % \
-                ({'cuatrimestre': cuatrimestre,
-                  'year': self.begin_date.year})
-
     class Meta:
         unique_together = (('user', 'plancarrera'),)
 
@@ -131,7 +122,7 @@ class AlumnoMateria(models.Model):
             self.aprobada_date_to_cuat()
         cuatrimestre, year = self.aprobada_cuat.split('-')
         if cuatrimestre == 'V':
-            return _('Verano %(year)s') % ({'year': year})
+            return _('Curso de verano %(year)s') % ({'year': year})
         return _('%(cuatrimestre)s° Cuatrimestre %(year)s') % \
                 ({'cuatrimestre': cuatrimestre, 'year': year})
 

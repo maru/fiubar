@@ -135,6 +135,7 @@ class AlumnoMateriaManager(models.Manager):
 
 class PlanMateriaManager(models.Manager):
 
+    # C901: is too complex
     def list_materias_para_cursar(self, user, plancarrera):
         from .models import Alumno, AlumnoMateria, Correlativa
         # Materias cursadas y aprobadas

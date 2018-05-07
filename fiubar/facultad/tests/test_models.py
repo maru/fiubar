@@ -1,8 +1,11 @@
+from datetime import date
+
 from django.urls import reverse
 from test_plus.test import TestCase
 
-from ..models import (Alumno, AlumnoMateria, Carrera, Correlativa, Departamento, Materia, PlanCarrera,
-                      PlanMateria)
+from ..models import (Alumno, AlumnoMateria, Carrera, Correlativa,
+                      Departamento, Materia, PlanCarrera, PlanMateria)
+from ..utils import calculate_time
 
 
 class BaseTestCase(TestCase):
@@ -22,12 +25,12 @@ class TestAlumnoModel(BaseTestCase):
                               name='Nuevo Plan Carrera',
                               min_creditos=100,
                               carrera=self.c,
-                              pub_date='2012-12-12')
+                              pub_date=date(2012, 12, 12))
         self.pc.save()
 
         d = Departamento(codigo='95', name='Tests')
         d.save()
-        
+
         m = Materia(id='95.01', departamento=d,
                     codigo='01', name='new_materia')
         m.save()
@@ -41,7 +44,7 @@ class TestAlumnoModel(BaseTestCase):
         self.a = Alumno(user=self.user,
                         carrera=self.c,
                         plancarrera=self.pc,
-                        begin_date='2013-01-10')
+                        begin_date=date(2013, 1, 10))
         self.a.save()
 
         am = AlumnoMateria(user=self.user,
@@ -75,7 +78,8 @@ class TestAlumnoModel(BaseTestCase):
         self.create_new_alumno()
         self.assertEqual(
             reverse('facultad:materias-carrera',
-                    kwargs={'plancarrera': self.pc.short_name}) + '?show=todas',
+                    kwargs={'plancarrera':
+                            self.pc.short_name}) + '?show=todas',
             self.a.url_materias_tab_todas()
         )
 
@@ -83,7 +87,7 @@ class TestAlumnoModel(BaseTestCase):
         self.create_new_alumno()
         self.assertEqual(
             reverse('facultad:carreras-graduado',
-                    kwargs={'plancarrera' : self.pc.short_name}),
+                    kwargs={'plancarrera': self.pc.short_name}),
             self.a.url_graduado()
         )
 
@@ -91,7 +95,7 @@ class TestAlumnoModel(BaseTestCase):
         self.create_new_alumno()
         self.assertEqual(
             reverse('facultad:carrera-graduado-del',
-                    kwargs={'plancarrera' : self.pc.short_name}),
+                    kwargs={'plancarrera': self.pc.short_name}),
             self.a.url_del_graduado()
         )
 
@@ -100,36 +104,31 @@ class TestAlumnoModel(BaseTestCase):
         creditos = self.pm.creditos * 100 / self.pc.min_creditos
         self.assertEqual(creditos, self.a.get_creditos())
 
-    def test_url_materias(self):
+    def test_del_graduado(self):
         self.create_new_alumno()
-        self.assertEqual(
-            reverse('facultad:materias-carrera',
-                    kwargs={'plancarrera' : self.pc.short_name}),
-            self.a.url_materias()
-        )
+        self.a.graduado_date = date(2020, 2, 20)
+        self.a.del_graduado()
+        self.assertIsNone(self.a.graduado_date)
 
-    def test_url_materias(self):
+    def test_is_graduado(self):
         self.create_new_alumno()
-        self.assertEqual(
-            reverse('facultad:materias-carrera',
-                    kwargs={'plancarrera' : self.pc.short_name}),
-            self.a.url_materias()
-        )
+        self.assertIsNone(self.a.graduado_date)
+        self.a.graduado_date = date(2020, 2, 20)
+        self.assertIsNotNone(self.a.is_graduado())
 
-    def test_url_materias(self):
+    def test_tiempo_carrera(self):
         self.create_new_alumno()
+        self.a.graduado_date = date(2020, 2, 20)
         self.assertEqual(
-            reverse('facultad:materias-carrera',
-                    kwargs={'plancarrera' : self.pc.short_name}),
-            self.a.url_materias()
-        )
+            self.a.tiempo_carrera(),
+            calculate_time(self.a.begin_date, self.a.graduado_date))
 
 
 class TestAlumnoMateriaModel(BaseTestCase):
 
     def test_str(self):
         m = Materia(id='95.01')
-        am = AlumnoMateria(user=self.user,materia=m)
+        am = AlumnoMateria(user=self.user, materia=m)
         self.assertEqual(str(am), '%s/%s' % (self.user, m))
 
 
