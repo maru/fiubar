@@ -7,17 +7,19 @@ from ..views import facultad
 
 urlpatterns = [
     # Portada de materias
-    path('', facultad.home,
+    path('',
+         facultad.HomePageView.as_view(),
          name='home'),
 
     path('materias/',
-         RedirectView.as_view(url='/facultad/'),
+         RedirectView.as_view(url=''),
          name='materias'),
 
     path('materias/cargar/', facultad.cargar_materias,
          name='cargar-materias'),
 
-    path('materias/<str:plancarrera>/', facultad.plancarrera,
+    path('materias/<str:plancarrera>/',
+         facultad.PlanCarreraView.as_view(),
          name='materias-carrera'),
 
     path('materia/<str:codigo>/', facultad.materia,

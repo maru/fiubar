@@ -19,9 +19,9 @@
         {% if list_carreras %}
         {% for a in list_carreras %}
         <li class="list-group-item {% block panel-item-facultad-carrera %}{% endblock %} abbr">
-          <a href="{{ a.url_materias_tab_todas }}" class="fiuba-minilogo"> <span>{{ a.carrera.abbr_name }}</span>
-          {% if a.plancarrera.orientacion %}<br /><span class="small">{{ a.plancarrera.orientacion }}</span>{% endif %}
-          <br /><span class="small">Plan {{ a.plancarrera.pub_date.year }}</span></a></li>
+          <a href="{{ a.url_materias_tab_todas }}" class="fiuba-minilogo"><span>{{ a.carrera.abbr_name }}</span><br />
+          {% if a.plancarrera.orientacion %}<span class="small">{{ a.plancarrera.orientacion }}</span><br />{% endif %}
+          <span class="small">Plan {{ a.plancarrera.pub_date.year }}</span></a></li>
         {% endfor %}
         {% endif %}
         <li class="list-group-item {% block panel-item-cargar-materias %}{% endblock %}">

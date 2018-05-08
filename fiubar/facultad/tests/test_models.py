@@ -121,7 +121,8 @@ class TestAlumnoModel(BaseTestCase):
         self.a.graduado_date = date(2020, 2, 20)
         self.assertEqual(
             self.a.tiempo_carrera(),
-            calculate_time(self.a.begin_date, self.a.graduado_date))
+            calculate_time(self.a.begin_date, self.a.graduado_date)
+        )
 
 
 class TestAlumnoMateriaModel(BaseTestCase):

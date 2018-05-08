@@ -72,10 +72,10 @@ def display_row_materia(context, planmateria):
             icon_file = 'materia_cursar.png'
 
     # Marcar las aprobadas
-    # try:
-    lm = planmateria.correlativas.split('-')
-    # except :
-    # lm = []
+    try:
+        lm = planmateria.correlativas.split('-')
+    except AttributeError:
+        lm = []
     new_l = []
     for m in lm:
         try:

@@ -7,6 +7,8 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
+from django.views.generic.base import TemplateView
 
 from . import sist_acad
 from .. import forms
@@ -20,97 +22,80 @@ logger = logging.getLogger('fiubar')
 context = {'slug': 'facultad'}
 
 
-@login_required
-@get_carreras
-def home(request):
-    # Carreras and Materias
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
-    context['list_matcur'] = AlumnoMateria.objects\
-        .list_materias_cursando(request.user)
-    return render(request, 'facultad/home.html', context)
+class HomePageView(TemplateView):
 
+    template_name = "facultad/home.html"
 
-@login_required
-@get_carreras
-def plancarrera_all(request):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
-    # Menu
-    context.update(_menu_materias(request.GET))
-    context['th_correlativas'] = _(' ')
-    # Materias
-    if context['tab_selected'] == 'cursando':
-        # Busco las que están en  AlumnoMateria y no aprobadas
-        lista_materias = AlumnoMateria.objects\
-            .list_materias_cursando(request.user).order_by('state')
-        context['th_estado'] = _('Estado')
-    elif context['tab_selected'] == 'aprobadas':
-        # Busco las que están en  AlumnoMateria y aprobadas
-        lista_materias = AlumnoMateria.objects\
-            .list_materias_aprobadas(request.user)
-        context['th_estado'] = _('Aprobada')
-        context['th_correlativas'] = 'Nota '
-    else:
-        raise Http404(_('Error 404'))
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
-    context['lista_materias'] = lista_materias
-    return render(request, 'facultad/plancarrera_all.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Materias cursadas
+        context['list_matcur'] = AlumnoMateria.objects\
+            .list_materias_cursando(self.request.user)
+        return context
 
+class PlanCarreraView(TemplateView):
 
-@login_required
-@get_carreras
-def plancarrera(request, plancarrera):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
+    template_name = "facultad/plancarrera.html"
 
-    # Get carrera y plan
-    alumno = get_object_or_404(Alumno,
-                               plancarrera__short_name=plancarrera,
-                               user=request.user)
-    context['carrera'] = alumno.carrera
-    plancarrera = alumno.plancarrera
-    context['plancarrera'] = plancarrera
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
-    # Menu
-    context.update(_menu_materias(request.GET))
-    context['th_correlativas'] = _(' ')
-    # Materias
-    if context['tab_selected'] == 'cursando':
-        # Busco las que están en  AlumnoMateria y no aprobadas
-        lista_materias = PlanMateria.objects\
-            .list_materias_cursando(request.user, plancarrera)
-        context['th_estado'] = _(' Estado ')
-    elif context['tab_selected'] == 'para_cursar':
-        # No tienen correlativas pendientes y no están en AlumnoMateria
-        lista_materias = PlanMateria.objects\
-            .list_materias_para_cursar(request.user, plancarrera)
-        context['th_estado'] = _(' ')
-    elif context['tab_selected'] == 'faltan_correl':
-        # Tienen correlativas pendientes y no están en AlumnoMateria
-        lista_materias = PlanMateria.objects\
-            .list_materias_faltan_correl(request.user, plancarrera)
-        # context['th_estado'] = _(' ')
-    elif context['tab_selected'] == 'aprobadas':
-        # Busco las que están en  AlumnoMateria y aprobadas
-        lista_materias = PlanMateria.objects\
-            .list_materias_aprobadas(request.user, plancarrera)
-        context['th_estado'] = _(' Aprobada ')
-        context['th_correlativas'] = _(' Nota ')
-    elif context['tab_selected'] == 'todas':
-        lista_materias = PlanMateria.objects\
-            .filter(plancarrera=plancarrera).order_by('cuatrimestre',
-                                                      'materia')
-        lista_materias_a_cursar = PlanMateria.objects\
-            .list_materias_para_cursar(request.user, plancarrera)
-        context['lista_materias_a_cursar'] = lista_materias_a_cursar
-        context['th_estado'] = _(' Estado ')
-        context['th_correlativas'] = _(' Correlativas ')
-    else:
-        raise Http404(_('Error 404'))
+    def get_context_data(self, **kwargs):
+        plancarrera = kwargs['plancarrera']
+        user = self.request.user
 
-    context['lista_materias'] = lista_materias
-    return render(request, 'facultad/plancarrera.html', context)
+        # Get carrera y plan
+        alumno = get_object_or_404(Alumno,
+                                   plancarrera__short_name=plancarrera,
+                                   user=user)
+        context['carrera'] = alumno.carrera
+        plancarrera = alumno.plancarrera
+        context['plancarrera'] = plancarrera
+
+        # Menu
+        context.update(_menu_materias(self.request.GET))
+        context['th_correlativas'] = _(' ')
+        # Materias
+        if context['tab_selected'] == 'cursando':
+            # Busco las que están en  AlumnoMateria y no aprobadas
+            lista_materias = PlanMateria.objects\
+                .list_materias_cursando(user, plancarrera)
+            context['th_estado'] = _(' Estado ')
+        elif context['tab_selected'] == 'para_cursar':
+            # No tienen correlativas pendientes y no están en AlumnoMateria
+            lista_materias = PlanMateria.objects\
+                .list_materias_para_cursar(user, plancarrera)
+            context['th_estado'] = _(' ')
+        elif context['tab_selected'] == 'faltan_correl':
+            # Tienen correlativas pendientes y no están en AlumnoMateria
+            lista_materias = PlanMateria.objects\
+                .list_materias_faltan_correl(user, plancarrera)
+            # context['th_estado'] = _(' ')
+        elif context['tab_selected'] == 'aprobadas':
+            # Busco las que están en  AlumnoMateria y aprobadas
+            lista_materias = PlanMateria.objects\
+                .list_materias_aprobadas(user, plancarrera)
+            context['th_estado'] = _(' Aprobada ')
+            context['th_correlativas'] = _(' Nota ')
+        elif context['tab_selected'] == 'todas':
+            lista_materias = PlanMateria.objects\
+                .filter(plancarrera=plancarrera).order_by('cuatrimestre',
+                                                          'materia')
+            lista_materias_a_cursar = PlanMateria.objects\
+                .list_materias_para_cursar(user, plancarrera)
+            context['lista_materias_a_cursar'] = lista_materias_a_cursar
+            context['th_estado'] = _(' Estado ')
+            context['th_correlativas'] = _(' Correlativas ')
+        else:
+            raise Http404(_('Error 404'))
+
+        context['lista_materias'] = lista_materias
+        return context
 
 
 def _get_correlativas(lista_materias, plancarrera):
@@ -127,8 +112,6 @@ def _get_correlativas(lista_materias, plancarrera):
 @login_required
 @get_carreras
 def materia(request, codigo):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
     materia = get_object_or_404(Materia, id=codigo)
 
     if request.method == 'POST':
@@ -173,8 +156,6 @@ def _menu_materias(GET):
 @login_required
 @get_carreras
 def cargar_materias(request):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
     if request.method == 'POST':
         dict_result = sist_acad.parse_materias_aprobadas(request.POST['paste'],
                                                          request)

@@ -22,16 +22,12 @@ context = {'slug': 'facultad'}
 @login_required
 @get_carreras
 def home(request):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
     return render(request, 'carreras/carreras_home.html', context)
 
 
 @login_required
 @get_carreras
 def add(request):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
     if request.method == 'POST':
         form = forms.SelectCarreraForm(request.POST)
         if form.is_valid():
@@ -71,8 +67,6 @@ def add(request):
 @login_required
 @get_carreras
 def delete(request, plancarrera=None):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
     if plancarrera:
         alumno = get_object_or_404(Alumno, user=request.user,
                                    plancarrera__short_name=plancarrera)
@@ -89,8 +83,6 @@ def delete(request, plancarrera=None):
 @login_required
 @get_carreras
 def graduado(request, plancarrera):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    request.session['list_carreras'] = []
     alumno = get_object_or_404(Alumno, user=request.user,
                                plancarrera__short_name=plancarrera)
     if request.method == 'POST':
