@@ -1,8 +1,10 @@
 import logging
 from datetime import date
 
+from django.contrib.messages import constants as MSG
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
+from django.utils.translation import ugettext as _
 
 from ..models import Alumno, AlumnoMateria, Materia, PlanMateria
 from .common import BaseUserTestCase
@@ -171,6 +173,11 @@ class MateriaViewTestCase(BaseUserTestCase):
         self.assertEqual(form.initial['cursada_cuat'], '1')
         self.assertEqual(form.initial['cursada_year'], '2015')
 
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Cambios guardados.'))
+
     def test_materia_cursada_aprobada(self):
         response = self.client.post(
             reverse('facultad:materia', args=['9501']),
@@ -185,6 +192,11 @@ class MateriaViewTestCase(BaseUserTestCase):
         self.assertEqual(form.initial['state'], 'F')
         self.assertEqual(form.initial['cursada_cuat'], '1')
         self.assertEqual(form.initial['cursada_year'], '2015')
+
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Cambios guardados.'))
 
         # Check GET
         response = self.client.get(reverse('facultad:materia', args=['9501']))
@@ -205,6 +217,11 @@ class MateriaViewTestCase(BaseUserTestCase):
              'nota': '8', 'aprobada_cuat': '2', 'aprobada_year': '2016'},
             follow=True)
         self.assertEqual(response.status_code, 200)
+
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Cambios guardados.'))
 
         self.assertContains(response, '<h3 class="panel-title">95.01 '
                                       'sleepy_pani</h3>')
@@ -239,15 +256,13 @@ class MateriaViewTestCase(BaseUserTestCase):
             follow=True)
         self.assertEqual(response.status_code, 200)
 
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Cambios guardados.'))
+
         self.assertContains(response, '<h3 class="panel-title">95.01 '
                                       'sleepy_pani</h3>')
-        # <div class="alert alert-success fade in">
-        #     <a href="#" class="close" data-dismiss="alert"
-        # aria-label="close">&times;</a>
-        #     Cambios guardados.
-        #   </div>
-        #
-
         form = response.context['form']
         self.assertEqual(form.initial['state'], 'E')
 
@@ -297,6 +312,11 @@ class MateriaViewTestCase(BaseUserTestCase):
             follow=True)
         self.assertEqual(response.status_code, 200)
 
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Cambios guardados.'))
+
         self.assertContains(response, '<h3 class="panel-title">95.01 '
                                       'sleepy_pani</h3>')
 
@@ -323,6 +343,11 @@ class MateriaViewTestCase(BaseUserTestCase):
             {'state': '-'},
             follow=True)
         self.assertEqual(response.status_code, 200)
+
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Cambios guardados.'))
 
         self.assertContains(response, '<h3 class="panel-title">95.01 '
                                       'sleepy_pani</h3>')
