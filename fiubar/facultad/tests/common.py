@@ -25,19 +25,23 @@ class BaseTestCase(TestCase):
         pc.append(PlanCarrera.objects.create(carrera=c[0],
                                              pub_date=date(2012, 1, 1),
                                              min_creditos=100,
+                                             name='Cocky Perlman 2012',
                                              short_name='cocky_perlman12'))
         pc.append(PlanCarrera.objects.create(carrera=c[0],
                                              pub_date=date(2000, 1, 1),
                                              min_creditos=100,
+                                             name='Cocky Perlman 2000',
                                              short_name='cocky_perlman00',
                                              orientacion='Namlrep Ykcoc'))
         pc.append(PlanCarrera.objects.create(carrera=c[1],
                                              pub_date=date(2000, 1, 1),
                                              min_creditos=100,
+                                             name='Berserk Hamil 2000',
                                              short_name='berserk_hamil00'))
         pc.append(PlanCarrera.objects.create(carrera=c[2],
                                              pub_date=date(2000, 1, 1),
                                              min_creditos=100,
+                                             name='Angry Jang 2000',
                                              short_name='angry_jang00'))
         pc.append(PlanCarrera.objects.create(short_name='nuevo_plan_carrera',
                                              name='Nuevo Plan Carrera',
@@ -68,6 +72,8 @@ class BaseTestCase(TestCase):
                                         codigo='09', name='Probabilidad'))
         m.append(Materia.objects.create(id='6202', departamento=d[2],
                                         codigo='02', name='Fisica II'))
+        m.append(Materia.objects.create(id='6205', departamento=d[2],
+                                        codigo='05', name='Fisica V'))
         self.materias = m
 
         pm = []
@@ -76,6 +82,16 @@ class BaseTestCase(TestCase):
         pm.append(PlanMateria.objects.create(plancarrera=pc[0], materia=m[1],
                                              creditos=4, cuatrimestre='2'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[2],
+                                             creditos=6, cuatrimestre='1'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[3],
+                                             creditos=8, cuatrimestre='1'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[4],
+                                             creditos=8, cuatrimestre='1'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[5],
+                                             creditos=8, cuatrimestre='1'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[6],
+                                             creditos=6, cuatrimestre='1'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[3], materia=m[7],
                                              creditos=6, cuatrimestre='1'))
         self.plan_materias = pm
 
@@ -110,6 +126,12 @@ class BaseUserTestCase(BaseTestCase):
         a.append(Alumno.objects.create(user=self.user, carrera=pc.carrera,
                                        plancarrera=pc,
                                        begin_date=date(2013, 1, 10)))
+
+        user2 = self.make_user('user_2')
+        pc = self.plan_carreras[3]
+        a.append(Alumno.objects.create(user=user2, carrera=pc.carrera,
+                                       plancarrera=pc,
+                                       begin_date=date(2017, 1, 10)))
         self.alumnos = a
 
         am = []

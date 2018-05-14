@@ -4,7 +4,6 @@ from django.urls import reverse
 
 from ..models import (AlumnoMateria, Carrera, Correlativa, Departamento,
                       Materia, PlanCarrera, PlanMateria)
-from ..utils import calculate_time
 from .common import BaseUserTestCase
 
 
@@ -83,10 +82,7 @@ class TestAlumnoModel(BaseUserTestCase):
     def test_tiempo_carrera(self):
         a = self.alumnos[0]
         a.graduado_date = date(2020, 2, 20)
-        self.assertEqual(
-            a.tiempo_carrera(),
-            calculate_time(a.begin_date, a.graduado_date)
-        )
+        self.assertEqual(a.tiempo_carrera(), '7 años')
 
 
 class TestAlumnoMateriaModel(BaseUserTestCase):

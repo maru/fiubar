@@ -4,7 +4,7 @@ from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 
-from ..models import AlumnoMateria, Materia
+from ..models import Alumno, AlumnoMateria, Materia, PlanMateria
 from .common import BaseUserTestCase
 
 
@@ -362,14 +362,33 @@ class CargarMateriasViewTestCase(BaseUserTestCase):
 
     def test_cargar_materias_post_good_lines(self):
         from .test_views_sist_acad import GOOD_LINES
+
+        creditos = Alumno.objects.filter(user=self.user).\
+            order_by('plancarrera')
+
         response = self.client.post(reverse('facultad:cargar-materias'),
                                     {'text_paste': GOOD_LINES})
         self.assertEqual(response.status_code, 200)
 
         d = response.context
         self.assertEqual(d['text_paste'], '')
-        self.assertEqual(d['materia_list_count'], 4)
-        self.assertEqual(len(d['materia_list']), 4)
+        self.assertEqual(d['materia_list_count'], 5)
+        self.assertEqual(len(d['materia_list']), 5)
+
+        for m in d['materia_list']:
+            plan_materias = PlanMateria.objects.filter(materia=m[0])
+            for pm in plan_materias:
+                pc = pm.plancarrera
+                try:
+                    c = creditos.get(plancarrera=pc)
+                    c.creditos += pm.creditos
+                except ObjectDoesNotExist:
+                    pass
+
+        alumnos = Alumno.objects.filter(user=self.user).order_by('plancarrera')
+        for i in range(len(creditos)):
+            self.assertEqual(creditos[i].get_creditos(),
+                             alumnos[i].get_creditos())
 
     def test_cargar_materias_post_empty_lines(self):
         from .test_views_sist_acad import EMPTY_LINES

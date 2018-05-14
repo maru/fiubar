@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from .managers import AlumnoManager, AlumnoMateriaManager, PlanMateriaManager
-from .utils import calculate_time
 
 from fiubar.users.models import User
 
@@ -55,7 +54,22 @@ class Alumno(models.Model):
         return self.graduado_date
 
     def tiempo_carrera(self):
-        return calculate_time(self.begin_date, self.graduado_date)
+        total_time = self.graduado_date - self.begin_date
+        if total_time.days <= 0:
+            return '???'
+        years = total_time.days / 365
+        months = (total_time.days % 365) / (365 / 12.)
+        # Plural
+        plural = 's'
+        if years <= 1:
+            plural = ''
+        # -
+        if months <= 3:
+            return '%d año%s' % (years, plural)
+        if months <= 7:
+            return '%d 1/2 año%s' % (years, plural)
+        else:
+            return '%d año%s' % ((years + 1), plural)
 
     class Meta:
         unique_together = (('user', 'plancarrera'),)

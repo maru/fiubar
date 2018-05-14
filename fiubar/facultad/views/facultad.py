@@ -161,17 +161,13 @@ class CargarMateriasView(LoginRequiredMixin, TemplateView):
 
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
-        # print(self.kwargs)
-        # print(context)
         dict_result = parse_materias_aprobadas(request.user,
                                                request.POST.get('text_paste'),
                                                request.META.get('REMOTE_ADDR'))
-        AlumnoMateria.objects.update_creditos(request.user)
         context.update(dict_result)
         return self.render_to_response(context)
 
     def get(self, request, *args, **kwargs):
-        # Clean cache!
         context = self.get_context_data(**kwargs)
         context.update({'text_paste': '',
                         'materia_list': '',

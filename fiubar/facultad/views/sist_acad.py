@@ -65,6 +65,9 @@ def parse_materias_aprobadas(user, paste, remote_address=None):
                          "line NOT MATCH '%s'" %
                          (remote_address, user, l))
 
+    if len(materia_list) > 0:
+        AlumnoMateria.objects.update_creditos(user)
+
     dict_result = {'text_paste': "\n".join(notfound_list),
                    'materia_list': materia_list,
                    'materia_list_count': len(materia_list)

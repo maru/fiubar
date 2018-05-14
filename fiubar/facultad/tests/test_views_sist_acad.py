@@ -9,9 +9,10 @@ from .common import BaseUserTestCase
 logging.disable(logging.CRITICAL)
 
 GOOD_LINES = '6108  Analisis Matematico II    9    8 - ocho  OBL  20-2-2012   1234  12345   6103\n' # noqa
-GOOD_LINES += '6103  Analisis Matematico II    7    8 - ocho OBL  20-2-2012   1234  12345   6103\n' # noqa
-GOOD_LINES += '6109  Analisis Matematico II    8    8 - ocho OBL  20-2-2012   1234  12345   6103-6108\n' # noqa
+GOOD_LINES += '6103  Algebra II    7    8 - ocho OBL  20-2-2012   1234  12345   6103\n' # noqa
+GOOD_LINES += '6109  Probabilidad I    8    8 - ocho OBL  20-2-2012   1234  12345   6103-6108\n' # noqa
 GOOD_LINES += '6202  Fisica II    5    6 - seis OBL  20-2-2012   1234  12345   6201\n' # noqa
+GOOD_LINES += '6205  Fisica V    5    6 - seis OBL  20-2-2012   1234  12345   6201\n' # noqa
 
 EMPTY_LINES = '\n\n\n\n'
 BAD_LINES = '6108  Analisis Matematico II    9    '
@@ -43,8 +44,8 @@ class SistAcadTestCase(BaseUserTestCase):
     def test_parse_materias_aprobadas_good_lines(self):
         d = parse_materias_aprobadas(self.user, GOOD_LINES, self.remote_addr)
 
-        self.assertEqual(len(d['materia_list']), 4)
-        self.assertEqual(d['materia_list_count'], 4)
+        self.assertEqual(len(d['materia_list']), 5)
+        self.assertEqual(d['materia_list_count'], 5)
         self.assertEqual(d['text_paste'], '')
 
         self.assertEqual(
