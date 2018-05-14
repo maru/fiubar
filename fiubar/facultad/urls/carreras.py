@@ -6,22 +6,28 @@ from ..views import carreras
 
 urlpatterns = [
 
-    path('carreras/', carreras.home,
+    path('carreras/',
+         carreras.HomePageView.as_view(),
          name='carreras-home'),
 
-    path('carreras/add/', carreras.add,
+    path('carreras/add/',
+         carreras.AddView.as_view(),
          name='carreras-add'),
 
-    path('carreras/delete/', carreras.delete,
+    path('carreras/delete/',
+         carreras.DeleteView.as_view(),
          name='carreras-show_delete'),
 
-    path('carreras/<str:plancarrera>/delete/', carreras.delete,
+    path('carreras/delete/<str:plancarrera>/',
+         carreras.DeleteView.as_view(),
          name='carreras-delete'),
 
-    path('carreras/<str:plancarrera>/graduado/', carreras.graduado,
+    path('carreras/graduado/<str:plancarrera>/',
+         carreras.GraduadoView.as_view(),
          name='carreras-graduado'),
 
-    path('carreras/<str:plancarrera>/graduado/del/', carreras.del_graduado,
-         name='carrera-graduado-del'),
+    path('carreras/graduado/delete/<str:plancarrera>/',
+         carreras.GraduadoDeleteView.as_view(),
+         name='carreras-graduado-delete'),
 
 ]

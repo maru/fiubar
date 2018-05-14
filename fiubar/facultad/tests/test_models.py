@@ -55,7 +55,7 @@ class TestAlumnoModel(BaseUserTestCase):
         pc = self.plan_carreras[0]
         a = self.alumnos[0]
         self.assertEqual(
-            reverse('facultad:carrera-graduado-del',
+            reverse('facultad:carreras-graduado-delete',
                     kwargs={'plancarrera': pc.short_name}),
             a.url_del_graduado()
         )

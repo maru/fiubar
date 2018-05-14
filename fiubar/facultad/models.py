@@ -40,7 +40,7 @@ class Alumno(models.Model):
                        args=[self.plancarrera.short_name])
 
     def url_del_graduado(self):
-        return reverse('facultad:carrera-graduado-del',
+        return reverse('facultad:carreras-graduado-delete',
                        args=[self.plancarrera.short_name])
 
     def get_creditos(self):
