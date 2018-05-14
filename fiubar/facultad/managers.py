@@ -107,9 +107,12 @@ class AlumnoMateriaManager(models.Manager):
             materia_cursada = None
         return materia_cursada
 
-    def update_creditos(self, user, list_carreras):
-        from .models import PlanMateria
+    def update_creditos(self, user, list_carreras=None):
+        from .models import Alumno, PlanMateria
         materias_cursadas = self.filter(user=user)
+        if list_carreras is None:
+            list_carreras = Alumno.objects.select_related('carrera')\
+                .filter(user=user).order_by('plancarrera')
         # Recalculo los créditos para cada carrera
         for al in list_carreras:
             al.creditos = 0
@@ -192,7 +195,7 @@ class PlanMateriaManager(models.Manager):
                 mat_cred = int(e.correlativas.strip('c'))
                 if a.creditos >= mat_cred:
                     list.append(e)
-            except ValueError:
+            except (ValueError, AttributeError):
                 list.append(e)
         return list
 

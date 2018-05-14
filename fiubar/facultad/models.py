@@ -69,6 +69,7 @@ class AlumnoMateria(models.Model):
     )
 
     MATERIA_STATE = (
+        ('-', _('No cursando')),
         ('C', _('Cursando')),
         ('F', _('Cursada Aprobada')),
         ('A', _('Materia Aprobada')),

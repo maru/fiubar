@@ -59,7 +59,7 @@ class GraduadoForm(forms.Form):
         return date(year, month, 1)
 
 
-class CursadaForm(forms.Form):
+class CursadaForm(forms.ModelForm):
     CURSADA_CHOICES = (
         ('-', _('No estoy cursando esta materia')),
         ('C', _('Cursando')),
@@ -94,7 +94,6 @@ class CursadaForm(forms.Form):
     cursada_year = forms.ChoiceField(label='', choices=YEAR_CHOICES,
                                      required=False)
     cursada_date = forms.CharField(widget=forms.HiddenInput, required=False)
-    materia_curso = forms.ChoiceField(choices=[('-', '-')], required=False)
 
     # Cuatrimestre en el que aprobó la materia
     aprobada_cuat = forms.ChoiceField(label='', choices=CUAT_CURSADA,
@@ -108,6 +107,9 @@ class CursadaForm(forms.Form):
                    [(nota, nota) for nota in range(10, 3, -1)] + [(2, 2)]
     nota = forms.ChoiceField(required=False, choices=NOTA_CHOICES)
 
+    field_order = ['state', 'cursada_cuat', 'cursada_year', 'cursada_date',
+                   'aprobada_cuat', 'aprobada_year', 'aprobada_date', 'nota']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for f in ['cursada_cuat', 'cursada_year', 'aprobada_cuat',
@@ -115,38 +117,68 @@ class CursadaForm(forms.Form):
             self.fields[f].widget.attrs.update({'class': 'form-control'})
         self.fields['state'].widget.attrs.update({'class': 'list-unstyled'})
 
+    def clean_cursada_year(self):
+        if self.cleaned_data.get('cursada_year') == '':
+            return '0'
+        return self.cleaned_data.get('cursada_year')
+
     def clean_cursada_date(self):
         return self._calculate_date('cursada')
+
+    def clean_aprobada_year(self):
+        if self.cleaned_data.get('aprobada_year') == '':
+            return '0'
+        return self.cleaned_data.get('aprobada_year')
 
     def clean_aprobada_date(self):
         return self._calculate_date('aprobada')
 
     def _calculate_date(self, field_prefix):
-        if self.cleaned_data[field_prefix + '_cuat'] == '' or \
-           self.cleaned_data[field_prefix + '_year'] == '0':
-            if self.cleaned_data[field_prefix + '_cuat'] == '' and \
-               self.cleaned_data[field_prefix + '_year'] == '0':
-                # Not entered.
-                return None
-            # Just one field.
+        field_cuat = field_prefix + '_cuat'
+        field_year = field_prefix + '_year'
+
+        # Not entered.
+        if self.cleaned_data.get(field_cuat) == '' and \
+           self.cleaned_data.get(field_year) == '0':
+            return None
+
+        # Just one field.
+        if self.cleaned_data.get(field_cuat) == '' or \
+           self.cleaned_data.get(field_year) == '0':
             raise forms.ValidationError(
                 _('Completar con cuatrimestre y año.'))
-        if not self.cleaned_data[field_prefix + '_date']:
+
+        field_date = field_prefix + '_date'
+
+        if not self.cleaned_data.get(field_date):
             return None
-        return self.cleaned_data[field_prefix + '_date']
+        return self.cleaned_data.get(field_date)
+
+    def clean_nota(self):
+        if self.cleaned_data.get('nota') == '':
+            return '0'
+        return self.cleaned_data.get('nota')
 
     def save(self, user, materia):
         materia_cursada = AlumnoMateria.objects.get_or_none(user=user,
                                                             materia=materia)
         state = self.cleaned_data['state']
-        if (state != '-' or materia_cursada):
-            # No estoy cursando esta materia
-            if state == '-':
-                materia_cursada.delete()
-            # Cursando
-            else:
-                if not materia_cursada:
-                    materia_cursada = AlumnoMateria()
-                materia_cursada.update(user, materia, self.cleaned_data)
-                materia_cursada.save()
+
+        # No estoy cursando esta materia
+        if state == '-':
+            materia_cursada.delete()
+        else:
+            # Nueva materia
+            if not materia_cursada:
+                materia_cursada = AlumnoMateria()
+
+            # Update estado de materia
+            materia_cursada.update(user, materia, self.cleaned_data)
+            materia_cursada.save()
+
         return materia_cursada
+
+    class Meta:
+        model = AlumnoMateria
+        fields = ['state', 'cursada_cuat', 'cursada_date',
+                  'aprobada_cuat', 'aprobada_date', 'nota']
