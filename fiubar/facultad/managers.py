@@ -8,8 +8,9 @@ Q = models.Q
 
 class AlumnoManager(models.Manager):
     def create(self, **kwargs):
-        list = self.filter(user=kwargs['user'], carrera=kwargs['carrera'],
-                           plancarrera=kwargs['plancarrera'])
+        pc = kwargs['plancarrera']
+        list = self.filter(user=kwargs['user'], carrera=pc.carrera,
+                           plancarrera=pc)
         if list.count() > 0:
             return None
         alumno = super(AlumnoManager, self).create(**kwargs)

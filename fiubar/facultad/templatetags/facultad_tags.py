@@ -114,7 +114,7 @@ register.inclusion_tag('facultad/plancarrera_materia.html',
                        takes_context=True)(display_row_materia)
 
 
-@register.filter
+@register.filter(is_safe=True)
 def apnumber(value):
     retvalue = '-'
     try:
