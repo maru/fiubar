@@ -2,8 +2,8 @@ from datetime import date
 
 from test_plus.test import TestCase
 
-from ..models import (Alumno, AlumnoMateria, Carrera, Departamento, Materia,
-                      PlanCarrera, PlanMateria)
+from ..models import (Alumno, AlumnoMateria, Carrera, Correlativa,
+                      Departamento, Materia, PlanCarrera, PlanMateria)
 
 
 class BaseTestCase(TestCase):
@@ -78,22 +78,37 @@ class BaseTestCase(TestCase):
 
         pm = []
         pm.append(PlanMateria.objects.create(plancarrera=pc[0], materia=m[0],
-                                             creditos=8, cuatrimestre='1'))
+                                             creditos=8, cuatrimestre='1',
+                                             correlativas=''))
         pm.append(PlanMateria.objects.create(plancarrera=pc[0], materia=m[1],
-                                             creditos=4, cuatrimestre='2'))
+                                             creditos=4, cuatrimestre='2',
+                                             correlativas='9501'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[2],
-                                             creditos=6, cuatrimestre='1'))
+                                             creditos=6, cuatrimestre='3',
+                                             correlativas='9502'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[3],
-                                             creditos=8, cuatrimestre='1'))
+                                             creditos=8, cuatrimestre='1',
+                                             correlativas='CBC'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[4],
-                                             creditos=8, cuatrimestre='1'))
+                                             creditos=8, cuatrimestre='1',
+                                             correlativas='CBC'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[5],
-                                             creditos=8, cuatrimestre='1'))
+                                             creditos=8, cuatrimestre='2',
+                                             correlativas='61.03-61.08'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[4], materia=m[6],
-                                             creditos=6, cuatrimestre='1'))
+                                             creditos=6, cuatrimestre='1',
+                                             correlativas='61.08'))
         pm.append(PlanMateria.objects.create(plancarrera=pc[3], materia=m[7],
-                                             creditos=6, cuatrimestre='1'))
+                                             creditos=6, cuatrimestre='2',
+                                             correlativas='62.02'))
         self.plan_materias = pm
+
+        Correlativa.objects.create(materia=pm[1], correlativa=pm[0])
+        Correlativa.objects.create(materia=pm[2], correlativa=pm[1])
+        Correlativa.objects.create(materia=pm[5], correlativa=pm[3])
+        Correlativa.objects.create(materia=pm[5], correlativa=pm[4])
+        Correlativa.objects.create(materia=pm[6], correlativa=pm[3])
+        Correlativa.objects.create(materia=pm[7], correlativa=pm[6])
 
 
 class BaseUserTestCase(BaseTestCase):
@@ -127,20 +142,26 @@ class BaseUserTestCase(BaseTestCase):
                                        plancarrera=pc,
                                        begin_date=date(2013, 1, 10)))
 
-        user2 = self.make_user('user_2')
+        self.user2 = self.make_user('user_2')
         pc = self.plan_carreras[3]
-        a.append(Alumno.objects.create(user=user2, carrera=pc.carrera,
+        a.append(Alumno.objects.create(user=self.user2, carrera=pc.carrera,
                                        plancarrera=pc,
                                        begin_date=date(2017, 1, 10)))
         self.alumnos = a
 
         am = []
         am.append(AlumnoMateria.objects.create(user=self.user,
-                                               materia=self.materias[0],
+                                               materia=self.materias[2],
                                                state='C'))
         am.append(AlumnoMateria.objects.create(user=self.user,
-                                               materia=self.materias[2],
+                                               materia=self.materias[1],
+                                               state='F'))
+        am.append(AlumnoMateria.objects.create(user=self.user,
+                                               materia=self.materias[0],
                                                state='A', nota=7))
+        am.append(AlumnoMateria.objects.create(user=self.user,
+                                               materia=self.materias[3],
+                                               state='E'))
         self.alumno_materia = am
 
         AlumnoMateria.objects.update_creditos(self.user, self.alumnos)

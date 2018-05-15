@@ -234,13 +234,3 @@ class PlanMateriaManager(models.Manager):
                 m.aprobada_cuat = mat.aprobada_cuat
                 m.aprobada_date = mat.aprobada_date
         return list
-
-    def list_materias_faltan_correl(self, user, plancarrera):
-        from .models import AlumnoMateria
-
-        am_list = AlumnoMateria.objects.list_materias(user)
-        list = self.filter(plancarrera=plancarrera)
-        for am in am_list:
-            list = list.exclude(materia=am.materia)
-        list = list.order_by('cuatrimestre')
-        return list

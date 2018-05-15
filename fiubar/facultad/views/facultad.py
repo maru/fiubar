@@ -63,12 +63,8 @@ class PlanCarreraView(LoginRequiredMixin, TemplateView):
             # No tienen correlativas pendientes y no están en AlumnoMateria
             lista_materias = PlanMateria.objects\
                 .list_materias_para_cursar(user, plancarrera)
+            context['lista_materias_a_cursar'] = lista_materias
             context['th_estado'] = _(' ')
-        elif context['tab_selected'] == 'faltan_correl':
-            # Tienen correlativas pendientes y no están en AlumnoMateria
-            lista_materias = PlanMateria.objects\
-                .list_materias_faltan_correl(user, plancarrera)
-            # context['th_estado'] = _(' ')
         elif context['tab_selected'] == 'aprobadas':
             # Busco las que están en  AlumnoMateria y aprobadas
             lista_materias = PlanMateria.objects\

@@ -29,9 +29,9 @@ class HomePageViewTestCase(BaseUserTestCase):
         self.assertContains(response,
                             '<span class="small">Plan 2000</span></a></li>')
         self.assertContains(response,
-                            '<a class="" href="/facultad/materia/9501/"')
-        self.assertContains(response, '95.01')
-        self.assertContains(response, 'sleepy_pani')
+                            '<a class="" href="/facultad/materia/9502/"')
+        self.assertContains(response, '95.02')
+        self.assertContains(response, 'nostalgic_bell')
 
     def test_home_no_carrera(self):
         self.user = self.make_user('user2')
@@ -57,32 +57,30 @@ class PlanCarreraViewTestCase(BaseUserTestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertContains(response,
-                            '<a href="/facultad/materia/9501/">\n'
-                            '					95.01\n'
-                            '					sleepy_pani\n'
+                            '<a href="/facultad/materia/9502/">\n'
+                            '					95.02 nostalgic_bell\n'
                             '				</a>\n'
                             '			</td>\n'
                             '			<td>\n'
-                            '			  <span class="small">Cursando</span>')
+                            '			  <span id="materia-falta_cuat" class="small">Falta final</span>') # noqa
 
     def test_plancarrera_cursando(self):
         response = self.client.get(reverse('facultad:materias-carrera',
-                                           args=['cocky_perlman12']) +
+                                           args=['nuevo_plan_carrera']) +
                                    '?show=cursando')
         self.assertEqual(response.status_code, 200)
 
         self.assertContains(response,
-                            '<a href="/facultad/materia/9501/">\n'
-                            '					95.01\n'
-                            '					sleepy_pani\n'
+                            '<a href="/facultad/materia/9503/">\n'
+                            '					95.03 loving_perlman\n'
                             '				</a>\n'
                             '			</td>\n'
                             '			<td>\n'
-                            '			  <span class="small">Cursando</span>')
+                            '			  <span id="materia-falta_cuat" class="small">Cursando</span>') # noqa
 
     def test_plancarrera_para_cursar(self):
         response = self.client.get(reverse('facultad:materias-carrera',
-                                           args=['cocky_perlman12']) +
+                                           args=['nuevo_plan_carrera']) +
                                    '?show=para_cursar')
         self.assertEqual(response.status_code, 200)
 
@@ -93,42 +91,49 @@ class PlanCarreraViewTestCase(BaseUserTestCase):
                             ' alt="" title="Disponible para cursar" />\n'
                             '			</td>\n'
                             '			<td class="margin-left">\n'
-                            '				<a name="02"></a>\n'
-                            '				<a href="/facultad/materia/9502/">\n'
-                            '					95.02\n'
-                            '					nostalgic_bell\n'
+                            '				<a name="6202"></a>\n'
+                            '				<a href="/facultad/materia/6202/">\n'
+                            '					62.02 Fisica II\n'
                             '				</a>')
 
-    def test_plancarrera_faltan_correl(self):
-        response = self.client.get(reverse('facultad:materias-carrera',
-                                           args=['cocky_perlman12']) +
-                                   '?show=faltan_correl')
-        self.assertEqual(response.status_code, 200)
+    def test_plancarrera_aprobadas_user3(self):
+        # No hay materias aprobadas
+        self.user = self.make_user('user3')
+        self.client.force_login(self.user)
+        assert self.user.is_authenticated
 
-        self.assertContains(response,
-                            '<tr class="paracursar">\n'
-                            '			<td class="icono">\n'
-                            '				<img src="/static/images/facultad/materia_cursar.png"' # noqa
-                            ' alt="" title="Disponible para cursar" />\n'
-                            '			</td>\n'
-                            '			<td class="margin-left">\n'
-                            '				<a name="02"></a>\n'
-                            '				<a href="/facultad/materia/9502/">\n'
-                            '					95.02\n'
-                            '					nostalgic_bell\n'
-                            '				</a>')
+        pc = self.plan_carreras[0]
+        Alumno.objects.create(user=self.user, carrera=pc.carrera,
+                              plancarrera=pc,
+                              begin_date=date(2013, 1, 1))
 
-    def test_plancarrera_aprobadas(self):
         response = self.client.get(reverse('facultad:materias-carrera',
                                            args=['cocky_perlman12']) +
                                    '?show=aprobadas')
         self.assertEqual(response.status_code, 200)
+
+        self.assertContains(response, 'No hay materias.')
+
+    def test_plancarrera_aprobadas_user(self):
+        # 1 materia aprobada
+        response = self.client.get(reverse('facultad:materias-carrera',
+                                           args=['cocky_perlman12']) +
+                                   '?show=aprobadas')
+        self.assertEqual(response.status_code, 200)
+
+        self.assertNotContains(response, 'No hay materias.')
+        self.assertContains(response, '<tr class="final">')
+        self.assertContains(response, '95.01')
+        self.assertContains(response, '7 (siete)')
 
     def test_plancarrera_todas(self):
         response = self.client.get(reverse('facultad:materias-carrera',
                                            args=['cocky_perlman12']) +
                                    '?show=todas')
         self.assertEqual(response.status_code, 200)
+
+        self.assertContains(response, '<tr class="final">')
+        self.assertContains(response, '<tr class="cursada">')
 
     def test_plancarrera_404(self):
         response = self.client.get(reverse('facultad:materias-carrera',
@@ -140,21 +145,21 @@ class PlanCarreraViewTestCase(BaseUserTestCase):
 class MateriaViewTestCase(BaseUserTestCase):
 
     def test_materia_cursando_check(self):
-        response = self.client.get(reverse('facultad:materia', args=['9501']))
+        response = self.client.get(reverse('facultad:materia', args=['9503']))
         self.assertEqual(response.status_code, 200)
 
-        self.assertContains(response, '<h3 class="panel-title">95.01 '
-                                      'sleepy_pani</h3>')
+        self.assertContains(response, '<h3 class="panel-title">95.03 '
+                                      'loving_perlman</h3>')
 
         form = response.context['form']
         self.assertEqual(form.initial['state'], 'C')
 
     def test_materia_cursando(self):
-        response = self.client.get(reverse('facultad:materia', args=['9502']))
+        response = self.client.get(reverse('facultad:materia', args=['6205']))
         self.assertEqual(response.status_code, 200)
 
-        self.assertContains(response, '<h3 class="panel-title">95.02 '
-                                      'nostalgic_bell</h3>')
+        self.assertContains(response, '<h3 class="panel-title">62.05 '
+                                      'Fisica V</h3>')
 
         form = response.context['form']
         self.assertIsNone(form.initial.get('state'))
@@ -288,7 +293,7 @@ class MateriaViewTestCase(BaseUserTestCase):
                                       'sleepy_pani</h3>')
 
         form = response.context['form']
-        self.assertEqual(form.initial['state'], 'C')
+        self.assertEqual(form.initial['state'], 'A')
         self.assertIsNone(form.initial.get('cursada_cuat'))
         self.assertEqual(form.data['state'], 'F')
         self.assertEqual(form.data['cursada_cuat'], '1')
@@ -301,12 +306,12 @@ class MateriaViewTestCase(BaseUserTestCase):
                                       'sleepy_pani</h3>')
 
         form = response.context['form']
-        self.assertEqual(form.initial['state'], 'C')
+        self.assertEqual(form.initial['state'], 'A')
         self.assertIsNone(form.initial.get('cursada_cuat'))
 
-    def test_materia_cursada_aprobada_date(self):
+    def test_materia_cursada_aprobada_date_new_alumnomateria(self):
         response = self.client.post(
-            reverse('facultad:materia', args=['9501']),
+            reverse('facultad:materia', args=['6103']),
             {'state': 'F', 'cursada_cuat': '1', 'cursada_year': '2015',
              'cursada_date': '2015-03-01'},
             follow=True)
@@ -317,8 +322,8 @@ class MateriaViewTestCase(BaseUserTestCase):
         self.assertEqual(messages[0].level, MSG.SUCCESS)
         self.assertEqual(messages[0].message, _('Cambios guardados.'))
 
-        self.assertContains(response, '<h3 class="panel-title">95.01 '
-                                      'sleepy_pani</h3>')
+        self.assertContains(response, '<h3 class="panel-title">61.03 '
+                                      'Algebra II</h3>')
 
         form = response.context['form']
         self.assertEqual(form.initial['state'], 'F')
@@ -326,11 +331,11 @@ class MateriaViewTestCase(BaseUserTestCase):
         self.assertEqual(form.initial['cursada_year'], '2015')
 
         # Check GET
-        response = self.client.get(reverse('facultad:materia', args=['9501']))
+        response = self.client.get(reverse('facultad:materia', args=['6103']))
         self.assertEqual(response.status_code, 200)
 
-        self.assertContains(response, '<h3 class="panel-title">95.01 '
-                                      'sleepy_pani</h3>')
+        self.assertContains(response, '<h3 class="panel-title">61.03 '
+                                      'Algebra II</h3>')
 
         form = response.context['form']
         self.assertEqual(form.initial['state'], 'F')

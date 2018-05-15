@@ -61,10 +61,14 @@ class TestAlumnoModel(BaseUserTestCase):
         )
 
     def test_get_creditos(self):
-        a = self.alumnos[3]
+        a = self.alumnos[0]
         pc = a.plancarrera
-        pm = self.plan_materias[2]
-        creditos = pm.creditos * 100 / pc.min_creditos
+        aprobadas = [m.materia for m in AlumnoMateria.objects.filter
+                     (user=a.user).exclude(state__in=['C', 'F'])]
+        materias = PlanMateria.objects.filter(plancarrera=pc,
+                                              materia__in=aprobadas)
+        creditos = [pm.creditos for pm in materias]
+        creditos = sum(creditos) * 100 / pc.min_creditos
         self.assertEqual(creditos, a.get_creditos())
 
     def test_del_graduado(self):
