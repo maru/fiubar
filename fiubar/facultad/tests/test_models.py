@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.core.exceptions import ValidationError
 from django.urls import reverse
 
 from ..models import (AlumnoMateria, Carrera, Correlativa, Departamento,
@@ -83,10 +84,31 @@ class TestAlumnoModel(BaseUserTestCase):
         a.graduado_date = date(2020, 2, 20)
         self.assertIsNotNone(a.is_graduado())
 
-    def test_tiempo_carrera(self):
+    def test_set_graduado_valid(self):
+        a = self.alumnos[0]
+        a.graduado_date = date(2020, 2, 20)
+        a.save()
+
+    def test_set_graduado_invalid(self):
+        a = self.alumnos[0]
+        a.graduado_date = date(2002, 2, 20)
+        with self.assertRaises(ValidationError):
+            a.save()
+
+    def test_tiempo_carrera_anios_plural(self):
         a = self.alumnos[0]
         a.graduado_date = date(2020, 2, 20)
         self.assertEqual(a.tiempo_carrera(), '7 años')
+
+    def test_tiempo_carrera_anios_singular(self):
+        a = self.alumnos[0]
+        a.graduado_date = date(2013, 12, 20)
+        self.assertEqual(a.tiempo_carrera(), '1 año')
+
+    def test_tiempo_carrera_medio_anio(self):
+        a = self.alumnos[0]
+        a.graduado_date = date(2014, 4, 20)
+        self.assertEqual(a.tiempo_carrera(), '1 1/2 años')
 
 
 class TestAlumnoMateriaModel(BaseUserTestCase):
@@ -95,6 +117,67 @@ class TestAlumnoMateriaModel(BaseUserTestCase):
         m = Materia(id='9501')
         am = AlumnoMateria(user=self.user, materia=m)
         self.assertEqual(str(am), '%s/%s' % (self.user, m))
+
+    def test_get_aprobada_cuat_no_dates(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia)
+        self.assertEqual(am.get_aprobada_cuat(), '-')
+
+    def test_get_aprobada_cuat_no_aprobada_cuat_mismo_anio(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           aprobada_date=date(2017, 12, 1))
+        self.assertEqual(am.get_aprobada_cuat(), '2° Cuatrimestre 2017')
+
+    def test_get_aprobada_cuat_no_aprobada_cuat_anio_anterior(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           aprobada_date=date(2017, 2, 1))
+        self.assertEqual(am.get_aprobada_cuat(), '2° Cuatrimestre 2016')
+
+    def test_get_aprobada_cuat_aprobada_cuat_1(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           aprobada_cuat='1-2017')
+        self.assertEqual(am.get_aprobada_cuat(), '1° Cuatrimestre 2017')
+
+    def test_get_aprobada_cuat_aprobada_cuat_V(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           aprobada_cuat='V-2017')
+        self.assertEqual(am.get_aprobada_cuat(), 'Curso de verano 2017')
+
+    def test_cursando(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia, state='C')
+        self.assertTrue(am.cursando())
+
+    def test_cursada_date_to_cuat_1(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           cursada_date=date(2017, 3, 1))
+        am.cursada_date_to_cuat()
+        self.assertEqual(am.cursada_cuat, '1-2017')
+
+    def test_cursada_date_to_cuat_2(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           cursada_date=date(2017, 9, 1))
+        am.cursada_date_to_cuat()
+        self.assertEqual(am.cursada_cuat, '2-2017')
+
+    def test_cursada_date_to_cuat_V(self):
+        materia = self.materias[0]
+        am = AlumnoMateria(user=self.user, materia=materia,
+                           cursada_date=date(2017, 1, 1))
+        am.cursada_date_to_cuat()
+        self.assertEqual(am.cursada_cuat, 'V-2017')
+
+    def test_cursada_date_to_cuat_invalid(self):
+        materia = self.materias[0]
+        with self.assertRaises(ValueError):
+            AlumnoMateria(user=self.user, materia=materia,
+                          cursada_date=date(2017, 0, 1))
 
 
 class TestCarreraModel(BaseUserTestCase):

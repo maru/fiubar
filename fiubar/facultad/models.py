@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext as _
@@ -22,6 +23,26 @@ class Alumno(models.Model):
 
     def __str__(self):
         return '%s/%s' % (self.user, self.plancarrera)
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        return super(Alumno, self).save(*args, **kwargs)
+
+    def clean(self):
+        """
+        Validar que la fecha graduado_date sea mayor que la fecha begin_date.
+        """
+        if (self.graduado_date is None) or (self.begin_date is None):
+            return
+
+        if int(self.graduado_date.toordinal()) \
+           <= int(self.begin_date.toordinal()):
+            raise ValidationError(
+                _('%(graduado_date)s es anterior a la fecha de comienzo '
+                  '%(begin_date)s'),
+                params={'graduado_date': self.graduado_date,
+                        'begin_date': self.begin_date},
+            )
 
     def url_delete(self):
         return reverse('facultad:carreras-delete',
@@ -55,15 +76,12 @@ class Alumno(models.Model):
 
     def tiempo_carrera(self):
         total_time = self.graduado_date - self.begin_date
-        if total_time.days <= 0:
-            return '???'
         years = total_time.days / 365
         months = (total_time.days % 365) / (365 / 12.)
-        # Plural
-        plural = 's'
-        if years <= 1:
-            plural = ''
-        # -
+
+        # Texto
+        plural = 's' if years > 1 else ''
+
         if months <= 3:
             return '%d año%s' % (years, plural)
         if months <= 7:
@@ -160,8 +178,8 @@ class AlumnoMateria(models.Model):
         self.aprobada_date = d
 
     def aprobada_date_to_cuat(self):
-        dict_aprobada_month = {6: '1', 7: '1', 8: '1', 9: '1', 10: '1',
-                               1: '2', 2: '2', 3: '2', 4: '2', 5: '2',
+        dict_aprobada_month = {1: '2', 2: '2', 3: '2', 4: '2', 5: '2',
+                               6: '1', 7: '1', 8: '1', 9: '1', 10: '1',
                                11: '2', 12: '2'}
         cuatrimestre = dict_aprobada_month.get(self.aprobada_date.month, None)
         year = self.aprobada_date.year
@@ -176,8 +194,10 @@ class AlumnoMateria(models.Model):
         self.cursada_date = d
 
     def cursada_date_to_cuat(self):
-        dict_cursada_month = {2: 'V', 3: '1', 8: '2'}
-        cuatrimestre = dict_cursada_month.get(self.cursada_date.month, 0)
+        dict_cursada_month = {1: 'V', 2: 'V',
+                              3: '1', 4: '1', 5: '1', 6: '1', 7: '1',
+                              8: '2', 9: '2', 10: '2', 11: '2', 12: '2'}
+        cuatrimestre = dict_cursada_month.get(self.cursada_date.month, '?')
         self.cursada_cuat = '%s-%s' % (cuatrimestre, self.cursada_date.year)
 
     class Meta:
@@ -194,9 +214,6 @@ class Carrera(models.Model):
 
     def __str__(self):
         return self.short_name
-
-    def url_materias(self):
-        return reverse('facultad:materias-carrera', args=[self.short_name])
 
     class Meta:
         ordering = ['name']
@@ -249,9 +266,6 @@ class Materia(models.Model):
     def get_name(self):
         return '%s.%s %s' % (self.departamento, self.codigo, self.name)
 
-    def url_home(self):
-        return reverse('facultad:materia-show', args=[self.id])
-
     def url_edit_materia(self):
         return reverse('facultad:materia', args=[self.id])
 
@@ -273,9 +287,6 @@ class PlanMateria(models.Model):
 
     def __str__(self):
         return '%s/%s' % (self.plancarrera, self.materia)
-
-    def url_edit_materia(self):
-        return reverse('facultad:materia', args=[self.materia])
 
     class Meta:
         ordering = ['plancarrera', 'materia']

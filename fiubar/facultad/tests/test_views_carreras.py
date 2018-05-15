@@ -198,6 +198,29 @@ class GraduadoViewTestCase(BaseUserTestCase):
         self.assertIsNotNone(e.get('graduado_date'))
         self.assertIsNotNone(e.get('year'))
 
+    def test_graduado_post_invalid_graduado_date(self):
+        pc = self.alumnos[1].plancarrera
+
+        response = self.client.post(
+            reverse('facultad:carreras-graduado',
+                    args=[pc.short_name]),
+            {'month': 1, 'year': 2008, 'plancarrera': pc.short_name},
+            follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.redirect_chain, [])
+        self.assertEqual(response.template_name,
+                         ['carreras/carrera_graduado_form.html'])
+
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.ERROR)
+        self.assertEqual(messages[0].message,
+                         '2008-01-01 es anterior a la fecha de comienzo 2013-01-01') # noqa
+
+        a = Alumno.objects.get(user=self.user, plancarrera=pc)
+        self.assertIsNone(a.graduado_date)
+
     def test_graduado_post_valid(self):
         pc = self.alumnos[1].plancarrera
 

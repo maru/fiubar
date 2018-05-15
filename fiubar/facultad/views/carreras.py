@@ -3,6 +3,7 @@ import logging
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -84,7 +85,7 @@ class DeleteView(LoginRequiredMixin, TemplateView):
 
             return HttpResponseRedirect(reverse('facultad:carreras-home'))
 
-        return super().get(request, args, kwargs)
+        return super().get(request, *args, **kwargs)
 
 
 class GraduadoView(LoginRequiredMixin, FormView):
@@ -126,6 +127,18 @@ class GraduadoView(LoginRequiredMixin, FormView):
                      self.request.user, alumno.plancarrera))
 
         return super(GraduadoView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        try:
+            return super(GraduadoView, self).post(request, *args, **kwargs)
+        except ValidationError as e:
+            form = self.get_form()
+            messages.add_message(self.request, messages.ERROR, e.messages[0])
+            return self.form_invalid(form)
 
 
 class GraduadoDeleteView(LoginRequiredMixin, RedirectView):

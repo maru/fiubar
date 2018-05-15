@@ -101,14 +101,30 @@ class BaseTestCase(TestCase):
         pm.append(PlanMateria.objects.create(plancarrera=pc[3], materia=m[7],
                                              creditos=6, cuatrimestre='2',
                                              correlativas='62.02'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[0], materia=m[3],
+                                             creditos=8, cuatrimestre='1',
+                                             correlativas='CBC'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[0], materia=m[4],
+                                             creditos=8, cuatrimestre='1',
+                                             correlativas='CBC'))
+        pm.append(PlanMateria.objects.create(plancarrera=pc[0], materia=m[5],
+                                             creditos=8, cuatrimestre='2',
+                                             correlativas='61.03-61.08'))
         self.plan_materias = pm
 
+        Correlativa.objects.create(materia=pm[0])
         Correlativa.objects.create(materia=pm[1], correlativa=pm[0])
         Correlativa.objects.create(materia=pm[2], correlativa=pm[1])
+        Correlativa.objects.create(materia=pm[3])
+        Correlativa.objects.create(materia=pm[4])
         Correlativa.objects.create(materia=pm[5], correlativa=pm[3])
         Correlativa.objects.create(materia=pm[5], correlativa=pm[4])
         Correlativa.objects.create(materia=pm[6], correlativa=pm[3])
         Correlativa.objects.create(materia=pm[7], correlativa=pm[6])
+        Correlativa.objects.create(materia=pm[8])
+        Correlativa.objects.create(materia=pm[9])
+        Correlativa.objects.create(materia=pm[10], correlativa=pm[8])
+        Correlativa.objects.create(materia=pm[10], correlativa=pm[9])
 
 
 class BaseUserTestCase(BaseTestCase):
