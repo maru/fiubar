@@ -8,32 +8,13 @@ Q = models.Q
 
 class AlumnoManager(models.Manager):
     def create(self, **kwargs):
-        list = self.filter(user=kwargs['user'], carrera=kwargs['carrera'],
-                           plancarrera=kwargs['plancarrera'])
-        if list.count() > 0:
+        pc = kwargs['plancarrera']
+        al_list = self.filter(user=kwargs['user'], carrera=pc.carrera,
+                              plancarrera=pc)
+        if al_list.count() > 0:
             return None
         alumno = super(AlumnoManager, self).create(**kwargs)
         return alumno
-
-    def get_summary(self, user):
-        return []
-        list_carreras = self.select_related().filter(user=user)
-        for a in list_carreras:
-            a.new_alumnos = self.filter(carrera=a.carrera).count()
-        return list_carreras
-
-    def count_new(self, user, begin_date=None):
-        """Counts new alumnos in carreras cursadas by user"""
-        car_list = self.filter(user=user)
-        new_list = []
-        for a in car_list:
-            alist = self.filter(carrera=a.carrera).exclude(user=user)
-            if begin_date:
-                alist = alist.filter(creation_date__gte=begin_date)
-            a.new_alumnos = alist.count()
-            if a.new_alumnos:
-                new_list.append(a)
-        return new_list
 
 
 class AlumnoMateriaManager(models.Manager):
@@ -68,25 +49,6 @@ class AlumnoMateriaManager(models.Manager):
             .filter(Q(state='A') | Q(state='E'))\
             .order_by('aprobada_date', 'materia')
 
-    def get_summary(self, user):
-        list_matcur = self.list_materias_cursando(user).order_by('state')
-        for m in list_matcur:
-            m.new_alumnos = self.filter(materia=m.materia).count()
-        return list_matcur
-
-    def count_new(self, user, begin_date):
-        """Counts new alumnos in materias cursadas by user"""
-        mat_list = self.list_materias_cursando(user).order_by('state')
-        new_list = []
-        for m in mat_list:
-            mlist = self.filter(materia=m.materia).exclude(user=user)
-            if begin_date:
-                mlist = mlist.filter(creation_date__gte=begin_date)
-            m.new_alumnos = mlist.count()
-            if m.new_alumnos:
-                new_list.append(m)
-        return new_list
-
     def create_or_update(self, user, materia, final_date, nota):
         try:
             al = self.get(user=user, materia=materia)
@@ -107,9 +69,12 @@ class AlumnoMateriaManager(models.Manager):
             materia_cursada = None
         return materia_cursada
 
-    def update_creditos(self, user, list_carreras):
-        from .models import PlanMateria
+    def update_creditos(self, user, list_carreras=None):
+        from .models import Alumno, PlanMateria
         materias_cursadas = self.filter(user=user)
+        if list_carreras is None:
+            list_carreras = Alumno.objects.select_related('carrera')\
+                .filter(user=user).order_by('plancarrera')
         # Recalculo los créditos para cada carrera
         for al in list_carreras:
             al.creditos = 0
@@ -137,105 +102,73 @@ class PlanMateriaManager(models.Manager):
 
     def list_materias_para_cursar(self, user, plancarrera):
         from .models import Alumno, AlumnoMateria, Correlativa
+
+        # Verificar que user es alumno del plancarrera
+        try:
+            alumno = Alumno.objects.get(user=user, plancarrera=plancarrera)
+        except ObjectDoesNotExist:
+            return []
+
         # Materias cursadas y aprobadas
-        am_list = AlumnoMateria.objects.list_materias(user)
-        aprobada_list = AlumnoMateria.objects.list_materias_aprobadas(user)
+        am_list = AlumnoMateria.objects.filter(user=user)
+        cursada_list = [am.materia for am in am_list]
 
-        # Lista de todas las correlativas
+        # PlanMaterias del plancarrera
+        pm_list = self.filter(plancarrera=plancarrera)\
+            .exclude(materia__in=cursada_list).order_by('cuatrimestre')
+
+        aprobada_list = [am.materia
+                         for am in am_list.filter(state__in=['A', 'E'])]
+
+        # Filtrar materias con correlativas no aprobadas
         co_list = Correlativa.objects.filter(materia__plancarrera=plancarrera)
+        co_list = co_list.exclude(correlativa__materia__in=aprobada_list)\
+            .exclude(correlativa=None)
+        co_list = [c.materia.materia for c in co_list]
 
-        # Saco las que tienen las correlativas aprobadas
-        Qap = None
-        if aprobada_list.count() > 0:
-            for m in aprobada_list:
-                if not Qap:
-                    Qap = Q(correlativa__materia=m.materia)
-                else:
-                    Qap = Qap | Q(correlativa__materia=m.materia)
-        if Qap:
-            co_list = co_list.exclude(Qap)
+        pm_list = pm_list.exclude(materia__in=co_list)
 
-        Qcur = None
-        if am_list.count() > 0:
-            for m in am_list:
-                if not Qcur:
-                    Qcur = Q(materia=m.materia)
-                else:
-                    Qcur = Qcur | Q(materia=m.materia)
-
-        Qcor = None
-        for m in co_list:
-            if not Qcor:
-                Qcor = Q(id=m.materia.id)
-            else:
-                Qcor = Qcor | Q(id=m.materia.id)
-
-        # En co_list saco las que tienen alguna correlativa aprobada.
-        list = self.filter(plancarrera=plancarrera)
-
-        # Saco las que ya estoy cursando o aprobe
-        if Qcur:
-            list = list.exclude(Qcur)
-
-        # Saco las que tienen correlativas por hacer...
-        if Qcor:
-            list = list.exclude(Qcor)
-
-        # Saco las que tienen un minimo de creditos
-        a = Alumno.objects.get(user=user, plancarrera=plancarrera)
-
-        l_cred = list.order_by('cuatrimestre')
-        list = []
-        for e in l_cred:
+        for pm in pm_list:
             try:
-                mat_cred = int(e.correlativas.strip('c'))
-                if a.creditos >= mat_cred:
-                    list.append(e)
-            except ValueError:
-                list.append(e)
-        return list
+                if pm.correlativas[-1] != 'c':
+                    continue
+                mat_cred = int(pm.correlativas.strip('c'))
+                if alumno.creditos < mat_cred:
+                    pm_list = pm_list.exclude(pk=pm.pk)
+            except (ValueError, AttributeError) as e:
+                print('ERROR', pm, e)
+        return pm_list
 
     def list_materias_cursando(self, user, plancarrera):
         from .models import AlumnoMateria
 
         aprobada_list = AlumnoMateria.objects.list_materias_cursando(user)
 
-        list = None
+        mat_list = None
         for m in aprobada_list:
-            if not list:
-                list = Q(plancarrera=plancarrera, materia=m.materia)
+            if not mat_list:
+                mat_list = Q(plancarrera=plancarrera, materia=m.materia)
             else:
-                list = list | Q(plancarrera=plancarrera, materia=m.materia)
-        if list:
-            return self.filter(list).order_by('cuatrimestre')
-        return None
+                mat_list |= Q(plancarrera=plancarrera, materia=m.materia)
+        return self.filter(mat_list).order_by('cuatrimestre')
 
     def list_materias_aprobadas(self, user, plancarrera):
         from .models import AlumnoMateria
 
         aprobada_list = AlumnoMateria.objects.list_materias_aprobadas(user)
 
-        list = None
+        mat_list = None
         for m in aprobada_list:
-            if not list:
-                list = Q(plancarrera=plancarrera, materia=m.materia)
+            if not mat_list:
+                mat_list = Q(plancarrera=plancarrera, materia=m.materia)
             else:
-                list = list | Q(plancarrera=plancarrera, materia=m.materia)
-        if list:
-            list = self.filter(list).order_by('cuatrimestre')
-            for m in list:
+                mat_list = mat_list | Q(plancarrera=plancarrera,
+                                        materia=m.materia)
+        if mat_list:
+            mat_list = self.filter(mat_list).order_by('cuatrimestre')
+            for m in mat_list:
                 mat = aprobada_list.get(materia=m.materia)
                 m.state = mat.state
                 m.aprobada_cuat = mat.aprobada_cuat
                 m.aprobada_date = mat.aprobada_date
-        return list
-
-    def list_materias_faltan_correl(self, user, plancarrera):
-        from .models import AlumnoMateria
-
-        am_list = AlumnoMateria.objects.list_materias(user)
-        list = self.filter(plancarrera=plancarrera)
-        for am in am_list:
-            list = list.exclude(materia=am.materia)
-        list = list.order_by('cuatrimestre')
-        return list
+        return mat_list

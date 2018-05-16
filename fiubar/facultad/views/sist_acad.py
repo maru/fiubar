@@ -24,7 +24,10 @@ re_infoacad = re.compile(r"""^\s*
 """, re.X)
 
 
-def parse_materias_aprobadas(paste, request):
+def parse_materias_aprobadas(user, paste, remote_address=None):
+    if paste is None:
+        return {}
+
     lines = paste.split("\n")
     materia_list = []
     notfound_list = []
@@ -42,28 +45,29 @@ def parse_materias_aprobadas(paste, request):
                     .setdefault('final_date', '0-0-0').split('-')
                 final_date = datetime.date(int(year), int(month), int(day)) \
                     if year != '0' else None
-                AlumnoMateria.objects.create_or_update(request.user,
-                                                       materia, final_date,
-                                                       nota)
+                AlumnoMateria.objects.create_or_update(user, materia,
+                                                       final_date, nota)
                 logger.info("%s - cargar_materias: user '%s', "
                             "materia '%s', fecha '%s', nota '%s'" %
-                            (request.META.get('REMOTE_ADDR'),
-                             request.user, materia.id, final_date, nota))
+                            (remote_address, user,
+                             materia.id, final_date, nota))
                 materia_list.append([materia, final_date, nota])
             except ObjectDoesNotExist:
                 # Materia not found
                 notfound_list.append(l)
                 logger.error("%s - cargar_materias: user '%s', "
                              "materia 'NOT FOUND', line '%s'" %
-                             (request.META.get('REMOTE_ADDR'),
-                              request.user, l))
+                             (remote_address, user, l))
         else:
             # Not matched
             notfound_list.append(l)
             logger.error("%s - cargar_materias: user '%s', "
                          "line NOT MATCH '%s'" %
-                         (request.META.get('REMOTE_ADDR'),
-                          request.user, l))
+                         (remote_address, user, l))
+
+    if len(materia_list) > 0:
+        AlumnoMateria.objects.update_creditos(user)
+
     dict_result = {'text_paste': "\n".join(notfound_list),
                    'materia_list': materia_list,
                    'materia_list_count': len(materia_list)

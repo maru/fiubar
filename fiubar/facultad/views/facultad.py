@@ -2,16 +2,16 @@
 import logging
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.translation import ugettext as _
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormView
 
-from . import sist_acad
-from .. import forms
-from ..decorators import get_carreras
+from ..forms import CursadaForm
 from ..models import Alumno, AlumnoMateria, Materia, PlanMateria
+from .sist_acad import parse_materias_aprobadas
 
 
 # Get an instance of a logger
@@ -20,139 +20,116 @@ logger = logging.getLogger('fiubar')
 context = {'slug': 'facultad'}
 
 
-@login_required
-@get_carreras
-def home(request):
-    # Carreras and Materias
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
-    context['list_matcur'] = AlumnoMateria.objects\
-        .list_materias_cursando(request.user)
-    return render(request, 'facultad/home.html', context)
+class HomePageView(LoginRequiredMixin, TemplateView):
+
+    template_name = "facultad/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Materias cursadas
+        context['list_matcur'] = AlumnoMateria.objects\
+            .list_materias_cursando(self.request.user)
+        return context
 
 
-@login_required
-@get_carreras
-def plancarrera_all(request):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
-    # Menu
-    context.update(_menu_materias(request.GET))
-    context['th_correlativas'] = _(' ')
-    # Materias
-    if context['tab_selected'] == 'cursando':
-        # Busco las que están en  AlumnoMateria y no aprobadas
-        lista_materias = AlumnoMateria.objects\
-            .list_materias_cursando(request.user).order_by('state')
-        context['th_estado'] = _('Estado')
-    elif context['tab_selected'] == 'aprobadas':
-        # Busco las que están en  AlumnoMateria y aprobadas
-        lista_materias = AlumnoMateria.objects\
-            .list_materias_aprobadas(request.user)
-        context['th_estado'] = _('Aprobada')
-        context['th_correlativas'] = 'Nota '
-    else:
-        raise Http404(_('Error 404'))
+class PlanCarreraView(LoginRequiredMixin, TemplateView):
 
-    context['lista_materias'] = lista_materias
-    return render(request, 'facultad/plancarrera_all.html', context)
+    template_name = "facultad/plancarrera.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-@login_required
-@get_carreras
-def plancarrera(request, plancarrera):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
+        plancarrera = kwargs['plancarrera']
+        user = self.request.user
 
-    # Get carrera y plan
-    alumno = get_object_or_404(Alumno,
-                               plancarrera__short_name=plancarrera,
-                               user=request.user)
-    context['carrera'] = alumno.carrera
-    plancarrera = alumno.plancarrera
-    context['plancarrera'] = plancarrera
+        # Get carrera y plan
+        alumno = get_object_or_404(Alumno,
+                                   plancarrera__short_name=plancarrera,
+                                   user=user)
+        context['carrera'] = alumno.carrera
+        plancarrera = alumno.plancarrera
+        context['plancarrera'] = plancarrera
 
-    # Menu
-    context.update(_menu_materias(request.GET))
-    context['th_correlativas'] = _(' ')
-    # Materias
-    if context['tab_selected'] == 'cursando':
-        # Busco las que están en  AlumnoMateria y no aprobadas
-        lista_materias = PlanMateria.objects\
-            .list_materias_cursando(request.user, plancarrera)
-        context['th_estado'] = _(' Estado ')
-    elif context['tab_selected'] == 'para_cursar':
-        # No tienen correlativas pendientes y no están en AlumnoMateria
-        lista_materias = PlanMateria.objects\
-            .list_materias_para_cursar(request.user, plancarrera)
-        context['th_estado'] = _(' ')
-    elif context['tab_selected'] == 'faltan_correl':
-        # Tienen correlativas pendientes y no están en AlumnoMateria
-        lista_materias = PlanMateria.objects\
-            .list_materias_faltan_correl(request.user, plancarrera)
-        # context['th_estado'] = _(' ')
-    elif context['tab_selected'] == 'aprobadas':
-        # Busco las que están en  AlumnoMateria y aprobadas
-        lista_materias = PlanMateria.objects\
-            .list_materias_aprobadas(request.user, plancarrera)
-        context['th_estado'] = _(' Aprobada ')
-        context['th_correlativas'] = _(' Nota ')
-    elif context['tab_selected'] == 'todas':
-        lista_materias = PlanMateria.objects\
-            .filter(plancarrera=plancarrera).order_by('cuatrimestre',
-                                                      'materia')
-        lista_materias_a_cursar = PlanMateria.objects\
-            .list_materias_para_cursar(request.user, plancarrera)
-        context['lista_materias_a_cursar'] = lista_materias_a_cursar
-        context['th_estado'] = _(' Estado ')
-        context['th_correlativas'] = _(' Correlativas ')
-    else:
-        raise Http404(_('Error 404'))
+        # Menu
+        context.update(_menu_materias(self.request.GET))
+        context['th_correlativas'] = _(' ')
+        # Materias
+        if context['tab_selected'] == 'cursando':
+            # Busco las que están en  AlumnoMateria y no aprobadas
+            lista_materias = PlanMateria.objects\
+                .list_materias_cursando(user, plancarrera)
+            context['th_estado'] = _(' Estado ')
+        elif context['tab_selected'] == 'para_cursar':
+            # No tienen correlativas pendientes y no están en AlumnoMateria
+            lista_materias = PlanMateria.objects\
+                .list_materias_para_cursar(user, plancarrera)
+            context['lista_materias_a_cursar'] = lista_materias
+            context['th_estado'] = _(' ')
+        elif context['tab_selected'] == 'aprobadas':
+            # Busco las que están en  AlumnoMateria y aprobadas
+            lista_materias = PlanMateria.objects\
+                .list_materias_aprobadas(user, plancarrera)
+            context['th_estado'] = _(' Aprobada ')
+            context['th_correlativas'] = _(' Nota ')
+        elif context['tab_selected'] == 'todas':
+            lista_materias = PlanMateria.objects\
+                .filter(plancarrera=plancarrera).order_by('cuatrimestre',
+                                                          'materia')
+            lista_materias_a_cursar = PlanMateria.objects\
+                .list_materias_para_cursar(user, plancarrera)
+            context['lista_materias_a_cursar'] = lista_materias_a_cursar
+            context['th_estado'] = _(' Estado ')
+            context['th_correlativas'] = _(' Correlativas ')
+        else:
+            from django.http import Http404
+            raise Http404(_('Error 404'))
 
-    context['lista_materias'] = lista_materias
-    return render(request, 'facultad/plancarrera.html', context)
+        context['lista_materias'] = lista_materias
+        return context
 
 
-def _get_correlativas(lista_materias, plancarrera):
-    new_list = []
-    for m in lista_materias:
-        mat = PlanMateria.objects.filter(plancarrera=plancarrera,
-                                         materia=m.materia)
-        if mat.count() > 0:
-            m.cuatrimestre = mat[0].cuatrimestre
-            new_list.append(m)
-    return new_list
+class MateriaView(LoginRequiredMixin, FormView):
 
+    template_name = "facultad/materia_form.html"
+    form_class = CursadaForm
+    materia = None
 
-@login_required
-@get_carreras
-def materia(request, codigo):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
-    materia = get_object_or_404(Materia, id=codigo)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['materia'] = self.materia
+        return context
 
-    if request.method == 'POST':
-        form = forms.CursadaForm(request.POST)
-        if form.is_valid():
-            form.save(request.user, materia)
-            AlumnoMateria.objects.update_creditos(request.user,
-                                                  context['list_carreras'])
-            messages.add_message(request, messages.SUCCESS,
-                                 _('Cambios guardados.'))
-            logger.info("%s - facultadmateria: user '%s', materia '%s', "
-                        "state '%s', form %s" %
-                        (request.META.get('REMOTE_ADDR'), request.user, codigo,
-                         form.cleaned_data['state'], form.cleaned_data))
-            if 'plancarrera' in request.session:
-                return HttpResponseRedirect(
-                    reverse('facultad:materias-carrera',
-                            args=[request.session.get('plancarrera')]))
-    else:
-        initial_data = AlumnoMateria.objects\
-            .get_initial_data(request.user, materia)
-        form = forms.CursadaForm(initial=initial_data)
-    context.update({'form': form, 'materia': materia})
-    return render(request, 'facultad/materia_form.html', context)
+    def get_initial(self):
+        """
+        Returns the initial data to use for forms on this view.
+        """
+        initial = super(MateriaView, self).get_initial()
+
+        codigo = self.kwargs['codigo']
+        self.materia = get_object_or_404(Materia, id=codigo)
+
+        initial.update(AlumnoMateria.objects.
+                       get_initial_data(self.request.user, self.materia))
+        return initial
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save(self.request.user, self.materia)
+
+        AlumnoMateria.objects.update_creditos(self.request.user)
+        messages.add_message(self.request, messages.SUCCESS,
+                             _('Cambios guardados.'))
+        logger.info("%s - facultadmateria: user '%s', materia '%s', "
+                    "state '%s', form %s" %
+                    (self.request.META.get('REMOTE_ADDR'), self.request.user,
+                     self.materia.id, form.cleaned_data['state'],
+                     form.cleaned_data))
+
+        return super(MateriaView, self).form_valid(form)
+
+    def get_success_url(self):
+        codigo = self.kwargs['codigo']
+        return reverse('facultad:materia', args=[codigo])
 
 
 def _menu_materias(GET):
@@ -170,20 +147,25 @@ def _menu_materias(GET):
     return result
 
 
-@login_required
-@get_carreras
-def cargar_materias(request):
-    context['list_carreras'] = request.session.get('list_carreras', list())
-    del request.session['list_carreras']
-    if request.method == 'POST':
-        dict_result = sist_acad.parse_materias_aprobadas(request.POST['paste'],
-                                                         request)
-        AlumnoMateria.objects.update_creditos(request.user,
-                                              context['list_carreras'])
+class CargarMateriasView(LoginRequiredMixin, TemplateView):
+
+    template_name = "facultad/cargar_materias.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        dict_result = parse_materias_aprobadas(request.user,
+                                               request.POST.get('text_paste'),
+                                               request.META.get('REMOTE_ADDR'))
         context.update(dict_result)
-    else:
-        # Clean cache!
+        return self.render_to_response(context)
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
         context.update({'text_paste': '',
                         'materia_list': '',
-                        'notfound_list': ''})
-    return render(request, 'facultad/cargar_materias.html', context)
+                        'materia_list_count': 0})
+        return self.render_to_response(context)

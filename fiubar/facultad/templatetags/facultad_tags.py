@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django import template
-from django.contrib.humanize.templatetags import humanize
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
@@ -20,108 +19,124 @@ def get_carreras(context):
     return ''
 
 
-@register.filter
+@register.inclusion_tag('facultad/plancarrera_materia.html',
+                        takes_context=True)
 def display_row_materia(context, planmateria):
-    materia = planmateria.materia
+    d = {
+        '-': {  # A cursar en el futuro, faltan correlativas
+            'icon_file': 'materia_notyet.png',
+            'title': 'Faltan correlativas',
+            'link_class': 'correlativa',
+            'falta_cuat': '',
+            'fecha_aprobada': '',
+            'nota': '-',
+        },
+        'C': {  # Cursando
+            'icon_file': 'materia_c.png',
+            'title': 'Cursando',
+            'link_class': 'cursando',
+            'falta_cuat': 'Cursando',
+            'fecha_aprobada': '',
+            'nota': '-',
+        },
+        'F': {  # Falta final
+            'icon_file': 'materia_f.png',
+            'title': 'Cursada aprobada',
+            'link_class': 'cursada',
+            'falta_cuat': 'Falta final',
+            'fecha_aprobada': '',
+            'nota': '-',
+        },
+        'A': {  # Aprobada
+            'icon_file': 'materia_ap.png',
+            'title': 'Materia aprobada',
+            'link_class': 'final',
+            'falta_cuat': 'Aprobada',
+        },
+        'E': {  # Equivalencia
+            'icon_file': 'materia_ap.png',
+            'title': 'Equivalencia',
+            'link_class': 'final',
+            'falta_cuat': 'Aprobada',
+            'nota': '-',
+        },
+        'D': {  # Disponible para cursar
+            'icon_file': 'materia_cursar.png',
+            'title': 'Disponible para cursar',
+            'link_class': 'paracursar',
+            'falta_cuat': '',
+            'fecha_aprobada': '',
+            'nota': '-',
+        },
+    }
+
+    state = '-'
     user = context['user']
-    m = None
-    fecha_aprobada = ''
-    nota = '-'
-    falta_cuat = ''
-    list_correl = context.get('lista_materias_a_cursar', None)
+    lista_correl = context.get('lista_materias_a_cursar', [])
+    lista_materias_a_cursar = [m.materia for m in lista_correl]
+
+    try:
+        materia = planmateria.materia
+    except AttributeError:
+        return d[state]
+
+    # Alumno anotado en materia?
     try:
         m = AlumnoMateria.objects.get(user=user, materia=materia)
-        if m.aprobada() or m.equivalencia():
-            icon_file = 'materia_ap.png'
-            title = 'Materia aprobada'
-            link_class = 'final'
-            falta_cuat = 'Aprobada'
-            fecha_aprobada = m.get_aprobada_cuat()
-            if m.equivalencia():
-                nota = 'Equivalencia'
-            else:
-                nota = m.nota
-        elif m.falta_final():
-            icon_file = 'materia_f.png'
-            title = 'Cursada aprobada'
-            link_class = 'cursada'
-            falta_cuat = 'Falta final'
-        elif m.cursando():
-            icon_file = 'materia_c.png'
-            title = 'Cursando'
-            link_class = 'cursando'
-            falta_cuat = 'Cursando'
+
+        state = m.state
+        d[state].update({'fecha_aprobada': m.get_aprobada_cuat()})
+        d[state].update({'nota': m.nota})
+
+    # Materia todavia no cursada
     except ObjectDoesNotExist:
-        # Materia todavia no cursada
-        icon_file = 'materia_notyet.png'
-        title = 'Faltan correlativas'
-        link_class = 'correlativa'
-
         # Verificar que haya aprobado las correlativas
-        if list_correl:
-            for m in list_correl:
-                if m.materia == materia:
-                    title = 'Disponible para cursar'
-                    link_class = 'paracursar'
-                    icon_file = 'materia_cursar.png'
-                    break
-        else:
-            title = 'Disponible para cursar'
-            link_class = 'paracursar'
-            icon_file = 'materia_cursar.png'
+        if materia in lista_materias_a_cursar:
+            state = 'D'
 
-    # Marcar las aprobadas
-    # try:
-    lm = planmateria.correlativas.split('-')
-    # except :
-    # lm = []
-    new_l = []
-    for m in lm:
-        try:
-            m_name = Materia.objects.get(id=m.replace('.', '')).name
-        except ObjectDoesNotExist:
-            m_name = ''
-        if m == 'CBC':
-            new_m = ('small chelp lt', m, m)
-        else:
-            new_m = ('small chelp', m, m + ' - ' + m_name)
+    d[state].update({'materia': materia})
 
-            if AlumnoMateria.objects\
-               .filter(user=user, materia=m.replace('.', ''))\
-               .exclude(state='C').exclude(state='F'):
-                    new_m = ('small chelp lt', m, m + ' - ' + m_name)
+    # Mostrar solo las materias no aprobadas en la lista de correlativas
+    correlativas_str = planmateria.correlativas.split('-')
+    correlativas = [c.replace('.', '') for c in correlativas_str]
+    new_l = []  # lista de correlativas, con formato
+
+    mat_correl = Materia.objects.filter(id__in=correlativas)
+    mat_aprob = [m.materia for m in
+                 AlumnoMateria.objects.filter(user=user, state__in=['A', 'E'])]
+    for m in mat_correl:
+        idx = correlativas.index(m.id)
+        m_codigo = correlativas_str[idx]
+        if m in mat_aprob:
+            new_m = ('small chelp lt', m_codigo, m_codigo + ' - ' + m.name)
+        else:
+            new_m = ('small chelp', m_codigo, m_codigo + ' - ' + m.name)
+        new_l.append(new_m)
+
+    if 'CBC' in correlativas:
+        new_m = ('small chelp lt', 'CBC', 'CBC')
         new_l.append(new_m)
     planmateria.correlativas = new_l
 
     tab_selected = 'tab_' + context.get('tab_selected', 'cursando')
 
-    return {
-        'icon_file': icon_file,
-        'title': title,
-        'materia': materia,
+    d[state].update({
         'planmateria': planmateria,
-        'link_class': link_class,
-        'list_correl': list_correl,
-        'falta_cuat': falta_cuat,
-        'fecha_aprobada': fecha_aprobada,
-        'nota': nota,
+        'list_correl': lista_correl,
         tab_selected: True,
-    }
+    })
+
+    return d[state]
 
 
-register.inclusion_tag('facultad/plancarrera_materia.html',
-                       takes_context=True)(display_row_materia)
-
-
-@register.filter
+@register.filter(is_safe=True)
 def apnumber(value):
-    retvalue = '-'
     try:
         value = int(value)
-        if value > 1 and value < 10:
-            retvalue = ('%s (' + humanize.apnumber(value) + ')') % value
-        elif value == 10:
-            retvalue = '10 (' + _('diez') + ')'
-    except ValueError:
-        retvalue = value
-    return retvalue
+    except (TypeError, ValueError):
+        return '-'
+    if not 0 < value <= 10:
+        return '-'
+    txt = (_('uno'), _('dos'), _('tres'), _('cuatro'), _('cinco'),
+           _('seis'), _('siete'), _('ocho'), _('nueve'), _('diez'))[value - 1]
+    return ('%s (%s)') % (value, txt)

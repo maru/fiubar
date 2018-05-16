@@ -425,3 +425,6 @@ th.delete {
   overflow: hidden;
   text-overflow:ellipsis;
 }
+.lt {
+  text-decoration:line-through;
+}

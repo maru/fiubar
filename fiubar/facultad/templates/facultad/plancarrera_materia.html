@@ -4,28 +4,21 @@
 				<img src="{% static 'images/facultad/'|add:icon_file %}" alt="" title="{{ title }}" />
 			</td>
 			<td class="margin-left">
-				<a name="{{ materia.codigo }}"></a>
+				<a name="{{ materia.id }}"></a>
 				<a href="{{ materia.url_edit_materia }}">
-					{{ materia.get_codigo }}
-					{{ materia.name }}
+					{{ materia.get_codigo }} {{ materia.name }}
 				</a>
 			</td>
 			<td>
-			  {% if tab_cursando %}<span class="small">{{ falta_cuat }}</span>{% endif %}
-			  {% if tab_para_cursar %}{% endif %}
-			  {% if tab_aprobadas %}{{ fecha_aprobada }}{% endif %}
-			  {% if tab_todas %}{{ falta_cuat }}{% endif %}
+			  {% if tab_cursando %}<span id="materia-falta_cuat" class="small">{{ falta_cuat }}</span>
+        		  {% elif tab_aprobadas %}<span id="materia-fecha_aprobada">{{ fecha_aprobada }}</span>
+			  {% elif tab_todas %}<span id="materia-falta_cuat">{{ falta_cuat }}</span>{% endif %}
 			</td>
 			<td>
-			  {% if tab_aprobadas %}{{ nota|apnumber }}{% endif %}
-			  {% if tab_todas %}{# {{ planmateria.correlativas }} #}
-			  {% for m in planmateria.correlativas %}<span class="{{ m.0 }}" title="{{ m.2 }}">{{ m.1 }}{% if not forloop.last %} - {% endif %}</span>{% endfor %}{% endif %}
+			  {% if tab_aprobadas %}<span id="materia-nota">{{ nota|apnumber }}</span>
+			  {% elif tab_todas %}<span id="materia-correlativas">
+			  {% for m in planmateria.correlativas %}  <span class="{{ m.0 }}" title="{{ m.2 }}">{{ m.1 }}</span>{% if not forloop.last %} - {% endif %}
+			  {% endfor %}</span>{% endif %}
 			</td>
-			{% if tab_para_cursar %}<td>{{ planmateria.creditos }}</td>{% endif %}
-			{% comment %}<td class="actions">
-				<a class="label" href="{{ materia.url_edit_materia }}">
-					{% if materia.para_cursar %}{% trans 'Editar' %}
-					{% else %}{% trans 'Editar' %}{% endif %}
-				</a>
-			</td>{% endcomment %}
+			{% if tab_para_cursar %}<td><span id="materia-creditos">{{ planmateria.creditos }}</span></td>{% endif %}
 		</tr>
