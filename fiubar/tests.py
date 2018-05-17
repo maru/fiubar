@@ -34,8 +34,12 @@ class TestHomeView(TestCase):
         self.client.force_login(self.user)
         assert self.user.is_authenticated
 
-        response = self.client.get('/')
+        response = self.client.get('/', follow=True)
 
         self.assertEqual(response.status_code, 200)
 
-        self.assertTemplateUsed(response, 'pages/home.html')
+        self.assertEqual(len(response.redirect_chain), 1)
+        self.assertEqual(response.redirect_chain,
+                         [('/facultad/', 302)])
+
+        self.assertTemplateUsed(response, 'facultad/home.html')

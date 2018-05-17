@@ -136,7 +136,10 @@ class PlanMateriaManager(models.Manager):
                 if alumno.creditos < mat_cred:
                     pm_list = pm_list.exclude(pk=pm.pk)
             except (ValueError, AttributeError) as e:
-                print('ERROR', pm, e)
+                import logging
+                logger = logging.getLogger('fiubar')
+                logger.error('PlanMateriaManager.list_materias_para_cursar: '
+                             '%s - %s' % (pm, e))
         return pm_list
 
     def list_materias_cursando(self, user, plancarrera):

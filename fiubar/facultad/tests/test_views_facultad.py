@@ -32,6 +32,8 @@ class HomePageViewTestCase(BaseUserTestCase):
                             '<a class="" href="/facultad/materia/9502/"')
         self.assertContains(response, '95.02')
         self.assertContains(response, 'nostalgic_bell')
+        self.assertContains(response, 'Mis Materias')
+        self.assertContains(response, 'Mis Carreras')
 
     def test_home_no_carrera(self):
         self.user = self.make_user('user2')
@@ -42,11 +44,12 @@ class HomePageViewTestCase(BaseUserTestCase):
         response = self.client.get(reverse('facultad:home'))
         self.assertEqual(response.status_code, 200)
 
+        self.assertContains(response, 'Mis Materias')
         self.assertContains(response,
                             '<span>No estás cursando ninguna materia.</span>')
+        self.assertContains(response, 'Mis Carreras')
         self.assertContains(response,
-                            '<a href="/facultad/carreras/add/">'
-                            '¿Qué carrera cursás?</a>')
+                            '<p>No estás cursando ninguna carrera.</p>')
 
 
 class PlanCarreraViewTestCase(BaseUserTestCase):

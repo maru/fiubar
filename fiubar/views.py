@@ -1,19 +1,26 @@
 # -*- coding: utf-8 -*-
 from allauth.account.forms import LoginForm, SignupForm
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic.base import TemplateView
 
 
-def home(request):
-    """
-    Home page: choose template based on logged-in user / new user.
-    """
-    context = {'slug': 'home'}
-    if request.user.is_authenticated:
-        template_file = 'pages/home.html'
-    else:
-        template_file = 'pages/index.html'
-        forms = {'login': LoginForm,
-                 'signup': SignupForm}
-        context.update({'forms': forms})
+class HomePageView(TemplateView):
 
-    return render(request, template_file, context)
+    template_name = "pages/new.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            # self.template_name = 'pages/home.html'
+            # Redireccionamos directo a la lista de materias
+            return HttpResponseRedirect(reverse('facultad:home'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context.update({'slug': 'home',
+                        'forms': {'login': LoginForm,
+                                  'signup': SignupForm}
+                        })
+        return context

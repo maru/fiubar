@@ -9,12 +9,8 @@ from . import urls_local, views
 
 """fiubar URL Configuration"""
 urlpatterns = [
-    path('new',
-         TemplateView.as_view(template_name='pages/new.html'),
-         name='new'),
-
     path('',
-         views.home,
+         views.HomePageView.as_view(),
          name='home'),
 
     path('about/',
@@ -43,6 +39,8 @@ urlpatterns = [
 
     path('facultad/',
          include('fiubar.facultad.urls', namespace='facultad')),
+
+    path('api/', include('fiubar.api.urls')),
 ]
 
 urlpatterns += urls_local.urlpatterns
