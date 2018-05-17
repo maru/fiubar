@@ -1,3 +1,7 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
 @media (max-width: 767px) {
   .front-page .col-sm-6.pull-right {
       float: none !important;

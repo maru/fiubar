@@ -277,7 +277,7 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
 # Custom user app defaults
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_REDIRECT_URL = 'facultad:home'
 LOGIN_URL = 'account_login'
 
 # SLUGLIFIER
@@ -349,4 +349,7 @@ LOGGING = {
 # REST API
 # ------------------------------------------------------------------------------
 REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
 }

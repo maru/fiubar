@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateView
 
 class HomePageView(TemplateView):
 
-    template_name = "pages/new.html"
+    template_name = "new_user/index.html"
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
