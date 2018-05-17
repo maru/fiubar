@@ -1,0 +1,30 @@
+{% load i18n crispy_forms_tags socialaccount %}
+        <div class="account-form signup-form">
+        <div class="account text-left">
+          <h3 class="page-header">{% trans "Sign Up" %}</h1>
+
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button class="account-action-btn btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
+          <div class="text-center">
+            {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+          </div>
+        </form>
+        </div>
+
+        {% get_providers as socialaccount_providers %}
+        {% if socialaccount_providers %}
+        <div class="socialaccount_ballot clearfix">
+          <div class="text-center social-plugin">
+          <p class="text-center">{% blocktrans %}Or you can sign up with:{% endblocktrans %}</p>
+          <div class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </div>
+        </div>
+        </div>
+        {% endif %}
+      </div>

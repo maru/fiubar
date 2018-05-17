@@ -11,6 +11,16 @@ body {
     float: none !important;
   }
 }
+.dropdown-menu {
+  padding: 0px;
+}
+.dropdown-menu .list-item a {
+    cursor: pointer;
+    padding: 8px 25px;
+}
+.dropdown-menu .divider {
+  margin: 0px;
+}
 .navbar-extra img {
   height: 30px;
   margin-top: -6px;
@@ -105,81 +115,64 @@ ul.showinfo-list li {
 .page-header {
   margin:20px 0 20px;
 }
-.account {
-    padding: 0px 30px 10px;
+.account-form {
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
-    border-radius: 5px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    width: 100%;
+    display: inline-block;
+    max-width: 360px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
 }
-@media (max-width: 479px) {
-  .account {
-      padding-left: 0px;
-      padding-right: 0px;
-      border: 0px;
-  }
+.signup-form {
+  /*max-width: 480px;*/
 }
-@media (max-width: 767px) {
-  .account {
-      border: 0px;
-  }
+.account-form .account {
+  padding: 0 20px 20px;
+  position: relative;
+  width: 100%;
+}
+.account-form .social-plugin {
+  margin-top: 8px;
+  background: #fafafa;
+  color: grey;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px 0 30px;
+}
+.account-action-btn {
+  border-radius: 5px;
+  width: 100%;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  margin: 10px 0 30px;
+  -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+  -webkit-transition: -webkit-box-shadow .4s;
+  transition: -webkit-box-shadow .4s;
+  -o-transition: box-shadow .4s;
+  transition: box-shadow .4s;
+  transition: box-shadow .4s,-webkit-box-shadow .4s;
 }
 .socialaccount_ballot { text-align: center;}
-.socialaccount_ballot ul { display:inline-table;}
-.socialaccount_providers li {
-  display:inline;
-  float: left;
-  list-style: none;
+.linkedin-btn, .linkedin-btn:hover {
+    color: #0177b9;
 }
-.socialaccount_providers li a {
-  width: 42px;
-  height: 42px;
-  display: block;
-  border: 0;
-  text-indent: -999em;
-  overflow: hidden;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  text-align: left;
-  direction: ltr;
-  border-radius: 5px;
-  border: 1px solid #eee;
-  margin: 0 10px 10px 0;
+.google-btn, .google-btn:hover {
+    color: #dd4b39;
 }
-span.socialaccount_provider {
-  color: transparent;
-  font-size: 0px;
-  overflow: hidden;
-  background-color: transparent;
-  border-radius: 5px;
-  border: 1px solid #eee;
-  padding: 12px;
-  margin: 10px 10px;
-  background-size:24px 24px;
-  background-position: center;
-
+.facebook-btn, .facebook-btn:hover {
+    color: #4267b2;
 }
-.github {
-  background: transparent url(/static/images/socialaccounts/github.png) no-repeat center center;
-}
-.linkedin {
-  background: transparent url(/static/images/socialaccounts/linkedin.png) no-repeat center center;
-}
-.facebook {
-  background: transparent url(/static/images/socialaccounts/facebook.png) no-repeat center center;
-}
-.google {
-  background: transparent url(/static/images/socialaccounts/google.png) no-repeat center center;
-}
-.windowslive {
-  background: transparent url(/static/images/socialaccounts/windowslive.png) no-repeat center center;
-}
-.openid {
-  background: transparent url(/static/images/socialaccounts/openid.png) no-repeat center center;
-}
-.yahoo {
-  background: transparent url(/static/images/socialaccounts/yahoo.png) no-repeat center center;
+.openid-btn, .openid-btn:hover {
+    color: orange;
 }
 .front-page {
   background-color: transparent;

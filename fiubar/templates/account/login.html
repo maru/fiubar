@@ -9,27 +9,8 @@
 {% include "socialaccount/snippets/js.html" %}
 {% endblock %}
 
-{% block inner_title %}{% trans "Sign In" %}{% endblock %}
-{% block inner %}
-  <form class="login" method="POST" action="{% url 'account_login' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    {% endif %}
-    <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-    <a class="button secondaryAction pull-right" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  </form>
-
-  <hr />
-
-  {% get_providers as socialaccount_providers %}
-  {% if socialaccount_providers %}
-  <div class="socialaccount_ballot clearfix">
-    <p class="text-center">{% blocktrans %}Or you can sign in with:{% endblocktrans %}</p>
-    <ul class="socialaccount_providers">
-      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </ul>
-  </div>
-  {% endif %}
+{% block content %}
+<div class="row text-center">
+  {% include 'account/login_form.html' %}
+</div>
 {% endblock %}

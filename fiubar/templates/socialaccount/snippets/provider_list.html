@@ -2,19 +2,17 @@
 
 {% get_providers as socialaccount_providers %}
 
-{% for provider in socialaccount_providers|dictsort:"name" %} 
+{% for provider in socialaccount_providers|dictsort:"name" %}
 {% if provider.id == "openid" %}
 {% for brand in provider.get_brands|dictsort:"name" %}
-<li>
-  <a title="{{brand.name}}"
-     class="socialaccount_provider {{provider.id}} {{brand.id}}"
-     href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
-     >{{brand.name}}</a>
-</li>
+   <a id="{{brand.id}}-connect" class="fa-stack fa-lg {{brand.id}}-btn social-login-btn"
+   href="{% provider_login_url provider.id openid=brand.openid_url process=process %}" title="{{brand.name}}">
+     <i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-{{brand.id}} fa-stack-1x fa-inverse"></i>
+   </a>
 {% endfor %}
 {% endif %}
-<li>
-  <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
-     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
-</li>
+  <a id="{{provider.id}}-connect" class="fa-stack fa-lg {{provider.id}}-btn social-login-btn"
+  href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}" title="{{provider.name}}">
+    <i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-{{provider.id}} fa-stack-1x fa-inverse"></i>
+  </a>
 {% endfor %}

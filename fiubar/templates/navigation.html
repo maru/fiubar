@@ -29,17 +29,25 @@
             {% else %}{{ user.username }}
             {% endif %}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            {% if user.profile.avatar and todo %}
+            {% if user.profile.avatar and TODO %}
             <p class="navbar-text navbar-text-login">{% trans "Signed in as" %} {{ user.username }}</p>
             <div class="clearfix"></div>
             <li role="separator" class="divider"></li>
             {% endif %}
-            <li><a href="{% url 'users:detail' user.username %}">{% trans "Your Profile" %}</a></li>
+            <li class="list-item">
+              <a href="{% url 'users:detail' user.username %}">{% trans "Your Profile" %}</a>
+            </li>
             <li role="separator" class="divider"></li>
-            <li><a href="{% url 'users:update' %}">{% trans "Settings" %}</a></li>
+            <li class="list-item">
+              <a href="{% url 'users:update' %}">{% trans "Settings" %}</a>
+            </li>
             <li role="separator" class="divider"></li>
-            <li><a href="{% url 'contact_form' %}">{% trans "Report a Problem" %}</a></li>
-            <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> {% trans "Sign Out" %}</a></li>
+            <li class="list-item">
+              <a href="{% url 'contact_form' %}">{% trans "Report a Problem" %}</a>
+            </li>
+            <li class="list-item">
+              <a style="font-weight:bold" href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> {% trans "Sign Out" %}</a>
+            </li>
           </ul>
         </li>
         {% else %}

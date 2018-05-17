@@ -10,28 +10,8 @@
 {% include "socialaccount/snippets/js.html" %}
 {% endblock %}
 
-{% block inner_title %}{% trans "Sign Up" %}{% endblock %}
-{% block inner %}
-  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    {% endif %}
-    <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
-  </form>
-
-  <hr />
-
-  {% get_providers as socialaccount_providers %}
-  {% if socialaccount_providers %}
-  <div class="socialaccount_ballot clearfix">
-    <p class="text-center">{% blocktrans %}Or you can sign up with:{% endblocktrans %}</p>
-    <ul class="socialaccount_providers">
-      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </ul>
-  </div>
-  {% endif %}
+{% block content %}
+<div class="row text-center">
+  {% include 'account/signup_form.html' %}
+</div>
 {% endblock %}
