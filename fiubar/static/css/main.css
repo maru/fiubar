@@ -1,7 +1,6 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
-
 @media (max-width: 767px) {
   .front-page .col-sm-6.pull-right {
       float: none !important;
@@ -116,18 +115,19 @@ ul.showinfo-list li {
   margin:20px 0 20px;
 }
 .account-form {
-    margin: 0 auto 20px;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    width: 100%;
-    display: inline-block;
+  width: 100%;
+  display: inline-block;
+  background-color: #fff;
+  border:none;
+}
+@media (min-width: 600px) {
+  .account-form {
     max-width: 360px;
     border-radius: 10px;
     -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
     box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
-}
-.signup-form {
-  /*max-width: 480px;*/
+    border: 1px solid #e5e5e5;
+  }
 }
 .account-form .account {
   padding: 0 20px 20px;
