@@ -425,3 +425,6 @@ th.delete {
 .lt {
   text-decoration:line-through;
 }
+.border-radius-xlarge {
+  border-radius:99999px; padding: .5rem 1rem; display:inline-block;
+}
