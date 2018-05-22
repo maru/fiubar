@@ -216,7 +216,7 @@ class Carrera(models.Model):
         return self.short_name
 
     class Meta:
-        ordering = ['name']
+        ordering = ['abbr_name']
 
 
 class PlanCarrera(models.Model):

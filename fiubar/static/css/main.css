@@ -428,3 +428,6 @@ th.delete {
 .border-radius-xlarge {
   border-radius:99999px; padding: .5rem 1rem; display:inline-block;
 }
+#carreras-list {
+  max-width: 750px;
+}
