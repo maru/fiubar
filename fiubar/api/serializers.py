@@ -3,45 +3,53 @@ from rest_framework import serializers
 from fiubar.facultad.models import (Alumno, AlumnoMateria, Carrera,
                                     Correlativa, Departamento, Materia,
                                     PlanCarrera, PlanMateria)
+from fiubar.users.models import User
 
 
-class AlumnoSerializer(serializers.HyperlinkedModelSerializer):
+class AlumnoSerializer(serializers. ModelSerializer):
     class Meta:
         model = Alumno
-        # fields = ('user', 'carrera', 'plancarrera', 'begin_date', )
+        exclude = []
 
 
-class AlumnoMateriaSerializer(serializers.HyperlinkedModelSerializer):
+class AlumnoMateriaSerializer(serializers. ModelSerializer):
     class Meta:
         model = AlumnoMateria
-        # fields = ('url', 'name')
+        exclude = []
 
 
-class CarreraSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Carrera
-
-
-class CorrelativaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Correlativa
-
-
-class DepartamentoSerializer(serializers.HyperlinkedModelSerializer):
+class DepartamentoSerializer(serializers. ModelSerializer):
     class Meta:
         model = Departamento
+        exclude = []
 
 
-class MateriaSerializer(serializers.HyperlinkedModelSerializer):
+class MateriaSerializer(serializers. ModelSerializer):
     class Meta:
         model = Materia
+        exclude = ['departamento', 'codigo']
 
 
-class PlanCarreraSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = PlanCarrera
-
-
-class PlanMateriaSerializer(serializers.HyperlinkedModelSerializer):
+class PlanMateriaSerializer(serializers. ModelSerializer):
+    materia = MateriaSerializer(read_only=True)
     class Meta:
         model = PlanMateria
+        exclude = []
+
+
+class PlanCarreraSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlanCarrera
+        exclude = []
+
+
+class CarreraSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Carrera
+        exclude = []
+
+
+class CorrelativaSerializer(serializers. ModelSerializer):
+    class Meta:
+        model = Correlativa
+        exclude = []
