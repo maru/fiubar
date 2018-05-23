@@ -150,8 +150,9 @@ class GraduadoViewTestCase(BaseUserTestCase):
         response = self.client.get(
             reverse('facultad:carreras-graduado',
                     args=[pc.short_name]))
-
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<p class=""><span class="">'
+                                      '</span>' + pc.carrera.name)
 
     def test_graduado_get_404(self):
         response = self.client.get(

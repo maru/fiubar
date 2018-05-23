@@ -94,6 +94,11 @@ class GraduadoView(LoginRequiredMixin, FormView):
     form_class = GraduadoForm
     success_url = reverse_lazy('facultad:carreras-home')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['alumno'] = self.alumno
+        return context
+
     def get_initial(self):
         """
         Returns the initial data to use for forms on this view.
