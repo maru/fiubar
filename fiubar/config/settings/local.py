@@ -9,7 +9,6 @@ Local settings
 """
 
 import socket
-import sys
 
 from django.contrib.messages import constants as message_constants
 

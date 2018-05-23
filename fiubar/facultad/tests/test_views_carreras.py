@@ -25,7 +25,8 @@ class HomePageViewTestCase(BaseUserTestCase):
         self.assertContains(response,
                             '<td class="carrera">\n'
                             '                <a href="/facultad/materias/'
-                            'cocky_perlman00/?show=todas"> <span></span></a>')
+                            'cocky_perlman00/?show=todas"> '
+                            '<span>Cocky Perlman</span></a>')
 
 
 class AddViewTestCase(BaseUserTestCase):
