@@ -1,9 +1,11 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import IsAuthenticated
 
-class IsOwner(BasePermission):
-    """Custom permission class to allow only alumnos to view and edit them."""
+
+class IsAuthenticatedOwner(IsAuthenticated):
+    """
+    Allows access only to authenticated users and also owners of the object.
+    """
 
     def has_object_permission(self, request, view, obj):
-        """Return True if permission is granted to the alumno user."""
-        return False
-        return obj.owner == request.user
+        """Return True if permission is granted to the user."""
+        return obj.user == request.user

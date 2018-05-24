@@ -3,7 +3,6 @@ from rest_framework import serializers
 from fiubar.facultad.models import (Alumno, AlumnoMateria, Carrera,
                                     Correlativa, Departamento, Materia,
                                     PlanCarrera, PlanMateria)
-from fiubar.users.models import User
 
 
 class AlumnoSerializer(serializers. ModelSerializer):
@@ -32,6 +31,7 @@ class MateriaSerializer(serializers. ModelSerializer):
 
 class PlanMateriaSerializer(serializers. ModelSerializer):
     materia = MateriaSerializer(read_only=True)
+
     class Meta:
         model = PlanMateria
         exclude = []

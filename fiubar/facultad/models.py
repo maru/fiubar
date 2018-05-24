@@ -30,8 +30,17 @@ class Alumno(models.Model):
 
     def clean(self):
         """
+        Validar que plancarrera pertenezca a carrera.
         Validar que la fecha graduado_date sea mayor que la fecha begin_date.
         """
+        if self.plancarrera.carrera != self.carrera:
+            raise ValidationError(
+                _('%(plancarrera)s no es un plan de '
+                  '%(carrera)s'),
+                params={'plancarrera': self.plancarrera.name,
+                        'carrera': self.carrera.name},
+            )
+
         if (self.graduado_date is None) or (self.begin_date is None):
             return
 
@@ -231,9 +240,6 @@ class PlanCarrera(models.Model):
 
     def __str__(self):
         return self.name
-
-    def __unicode__(self):
-        return self.short_name
 
     def url_materias(self):
         return reverse('facultad:materias-carrera', args=[self.short_name])

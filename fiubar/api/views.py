@@ -1,12 +1,8 @@
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
-from rest_framework import permissions
-from .permissions import IsOwner
 
+from .permissions import IsAuthenticatedOwner
 
 from fiubar.api.serializers import (AlumnoMateriaSerializer, AlumnoSerializer,
                                     CarreraSerializer, CorrelativaSerializer,
@@ -22,22 +18,32 @@ class AlumnoViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows alumnos to be viewed or edited.
     """
-    queryset = Alumno.objects.all().order_by('carrera')
+    queryset = Alumno.objects.none()
     serializer_class = AlumnoSerializer
-    permission_classes = (permissions.IsAuthenticated, IsOwner)
+    permission_classes = [IsAuthenticatedOwner]
+
+    def get_queryset(self):
+        self.queryset = Alumno.objects.filter(user=self.request.user)\
+            .order_by('carrera')
+        return super(AlumnoViewSet, self).get_queryset()
 
 
 class AlumnoMateriaViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows alumnomaterias to be viewed or edited.
     """
-    queryset = AlumnoMateria.objects.all()
+    queryset = AlumnoMateria.objects.none()
     serializer_class = AlumnoMateriaSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = [IsAuthenticatedOwner]
+
+    def get_queryset(self):
+        self.queryset = AlumnoMateria.objects.filter(user=self.request.user)
+        return super(AlumnoMateriaViewSet, self).get_queryset()
 
 
 class FacultadAPIView(viewsets.ReadOnlyModelViewSet):
     pass
+
 
 class CarreraViewSet(FacultadAPIView):
     """
@@ -46,7 +52,6 @@ class CarreraViewSet(FacultadAPIView):
     queryset = Carrera.objects.all()
     serializer_class = CarreraSerializer
 
-    @csrf_exempt
     @api_view(['GET'])
     def get_plancarreras(self, pk, *args, **kwargs):
         pc_list = PlanCarrera.objects.filter(carrera=pk)
@@ -85,10 +90,10 @@ class PlanCarreraViewSet(FacultadAPIView):
     queryset = PlanCarrera.objects.all()
     serializer_class = PlanCarreraSerializer
 
-    @csrf_exempt
     @api_view(['GET'])
     def get_planmaterias(self, pk, *args, **kwargs):
-        pm_list = PlanMateria.objects.select_related('materia').filter(plancarrera=pk)
+        pm_list = PlanMateria.objects.select_related('materia')\
+            .filter(plancarrera=pk)
         serializer = PlanMateriaSerializer(pm_list, many=True)
         return Response(serializer.data)
 

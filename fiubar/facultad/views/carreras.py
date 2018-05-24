@@ -12,7 +12,7 @@ from django.views.generic.base import RedirectView, TemplateView
 from django.views.generic.edit import FormView
 
 from ..forms import GraduadoForm, SelectCarreraForm
-from ..models import Alumno, AlumnoMateria
+from ..models import Alumno
 
 
 # Get an instance of a logger
@@ -40,7 +40,6 @@ class AddView(LoginRequiredMixin, FormView):
                                        plancarrera=plancarrera,
                                        begin_date=begin_date)
         if alumno:
-            AlumnoMateria.objects.update_creditos(request.user, [alumno])
             messages.add_message(request, messages.SUCCESS,
                                  _('Carrera agregada.'))
             logger.info("%s - carreras-add: user '%s', plancarrera '%s'" %
