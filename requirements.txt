@@ -21,5 +21,6 @@ django-autoslug
 # Avatar
 Pillow
 
+django-test-plus
 djangorestframework
 django-newsletter

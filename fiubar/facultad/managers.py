@@ -9,11 +9,16 @@ Q = models.Q
 class AlumnoManager(models.Manager):
     def create(self, **kwargs):
         pc = kwargs['plancarrera']
-        al_list = self.filter(user=kwargs['user'], carrera=pc.carrera,
+        user = kwargs['user']
+        al_list = self.filter(user=user, carrera=pc.carrera,
                               plancarrera=pc)
         if al_list.count() > 0:
             return None
         alumno = super(AlumnoManager, self).create(**kwargs)
+
+        from .models import AlumnoMateria
+        AlumnoMateria.objects.update_creditos(user, [alumno])
+
         return alumno
 
 

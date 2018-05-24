@@ -30,8 +30,17 @@ class Alumno(models.Model):
 
     def clean(self):
         """
+        Validar que plancarrera pertenezca a carrera.
         Validar que la fecha graduado_date sea mayor que la fecha begin_date.
         """
+        if self.plancarrera.carrera != self.carrera:
+            raise ValidationError(
+                _('%(plancarrera)s no es un plan de '
+                  '%(carrera)s'),
+                params={'plancarrera': self.plancarrera.name,
+                        'carrera': self.carrera.name},
+            )
+
         if (self.graduado_date is None) or (self.begin_date is None):
             return
 
@@ -208,7 +217,7 @@ class Carrera(models.Model):
     codigo = models.CharField(max_length=5)
     name = models.CharField(max_length=100)
     abbr_name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=20)
+    short_name = models.CharField(max_length=20, unique=True)
     plan_vigente = models.ForeignKey('PlanCarrera', related_name='plan',
                                      null=True, on_delete=models.CASCADE)
 
@@ -216,16 +225,17 @@ class Carrera(models.Model):
         return self.short_name
 
     class Meta:
-        ordering = ['name']
+        ordering = ['abbr_name']
 
 
 class PlanCarrera(models.Model):
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE)
+    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE,
+                                related_name='plancarreras')
     name = models.CharField(max_length=100)
     pub_date = models.DateField()
     orientacion = models.CharField(max_length=255, null=True, blank=True)
     abbr_name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=20)
+    short_name = models.CharField(max_length=20, unique=True)
     min_creditos = models.IntegerField('Créditos')
 
     def __str__(self):
@@ -275,7 +285,8 @@ class Materia(models.Model):
 
 
 class PlanMateria(models.Model):
-    plancarrera = models.ForeignKey(PlanCarrera, on_delete=models.CASCADE)
+    plancarrera = models.ForeignKey(PlanCarrera, on_delete=models.CASCADE,
+                                    related_name='planmaterias')
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
     creditos = models.IntegerField()
     cuatrimestre = models.IntegerField()

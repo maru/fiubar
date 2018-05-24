@@ -13,9 +13,15 @@ class BaseTestCase(TestCase):
 
     def create_new_facultad(self):
         c = []
-        c.append(Carrera.objects.create(codigo='a', abbr_name='cocky_perlman'))
-        c.append(Carrera.objects.create(codigo='b', abbr_name='berserk_hamil'))
-        c.append(Carrera.objects.create(codigo='c', abbr_name='angry_jang'))
+        c.append(Carrera.objects.create(codigo='a', abbr_name='cocky_perlman',
+                                        name='Cocky Perlman',
+                                        short_name='cocky_perlman'))
+        c.append(Carrera.objects.create(codigo='b', abbr_name='berserk_hamil',
+                                        name='Berserk Hamil',
+                                        short_name='berserk_hamil'))
+        c.append(Carrera.objects.create(codigo='c', abbr_name='angry_jang',
+                                        name='Angry Jang',
+                                        short_name='angry_jang'))
         c.append(Carrera.objects.create(codigo='codg', name='Nueva Carrera',
                                         abbr_name='Nva. Carr.',
                                         short_name='nueva_carrera'))

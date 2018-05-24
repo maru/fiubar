@@ -25,7 +25,8 @@ class HomePageViewTestCase(BaseUserTestCase):
         self.assertContains(response,
                             '<td class="carrera">\n'
                             '                <a href="/facultad/materias/'
-                            'cocky_perlman00/?show=todas"> <span></span></a>')
+                            'cocky_perlman00/?show=todas"> '
+                            '<span>Cocky Perlman</span></a>')
 
 
 class AddViewTestCase(BaseUserTestCase):
@@ -150,8 +151,9 @@ class GraduadoViewTestCase(BaseUserTestCase):
         response = self.client.get(
             reverse('facultad:carreras-graduado',
                     args=[pc.short_name]))
-
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<p class=""><span class="">'
+                                      '</span>' + pc.carrera.name)
 
     def test_graduado_get_404(self):
         response = self.client.get(
