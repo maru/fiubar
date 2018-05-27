@@ -3,55 +3,74 @@
 <html lang="en">
 <head>
   <title>{% block title %}Fiubar · {% block head_title %}Administrador de materias{% endblock head_title %}{% endblock title %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="description" content="Fiubar: administrador de materias para FIUBA">
   <meta name="author" content="Maru Berezin">
 
   <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.4.1.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
 </head>
-<body class="">
-<div class="container text-center">
-  <div id="head-title" class="">
-    <h1 class="">Fiubar</h1>
-    <p class="lead">
-      Administrador de materias</p>
-  </div>
-  <div id="user-options" class="">
-    <div class="">
-      <a href="" class="border-radius-xlarge">Nuevo usuario</a>
-      o
-      <a href="" class="border-radius-xlarge">Iniciar sesión</a>
-    </div>
-  </div>
-  {% include 'new_user/elegir_carrera.html' %}
-  {% include 'new_user/agregar_materias.html' %}
-  {% include 'new_user/save_data.html' %}
+<body class="text-center">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+        </div>
+      </header>
 
-  <div id="user-options" class="hidden">
-    <div class="row">
-      {% with form=forms.login %}
-      {% include 'account/login_form.html' %}
-      {% endwith %}
-    </div>
-  </div>
+      <main role="main" class="inner cover">
+        <div class="container">
+          <div id="head-title" class="">
+            <h1 class="cover-heading">Fiubar</h1>
+            <p class="lead">
+              Administrador de materias para
+              <a href="http://www.fi.uba.ar/" class="fiuba-link">FIUBA</a>
+            </p>
+          </div>
+          <div id="user-options" class="container">
+            <div class="row">
+              <div class="col-sm"><a href="#" class="btn btn-fiubar border-radius-xlarge">Nuevo usuario</a></div>
+              <div class="col-sm border-radius-xlarge">o</div>
+              <div class="col-sm"><a href="#" class="btn btn-fiubar border-radius-xlarge">Iniciar sesión</a></div>
+            </div>
+          </div>
+          {% include 'new_user/elegir_carrera.html' %}
+          {% include 'new_user/agregar_materias.html' %}
+          {% include 'new_user/save_data.html' %}
 
-  <div id="user-options" class="hidden">
-    <div class="row">
-      {% with form=forms.signup %}
-      {% include 'account/signup_form.html' %}
-      {% endwith %}
+          <div id="account-login" class="d-none">
+            <div class="row">
+              {% with form=forms.login %}
+              {% include 'account/login_form.html' %}
+              {% endwith %}
+            </div>
+          </div>
+
+          <div id="account-signup" class="d-none">
+            <div class="row">
+              {% with form=forms.signup %}
+              {% include 'account/signup_form.html' %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p></p>
+        </div>
+      </footer>
     </div>
-  </div>
-</div>
+
+
 </body>
+<script src="{% static 'js/jquery-3.2.1.slim.min.js'%}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </html>

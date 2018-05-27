@@ -85,38 +85,22 @@ Ejecutar el servidor:
 
     ./local/start.sh
 
+### React
+
+Para desarrollar con React, instalamos los packages necesarios con
+[npm](https://nodejs.org/es/download/package-manager/):
+
+    npm install
+
+Después de cambios en el código javascript (ver
+[fiubar/frontend/src/](https://github.com/maru/fiubar/tree/master/fiubar/frontend/src/)),
+utilizamos webpack para crear el archivo final ```fiubar/static/js/main.js```:
+
+    npm run build
+
 
 Testing
 -------
-
-Es necesario instalar los siguientes programas:
-
-- Firefox:
-
-    Si no tenés Firefox instalado, podés bajarlo de https://www.mozilla.org/firefox/.
-    En Linux, podés instalarlo con tu gestor de paquetes.
-
-- geckodriver:
-
-    Bajar la última versión de [https://github.com/mozilla/geckodriver/releases](https://github.com/mozilla/geckodriver/releases)
-
-    Necesitás extraerla y ponerla en tu PATH (por ejemplo, en /usr/local/bin).
-
-    Para verificar que funciona correctamente, ejecutá en una terminal:
-
-      $ geckodriver --version
-      geckodriver 0.20.0
-
-      The source code of this program is available from
-      testing/geckodriver in https://hg.mozilla.org/mozilla-central.
-
-      This program is subject to the terms of the Mozilla Public License 2.0.
-      You can obtain a copy of the license at https://mozilla.org/MPL/2.0/.
-
-Setear las siguientes variables de entorno en la terminal, por ejemplo:
-
-    export TEST_FIREFOX_PATH=/usr/bin/firefox
-    export TEST_SERVER_NAME=http://localhost:8000/
 
 Para ejecutar los tests, podés correr el comando `tox` o ejecutarlos manualmente.
 
