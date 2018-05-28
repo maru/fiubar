@@ -1,17 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import shortid from "shortid";
-const uuid = shortid.generate;
+
 const Table = ({ data }) =>
   !data.length ? (
     <p>Nothing to show</p>
   ) : (
-    <div className="column">
+    <div className="container d-flex justify-content-center">
+      <div className="d-flex align-items-center flex-wrap">
     {data.map(el => (
-      <img key={el.name} src={`/static/images/facultad/carreras/${el.short_name}.jpg`}
-      alt={`${el.name}`} className="" title={`${el.name}`}
-      style={{ width: '140px', height: '140px', margin:'5px' }} />
+        <div className="box text-center" key={el.short_name}
+            style={{ background: `linear-gradient(
+                                    rgba(0, 0, 0, 0.5),
+                                    rgba(0, 0, 0, 0.5)
+                                  ), url(/static/images/facultad/carreras/${el.short_name}.jpg)  no-repeat center center`
+                  }}
+            onClick={this.handleCarreraChange}>
+            <div>{el.name}</div>
+        </div>
     ))}
+      </div>
     </div>
   );
   //     <h2 className="subtitle">

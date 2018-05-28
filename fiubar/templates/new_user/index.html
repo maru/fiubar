@@ -15,59 +15,36 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
-<body class="text-center">
+<body class="flex text-center">
+
+  <style>div {margin:20px 0px;}</style>
+
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-        </div>
-      </header>
-
+      <header class="masthead mb-auto"></header>
       <main role="main" class="inner cover">
-        <div class="container">
-          <div id="head-title" class="">
-            <h1 class="cover-heading">Fiubar</h1>
-            <p class="lead">
-              Administrador de materias para
-              <a href="http://www.fi.uba.ar/" class="fiuba-link">FIUBA</a>
-            </p>
-          </div>
-          <div id="user-options" class="container">
-            <div class="row">
-              <div class="col-sm"><a href="#" class="btn btn-fiubar border-radius-xlarge">Nuevo usuario</a></div>
-              <div class="col-sm border-radius-xlarge">o</div>
-              <div class="col-sm"><a href="#" class="btn btn-fiubar border-radius-xlarge">Iniciar sesión</a></div>
+        <div id="app">
+        </div>
+        <div id="account-login" class="container d-none">
+          <div class="row">
+            <div class="col-sm">
+            {% with form=forms.login %}
+            {% include 'account/login_form.html' %}
+            {% endwith %}
             </div>
           </div>
-          {% include 'new_user/elegir_carrera.html' %}
-          {% include 'new_user/agregar_materias.html' %}
-          {% include 'new_user/save_data.html' %}
-
-          <div id="account-login" class="d-none">
-            <div class="row">
-              {% with form=forms.login %}
-              {% include 'account/login_form.html' %}
-              {% endwith %}
-            </div>
-          </div>
-
-          <div id="account-signup" class="d-none">
-            <div class="row">
-              {% with form=forms.signup %}
-              {% include 'account/signup_form.html' %}
-              {% endwith %}
+        </div>
+        <div id="account-signup" class="container d-none">
+          <div class="row">
+            <div class="col-sm">
+            {% with form=forms.signup %}
+            {% include 'account/signup_form.html' %}
+            {% endwith %}
             </div>
           </div>
         </div>
       </main>
-
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p></p>
-        </div>
-      </footer>
+      <footer class="mastfoot mt-auto"></footer>
     </div>
-
-
 </body>
 <script src="{% static 'js/jquery-3.2.1.slim.min.js'%}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
