@@ -153,14 +153,14 @@ ul.showinfo-list li {
   display: inline-block;
   background-color: #fff;
   border:none;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+  border: 1px solid #e5e5e5;
 }
 @media (min-width: 600px) {
   .account-form {
     max-width: 360px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
-    box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
-    border: 1px solid #e5e5e5;
   }
 }
 .account-form .account {
