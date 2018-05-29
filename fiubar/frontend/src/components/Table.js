@@ -5,8 +5,7 @@ const Table = ({ data }) =>
   !data.length ? (
     <p>Nothing to show</p>
   ) : (
-    <div className="container d-flex justify-content-center">
-      <div className="d-flex align-items-center flex-wrap">
+    <div className="container">
     {data.map(el => (
         <div className="box text-center" key={el.short_name}
             style={{ background: `linear-gradient(
@@ -14,11 +13,11 @@ const Table = ({ data }) =>
                                     rgba(0, 0, 0, 0.5)
                                   ), url(/static/images/facultad/carreras/${el.short_name}.jpg)  no-repeat center center`
                   }}
-            onClick={this.handleCarreraChange}>
+
+            >
             <div>{el.name}</div>
         </div>
     ))}
-      </div>
     </div>
   );
   //     <h2 className="subtitle">

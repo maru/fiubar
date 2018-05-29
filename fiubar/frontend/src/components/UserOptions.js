@@ -41,7 +41,7 @@ class UserOptions extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm"><UserOptionLink showDiv={newUserShowDivs} text="Nuevo usuario" id="new-user-link" /></div>
-            <div className="col-sm link-or"></div>
+            <div className="link-or"></div>
             <div className="col-sm"><UserOptionLink showDiv={loginShowDivs} text="Iniciar sesión" id="log-in-link" /></div>
           </div>
         </div>
@@ -52,8 +52,8 @@ class UserOptions extends React.Component {
 
 class SaveData extends React.Component {
   render() {
-    const newUserShowDivs = ['account-signup', 'save-data'];
-    const loginShowDivs = ['account-login', 'save-data'];
+    const newUserShowDivs = ['account-signup']; //, 'save-data'];
+    const loginShowDivs = ['account-login']; //, 'save-data'];
     const carrera = this.props.carrera;
     return (
       <div id="save-data" className="d-none">
@@ -62,7 +62,7 @@ class SaveData extends React.Component {
           <div>Guardá tus cambios</div>
           <div className="row">
           <div className="col-sm"><UserOptionLink showDiv={newUserShowDivs} text="Nuevo usuario" id="new-user-link" /></div>
-          <div className="col-sm link-or"></div>
+          <div className="link-or"></div>
           <div className="col-sm"><UserOptionLink showDiv={loginShowDivs} text="Iniciar sesión" id="log-in-link" /></div>
           </div>
         </div>

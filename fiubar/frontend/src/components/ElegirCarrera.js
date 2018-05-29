@@ -49,7 +49,8 @@ class ElegirCarrera extends React.Component {
         <h2 className="">¿Qué carrera cursás?</h2>
         <div id="carreras-list">
             <DataProvider endpoint="api/facultad/carreras/"
-                          render={data => <Table data={data} />} />
+                          render={data => <Table data={data} />}
+                          />
         </div>
 
         <div id="elegir-carrera-plan" className="d-none">

@@ -11,12 +11,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       carrera: 'not set',
+      plancarrera: -1,
       materiasAprobadas: [],
       materiasFinal: [],
       materiasCursando: []
     };
 
     this.handleCarreraChange = this.handleCarreraChange.bind(this);
+    this.handlePlancarreraChange = this.handlePlancarreraChange.bind(this);
     this.handleMateriasAprobadasChange = this.handleMateriasAprobadasChange.bind(this);
     this.handleMateriasFinalChange = this.handleMateriasFinalChange.bind(this);
     this.handleMateriasCursandoChange = this.handleMateriasCursandoChange.bind(this);
@@ -25,6 +27,12 @@ class App extends React.Component {
   handleCarreraChange(carrera) {
     this.setState({
       carrera: carrera
+    });
+  }
+
+  handlePlancarreraChange(plancarrera) {
+    this.setState({
+      plancarrera: plancarrera
     });
   }
 
@@ -53,16 +61,26 @@ class App extends React.Component {
         <UserOptions />
         <ElegirCarrera
           carrera={this.state.carrera}
+          plancarrera={this.state.plancarrera}
           onCarreraChange={this.handleCarreraChange}
+          onPlarreraChange={this.handlePlancarreraChange}
         />
         <ElegirMaterias
           carrera={this.state.carrera}
+          plancarrera={this.state.plancarrera}
           materiasAprobadas={this.state.materiasAprobadas}
           materiasFinal={this.state.materiasFinal}
           materiasCursando={this.state.materiasCursando}
+          onMateriasAprobadasChange={this.handleMateriasAprobadasChange}
+          onMateriasFinalChange={this.handleMateriasFinalChange}
+          onMateriasCursandoChange={this.handleMateriasCursandoChange}
         />
         <SaveData
           carrera={this.state.carrera}
+          plancarrera={this.state.plancarrera}
+          materiasAprobadas={this.state.materiasAprobadas}
+          materiasFinal={this.state.materiasFinal}
+          materiasCursando={this.state.materiasCursando}
         />
       </React.Fragment>
     );
