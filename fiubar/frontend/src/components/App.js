@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carrera: 'not set',
+      carrera: '-',
       plancarrera: -1,
       materiasAprobadas: [],
       materiasFinal: [],
@@ -18,7 +18,7 @@ class App extends React.Component {
     };
 
     this.handleCarreraChange = this.handleCarreraChange.bind(this);
-    this.handlePlancarreraChange = this.handlePlancarreraChange.bind(this);
+    this.handlePlanCarreraChange = this.handlePlanCarreraChange.bind(this);
     this.handleMateriasAprobadasChange = this.handleMateriasAprobadasChange.bind(this);
     this.handleMateriasFinalChange = this.handleMateriasFinalChange.bind(this);
     this.handleMateriasCursandoChange = this.handleMateriasCursandoChange.bind(this);
@@ -26,11 +26,12 @@ class App extends React.Component {
 
   handleCarreraChange(carrera) {
     this.setState({
-      carrera: carrera
+      carrera: carrera,
+      plancarrera: -1
     });
   }
 
-  handlePlancarreraChange(plancarrera) {
+  handlePlanCarreraChange(plancarrera) {
     this.setState({
       plancarrera: plancarrera
     });
@@ -63,7 +64,7 @@ class App extends React.Component {
           carrera={this.state.carrera}
           plancarrera={this.state.plancarrera}
           onCarreraChange={this.handleCarreraChange}
-          onPlarreraChange={this.handlePlancarreraChange}
+          onPlanCarreraChange={this.handlePlanCarreraChange}
         />
         <ElegirMaterias
           carrera={this.state.carrera}

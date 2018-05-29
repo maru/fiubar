@@ -6,22 +6,11 @@ class UserOptionLink extends React.Component {
     this.showLoginForm = this.showLoginForm.bind(this);
   }
   showLoginForm(e) {
-    document.getElementById("user-options").className = "d-none";
-    document.getElementById("elegir-carrera").className = "d-none";
-    document.getElementById("elegir-materias").className = "d-none";
-    document.getElementById("save-data").className = "d-none";
     document.getElementById("account-login").className = "d-none";
     document.getElementById("account-signup").className = "d-none";
 
     this.props.showDiv.map((label) => {
       document.getElementById(label).className = "active";
-      // if (label == 'elegir-carrera') {
-      //   var heading = document.getElementById('head-title');
-      //   if ((heading != null) && (heading.childElementCount >= 2)) {
-      //     heading.children[0].style.fontSize = '25px';
-      //     heading.children[1].style.fontSize = '14px';
-      //   }
-      // }
     });
   }
   render() {
@@ -52,19 +41,20 @@ class UserOptions extends React.Component {
 
 class SaveData extends React.Component {
   render() {
-    const newUserShowDivs = ['account-signup']; //, 'save-data'];
-    const loginShowDivs = ['account-login']; //, 'save-data'];
+    const newUserShowDivs = ['account-signup'];
+    const loginShowDivs = ['account-login'];
     const carrera = this.props.carrera;
+    const plancarrera = this.props.plancarrera;
     return (
       <div id="save-data" className="d-none">
-        <div className="container">
-          <h2 className="">{carrera}</h2>
-          <div>Guardá tus cambios</div>
-          <div className="row">
-          <div className="col-sm"><UserOptionLink showDiv={newUserShowDivs} text="Nuevo usuario" id="new-user-link" /></div>
-          <div className="link-or"></div>
-          <div className="col-sm"><UserOptionLink showDiv={loginShowDivs} text="Iniciar sesión" id="log-in-link" /></div>
-          </div>
+          <h2 className="">{plancarrera.name}</h2>
+          <p>Guardá tus cambios</p>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm"><UserOptionLink showDiv={newUserShowDivs} text="Nuevo usuario" id="new-user-link" /></div>
+              <div className="link-or"> </div>
+              <div className="col-sm"><UserOptionLink showDiv={loginShowDivs} text="Iniciar sesión" id="log-in-link" /></div>
+            </div>
         </div>
       </div>
     );

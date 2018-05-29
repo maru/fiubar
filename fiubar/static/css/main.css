@@ -536,3 +536,9 @@ a.fiuba-link {
    font-size: 16px;
    display: inline-grid;
 }
+#elegir-carrera {
+  font-size:16px;
+}
+#elegir-carrera-plan .container {
+  max-width: 400px;
+}
