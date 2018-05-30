@@ -1,4 +1,5 @@
 import React from "react";
+import {findDOMNode} from 'react-dom';
 
 class UserOptionLink extends React.Component {
   constructor(props) {
@@ -6,17 +7,21 @@ class UserOptionLink extends React.Component {
     this.showLoginForm = this.showLoginForm.bind(this);
   }
   showLoginForm(e) {
-    document.getElementById("account-login").className = "d-none";
-    document.getElementById("account-signup").className = "d-none";
+    document.getElementById("elegir-carrera").className = "div-none";
+    document.getElementById("elegir-materias").className = "div-none";
+    document.getElementById("save-data").className = "div-none";
+    document.getElementById("account-login").className = "div-none";
+    document.getElementById("account-signup").className = "div-none";
 
     this.props.showDiv.map((label) => {
-      document.getElementById(label).className = "active";
+      var div = document.getElementById(label);
+      div.className = "active";
     });
   }
   render() {
     return (
-        <a href="#" id={this.props.id} className="btn btn-fiubar border-radius-xlarge"
-           onClick={this.showLoginForm}>{this.props.text}</a>
+        <button id={this.props.id} className="btn btn-fiubar border-radius-xlarge"
+           onClick={this.showLoginForm}>{this.props.text}</button>
     );
   }
 }
@@ -46,7 +51,7 @@ class SaveData extends React.Component {
     const carrera = this.props.carrera;
     const plancarrera = this.props.plancarrera;
     return (
-      <div id="save-data" className="d-none">
+      <div id="save-data" className="div-none">
           <h2 className="">{plancarrera.name}</h2>
           <p>Guardá tus cambios</p>
           <div className="container">

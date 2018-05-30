@@ -93,7 +93,7 @@ class PlanCarreraViewSet(FacultadAPIView):
     @api_view(['GET'])
     def get_planmaterias(self, pk, *args, **kwargs):
         pm_list = PlanMateria.objects.select_related('materia')\
-            .filter(plancarrera=pk)
+            .filter(plancarrera=pk).order_by('cuatrimestre', 'materia')
         serializer = PlanMateriaSerializer(pm_list, many=True)
         return Response(serializer.data)
 

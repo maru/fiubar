@@ -12,6 +12,7 @@ class App extends React.Component {
     this.state = {
       carrera: '-',
       plancarrera: -1,
+      materias: [],
       materiasAprobadas: [],
       materiasFinal: [],
       materiasCursando: []
@@ -19,9 +20,12 @@ class App extends React.Component {
 
     this.handleCarreraChange = this.handleCarreraChange.bind(this);
     this.handlePlanCarreraChange = this.handlePlanCarreraChange.bind(this);
+    this.handleMateriasChange = this.handleMateriasChange.bind(this);
     this.handleMateriasAprobadasChange = this.handleMateriasAprobadasChange.bind(this);
     this.handleMateriasFinalChange = this.handleMateriasFinalChange.bind(this);
     this.handleMateriasCursandoChange = this.handleMateriasCursandoChange.bind(this);
+
+    this.materiasDiv = React.createRef();
   }
 
   handleCarreraChange(carrera) {
@@ -34,6 +38,12 @@ class App extends React.Component {
   handlePlanCarreraChange(plancarrera) {
     this.setState({
       plancarrera: plancarrera
+    });
+    this.materiasDiv.current.fetchAPI(plancarrera.id);
+  }
+  handleMateriasChange(materias) {
+    this.setState({
+      materias: materias
     });
   }
 
@@ -67,8 +77,11 @@ class App extends React.Component {
           onPlanCarreraChange={this.handlePlanCarreraChange}
         />
         <ElegirMaterias
+          ref={this.materiasDiv}
           carrera={this.state.carrera}
           plancarrera={this.state.plancarrera}
+          materias={this.state.materias}
+          onMateriasChange={this.handleMateriasChange}
           materiasAprobadas={this.state.materiasAprobadas}
           materiasFinal={this.state.materiasFinal}
           materiasCursando={this.state.materiasCursando}
@@ -79,6 +92,7 @@ class App extends React.Component {
         <SaveData
           carrera={this.state.carrera}
           plancarrera={this.state.plancarrera}
+          materias={this.state.materias}
           materiasAprobadas={this.state.materiasAprobadas}
           materiasFinal={this.state.materiasFinal}
           materiasCursando={this.state.materiasCursando}

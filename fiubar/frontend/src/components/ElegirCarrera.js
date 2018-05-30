@@ -39,6 +39,7 @@ class CarreraSelect extends React.Component {
         <p>Error: no hay carreras.</p>
       ) : (
         <div className="container">
+            <p className="lead text-left">Seleccioná una carrera:</p>
         {data.map(el => (
             <div className="box text-center" key={el.short_name}
                 style={{ background: `linear-gradient(
@@ -76,7 +77,6 @@ class PlanCarreraSelect extends React.Component {
       .then((data) => {
         this.setState({ data : data, loaded: true });
         if (data.length) {
-          console.log("data[0].id", data[0].id);
           this.setState({ selectedOption : data[0].id });
           this.handlePlanCarreraClick(data[0], null);
         }
@@ -85,7 +85,11 @@ class PlanCarreraSelect extends React.Component {
   handlePlanCarreraClick(plancarrera, e) {
     this.setState({ selectedOption : plancarrera.id });
     this.props.onPlanCarreraChange(plancarrera);
-    document.getElementById("save-data").className = '';
+    document.getElementById("save-data").className = 'active';
+    document.getElementById("elegir-materias").className = 'active';
+
+    if (this.state.data.length == 1)
+    document.getElementById("elegir-carrera-plan").scrollIntoView({behavior: "smooth"});
   }
 
   render() {
@@ -97,12 +101,13 @@ class PlanCarreraSelect extends React.Component {
       <p>No hay planes para {this.props.carrera.name}</p>
       ) : (
         <div className="container text-left">
+        <p className="lead">Elegí el plan:</p>
           <form>
           {data.map(el => (
-            <div className="form-check">
+            <div className="form-check" key={uuid()}>
               <input className="form-check-input" type="radio" name="plancarrera"
                   id={`plancarrera${el.id}`}
-                  key={uuid()} value={el.id}
+                  value={el.id}
                   checked={this.state.selectedOption === el.id}
                   onChange={(e) => this.handlePlanCarreraClick(el, e)}
                 />
@@ -126,11 +131,11 @@ class ElegirCarrera extends React.Component {
   }
 
   handleCarreraChange(carrera) {
-    document.getElementById("save-data").className = 'd-none';
+    document.getElementById("save-data").className = 'div-none';
     this.props.onCarreraChange(carrera);
     if (carrera == null || carrera.id < 0) return;
     this.planCarrera.current.fetchAPI(carrera.id);
-    document.getElementById("elegir-carrera-plan").className = '';
+    document.getElementById("elegir-carrera-plan").className = 'active';
   }
 
   handlePlanCarreraChange(plancarrera) {
@@ -139,7 +144,8 @@ class ElegirCarrera extends React.Component {
 
   render() {
     return (
-      <div id="elegir-carrera" className="d-none">
+      <div id="elegir-carrera" className="div-none">
+        <hr />
         <h2 className="">¿Qué carrera cursás?</h2>
         <div id="carreras-list">
             <CarreraSelect
@@ -147,17 +153,13 @@ class ElegirCarrera extends React.Component {
                 onCarreraChange={this.handleCarreraChange}
               />
         </div>
-        <div id="elegir-carrera-plan" className="d-none">
-            <h2 className="">Elegí el plan</h2>
+        <div id="elegir-carrera-plan" className="div-none">
             <PlanCarreraSelect
                 ref={this.planCarrera}
                 carrera={this.props.carrera}
                 plancarrera={this.props.plancarrera}
                 onPlanCarreraChange={this.handlePlanCarreraChange}
               />
-        </div>
-        <div id="elegir-carrera-plan-orientacion" className="d-none">
-          <h2 className="">Elegí la orientación</h2>
         </div>
       </div>
     );
