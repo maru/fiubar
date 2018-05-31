@@ -27,7 +27,7 @@ class App extends React.Component {
       carrera: carrera,
       plancarrera: -1
     });
-    localStorage.setItem('carrera', JSON.stringify(carrera));
+    sessionStorage.setItem('carrera', JSON.stringify(carrera));
   }
 
   handlePlanCarreraChange(plancarrera) {
@@ -35,13 +35,13 @@ class App extends React.Component {
       plancarrera: plancarrera
     });
     this.materiasDiv.current.fetchAPI(plancarrera.id);
-    localStorage.setItem('plancarrera', JSON.stringify(plancarrera));
+    sessionStorage.setItem('plancarrera', JSON.stringify(plancarrera));
   }
   handleMateriasChange(materias) {
     this.setState({
       materias: materias
     });
-    localStorage.setItem('materias', JSON.stringify(materias));
+    sessionStorage.setItem('materias', JSON.stringify(materias));
   }
 
   render() {
