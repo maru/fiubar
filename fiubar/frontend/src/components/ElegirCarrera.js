@@ -7,7 +7,7 @@ const uuid = shortid.generate;
 class CarreraSelect extends React.Component {
   state = {
       data: [],
-      loaded: false,
+      isLoading: false,
       placeholder: "Cargando..."
   };
 
@@ -21,19 +21,29 @@ class CarreraSelect extends React.Component {
   }
 
   fetchAPI(url) {
-    fetch(url).then((res) => res.json()).then((data) => {
-       this.setState({ data : data, loaded: true });
-    });
+    fetch(url)
+      .then((response) => {
+        if (response.status !== 200) {
+          return this.setState({ placeholder: "Something went wrong" });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({ data : data, isLoading: true });
+      })
+      .catch(error => this.setState({ placeholder: error, isLoading: false }));
   }
 
   handleCarreraClick(carrera, e) {
     this.props.onCarreraChange(carrera);
+    document.getElementById("elegir-carrera-plan")
+      .scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
   }
 
   render() {
-    const { data, loaded, placeholder } = this.state;
+    const { data, isLoading, placeholder } = this.state;
 
-    if (!loaded) return <p>{placeholder}</p>;
+    if (!isLoading) return <p>{placeholder}</p>;
 
     return !data.length ? (
         <p>Error: no hay carreras.</p>
@@ -59,7 +69,7 @@ class CarreraSelect extends React.Component {
 class PlanCarreraSelect extends React.Component {
   state = {
       data: [],
-      loaded: false,
+      isLoading: false,
       placeholder: "Cargando...",
       selectedOption: 0
   };
@@ -75,27 +85,24 @@ class PlanCarreraSelect extends React.Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ data : data, loaded: true });
+        this.setState({ data : data, isLoading: true });
         if (data.length) {
           this.setState({ selectedOption : data[0].id });
           this.handlePlanCarreraClick(data[0], null);
         }
-      });
+      })
+      .catch(error => this.setState({ placeholder: error, isLoading: false }));
   }
   handlePlanCarreraClick(plancarrera, e) {
     this.setState({ selectedOption : plancarrera.id });
     this.props.onPlanCarreraChange(plancarrera);
-    document.getElementById("save-data").className = 'active';
     document.getElementById("elegir-materias").className = 'active';
-
-    if (this.state.data.length == 1)
-    document.getElementById("elegir-carrera-plan").scrollIntoView({behavior: "smooth"});
+    document.getElementById("save-data").className = 'active';
   }
-
   render() {
-    const { data, loaded, placeholder } = this.state;
+    const { data, isLoading, placeholder } = this.state;
 
-    if (!loaded) return <p>{placeholder}</p>;
+    if (!isLoading) return <p>{placeholder}</p>;
 
     return !data.length ? (
       <p>No hay planes para {this.props.carrera.name}</p>

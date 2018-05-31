@@ -6,18 +6,20 @@ const uuid = shortid.generate;
 class MateriasSelect extends React.Component {
   state = {
       data: [],
-      loaded: false,
+      isLoading: false,
       placeholder: "Cargando...",
       materiaAction: 'aprobadas',
-      materiaState: 'A',
+      materiaEstado: 'A',
       materiaClass: 'funkyradio-success',
   };
   constructor(props) {
     super(props);
-    this.selectedMaterias = new Map();
+    this.selectedMaterias = props.materias;
   }
   fetchAPI(plancarrera_id) {
     const url = "api/facultad/plancarreras/" + plancarrera_id + "/planmaterias/";
+
+    fetch(url)
 
     fetch(url)
       .then((response) => {
@@ -27,8 +29,12 @@ class MateriasSelect extends React.Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ data : data, loaded: true });
-      });
+        this.setState({ data : data, isLoading: true });
+      })
+      .catch(error => this.setState({ placeholder: error, isLoading: false }));
+  }
+  getDepartamento(id) {
+    return id[0] + id[1];
   }
   getCodigo(id) {
     return id[0] + id[1] + '.' + id[2] + id[3];
@@ -36,22 +42,34 @@ class MateriasSelect extends React.Component {
   isChecked(id) {
     return this.selectedMaterias.has(id);
   }
-  handleMateriaClick(materia, elementId) {
-    if (this.selectedMaterias.has(materia.id)) {
-      console.log(materia.id, this.selectedMaterias.get(materia.id), this.state.materiaState);
-      var m = document.getElementById(elementId);
-      m.parentElement.className = this.state.materiaClass;
-      if (this.selectedMaterias.get(materia.id) != this.state.materiaState) {
-        this.selectedMaterias.set(materia.id, this.state.materiaState);
-      } else {
+  handleMateriaClick(planmateria, elementId) {
+    // Set current class
+    document.getElementById(elementId)
+            .parentElement.className = this.state.materiaClass;
+
+    const materia = planmateria.materia;
+
+    var obj = this.selectedMaterias.get(materia.id);
+    if (obj != null) {
+      // Deseleccionar
+      if (obj.estado == this.state.materiaEstado)  {
         this.selectedMaterias.delete(materia.id);
+      // Cambiar estado
+      } else {
+        obj.estado = this.state.materiaEstado;
+        this.selectedMaterias.set(materia.id, obj);
       }
+    // Nueva materia
     } else {
-      this.selectedMaterias.set(materia.id, this.state.materiaState);
+      obj = { "materia": materia.id,
+              "estado": this.state.materiaEstado,
+              "creditos": planmateria.creditos
+            };
+      this.selectedMaterias.set(materia.id, obj);
     }
     this.props.onMateriasChange(this.selectedMaterias);
   }
-  updateMateriaAction(materiaAction, materiaState, materiaClass) {
+  updateMateriaAction(materiaAction, materiaEstado, materiaClass) {
     var m = document.getElementById('materias');
     for (var i = 0; i < m.childElementCount; i++) {
       if (m.children[i].childElementCount == 0 ||
@@ -60,7 +78,7 @@ class MateriasSelect extends React.Component {
       m.children[i].className = materiaClass;
     }
     this.setState({ materiaAction: materiaAction,
-                    materiaState: materiaState,
+                    materiaEstado: materiaEstado,
                     materiaClass: materiaClass
                   });
   }
@@ -74,16 +92,16 @@ class MateriasSelect extends React.Component {
     }
   }
   render() {
-    const { data, loaded, placeholder } = this.state;
+    const { data, isLoading, placeholder } = this.state;
 
-    if (!loaded) return <p>{placeholder}</p>;
+    if (!isLoading) return <p>{placeholder}</p>;
 
     return !data.length ? (
       <p>No hay materias para {this.props.plancarrera.name}</p>
       ) : (
         <React.Fragment>
-          <h2 id="elegir-materias-title" className="">Seleccioná tus materias {this.state.materiaAction}:</h2>
-          <div className="btn-actions sticky-top">
+          <h3 id="elegir-materias-title" className="">Seleccioná tus materias</h3>
+          <div className="btn-actions">
             <button onClick={(e) => this.updateMateriaAction('aprobadas', 'A', 'funkyradio-success')}
                     className="btn btn-success">Elegir materias aprobadas</button>
             <button onClick={(e) => this.updateMateriaAction('a final', 'F', 'funkyradio-warning')}
@@ -104,12 +122,15 @@ class MateriasSelect extends React.Component {
                         (<div className="cuatrimestre">Electivas</div>)
                         : (<div className="cuatrimestre">{el.cuatrimestre}° Cuatrimestre</div>)
                       )}
+                    {el.cuatrimestre == 99 && el.cuatrimestre == prevEl.cuatrimestre &&
+                      this.getDepartamento(el.materia.id) != this.getDepartamento(prevEl.materia.id) &&
+                      <hr /> }
                     <div className="funkyradio-success">
                       <input type="checkbox" name={`materia${el.id}`}
                           id={`materia${el.id}`}
                           key={uuid()} value={el.id}
                           defaultChecked={this.isChecked(el.materia.id)}
-                          onChange={(e) => this.handleMateriaClick(el.materia, `materia${el.id}`)}
+                          onChange={(e) => this.handleMateriaClick(el, `materia${el.id}`)}
                       />
                       <label htmlFor={`materia${el.id}`}>
                         <strong>{this.getCodigo(el.materia.id)}</strong> { el.materia.name }
@@ -138,16 +159,22 @@ class ElegirMaterias extends React.Component {
   fetchAPI(plancarrera_id) {
     this.materiasDiv.current.fetchAPI(plancarrera_id);
   }
+  componentDidUpdate() {
+    // document.getElementById('elegir-materias').scrollIntoView({'behavior':'smooth'});
+  }
   handleMateriasChange(materias) {
     this.props.onMateriasChange(materias);
   }
   render() {
     return (
       <div id="elegir-materias" className="div-none">
+        <hr />
+        <h2 className="">{this.props.plancarrera && this.props.plancarrera.name}</h2>
         <MateriasSelect
             ref={this.materiasDiv}
             carrera={this.props.carrera}
             plancarrera={this.props.plancarrera}
+            materias={this.props.materias}
             onMateriasChange={this.handleMateriasChange}
           />
       </div>

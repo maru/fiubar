@@ -3,27 +3,21 @@ import ReactDOM from "react-dom";
 import PageTitle from "./PageTitle";
 import ElegirCarrera from "./ElegirCarrera";
 import ElegirMaterias from "./ElegirMaterias";
-import { UserOptions, SaveData } from "./UserOptions";
-import { AccountLoginForm, AccountSignupForm } from "./AccountForm";
+import { UserOptions } from "./UserOptions";
+import SaveData from "./SaveData";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carrera: '-',
-      plancarrera: -1,
-      materias: [],
-      materiasAprobadas: [],
-      materiasFinal: [],
-      materiasCursando: []
+      carrera: null,
+      plancarrera: null,
+      materias: new Map()
     };
 
     this.handleCarreraChange = this.handleCarreraChange.bind(this);
     this.handlePlanCarreraChange = this.handlePlanCarreraChange.bind(this);
     this.handleMateriasChange = this.handleMateriasChange.bind(this);
-    this.handleMateriasAprobadasChange = this.handleMateriasAprobadasChange.bind(this);
-    this.handleMateriasFinalChange = this.handleMateriasFinalChange.bind(this);
-    this.handleMateriasCursandoChange = this.handleMateriasCursandoChange.bind(this);
 
     this.materiasDiv = React.createRef();
   }
@@ -33,6 +27,7 @@ class App extends React.Component {
       carrera: carrera,
       plancarrera: -1
     });
+    localStorage.setItem('carrera', JSON.stringify(carrera));
   }
 
   handlePlanCarreraChange(plancarrera) {
@@ -40,29 +35,13 @@ class App extends React.Component {
       plancarrera: plancarrera
     });
     this.materiasDiv.current.fetchAPI(plancarrera.id);
+    localStorage.setItem('plancarrera', JSON.stringify(plancarrera));
   }
   handleMateriasChange(materias) {
     this.setState({
       materias: materias
     });
-  }
-
-  handleMateriasAprobadasChange(materiasAprobadas) {
-    this.setState({
-      materiasAprobadas: materiasAprobadas
-    });
-  }
-
-  handleMateriasFinalChange(materiasFinal) {
-    this.setState({
-      materiasFinal: materiasFinal
-    });
-  }
-
-  handleMateriasCursandoChange(materiasCursando) {
-    this.setState({
-      materiasCursando: materiasCursando
-    });
+    localStorage.setItem('materias', JSON.stringify(materias));
   }
 
   render() {
@@ -82,20 +61,11 @@ class App extends React.Component {
           plancarrera={this.state.plancarrera}
           materias={this.state.materias}
           onMateriasChange={this.handleMateriasChange}
-          materiasAprobadas={this.state.materiasAprobadas}
-          materiasFinal={this.state.materiasFinal}
-          materiasCursando={this.state.materiasCursando}
-          onMateriasAprobadasChange={this.handleMateriasAprobadasChange}
-          onMateriasFinalChange={this.handleMateriasFinalChange}
-          onMateriasCursandoChange={this.handleMateriasCursandoChange}
         />
         <SaveData
           carrera={this.state.carrera}
           plancarrera={this.state.plancarrera}
           materias={this.state.materias}
-          materiasAprobadas={this.state.materiasAprobadas}
-          materiasFinal={this.state.materiasFinal}
-          materiasCursando={this.state.materiasCursando}
         />
       </React.Fragment>
     );

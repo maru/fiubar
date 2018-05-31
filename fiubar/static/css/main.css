@@ -540,18 +540,18 @@ a.fiuba-link {
   font-size:16px;
   margin:20px 0;
   opacity: 1.0;
-  transition: height 500ms 0ms, opacity 500ms 500ms;
+  transition: height 500ms 500ms, opacity 500ms 500ms;
 }
 .div-none {
-  transition: height 500ms 500ms, opacity 500ms 0ms;
+  transition: height 500ms 500ms, opacity 500ms 500ms;
   opacity: 0.0;
   height: 0px;
   overflow: hidden;
 }
-#elegir-carrera-plan {
-  margin: 20px 0;
+#elegir-materias .container {
+  max-height: 600px;
+  overflow-y: auto;
 }
-
 .funkyradio div {
   clear: both;
   overflow: hidden;
@@ -660,4 +660,19 @@ a.fiuba-link {
 }
 hr {
   margin: 3rem 0;
+}
+.funkyradio hr {
+  margin: 0.5rem 0;
+  border-top: 1px solid rgba(152, 52, 185,0.2)
+}
+#carreraChart circle {
+    fill: #ccc;
+    stroke: #28a745;
+    stroke-width: 50;
+    stroke-dasharray: 0 158; /* 2π × 25 ≈ 158 */
+}
+#carreraChart svg {
+  transform: rotate(-90deg);
+  background: #ccc;
+  border-radius: 50%;
 }
