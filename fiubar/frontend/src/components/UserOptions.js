@@ -9,8 +9,10 @@ class UserOptionLink extends React.Component {
     if (this.props.hideDivs) this.props.hideDivs();
     this.props.showDiv.map((label) => {
       var div = document.getElementById(label);
-      div ? (div.className = "active" &&
-             div.scrollIntoView({'behavior':'smooth'})) : null;
+      if (div) {
+        div.className = "active";
+        div.scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
+      }
     });
   }
   render() {
