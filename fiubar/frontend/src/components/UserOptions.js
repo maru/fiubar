@@ -18,7 +18,7 @@ class UserOptionLink extends React.Component {
   render() {
     return (
         <button id={this.props.id} className="btn btn-fiubar border-radius-xlarge"
-           onClick={this.showLoginForm}>{this.props.text}</button>
+           type="button" onClick={this.showLoginForm}>{this.props.text}</button>
     );
   }
 }
@@ -38,10 +38,9 @@ class UserOptions extends React.Component {
       <div id="user-options">
         <div className="container">
           <div className="row">
-            <div className="col-sm">
+            <div className="col">
               <UserOptionLink hideDivs={this.hideDivs} showDiv={newUserShowDivs} text="Nuevo usuario" id="new-user-link" /></div>
-            <div className="link-or"></div>
-            <div className="col-sm">
+            <div className="col">
               <UserOptionLink hideDivs={this.hideDivs} showDiv={loginShowDivs} text="Iniciar sesión" id="log-in-link" /></div>
           </div>
         </div>

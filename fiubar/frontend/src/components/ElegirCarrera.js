@@ -36,8 +36,7 @@ class CarreraSelect extends React.Component {
 
   handleCarreraClick(carrera, e) {
     this.props.onCarreraChange(carrera);
-    document.getElementById("elegir-carrera-plan")
-      .scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
+    document.getElementById("save-data").className = 'div-none';
   }
 
   render() {
@@ -97,7 +96,7 @@ class PlanCarreraSelect extends React.Component {
     this.setState({ selectedOption : plancarrera.id });
     this.props.onPlanCarreraChange(plancarrera);
     document.getElementById("elegir-materias").className = 'active';
-    document.getElementById("save-data").className = 'active';
+    document.getElementById("save-data").className = 'div-none';
   }
   render() {
     const { data, isLoading, placeholder } = this.state;
@@ -151,7 +150,7 @@ class ElegirCarrera extends React.Component {
 
   render() {
     return (
-      <div id="elegir-carrera" className="div-none">
+      <div id="elegir-carrera" className="collapse">
         <hr />
         <h2 className="">¿Qué carrera cursás?</h2>
         <div id="carreras-list">

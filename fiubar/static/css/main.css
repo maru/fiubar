@@ -176,9 +176,11 @@ ul.showinfo-list li {
   border-bottom-right-radius: 10px;
   padding: 20px 0 30px;
 }
+.account-form button[type="submit"] {
+  width: 100%;
+}
 .account-action-btn {
   border-radius: 5px;
-  width: 100%;
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -467,7 +469,7 @@ th.delete {
   font-size: 16px;
 }
 #user-options .container, #save-data .container {
-  max-width:340px;
+  max-width:360px;
 }
 .link-or {
   padding:.5rem 0rem;
@@ -520,6 +522,7 @@ a.fiuba-link {
 }
 #account-login, #account-signup {
   margin: 20px 0px;
+  font-size:14px;
 }
 .box {
    width:140px;
@@ -540,17 +543,20 @@ a.fiuba-link {
   font-size:16px;
   margin:20px 0;
   opacity: 1.0;
-  transition: height 500ms 500ms, opacity 500ms 500ms;
+  /*transition: height 500ms 500ms, opacity 500ms 500ms;*/
 }
 .div-none {
-  transition: height 500ms 500ms, opacity 500ms 500ms;
+  /*transition: height 500ms 500ms, opacity 500ms 500ms;*/
   opacity: 0.0;
   height: 0px;
   overflow: hidden;
 }
-#elegir-materias .container {
+#elegir-materias #materias-list {
   max-height: 600px;
   overflow-y: auto;
+}
+#elegir-materias > div {
+  margin: 20px 0;
 }
 .funkyradio div {
   clear: both;
@@ -592,6 +598,7 @@ a.fiuba-link {
   left: 0;
   content: '';
   width: 2.5em;
+  height: 2.5em;
   background: #eeee;
   border-radius: 3px 0 0 3px;
 }
@@ -665,11 +672,14 @@ hr {
   margin: 0.5rem 0;
   border-top: 1px solid rgba(152, 52, 185,0.2)
 }
+#carreraChart {
+  margin: 40px 0;
+}
 #carreraChart circle {
-    fill: #ccc;
-    stroke: #28a745;
-    stroke-width: 50;
-    stroke-dasharray: 0 158; /* 2π × 25 ≈ 158 */
+  fill: #ccc;
+  stroke: #28a745;
+  stroke-width: 50;
+  stroke-dasharray: 0 158; /* 2π × 25 ≈ 158 */
 }
 #carreraChart svg {
   transform: rotate(-90deg);

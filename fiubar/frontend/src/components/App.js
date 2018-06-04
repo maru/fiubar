@@ -15,6 +15,7 @@ class App extends React.Component {
       materias: new Map()
     };
 
+    this.saveData = this.saveData.bind(this);
     this.handleCarreraChange = this.handleCarreraChange.bind(this);
     this.handlePlanCarreraChange = this.handlePlanCarreraChange.bind(this);
     this.handleMateriasChange = this.handleMateriasChange.bind(this);
@@ -27,7 +28,6 @@ class App extends React.Component {
       carrera: carrera,
       plancarrera: -1
     });
-    sessionStorage.setItem('carrera', JSON.stringify(carrera));
   }
 
   handlePlanCarreraChange(plancarrera) {
@@ -35,13 +35,19 @@ class App extends React.Component {
       plancarrera: plancarrera
     });
     this.materiasDiv.current.fetchAPI(plancarrera.id);
-    sessionStorage.setItem('plancarrera', JSON.stringify(plancarrera));
   }
   handleMateriasChange(materias) {
     this.setState({
       materias: materias
     });
-    sessionStorage.setItem('materias', JSON.stringify(materias));
+  }
+  /* Save data in cookies */
+  saveData() {
+    const { carrera, plancarrera, materias } = this.state;
+    document.cookie = "create_alumno=1";
+    document.cookie = "carrera" + "=" + JSON.stringify(carrera);
+    document.cookie = "plancarrera" + "=" + JSON.stringify(plancarrera);
+    document.cookie = "materias" + "=" + JSON.stringify([...materias]);
   }
 
   render() {
@@ -61,6 +67,7 @@ class App extends React.Component {
           plancarrera={this.state.plancarrera}
           materias={this.state.materias}
           onMateriasChange={this.handleMateriasChange}
+          saveData={this.saveData}
         />
         <SaveData
           carrera={this.state.carrera}

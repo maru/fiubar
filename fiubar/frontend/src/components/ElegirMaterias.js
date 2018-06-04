@@ -3,6 +3,34 @@ import shortid from "shortid";
 
 const uuid = shortid.generate;
 
+/* Calcular porcentaje de creditos */
+class CreditosChart extends React.Component {
+  render() {
+    const creditos = this.props.creditos;
+    const min_creditos = this.props.min_creditos;
+    const radius = 25;
+    const pieRadius = Math.round(2*Math.PI*radius);
+    const creditosAng = Math.min(pieRadius, min_creditos > 0 ? Math.round(creditos * pieRadius / min_creditos) : 0);
+    const creditosPerc = Math.min(100, min_creditos > 0 ? Math.round(creditos * 100 / min_creditos) : 0);
+
+    return (
+      <div id="carreraChart" className="container">
+        <div className="row">
+          <div className="col-6">
+            <svg width="100" height="100">
+              <circle style={{ strokeDasharray: `${creditosAng} ${pieRadius}`}} r={radius} cx="50" cy="50" />
+            </svg>
+            </div>
+            <div className="col-6">
+              <p className="lead"><strong>{creditosPerc}%</strong> de la carrera aprobada!</p>
+              <p>Total: <span className="font-weight-bold text-success">{creditos}</span> / {min_creditos}</p>
+            </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 class MateriasSelect extends React.Component {
   state = {
       data: [],
@@ -11,15 +39,16 @@ class MateriasSelect extends React.Component {
       materiaAction: 'aprobadas',
       materiaEstado: 'A',
       materiaClass: 'funkyradio-success',
+      creditos: 0,
+      min_creditos: 0,
   };
   constructor(props) {
     super(props);
     this.selectedMaterias = props.materias;
+    this.showSaveData = this.showSaveData.bind(this);
   }
   fetchAPI(plancarrera_id) {
     const url = "api/facultad/plancarreras/" + plancarrera_id + "/planmaterias/";
-
-    fetch(url)
 
     fetch(url)
       .then((response) => {
@@ -29,7 +58,8 @@ class MateriasSelect extends React.Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ data : data, isLoading: true });
+        this.setState({ data : data, isLoading: true,
+                        min_creditos: this.props.plancarrera.min_creditos });
       })
       .catch(error => this.setState({ placeholder: error, isLoading: false }));
   }
@@ -42,6 +72,7 @@ class MateriasSelect extends React.Component {
   isChecked(id) {
     return this.selectedMaterias.has(id);
   }
+  /* Actualiza lista de materias y sus estados, y creditos aprobados */
   handleMateriaClick(planmateria, elementId) {
     // Set current class
     document.getElementById(elementId)
@@ -49,8 +80,13 @@ class MateriasSelect extends React.Component {
 
     const materia = planmateria.materia;
 
+    const { materiaAction, materiaEstado, materiaClass, creditos } = this.state;
+
     var obj = this.selectedMaterias.get(materia.id);
     if (obj != null) {
+      // Substraer creditos aprobados
+      if (obj.estado == 'A')
+        this.state.creditos -= obj.creditos;
       // Deseleccionar
       if (obj.estado == this.state.materiaEstado)  {
         this.selectedMaterias.delete(materia.id);
@@ -58,6 +94,9 @@ class MateriasSelect extends React.Component {
       } else {
         obj.estado = this.state.materiaEstado;
         this.selectedMaterias.set(materia.id, obj);
+        // Agregar creditos aprobados
+        if (this.state.materiaEstado == 'A')
+          this.state.creditos += obj.creditos;
       }
     // Nueva materia
     } else {
@@ -66,30 +105,31 @@ class MateriasSelect extends React.Component {
               "creditos": planmateria.creditos
             };
       this.selectedMaterias.set(materia.id, obj);
+      // Agregar creditos aprobados
+      if (this.state.materiaEstado == 'A')
+        this.state.creditos += obj.creditos;
     }
+
     this.props.onMateriasChange(this.selectedMaterias);
   }
+
   updateMateriaAction(materiaAction, materiaEstado, materiaClass) {
-    var m = document.getElementById('materias');
-    for (var i = 0; i < m.childElementCount; i++) {
-      if (m.children[i].childElementCount == 0 ||
-          m.children[i].children[0].tagName != 'INPUT' ||
-          m.children[i].children[0].checked) continue;
-      m.children[i].className = materiaClass;
-    }
     this.setState({ materiaAction: materiaAction,
                     materiaEstado: materiaEstado,
                     materiaClass: materiaClass
                   });
   }
+  /* Get descripción del estado */
   getEstado(id) {
     const estados = { 'A': 'Aprobada',
                       'F': 'Final',
                       'C': 'Cursando' }
-    if (this.selectedMaterias.has(id)) {
-      const e = this.selectedMaterias.get(id);
-      return estados[e];
-    }
+    const e = this.selectedMaterias.get(id);
+    return e ? estados[e] : '';
+  }
+  showSaveData() {
+    this.props.saveData();
+    document.getElementById("save-data").className = 'active';
   }
   render() {
     const { data, isLoading, placeholder } = this.state;
@@ -101,7 +141,7 @@ class MateriasSelect extends React.Component {
       ) : (
         <React.Fragment>
           <h3 id="elegir-materias-title" className="">Seleccioná tus materias</h3>
-          <div className="btn-actions">
+          <div className="btn-actions sticky-top">
             <button onClick={(e) => this.updateMateriaAction('aprobadas', 'A', 'funkyradio-success')}
                     className="btn btn-success">Elegir materias aprobadas</button>
             <button onClick={(e) => this.updateMateriaAction('a final', 'F', 'funkyradio-warning')}
@@ -109,8 +149,7 @@ class MateriasSelect extends React.Component {
             <button onClick={(e) => this.updateMateriaAction('cursando', 'C', 'funkyradio-danger')}
                     className="btn btn-danger">Elegir materias cursando</button>
           </div>
-          <div className="container text-left">
-            <form>
+          <div id="materias-list" className="container text-left">
             <div className="funkyradio" id="materias">
               {data.map((el, i, arr) => {
                 const prevEl = arr[i - 1];
@@ -143,8 +182,14 @@ class MateriasSelect extends React.Component {
                 );
               })}
             </div>
-            </form>
-        </div>
+          </div>
+          <CreditosChart creditos={this.state.creditos}
+                         min_creditos={this.state.min_creditos}
+            />
+          <div className="container">
+            <button className="account-action-btn btn btn-primary btn-fiubar"
+              onClick={this.showSaveData}>Guardar datos</button>
+          </div>
       </React.Fragment>
       );
   }
@@ -176,6 +221,7 @@ class ElegirMaterias extends React.Component {
             plancarrera={this.props.plancarrera}
             materias={this.props.materias}
             onMateriasChange={this.handleMateriasChange}
+            saveData={this.props.saveData}
           />
       </div>
     );
