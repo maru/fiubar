@@ -13,7 +13,7 @@ class Alumno(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     carrera = models.ForeignKey('Carrera', on_delete=models.CASCADE)
     plancarrera = models.ForeignKey('PlanCarrera', on_delete=models.CASCADE)
-    begin_date = models.DateField()
+    begin_date = models.DateField(null=True)
     graduado_date = models.DateField(null=True)
     creditos = models.IntegerField(default=0)
     promedio = models.FloatField(default=0.0)

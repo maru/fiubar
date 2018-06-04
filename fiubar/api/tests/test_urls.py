@@ -254,8 +254,8 @@ class AlumnosAPITest(FacultadBaseTest):
         self.assertEqual(response['content-type'], 'application/json')
 
         errors = json.loads(response.content.decode('utf8'))
-        self.assertEqual(len(errors), 3)
-        self.assertListEqual(['begin_date', 'carrera', 'plancarrera'],
+        self.assertEqual(len(errors), 2)
+        self.assertListEqual(['carrera', 'plancarrera'],
                              list(errors.keys()))
 
     def test_post_alumnos_bad_carrera(self):
