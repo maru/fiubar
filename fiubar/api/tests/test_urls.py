@@ -255,8 +255,8 @@ class AlumnosAPITest(FacultadBaseTest):
 
         errors = json.loads(response.content.decode('utf8'))
         self.assertEqual(len(errors), 2)
-        self.assertListEqual(['carrera', 'plancarrera'],
-                             list(errors.keys()))
+        self.assertTrue('carrera' in errors.keys())
+        self.assertTrue('plancarrera' in errors.keys())
 
     def test_post_alumnos_bad_carrera(self):
         self.client.force_login(self.user)
@@ -275,7 +275,8 @@ class AlumnosAPITest(FacultadBaseTest):
 
         errors = json.loads(response.content.decode('utf8'))
         self.assertEqual(len(errors), 2)
-        self.assertListEqual(['carrera', 'plancarrera'], list(errors.keys()))
+        self.assertTrue('carrera' in errors.keys())
+        self.assertTrue('plancarrera' in errors.keys())
 
     def test_post_alumnos_ok(self):
         self.client.force_login(self.user)
