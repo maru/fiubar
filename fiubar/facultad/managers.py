@@ -158,7 +158,10 @@ class PlanMateriaManager(models.Manager):
                 mat_list = Q(plancarrera=plancarrera, materia=m.materia)
             else:
                 mat_list |= Q(plancarrera=plancarrera, materia=m.materia)
-        return self.filter(mat_list).order_by('cuatrimestre')
+
+        if mat_list:
+            mat_list = self.filter(mat_list).order_by('cuatrimestre')
+        return mat_list
 
     def list_materias_aprobadas(self, user, plancarrera):
         from .models import AlumnoMateria
@@ -172,6 +175,7 @@ class PlanMateriaManager(models.Manager):
             else:
                 mat_list = mat_list | Q(plancarrera=plancarrera,
                                         materia=m.materia)
+
         if mat_list:
             mat_list = self.filter(mat_list).order_by('cuatrimestre')
             for m in mat_list:
