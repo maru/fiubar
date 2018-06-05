@@ -1,0 +1,39 @@
+{
+  "name": "fiubar.git",
+  "version": "1.0.0",
+  "description": "![fiubar](fiubar/static/images/fiubar-logo.png)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch --mode development ./fiubar/frontend/src/index.js --output ./fiubar/static/js/main.js",
+    "build": "webpack --watch --mode production ./fiubar/frontend/src/index.js --output ./fiubar/static/js/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maru/fiubar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maru/fiubar/issues"
+  },
+  "homepage": "https://github.com/maru/fiubar#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "shortid": "^2.2.8",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4"
+  }
+}

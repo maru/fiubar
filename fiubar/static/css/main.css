@@ -1,5 +1,39 @@
+html,
 body {
+  height: 100%;
+  background-color: #fff;
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+body.flex {
+  display: -ms-flexbox;
+  display: flex;
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .025);
+}
+.cover-container {
+  max-width: 800px;
+}
+a {
+   color: #9834b9;
+   text-decoration: none;
+}
+a:hover, a:focus {
+    color: #67237d;
+    text-decoration: underline;
+}
+.btn-fiubar {
+    color: #fff;
+    background-color: #9834b9;
+    border-color: #9834b9;
+}
+.btn-fiubar:hover, .btn-fiubar:focus {
+  color: #fff;
+  background-color: #712789;
+  border-color: #9834b9;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(113, 39, 137,.5);
 }
 @media (max-width: 767px) {
   .front-page .col-sm-6.pull-right {
@@ -119,14 +153,14 @@ ul.showinfo-list li {
   display: inline-block;
   background-color: #fff;
   border:none;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
+  border: 1px solid #e5e5e5;
 }
 @media (min-width: 600px) {
   .account-form {
     max-width: 360px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
-    box-shadow: 0 5px 15px 0 rgba(0,0,0,.08);
-    border: 1px solid #e5e5e5;
   }
 }
 .account-form .account {
@@ -142,9 +176,11 @@ ul.showinfo-list li {
   border-bottom-right-radius: 10px;
   padding: 20px 0 30px;
 }
+.account-form button[type="submit"] {
+  width: 100%;
+}
 .account-action-btn {
   border-radius: 5px;
-  width: 100%;
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -426,8 +462,227 @@ th.delete {
   text-decoration:line-through;
 }
 .border-radius-xlarge {
-  border-radius:99999px; padding: .5rem 1rem; display:inline-block;
+  border-radius:99999px;
+  padding: .5rem 1rem;
 }
-#carreras-list {
-  max-width: 750px;
+#head-title p {
+  font-size: 16px;
+}
+#user-options .container, #save-data .container {
+  max-width:360px;
+}
+.link-or {
+  padding:.5rem 0rem;
+}
+a.fiuba-link {
+  color:#0095db;
+  font-weight:bold;
+}
+.form-control:focus {
+    border-color: #a944ca;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(169, 68, 202, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(169, 68, 202, 0.6);
+}
+.btn-primary {
+    color: #fff;
+    background-color: #9834b9;
+    border-color: #882fa5;
+}
+.btn-primary {
+    background-image: -webkit-linear-gradient(top, #9834b9 0, #712789 100%);
+    background-image: -o-linear-gradient(top, #9834b9 0, #712789 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #9834b9), to(#712789));
+    background-image: linear-gradient(to bottom, #9834b9 0, #712789 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9834b9', endColorstr='#ff712789', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #6a2581;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle,
+.btn-primary:active, .btn-primary.active {
+    color: #fff;
+    background-color: #712789;
+    border-color: #6a2581;
+}
+.btn-primary:focus, .btn-primary.focus {
+    color: #fff;
+    background-color: #772991;
+    border-color: #361341;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #772991;
+    border-color: #602175;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #712789;
+    background-position: 0 -15px;
+}
+#account-login, #account-signup {
+  margin: 20px 0px;
+  font-size:14px;
+}
+.box {
+   width:140px;
+   height: 140px;
+   margin: 5px;
+   border: 1px dashed #999;
+   padding: 10px 5px;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   font-weight: bold;
+   color: #fff;
+   font-size: 16px;
+   display: inline-grid;
+}
+.active {
+  font-size:16px;
+  margin:20px 0;
+  opacity: 1.0;
+  /*transition: height 500ms 500ms, opacity 500ms 500ms;*/
+}
+.div-none {
+  /*transition: height 500ms 500ms, opacity 500ms 500ms;*/
+  opacity: 0.0;
+  height: 0px;
+  overflow: hidden;
+}
+#elegir-materias #materias-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+#elegir-materias > div {
+  margin: 20px 0;
+}
+.funkyradio div {
+  clear: both;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.funkyradio label {
+  width: 100%;
+  xborder-radius: 3px;
+  xborder: 1px solid #D1D3D4;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  xmargin-top: 2em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  height: 2.5em;
+  background: #eeee;
+  border-radius: 3px 0 0 3px;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  xcolor: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #6c757d;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  xcolor: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc;
+}
+.funkyradio-success input[type="radio"]:checked ~ label:before,
+.funkyradio-success input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #28a745;
+}
+.funkyradio-warning input[type="radio"]:checked ~ label:before,
+.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #ffc107;
+}
+.funkyradio-danger input[type="radio"]:checked ~ label:before,
+.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #dc3545;
+}
+.funkyradio .cuatrimestre {
+    border-bottom: 2px solid #9834b9;
+    margin: 8px 0;
+}
+.form-check-label {
+  margin-left: 10px;
+}
+.btn-actions {
+  background-color: #fff;
+}
+.btn-actions button {
+  margin:10px 5px;
+}
+hr {
+  margin: 3rem 0;
+}
+.funkyradio hr {
+  margin: 0.5rem 0;
+  border-top: 1px solid rgba(152, 52, 185,0.2)
+}
+#carreraChart {
+  margin: 40px 0;
+}
+#carreraChart circle {
+  fill: #ccc;
+  stroke: #28a745;
+  stroke-width: 50;
+  stroke-dasharray: 0 158; /* 2π × 25 ≈ 158 */
+}
+#carreraChart svg {
+  transform: rotate(-90deg);
+  background: #ccc;
+  border-radius: 50%;
 }

@@ -54,7 +54,7 @@ class CarreraViewSet(FacultadAPIView):
 
     @api_view(['GET'])
     def get_plancarreras(self, pk, *args, **kwargs):
-        pc_list = PlanCarrera.objects.filter(carrera=pk)
+        pc_list = PlanCarrera.objects.filter(carrera=pk).order_by('-pub_date')
         serializer = PlanCarreraSerializer(pc_list, many=True)
         return Response(serializer.data)
 
@@ -93,7 +93,7 @@ class PlanCarreraViewSet(FacultadAPIView):
     @api_view(['GET'])
     def get_planmaterias(self, pk, *args, **kwargs):
         pm_list = PlanMateria.objects.select_related('materia')\
-            .filter(plancarrera=pk)
+            .filter(plancarrera=pk).order_by('cuatrimestre', 'materia')
         serializer = PlanMateriaSerializer(pm_list, many=True)
         return Response(serializer.data)
 

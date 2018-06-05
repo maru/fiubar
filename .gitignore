@@ -12,3 +12,4 @@ fiubar.egg-info
 .tox
 .coverage
 local
+node_modules

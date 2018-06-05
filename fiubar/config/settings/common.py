@@ -277,7 +277,7 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
 # Custom user app defaults
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = 'facultad:home'
+LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'account_login'
 
 # SLUGLIFIER
