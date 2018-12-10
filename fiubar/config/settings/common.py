@@ -264,10 +264,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 
 SOCIALACCOUNT_PROVIDERS = {
     "openid": {
-        "SERVERS": [{
-            "id": "yahoo",
-            "name": "Yahoo",
-            "openid_url": "http://me.yahoo.com"}]
+        "SERVERS": []
     }
 }
 SOCIALACCOUNT_ADAPTER = 'fiubar.users.adapters.SocialAccountAdapter'
