@@ -121,6 +121,31 @@ class TestCreateAlumnoHomeView(BaseUserTestCase):
         a = Alumno.objects.filter(user=self.user)
         self.assertEqual(len(a), 4)
 
+    def test_plancarrera_empty(self):
+        a = Alumno.objects.filter(user=self.user)
+        self.assertEqual(len(a), 4)
+        self.client.cookies.load({'create_alumno': '1',
+                                  'plancarrera': ''})
+        response = self.client.post(reverse('account_login'),
+                                    {'login': self.user.username,
+                                     'password': self.user.password},
+                                    follow=True)
+
+        self.assertEqual(len(response.redirect_chain), 2)
+        self.assertEqual(response.redirect_chain,
+                         [(reverse('home'), 302),
+                          (reverse('facultad:home'), 302)])
+
+        self.assertIsNone(response.cookies.get('create_alumno'))
+        self.assertIsNone(response.cookies.get('plancarrera'))
+        self.assertIsNone(response.cookies.get('materias'))
+
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 0)
+
+        a = Alumno.objects.filter(user=self.user)
+        self.assertEqual(len(a), 4)
+
     def test_plancarrera_ya_alumno(self):
         a = Alumno.objects.filter(user=self.user)
         self.assertEqual(len(a), 4)
@@ -173,7 +198,35 @@ class TestCreateAlumnoHomeView(BaseUserTestCase):
         a = Alumno.objects.filter(user=self.user)
         self.assertEqual(len(a), 5)
 
-    def test_materias_vacio(self):
+    def test_materias_empty(self):
+        a = AlumnoMateria.objects.filter(user=self.user)
+        self.assertEqual(len(a), 4)
+        self.client.cookies.load({'create_alumno': '1',
+                                  'plancarrera': '{"id": 4}',
+                                  'materias': ''})
+        response = self.client.post(reverse('account_login'),
+                                    {'login': self.user.username,
+                                     'password': self.user.password},
+                                    follow=True)
+
+        self.assertEqual(len(response.redirect_chain), 2)
+        self.assertEqual(response.redirect_chain,
+                         [(reverse('home'), 302),
+                          (reverse('facultad:home'), 302)])
+
+        self.assertIsNone(response.cookies.get('create_alumno'))
+        self.assertIsNone(response.cookies.get('plancarrera'))
+        self.assertIsNone(response.cookies.get('materias'))
+
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].level, MSG.SUCCESS)
+        self.assertEqual(messages[0].message, _('Carrera agregada.'))
+
+        a = AlumnoMateria.objects.filter(user=self.user)
+        self.assertEqual(len(a), 4)
+
+    def test_materias_none(self):
         a = AlumnoMateria.objects.filter(user=self.user)
         self.assertEqual(len(a), 4)
         self.client.cookies.load({'create_alumno': '1',

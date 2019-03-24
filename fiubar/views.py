@@ -20,6 +20,7 @@ class HomePageView(TemplateView):
     template_name = "new_user/index.html"
 
     def cargar_carrera(self, request):
+        pc = None
         try:
             pc = json.loads(request.COOKIES.get('plancarrera', '{}'))
             plancarrera = PlanCarrera.objects.get(id=pc.get('id'))
@@ -34,13 +35,21 @@ class HomePageView(TemplateView):
                             (request.META.get('REMOTE_ADDR'), request.user,
                              plancarrera.name))
         except Exception as e:
-            logger.error("%s - carreras-add: user '%s', plancarrera '%s',"
+            logger.error("%s - cargar_carrera: user '%s', plancarrera '%s',"
                          "exception: %s" %
                          (request.META.get('REMOTE_ADDR'), request.user,
                           pc, e.args[0]))
 
     def cargar_materias(self, request):
-        materias = json.loads(request.COOKIES.get('materias', '{}'))
+        materias = []
+        try:
+            materias = json.loads(request.COOKIES.get('materias', '{}'))
+        except Exception as e:
+            logger.error("%s - cargar_materias: user '%s', "
+                         "materias '%s', exception: %s" %
+                         (request.META.get('REMOTE_ADDR'),
+                          request.user, materias, e.args[0]))
+
         count_materias = 0
         for m in materias:
             try:
@@ -49,17 +58,17 @@ class HomePageView(TemplateView):
                 obj, created = AlumnoMateria.objects.update_or_create(
                     user=request.user, materia=materia,
                     defaults={'state': estado})
-                logger.info("%s - facultadmateria: user '%s', "
+                logger.info("%s - cargar_materias: user '%s', "
                             "materia '%s', state '%s'" %
                             (request.META.get('REMOTE_ADDR'), request.user,
                              materia.id, estado))
                 count_materias += 1
             except Exception as e:
-                logger.error("%s - facultadmateria: user '%s', "
+                logger.error("%s - cargar_materias: user '%s', "
                              "materia '%s', state '%s', exception: %s" %
                              (request.META.get('REMOTE_ADDR'),
-                              request.user, m[1]['materia'],
-                              m[1]['estado'], e.args[0]))
+                              request.user, m[1].get('materia', ''),
+                              m[1].get('estado', ''), e.args[0]))
 
         if count_materias > 0:
             AlumnoMateria.objects.update_creditos(request.user)
